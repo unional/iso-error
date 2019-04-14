@@ -24,22 +24,90 @@ Also, often time the error are not standard and some information are not properl
 
 This library provide a standard error structure that can be easily serialized and parsed.
 
-You can create your custom error by extending form `IsoError` or `ModuleError`,
-and they can be parsed and thrown as normal:
+## ModuleError
+
+An `IsoError` with an additional `module` field.
+
+The `module` field should contain the name of the module / package defining the error.
+
+Most of the time you should extends from this class instead of the `IsoError` class,
+as it describes the origin of the error.
+
+## IsoError
+
+This is the base class of all isomorphic errors.
+
+It is essentially identical to the standard `Error`, with two differences:
+
+- `name`: Name of the error is adjusted to be the name of the sub-class.
+  This means it can be used to check for the type of the error.
+- `errors`: This is an optional property that contains the cause(s) of the error.
+
+### Serialize and Deserialize
+
+`IsoError.serialize()` and `IsoError.deserialize()` is the main mechanism to pass `IsoError` across physical boundary.
+
+The error are serialized to json.
+
+```ts
+// service
+import { IsoError } from 'iso-error'
+
+route('someroute', (request, response) => {
+  try {
+    doSomething()
+  }
+  catch (e) {
+    response.status(400)
+    response.body(IsoError.serialize(e))
+  }
+})
+
+// client
+import { IsoError } from 'iso-error'
+
+fetch('someroute').then(async response => {
+  if (response.status !== 200) {
+    throw IsoError.deserialize(await response.body())
+  }
+})
+```
+
+### Stringify and Parse
+
+`IsoError.stringify()` and `IsoError.parse()` are alias to `IsoError.serialize()` and `IsoError.deserialize()` respectively.
+
+### IsoError.create(props)
+
+`IsoError.create()` is a quick way to create an `IsoError` with additional properties.
+
+This is mostly used for one-off situation.
+If your package throw many different errors,
+you should consider extending `IsoError` to create a consistent structure as needed.
 
 ```ts
 import { IsoError } from 'iso-error'
 
-const response = await fetch('...')
-
-if (response.status !== 200) {
-  throw IsoError.parse(await response.text())
-}
+throw IsoError.create({ message: 'some message', code: 123, detail: 'some more detail' })
 ```
+
+## Limitation
 
 One limitation remains that you cannot do `err instanceof YourError`.
 But `err instanceof IsoError` and `err instanceof Error` works fine.
-You should use the `err.type` to check for the type of your error.
+You should use the `err.name` to check for the type of your error.
+
+## What about stack trace?
+
+Stack trace is maintained inside a physical boundary, just like `Error` does.
+But for security reason, stack trace does not propagate over physical boundary.
+
+If you think about it, stack trace is useful only to your team who orignate the error.
+Your consumer should not know or care about the stack trace.
+They contains information about the internal structure of your package and is fragile.
+
+To provide a humanly understandable trace of the error cause chain,
+you should do that through the `errors` property.
 
 [circleci-image]: https://circleci.com/gh/unional/iso-error/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/iso-error/tree/master
