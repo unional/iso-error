@@ -15,6 +15,11 @@
     "name": "Homa Wong (unional)",
     "email": "homawong@gmail.com"
   },
+  "files": [
+    "lib",
+    "libm",
+    "src"
+  ],
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
@@ -23,10 +28,12 @@
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev -i @komondor-lab/plugin && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
+    "semantic-release": "semantic-release",
     "test": "jest --reporters=default",
     "verify": "yarn lint && yarn build && yarn dc && jest --coverage --reporters=default",
-    "watch": "jest --watch",
-    "semantic-release": "semantic-release"
+    "watch": "jest --watch"
+  },
+  "dependencies": {
   },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",
