@@ -33,8 +33,7 @@
     "verify": "yarn lint && yarn build && yarn dc && jest --coverage --reporters=default",
     "watch": "jest --watch"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",
     "@unional/devpkg-node": "^1.2.5",

@@ -17,6 +17,15 @@
 
 A isomorphic error library.
 
+When sending error across physical boundary,
+you always need to do some custom parsing and serializing of the data.
+
+Also, often time the error are not standard and some information are not properly serialized.
+
+This library provide a standard error structure that can be easily serialized and parsed.
+
+You can create your custom error by extending form `IsoError` or `ModuleError`,
+and they can be parsed and thrown as normal:
 
 ```ts
 import { IsoError } from 'iso-error'
@@ -28,22 +37,9 @@ if (response.status !== 200) {
 }
 ```
 
-## Contribute
-
-```sh
-# after fork and clone
-npm install
-
-# begin making changes
-git checkout -b <branch>
-npm run watch
-
-# after making change(s)
-git commit -m "<commit message>"
-git push
-
-# create PR
-```
+One limitation remains that you cannot do `err instanceof YourError`.
+But `err instanceof IsoError` and `err instanceof Error` works fine.
+You should use the `err.type` to check for the type of your error.
 
 [circleci-image]: https://circleci.com/gh/unional/iso-error/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/iso-error/tree/master
