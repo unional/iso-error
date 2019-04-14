@@ -114,8 +114,8 @@ you should do that through the `errors` property.
 [codacy-url]: https://www.codacy.com/app/homawong/iso-error?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unional/iso-error&amp;utm_campaign=Badge_Grade
 [codecov-image]: https://codecov.io/gh/unional/iso-error/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/iso-error
-[coveralls-image]: https://coveralls.io/repos/github/unional/iso-error/badge.svg
-[coveralls-url]: https://coveralls.io/github/unional/iso-error
+[coveralls-image]: https://coveralls.io/repos/github/unional/iso-error/badge.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/unional/iso-error?branch=master
 [downloads-image]: https://img.shields.io/npm/dm/iso-error.svg?style=flat
 [downloads-url]: https://npmjs.org/package/iso-error
 [greenkeeper-image]: https://badges.greenkeeper.io/unional/iso-error.svg
