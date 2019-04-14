@@ -15,7 +15,18 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-Description for `iso-error`
+A isomorphic error library.
+
+
+```ts
+import { IsoError } from 'iso-error'
+
+const response = await fetch('...')
+
+if (response.status !== 200) {
+  throw IsoError.parse(await response.text())
+}
+```
 
 ## Contribute
 
