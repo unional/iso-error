@@ -39,8 +39,7 @@ This is the base class of all isomorphic errors.
 
 It is essentially identical to the standard `Error`, with two differences:
 
-- `name`: Name of the error is adjusted to be the name of the sub-class.
-  This means it can be used to check for the type of the error.
+- `name`: Name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
 - `errors`: This is an optional property that contains the cause(s) of the error.
 
 ### Serialize and Deserialize
@@ -97,7 +96,7 @@ One limitation remains that you cannot do `err instanceof YourError`.
 But `err instanceof IsoError` and `err instanceof Error` works fine.
 You should use the `err.name` to check for the type of your error.
 
-## What about stack trace?
+## What about stack trace
 
 Stack trace is maintained inside a physical boundary, just like `Error` does.
 But for security reason, stack trace does not propagate over physical boundary.
