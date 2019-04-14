@@ -1,0 +1,42 @@
+{
+  "name": "iso-error",
+  "version": "0.0.0-development",
+  "description": "[description]",
+  "homepage": "https://github.com/unional/iso-error",
+  "bugs": {
+    "url": "https://github.com/unional/iso-error/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unional/iso-error.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Homa Wong (unional)",
+    "email": "homawong@gmail.com"
+  },
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
+    "clean": "rimraf lib libm *.tsbuildinfo",
+    "dc": "yarn dependency-check",
+    "dependency-check": "dependency-check . --unused --no-dev -i @komondor-lab/plugin && dependency-check . --missing --no-dev",
+    "lint": "tslint -p tsconfig.json",
+    "test": "jest --reporters=default",
+    "verify": "yarn lint && yarn build && yarn dc && jest --coverage --reporters=default",
+    "watch": "jest --watch",
+    "semantic-release": "semantic-release"
+  },
+  "devDependencies": {
+    "@semantic-release/changelog": "^3.0.2",
+    "@unional/devpkg-node": "^1.2.5",
+    "assertron": "^7.0.1",
+    "codecov": "^3.3.0",
+    "jest-junit": "^6.3.0",
+    "semantic-release": "^15.13.3"
+  },
+  "engines": {
+    "node": ">= 8"
+  }
+}
