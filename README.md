@@ -15,7 +15,7 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-A isomorphic error library.
+An isomorphic error library.
 
 When sending error across physical boundary,
 you always need to do some custom parsing and serializing of the data.
