@@ -7,12 +7,12 @@ export class IsoError extends Error {
   /**
    * Name of the error
    */
-  public name: string
+  name: string
 
   /**
    * Error causes
    */
-  public errors?: IsoError[]
+  errors?: IsoError[]
 
   constructor(message: string, ...errors: Error[]) {
     super(message)
