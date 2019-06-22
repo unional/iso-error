@@ -1,7 +1,7 @@
 {
   "name": "iso-error",
   "version": "0.0.0-development",
-  "description": "[description]",
+  "description": "An isomorphic error library",
   "homepage": "https://github.com/unional/iso-error",
   "bugs": {
     "url": "https://github.com/unional/iso-error/issues"
