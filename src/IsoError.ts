@@ -103,7 +103,7 @@ function toIsoError(err: Error) {
   // tslint:disable-next-line: strict-type-predicates
   const name = err.constructor.name !== 'Object' ? err.constructor.name : err.name
 
-  return Object.assign(err, { name, trace(this: IsoError) { return trace(this) } })
+  return Object.assign(err, { name })
 }
 
 function trace(err: IsoError) {
