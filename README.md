@@ -17,36 +17,31 @@
 
 An isomorphic error library.
 
-When sending error across physical boundary,
-you always need to do some custom parsing and serializing of the data.
-
-Also, often time the error are not standard and some information are not properly serialized.
-
-This library provide a standard error structure that can be easily serialized and parsed.
-
-## ModuleError
-
-An `IsoError` with an additional `module` field.
-
-The `module` field should contain the name of the module / package defining the error.
-
-Most of the time you should extends from this class instead of the `IsoError` class,
-as it describes the origin of the error.
+This library defines errors that work across physical boundary.
 
 ## IsoError
 
-This is the base class of all isomorphic errors.
+The base class of all isomorphic errors.
 
-It is essentially identical to the standard `Error`, with two differences:
+It is different than the standard `Error` on:
 
 - `name`: Name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
 - `errors`: This is an optional property that contains the cause(s) of the error.
+
+## ModuleError
+
+An `IsoError` with an additional `module` property.
+
+The `module` property contains the name of the module / package defining the error.
+
+Most of the time you should use this over the `IsoError` class,
+as it describes the origin of the error.
 
 ### Serialize and Deserialize
 
 `IsoError.serialize()` and `IsoError.deserialize()` is the main mechanism to pass `IsoError` across physical boundary.
 
-The error are serialized to json.
+The errors are serialized to json.
 
 ```ts
 // service
@@ -80,9 +75,9 @@ fetch('someroute').then(async response => {
 
 `IsoError.create()` is a quick way to create an `IsoError` with additional properties.
 
-This is mostly used for one-off situation.
-If your package throw many different errors,
-you should consider extending `IsoError` to create a consistent structure as needed.
+This is mostly used in one-off situation.
+If your package throws many different errors,
+you should extend from `ModuleError` instead.
 
 ```ts
 import { IsoError } from 'iso-error'
@@ -99,14 +94,13 @@ You should use the `err.name` to check for the type of your error.
 ## What about stack trace
 
 Stack trace is maintained inside a physical boundary, just like `Error` does.
-But for security reason, stack trace does not propagate over physical boundary.
+For security reasons, stack trace does not propagate over physical boundary.
 
-If you think about it, stack trace is useful only to your team who orignate the error.
+If you think about it, stack trace is useful only to your team who orignates the error.
 Your consumer should not know or care about the stack trace.
 They contains information about the internal structure of your package and is fragile.
 
-To provide a humanly understandable trace of the error cause chain,
-you should do that through the `errors` property.
+Use the `errors` property to provide a humanly understandable trace.
 
 [circleci-image]: https://circleci.com/gh/unional/iso-error/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/iso-error/tree/master
