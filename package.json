@@ -26,7 +26,7 @@
     "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
     "clean": "rimraf lib libm *.tsbuildinfo",
     "dc": "yarn dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev -i @komondor-lab/plugin && dependency-check . --missing --no-dev",
+    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
     "semantic-release": "semantic-release",
     "test": "jest --reporters=default",

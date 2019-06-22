@@ -1,29 +1,24 @@
+// istanbul ignore file
 // This code comes from `make-error`
 
-// istanbul ignore next
-export const captureStackTrace = Error.captureStackTrace || function captureStackTrace(error) {
+export const captureStackTrace = Error.captureStackTrace || function (error) {
   const container = new Error();
 
   Object.defineProperty(error, 'stack', {
     configurable: true,
-    get: function getStack() {
-      const stack = container.stack;
-
+    get: function () {
       // Replace property with value for faster future accesses.
-      Object.defineProperty(this, 'stack', {
-        configurable: true,
-        value: stack,
-        writable: true
-      });
-
-      return stack;
+      defineStack(this, container.stack)
+      return container.stack;
     },
-    set: function setStack(stack) {
-      Object.defineProperty(error, 'stack', {
-        configurable: true,
-        value: stack,
-        writable: true
-      });
-    }
+    set: function (stack) { defineStack(error, stack) }
+  });
+}
+
+function defineStack(target: Object, value: string | undefined) {
+  Object.defineProperty(target, 'stack', {
+    configurable: true,
+    value,
+    writable: true
   });
 }

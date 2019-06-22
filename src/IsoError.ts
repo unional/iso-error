@@ -26,8 +26,7 @@ export class IsoError extends Error {
     if (Object.setPrototypeOf) Object.setPrototypeOf(this, actualProto)
     else (this as any).__proto__ = actualProto
 
-    if (errors.length > 0)
-      this.errors = errors.map(toIsoError)
+    if (errors.length > 0) this.errors = errors.map(toIsoError)
   }
 
   /**
@@ -57,8 +56,7 @@ export class IsoError extends Error {
   }
 
   static serialize(err: Error) {
-    const e = toSerializableError(err)
-    return JSON.stringify(e)
+    return JSON.stringify(toSerializableError(err))
   }
 
   /**
@@ -81,33 +79,25 @@ function deserializeError<P extends Record<string | number, any> = Record<string
   } = JSON.parse(text)
 
   const err = errors ? new IsoError(message, ...errors) : new IsoError(message)
-
   return Object.assign(err, rest)
 }
 
 function toSerializableError(err: IsoError): IsoError {
   const { message, errors } = err
 
-  return errors ?
-    { ...err, name: err.constructor.name, message, errors: errors.map(toSerializableError) } :
-    { ...err, name: err.constructor.name, message }
+  const r = { ...err, name: err.constructor.name, message }
+  if (errors) r.errors = errors.map(toSerializableError)
+  return r
 }
 
-
-/**
- * NOTE: In this function I have to to Object.assign to keep the err instance and its stack trace.
- */
+// NOTE: In this function I have to to Object.assign to keep the err instance and its stack trace.
 function toIsoError(err: Error) {
   if (err instanceof IsoError) return err
 
   // When the error is an internal error from deserialzation,
   // the err.constructor.name is object
   // tslint:disable-next-line: strict-type-predicates
-  const name = err.constructor.name !== 'Object' ?
-    err.constructor.name :
-    err.name
+  const name = err.constructor.name !== 'Object' ? err.constructor.name : err.name
 
-  return Object.assign(err, {
-    name
-  })
+  return Object.assign(err, { name })
 }

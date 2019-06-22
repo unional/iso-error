@@ -10,7 +10,6 @@ export class ModuleError extends IsoError {
   public module: string
   constructor(module: string, description: string, ...errors: Error[]) {
     super(description, ...errors)
-
     this.module = module
   }
 }
