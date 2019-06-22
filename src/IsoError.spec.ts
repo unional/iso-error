@@ -28,6 +28,22 @@ test('can cause by multiple errors', () => {
   })
 })
 
+test('trace() includes error causes', () => {
+  class CustomError extends Error { }
+
+  const e = new IsoError('multi-errors',
+    new Error('abc'),
+    new IsoError('iso',
+      new CustomError('cust'),
+      new IsoError('iso2')))
+
+  expect(e.trace()).toEqual(`IsoError: multi-errors
+  Error: abc
+  IsoError: iso
+    CustomError: cust
+    IsoError: iso2`)
+})
+
 describe('IsoError.stringify()', () => {
   test('contains message', () => {
     const e = new IsoError('with message')
