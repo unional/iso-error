@@ -69,6 +69,9 @@ export class IsoError extends Error {
     captureStackTrace(err, IsoError.deserialize)
     return err
   }
+  trace() {
+    return trace(this)
+  }
 }
 
 function deserializeError<P extends Record<string | number, any> = Record<string | number, any>>(text: string): IsoError & P {
@@ -78,11 +81,10 @@ function deserializeError<P extends Record<string | number, any> = Record<string
     ...rest
   } = JSON.parse(text)
 
-  const err = errors ? new IsoError(message, ...errors) : new IsoError(message)
-  return Object.assign(err, rest)
+  return Object.assign(errors ? new IsoError(message, ...errors) : new IsoError(message), rest)
 }
 
-function toSerializableError(err: IsoError): IsoError {
+function toSerializableError(err: { message: string, errors?: any }) {
   const { message, errors } = err
 
   const r = { ...err, name: err.constructor.name, message }
@@ -99,5 +101,13 @@ function toIsoError(err: Error) {
   // tslint:disable-next-line: strict-type-predicates
   const name = err.constructor.name !== 'Object' ? err.constructor.name : err.name
 
-  return Object.assign(err, { name })
+  return Object.assign(err, { name, trace(this: IsoError) { return trace(this) } })
+}
+
+function trace(err: IsoError) {
+  const messages = [`${err.name}: ${err.message}`]
+  if (err.errors)
+    err.errors.forEach(e => messages.push(...e.trace().split('\n').map(s => '  ' + s)))
+
+  return messages.join('\n')
 }

@@ -23,10 +23,11 @@ This library defines errors that work across physical boundary.
 
 The base class of all isomorphic errors.
 
-It is different than the standard `Error` on:
+It is the same as the standard `Error` except:
 
-- `name`: Name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
-- `errors`: This is an optional property that contains the cause(s) of the error.
+- `name`: name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
+- `errors`: optional property that contains the cause(s) of the error.
+- `trace()`: returns the error message including the error causes.
 
 ## ModuleError
 
