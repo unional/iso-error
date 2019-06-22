@@ -32,10 +32,20 @@ It is the same as the standard `Error` except:
 
 An `IsoError` with an additional `module` property.
 
-The `module` property contains the name of the module / package defining the error.
+Use the `module` property to indicate the name of the module / package defining the error.
 
 Most of the time you should use this over the `IsoError` class,
 as it describes the origin of the error.
+
+```ts
+import { ModuleError } from 'iso-error'
+
+export class YourPackageBaseError extends ModuleError {
+  constructor(description: string, ...errors: Error[]) {
+    super('your-package', description, ...errors)
+  }
+}
+```
 
 ### Serialize and Deserialize
 
@@ -87,7 +97,7 @@ throw IsoError.create({ message: 'some message', code: 123, detail: 'some more d
 
 ### IsoError.trace(err)
 
-Eeturns the error message including its error causes.
+Returns the error message including its error causes.
 
 ```ts
 const err = new IsoError('msg-1', new Error('msg-2'), new IsoError('msg-3'))
