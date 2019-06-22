@@ -69,9 +69,11 @@ export class IsoError extends Error {
     captureStackTrace(err, IsoError.deserialize)
     return err
   }
-  trace() {
-    return trace(this)
-  }
+
+  /**
+   * returns the error message including the error causes.
+   */
+  static trace = trace
 }
 
 function deserializeError<P extends Record<string | number, any> = Record<string | number, any>>(text: string): IsoError & P {
@@ -107,7 +109,7 @@ function toIsoError(err: Error) {
 function trace(err: IsoError) {
   const messages = [`${err.name}: ${err.message}`]
   if (err.errors)
-    err.errors.forEach(e => messages.push(...e.trace().split('\n').map(s => '  ' + s)))
+    err.errors.forEach(e => messages.push(...trace(e).split('\n').map(s => '  ' + s)))
 
   return messages.join('\n')
 }

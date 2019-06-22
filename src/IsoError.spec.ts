@@ -37,7 +37,7 @@ test('trace() includes error causes', () => {
       new CustomError('cust'),
       new IsoError('iso2')))
 
-  expect(e.trace()).toEqual(`IsoError: multi-errors
+  expect(IsoError.trace(e)).toEqual(`IsoError: multi-errors
   Error: abc
   IsoError: iso
     CustomError: cust

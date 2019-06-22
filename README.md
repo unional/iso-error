@@ -25,9 +25,8 @@ The base class of all isomorphic errors.
 
 It is the same as the standard `Error` except:
 
-- `name`: name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
-- `errors`: optional property that contains the cause(s) of the error.
-- `trace()`: returns the error message including the error causes.
+- `name`: the name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
+- `errors`: an optional property that contains the cause(s) of the error.
 
 ## ModuleError
 
@@ -84,6 +83,21 @@ you should extend from `ModuleError` instead.
 import { IsoError } from 'iso-error'
 
 throw IsoError.create({ message: 'some message', code: 123, detail: 'some more detail' })
+```
+
+### IsoError.trace(err)
+
+Eeturns the error message including its error causes.
+
+```ts
+const err = new IsoError('msg-1', new Error('msg-2'), new IsoError('msg-3'))
+
+IsoError.trace(err)
+
+// output:
+// IsoError: msg-1
+//   Error: msg-2
+//   IsoError: msg-3
 ```
 
 ## Limitation
