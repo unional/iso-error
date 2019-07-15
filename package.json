@@ -25,6 +25,7 @@
   "scripts": {
     "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
     "clean": "rimraf lib libm *.tsbuildinfo",
+    "coverage": "jest --coverage",
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "tslint -p tsconfig.json",
