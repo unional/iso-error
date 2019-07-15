@@ -112,6 +112,19 @@ function trace(err: Traceable) {
   return messages.join('\n')
 }
 
+/**
+ * An IsoError with a module property.
+ */
+export class ModuleError extends IsoError {
+  /**
+   * @param module The module that defines this error.
+   */
+  constructor(public module: string, description: string, ...errors: Error[]) {
+    super(description, ...errors)
+  }
+}
+
+// istanbul ignore next
 const captureStackTrace = Error.captureStackTrace || function (error) {
   const container = new Error();
 
@@ -126,22 +139,11 @@ const captureStackTrace = Error.captureStackTrace || function (error) {
   });
 }
 
+// istanbul ignore next
 function defineStack(target: Object, value: string | undefined) {
   Object.defineProperty(target, 'stack', {
     configurable: true,
     value,
     writable: true
   });
-}
-
-/**
- * An IsoError with a module property.
- */
-export class ModuleError extends IsoError {
-  /**
-   * @param module The module that defines this error.
-   */
-  constructor(public module: string, description: string, ...errors: Error[]) {
-    super(description, ...errors)
-  }
 }
