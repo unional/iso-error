@@ -5,11 +5,9 @@ import { IsoError } from './IsoError';
  */
 export class ModuleError extends IsoError {
   /**
-   * The module that defines this error.
+   * @param module The module that defines this error.
    */
-  public module: string
-  constructor(module: string, description: string, ...errors: Error[]) {
+  constructor(public module: string, description: string, ...errors: Error[]) {
     super(description, ...errors)
-    this.module = module
   }
 }

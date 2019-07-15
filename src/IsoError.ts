@@ -34,8 +34,8 @@ export class IsoError extends Error {
    * @param props properties of the IsoError
    */
   static create<P extends { message: string, errors?: Error[] }>(props: P): IsoError & Pick<P, Exclude<keyof P, 'errors' | 'message'>> {
-    const { message, errors, ...rest } = props
-    const err = errors ? new IsoError(message, ...errors) : new IsoError(message)
+    const { message, errors = [], ...rest } = props
+    const err = new IsoError(message, ...errors)
     captureStackTrace(err, IsoError.create)
     return Object.assign(err, rest)
   }
@@ -79,19 +79,17 @@ export class IsoError extends Error {
 function deserializeError<P extends Record<string | number, any> = Record<string | number, any>>(text: string): IsoError & P {
   const {
     message = '',
-    errors,
+    errors = [],
     ...rest
   } = JSON.parse(text)
 
-  return Object.assign(errors ? new IsoError(message, ...errors) : new IsoError(message), rest)
+  return Object.assign(new IsoError(message, ...errors), rest)
 }
 
 function toSerializableError(err: { message: string, errors?: any }) {
-  const { message, errors } = err
+  const { message, errors = [] } = err
 
-  const r = { ...err, name: err.constructor.name, message }
-  if (errors) r.errors = errors.map(toSerializableError)
-  return r
+  return { ...err, name: err.constructor.name, message, errors: errors.map(toSerializableError) }
 }
 
 // NOTE: In this function I have to to Object.assign to keep the err instance and its stack trace.
