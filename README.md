@@ -32,7 +32,7 @@ It is the same as the standard `Error` except:
 
 An `IsoError` with an additional `module` property.
 
-Use the `module` property to indicate the name of the module / package defining the error.
+The `module` property indicates the name of the module / package defining the error.
 
 Most of the time you should use this over the `IsoError` class,
 as it describes the origin of the error.
@@ -119,7 +119,7 @@ You should use the `err.name` to check for the type of your error.
 ## What about stack trace
 
 Stack trace is maintained inside a physical boundary, just like `Error` does.
-For security reasons, stack trace does not propagate over physical boundary.
+For security reasons, stack trace is not propagated accross physical boundary.
 
 If you think about it, stack trace is useful only to your team who orignates the error.
 Your consumer should not know or care about the stack trace.
