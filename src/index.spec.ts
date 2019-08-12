@@ -57,6 +57,11 @@ describe('IsoError', () => {
     expect(IsoError.trace(err)).toEqual(`Error: something is wrong`)
   })
 
+  test('toString() is the same as IsoError.serialize()', () => {
+    const err = IsoError.create({ message: 'some error' })
+    expect(err.toString()).toEqual(IsoError.serialize(err))
+  })
+
   describe('IsoError.stringify()', () => {
     test('contains message', () => {
       const e = new IsoError('with message')
@@ -198,10 +203,14 @@ describe('IsoError', () => {
 })
 
 describe('ModuleError', () => {
-
   test('with module', () => {
     const e = new ModuleError('iso-error', 'mod')
 
     a.satisfies(e, { module: 'iso-error' })
+  })
+
+  test('toString() is the same as IsoError.serialize()', () => {
+    const err = new ModuleError('module-x', 'some error')
+    expect(err.toString()).toEqual(IsoError.serialize(err))
   })
 })

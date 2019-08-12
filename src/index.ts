@@ -72,6 +72,10 @@ export class IsoError extends Error {
    * returns the error message including the error causes.
    */
   static trace = trace
+
+  toString() {
+    return IsoError.serialize(this)
+  }
 }
 
 function deserializeError<P extends Record<string | number, any> = Record<string | number, any>>(text: string): IsoError & P {

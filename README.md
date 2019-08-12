@@ -51,6 +51,8 @@ export class YourPackageBaseError extends ModuleError {
 
 `IsoError.serialize()` and `IsoError.deserialize()` is the main mechanism to pass `IsoError` across physical boundary.
 
+`err.toString()` produces the same result as `IsoError.serialize()`.
+
 The errors are serialized to json.
 
 ```ts
@@ -63,7 +65,7 @@ route('someroute', (request, response) => {
   }
   catch (e) {
     response.status(400)
-    response.body(IsoError.serialize(e))
+    response.body(IsoError.serialize(e)) // or just `e.toString()`
   }
 })
 
