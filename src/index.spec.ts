@@ -8,6 +8,10 @@ describe('IsoError', () => {
     expect(e instanceof Error).toBeTruthy();
   })
 
+  test('is instanceof IsoError', () => {
+    expect((new IsoError('is iso')) instanceof IsoError).toBeTruthy()
+  })
+
   test('can cause by multiple errors', () => {
     class CustomError extends Error { }
 
@@ -207,6 +211,23 @@ describe('ModuleError', () => {
     const e = new ModuleError('iso-error', 'mod')
 
     a.satisfies(e, { module: 'iso-error' })
+  })
+
+  test('is instanceof IsoError', () => {
+    expect((new ModuleError('m', 'is iso')) instanceof IsoError).toBeTruthy()
+  })
+
+  test('is instanceof ModuleError', () => {
+    expect((new ModuleError('m', 'is iso')) instanceof ModuleError).toBeTruthy()
+  })
+
+  test('instanceof for extended custom error works', () => {
+    class CustomError extends ModuleError {
+      constructor() {
+        super('cust', 'blah')
+      }
+    }
+    expect((new CustomError()) instanceof CustomError).toBeTruthy()
   })
 
   test('toString() is the same as IsoError.serialize()', () => {
