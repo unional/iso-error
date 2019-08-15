@@ -27,6 +27,8 @@ It is the same as the standard `Error` except:
 
 - `name`: the name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
 - `errors`: an optional property that contains the cause(s) of the error.
+- The prototype chain is restored for you so you don't need to do `Object.setPrototypeOf(this, new.target.prototype)` yourself.
+  For more information, you can check it out [here](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work)
 
 ## ModuleError
 
