@@ -28,7 +28,7 @@
     "coverage": "jest --coverage",
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
-    "lint": "tslint -p tsconfig.json",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
     "semantic-release": "semantic-release",
     "test": "jest --reporters=default",
     "verify": "yarn lint && yarn build && yarn dc && jest --coverage --reporters=default",
@@ -37,10 +37,9 @@
   "dependencies": {},
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.2",
-    "@unional/devpkg-node": "^1.2.5",
+    "@unional/devpkg-node": "^1.4.0",
     "assertron": "^7.0.1",
     "codecov": "^3.3.0",
-    "jest-junit": "^7.0.0",
     "semantic-release": "^15.13.3"
   },
   "engines": {

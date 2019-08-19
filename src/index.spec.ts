@@ -20,16 +20,15 @@ describe('IsoError', () => {
     a.satisfies(e, {
       errors: [{
         name: 'Error',
-        message: 'abc'
+        message: 'abc',
       }, {
         name: 'IsoError',
         message: 'iso',
         errors: [{
           name: 'CustomError',
-          message: 'cust'
-        }]
-      }
-      ]
+          message: 'cust',
+        }],
+      }],
     })
   })
 
@@ -72,7 +71,7 @@ describe('IsoError', () => {
 
       a.satisfies(JSON.parse(IsoError.stringify(e)), {
         name: 'IsoError',
-        message: 'with message'
+        message: 'with message',
       })
     })
     test('can stringify simple error', () => {
@@ -80,7 +79,7 @@ describe('IsoError', () => {
 
       a.satisfies(JSON.parse(IsoError.stringify(err)), {
         name: 'Error',
-        message: 'simple error'
+        message: 'simple error',
       })
     })
     test('custom error', () => {
@@ -90,7 +89,7 @@ describe('IsoError', () => {
 
       a.satisfies(actual, {
         name: 'Custom',
-        message: 'custom'
+        message: 'custom',
       })
     })
     test('with sub errors', () => {
@@ -99,10 +98,10 @@ describe('IsoError', () => {
 
       a.satisfies(actual, {
         errors: [{
-          message: 'sub 1'
+          message: 'sub 1',
         }, {
-          message: 'sub 2'
-        }]
+          message: 'sub 2',
+        }],
       })
     })
   })
@@ -162,11 +161,11 @@ describe('IsoError', () => {
         message: 'with sub',
         errors: [{
           name: 'Error',
-          message: 'sub'
+          message: 'sub',
         }, {
           name: 'IsoError',
-          message: 'sub2'
-        }]
+          message: 'sub2',
+        }],
       })
     })
   })
@@ -197,10 +196,10 @@ describe('IsoError', () => {
 
       a.satisfies(actual, {
         errors: [{
-          message: 'sub 1'
+          message: 'sub 1',
         }, {
-          message: 'sub 2'
-        }]
+          message: 'sub 2',
+        }],
       })
     })
   })
