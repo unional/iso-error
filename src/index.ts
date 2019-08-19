@@ -139,15 +139,15 @@ const captureStackTrace = Error.captureStackTrace || function (error) {
       defineStack(this, container.stack)
       return container.stack;
     },
-    set: function (stack) { defineStack(error, stack) }
+    set: function (stack) { defineStack(error, stack) },
   });
 }
 
 // istanbul ignore next
-function defineStack(target: Object, value: string | undefined) {
+function defineStack(target: Record<string, any>, value: string | undefined) {
   Object.defineProperty(target, 'stack', {
     configurable: true,
     value,
-    writable: true
+    writable: true,
   });
 }

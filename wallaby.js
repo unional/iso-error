@@ -7,17 +7,17 @@ module.exports = () => {
       { pattern: 'tsconfig.*', instrument: false },
       { pattern: '__komondor__/**/*', instrument: false },
       'src/**/*.ts',
-      '!src/**/*.spec.ts'
+      '!src/**/*.spec.ts',
     ],
     'tests': [
-      'src/**/*.spec.ts'
+      'src/**/*.spec.ts',
     ],
     'env': {
-      'type': 'node'
+      'type': 'node',
     },
     hints: {
       allowIgnoringCoverageInTests: true,
-      ignoreCoverage: /istanbul ignore next/
+      ignoreCoverage: /istanbul ignore next/,
     },
     setup(wallaby) {
       const fs = require('fs');
@@ -40,6 +40,6 @@ module.exports = () => {
       }
       fs.patched = true;
     },
-    'testFramework': 'jest'
+    'testFramework': 'jest',
   }
 }
