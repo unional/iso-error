@@ -1,4 +1,4 @@
-import { Cancelled, InvalidArgument } from './errors';
+import { Cancelled, InvalidArgument, FailedPrecondition } from './errors';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -62,3 +62,38 @@ describe('InvalidArgument', () => {
   })
 })
 
+describe('FailedPrecondition', () => {
+  test('use field violation description as message', () => {
+    const err = new FailedPrecondition({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.PreconditionFailure',
+        violations: [{ type: 'TOS', subject: 'google.com/cloud', description: 'Terms of service not accepted' }]
+      }]
+    })
+    expect(err.message).toEqual('Terms of service not accepted')
+  })
+
+  test('override message', () => {
+    const err = new FailedPrecondition({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.PreconditionFailure',
+        violations: [{ type: 'TOS', subject: 'google.com/cloud', description: 'Terms of service not accepted' }]
+      }]
+    })
+    expect(err.message).toEqual('Overridden message')
+  })
+
+  test('multiple violations description', () => {
+    const err = new FailedPrecondition({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.PreconditionFailure',
+        violations: [
+          { type: 'TOS', subject: 'google.com/cloud', description: 'Terms of service not accepted' },
+          { type: 'TOS', subject: 'google.com/cloud2', description: 'Terms of service not accepted' },
+        ]
+      }]
+    })
+    expect(err.message).toEqual('Multiple precondition failures, please see details.')
+  })
+})

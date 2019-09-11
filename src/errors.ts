@@ -49,3 +49,15 @@ function formatInvalidArgumentMessage(badRequest: BadRequest) {
   return badRequest.field_violations[0].description
 }
 
+export class FailedPrecondition extends GoogleCloudApiError<[PreconditionFailure, ...(RequestInfo | Help | LocalizedMessage)[]]> {
+  constructor(options: RequiredPick<Partial<ErrorOptions<[PreconditionFailure, ...(RequestInfo | Help | LocalizedMessage)[]]>>, 'details'>, ...errors: Error[]) {
+    super(required({ message: formatFailedPreconditionMessage(options.details[0]) }, options), ...errors)
+  }
+}
+
+function formatFailedPreconditionMessage(badRequest: PreconditionFailure) {
+  if (badRequest.violations.length > 1) {
+    return 'Multiple precondition failures, please see details.'
+  }
+  return badRequest.violations[0].description
+}
