@@ -1,14 +1,14 @@
 {
-  "name": "iso-error-google-cloud-api",
+  "name": "google-cloud-api",
   "version": "0.0.0-development",
-  "description": "iso-error plugin for Google Cloud API design",
-  "homepage": "https://github.com/unional/iso-error",
+  "description": "API utility library that follows Google Cloud API design",
+  "homepage": "https://github.com/unional/google-cloud-api",
   "bugs": {
-    "url": "https://github.com/unional/iso-error/issues"
+    "url": "https://github.com/unional/google-cloud-api/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/unional/iso-error.git"
+    "url": "https://github.com/unional/google-cloud-api.git"
   },
   "license": "MIT",
   "author": {
@@ -34,14 +34,16 @@
     "verify": "yarn lint && yarn build && yarn dc && jest --coverage --reporters=default",
     "watch": "jest --watch"
   },
-  "dependencies": {},
+  "dependencies": {
+    "iso-error": "^2.4.0",
+    "type-plus": "^1.29.0"
+  },
   "devDependencies": {
     "@semantic-release/changelog": "^3.0.4",
     "@unional/devpkg-node": "^1.4.0",
     "assertron": "^7.1.2",
     "codecov": "^3.5.0",
-    "semantic-release": "^15.13.24",
-    "type-plus": "^1.29.0"
+    "semantic-release": "^15.13.24"
   },
   "engines": {
     "node": ">= 8"

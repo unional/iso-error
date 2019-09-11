@@ -13,7 +13,10 @@
       "files": [
         "*.ts",
         "*.tsx"
-      ]
+      ],
+      "rules": {
+        "@typescript-eslint/camelcase": "off"
+      }
     }
   ]
 }
