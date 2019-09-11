@@ -36,11 +36,11 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "@semantic-release/changelog": "^3.0.2",
+    "@semantic-release/changelog": "^3.0.4",
     "@unional/devpkg-node": "^1.4.0",
-    "assertron": "^7.0.1",
-    "codecov": "^3.3.0",
-    "semantic-release": "^15.13.3"
+    "assertron": "^7.1.2",
+    "codecov": "^3.5.0",
+    "semantic-release": "^15.13.24"
   },
   "engines": {
     "node": ">= 8"
