@@ -1,3 +1,8 @@
+export type IsoErrorPlugin = {
+  serialize(err: Error & Record<keyof any, any>): string | undefined,
+  deserialize(jsonObj: Record<keyof any, any>): Error | undefined,
+}
+
 /**
  * Isomorphic Error that works across physical boundary.
  */
@@ -11,6 +16,9 @@ export class IsoError extends Error {
    * Error causes
    */
   errors?: IsoError[]
+
+  static serializers: IsoErrorPlugin['serialize'][] = [(err) => JSON.stringify(toSerializableError(err))]
+  static deserializers: IsoErrorPlugin['deserialize'][] = []
 
   constructor(message: string, ...errors: Error[]) {
     super(message)
@@ -54,7 +62,7 @@ export class IsoError extends Error {
   }
 
   static serialize(err: Error) {
-    return JSON.stringify(toSerializableError(err))
+    return IsoError.serializers.reduce<string | undefined>((p, s) => p || s(err), undefined)!
   }
 
   /**
@@ -68,6 +76,10 @@ export class IsoError extends Error {
     return err
   }
 
+  static addPlugin({ serialize, deserialize }: IsoErrorPlugin) {
+    IsoError.serializers.unshift(serialize)
+    IsoError.deserializers.unshift(deserialize)
+  }
   /**
    * returns the error message including the error causes.
    */
@@ -79,11 +91,21 @@ export class IsoError extends Error {
 }
 
 function deserializeError<P extends Record<string | number, any> = Record<string | number, any>>(text: string): IsoError & P {
-  const {
-    message = '',
-    errors = [],
-    ...rest
-  } = JSON.parse(text)
+  const json = JSON.parse(text)
+  let err: any = undefined
+  for (let i = 0; i < IsoError.deserializers.length; i++) {
+    err = IsoError.deserializers[i](json)
+    if (err) break;
+  }
+
+  return err || deserializeIsoError(json)
+}
+
+function deserializeIsoError<P extends Record<string | number, any> = Record<string | number, any>>({
+  message = '',
+  errors = [],
+  ...rest
+}: any): IsoError & P {
 
   return Object.assign(new IsoError(message, ...errors), rest)
 }
@@ -93,7 +115,6 @@ function toSerializableError(err: { message: string, errors?: any }) {
 
   return { ...err, name: err.constructor.name, message, errors: errors.map(toSerializableError) }
 }
-
 // NOTE: In this function I have to to Object.assign to keep the err instance and its stack trace.
 function toIsoError(err: Error) {
   if (err instanceof IsoError) return err

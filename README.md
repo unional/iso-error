@@ -85,6 +85,21 @@ fetch('someroute').then(async response => {
 
 `IsoError.stringify()` and `IsoError.parse()` are alias to `IsoError.serialize()` and `IsoError.deserialize()` respectively.
 
+### Plugin
+
+You can install plugins to provide special handling of the serialization.
+
+```ts
+import { IsoError } from 'iso-error'
+import { plugin, InvalidArgument } from 'iso-error-google-cloud-api'
+
+IsoError.addPlugin(plugin)
+
+const actual = IsoError.deserialize(IsoError.serialize(new InvalidArgument(...)))
+
+console.info(actual instanceof InvalidArgument) // true
+```
+
 ### IsoError.create(props)
 
 `IsoError.create()` is a quick way to create an `IsoError` with additional properties.

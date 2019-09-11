@@ -1,6 +1,6 @@
 import a from 'assertron';
 import { IsoError, ModuleError } from '.';
-
+import { omit } from 'type-plus'
 describe('IsoError', () => {
   test('is instanceof Error', () => {
     const e = new IsoError('instance of')
@@ -109,7 +109,7 @@ describe('IsoError', () => {
   describe('IsoError.deserialize()', () => {
     test('stack trace starts at call site', () => {
       const actual = IsoError.deserialize('{}')
-      expect(actual.stack).toMatch(/Error:\s*at Object.test/)
+      expect(actual.stack).toMatch(/IsoError:.*\n.*index.spec.ts/)
     })
   })
 
@@ -133,7 +133,7 @@ describe('IsoError', () => {
 
     test('stack trace starts at call site', () => {
       const actual = IsoError.parse('{}')
-      expect(actual.stack).toMatch(/Error:\s*at Object.test/)
+      expect(actual.stack).toMatch(/IsoError:.*\n.*index.spec.ts/)
     })
 
     test('extra fields are parsed', () => {
@@ -188,7 +188,7 @@ describe('IsoError', () => {
 
     test('stack trace starts at call site', () => {
       const actual = IsoError.create({ message: '' })
-      expect(actual.stack).toMatch(/Error:\s*at Object.test/)
+      expect(actual.stack).toMatch(/IsoError:.*\n.*index.spec.ts/)
     })
 
     test('create with sub-errors', () => {
@@ -232,5 +232,49 @@ describe('ModuleError', () => {
   test('toString() is the same as IsoError.serialize()', () => {
     const err = new ModuleError('module-x', 'some error')
     expect(err.toString()).toEqual(IsoError.serialize(err))
+  })
+})
+
+describe('IsoError.addPlugin()', () => {
+  test('fall back to default if plugin does not support the specified error', () => {
+    IsoError.addPlugin({
+      serialize() {
+        return undefined
+      },
+      deserialize() {
+        return undefined
+      },
+    })
+
+    const msg = IsoError.serialize(IsoError.create({ message: 'dummy' }))
+    const actual = IsoError.deserialize(msg)
+
+    a.satisfies(actual, { message: 'dummy' })
+  })
+  test('use plugin to serialize and deserialize', () => {
+    class WithSecret extends IsoError {
+      secret = 'secret msg'
+    }
+
+    IsoError.addPlugin({
+      serialize(err) {
+        if (err.name === 'WithSecret') {
+          return JSON.stringify({ ...omit(err, 'secret') })
+        }
+      },
+      deserialize(obj) {
+        if (obj.name === 'WithSecret') {
+          return new WithSecret('no secret')
+        }
+      },
+    })
+
+    const json = IsoError.serialize(new WithSecret('has secret'))
+
+    expect(json).not.toMatch(/secret msg/)
+
+    const actual = IsoError.deserialize(json)
+
+    expect(actual.message).toBe('no secret')
   })
 })

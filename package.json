@@ -40,7 +40,8 @@
     "@unional/devpkg-node": "^1.4.0",
     "assertron": "^7.1.2",
     "codecov": "^3.5.0",
-    "semantic-release": "^15.13.24"
+    "semantic-release": "^15.13.24",
+    "type-plus": "^1.29.0"
   },
   "engines": {
     "node": ">= 8"
