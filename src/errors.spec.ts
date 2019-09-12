@@ -1,4 +1,4 @@
-import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange, Unauthenticated, PermissionDenied, NotFound } from '.';
+import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange, Unauthenticated, PermissionDenied, NotFound, Aborted } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -198,3 +198,34 @@ describe('NotFound', () => {
     expect(err.message).toEqual('Overridden message')
   })
 })
+
+describe('Aborted', () => {
+  test('use field violation description as message', () => {
+    const err = new Aborted({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual("Couldn't acquire lock on resource 'file.txt'.")
+  })
+
+  test('override message', () => {
+    const err = new Aborted({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+

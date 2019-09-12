@@ -106,3 +106,13 @@ export class NotFound extends GoogleCloudApiError<[ResourceInfo, ...ErrorDetails
 function formatNotFoundMessage(info: ResourceInfo) {
   return `Resource '${info.resource_name}' not found.`
 }
+
+export class Aborted extends GoogleCloudApiError<[ResourceInfo, ...ErrorDetails]> {
+  constructor(options: RequiredPick<Partial<ErrorOptions<[ResourceInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
+    super(required({ message: formatAbortMessage(options.details[0]) }, options), ...errors)
+  }
+}
+
+function formatAbortMessage(info: ResourceInfo) {
+  return `Couldn't acquire lock on resource '${info.resource_name}'.`
+}
