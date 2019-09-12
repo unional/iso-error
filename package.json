@@ -34,12 +34,23 @@
     "verify": "yarn lint && yarn build && yarn dc && jest --coverage --reporters=default",
     "watch": "jest --watch"
   },
-  "dependencies": {},
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "google-cloud-api": "^1.0.0"
+  },
   "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
     "@semantic-release/changelog": "^3.0.4",
     "@unional/devpkg-node": "^1.4.0",
     "assertron": "^7.1.2",
     "codecov": "^3.5.0",
+    "commitlint-circle": "^1.0.0",
+    "husky": "^3.0.5",
     "semantic-release": "^15.13.24",
     "type-plus": "^1.29.0"
   },
