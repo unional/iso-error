@@ -238,10 +238,10 @@ describe('ModuleError', () => {
 describe('IsoError.addPlugin()', () => {
   test('fall back to default if plugin does not support the specified error', () => {
     IsoError.addPlugin({
-      serialize() {
+      toSerializable() {
         return undefined
       },
-      deserialize() {
+      fromSerializable() {
         return undefined
       },
     })
@@ -257,12 +257,12 @@ describe('IsoError.addPlugin()', () => {
     }
 
     IsoError.addPlugin({
-      serialize(err) {
+      toSerializable(err) {
         if (err.name === 'WithSecret') {
-          return JSON.stringify({ ...omit(err, 'secret') })
+          return { ...omit(err, 'secret') } as any
         }
       },
-      deserialize(obj) {
+      fromSerializable(obj) {
         if (obj.name === 'WithSecret') {
           return new WithSecret('no secret')
         }
