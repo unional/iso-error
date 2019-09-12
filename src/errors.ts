@@ -21,10 +21,12 @@ export class GoogleCloudApiError<
 
     this.details = details || [] as any
     const debugInfo = this.getDebugInfo(debugDetail || message)
+    // istanbul ignore next
     if (debugInfo) this.details.push(debugInfo)
   }
 
   getDebugInfo(detail: string): DebugInfo | undefined {
+    // istanbul ignore next
     if (!this.stack) return undefined
 
     const stack_entries = this.stack.split('\n')
@@ -138,4 +140,10 @@ function formatResourceExhaustedMessage(quotaFailure: QuotaFailure) {
     return 'Multiple quota violations, please see details.'
   }
   return quotaFailure.violations[0].description
+}
+
+export class DataLoss extends GoogleCloudApiError {
+  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
+    super(required({ message: '' }, options), ...errors)
+  }
 }

@@ -1,4 +1,4 @@
-import { Aborted, AlreadyExists, Cancelled, FailedPrecondition, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated } from '.';
+import { Aborted, AlreadyExists, Cancelled, FailedPrecondition, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, DataLoss } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -290,5 +290,17 @@ describe('ResourceExhausted', () => {
       }]
     })
     expect(err.message).toEqual('Multiple quota violations, please see details.')
+  })
+})
+
+describe('DataLoss', () => {
+  test('create with default message', () => {
+    const err = new DataLoss()
+    expect(err.message).toEqual('')
+  })
+
+  test('override message', () => {
+    const err = new DataLoss({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
   })
 })
