@@ -1,6 +1,6 @@
 import { ModuleError } from 'iso-error';
 import { required, RequiredPick } from 'type-plus'
-import { BadRequest, DebugInfo, ErrorDetail, Help, LocalizedMessage, RequestInfo, PreconditionFailure, PermissionInfo, ResourceInfo } from './types';
+import { BadRequest, DebugInfo, ErrorDetail, Help, LocalizedMessage, RequestInfo, PreconditionFailure, PermissionInfo, ResourceInfo, QuotaFailure } from './types';
 
 export type ErrorOptions<D extends ErrorDetails = ErrorDetails> = {
   message: string,
@@ -125,4 +125,17 @@ export class AlreadyExists extends GoogleCloudApiError<[ResourceInfo, ...ErrorDe
 
 function formatAlreadyExistsMessage(info: ResourceInfo) {
   return `Resource '${info.resource_name}' already exists.`
+}
+
+export class ResourceExhausted extends GoogleCloudApiError<[QuotaFailure, ...ErrorDetails]> {
+  constructor(options: RequiredPick<Partial<ErrorOptions<[QuotaFailure, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
+    super(required({ message: formatResourceExhaustedMessage(options.details[0]) }, options), ...errors)
+  }
+}
+
+function formatResourceExhaustedMessage(quotaFailure: QuotaFailure) {
+  if (quotaFailure.violations.length > 1) {
+    return 'Multiple quota violations, please see details.'
+  }
+  return quotaFailure.violations[0].description
 }

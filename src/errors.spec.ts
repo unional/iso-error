@@ -1,4 +1,4 @@
-import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange, Unauthenticated, PermissionDenied, NotFound, Aborted, AlreadyExists } from '.';
+import { Aborted, AlreadyExists, Cancelled, FailedPrecondition, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -228,65 +228,6 @@ describe('Aborted', () => {
   })
 })
 
-
-describe('Aborted', () => {
-  test('use field violation description as message', () => {
-    const err = new Aborted({
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual("Couldn't acquire lock on resource 'file.txt'.")
-  })
-
-  test('override message', () => {
-    const err = new Aborted({
-      message: 'Overridden message',
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual('Overridden message')
-  })
-})
-
-describe('Aborted', () => {
-  test('use field violation description as message', () => {
-    const err = new Aborted({
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual("Couldn't acquire lock on resource 'file.txt'.")
-  })
-
-  test('override message', () => {
-    const err = new Aborted({
-      message: 'Overridden message',
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual('Overridden message')
-  })
-})
-
 describe('AlreadyExists', () => {
   test('use field violation description as message', () => {
     const err = new AlreadyExists({
@@ -313,5 +254,41 @@ describe('AlreadyExists', () => {
       }]
     })
     expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('ResourceExhausted', () => {
+  test('use field violation description as message', () => {
+    const err = new ResourceExhausted({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.QuotaFailure',
+        violations: [{ subject: 'apple', description: `Quota limit '100' exceeded.` }]
+      }]
+    })
+    expect(err.message).toEqual(`Quota limit '100' exceeded.`)
+  })
+
+  test('override message', () => {
+    const err = new ResourceExhausted({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.QuotaFailure',
+        violations: [{ subject: 'apple', description: `Quota limit '100' exceeded.` }]
+      }]
+    })
+    expect(err.message).toEqual('Overridden message')
+  })
+
+  test('multiple field violation description', () => {
+    const err = new ResourceExhausted({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.QuotaFailure',
+        violations: [
+          { subject: 'apple', description: `Quota limit '100' exceeded.` },
+          { subject: 'banana', description: `Quota limit '3' exceeded.` },
+        ]
+      }]
+    })
+    expect(err.message).toEqual('Multiple quota violations, please see details.')
   })
 })
