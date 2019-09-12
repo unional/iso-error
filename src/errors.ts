@@ -147,3 +147,15 @@ export class DataLoss extends GoogleCloudApiError {
     super(required({ message: '' }, options), ...errors)
   }
 }
+
+export class UnknownError extends GoogleCloudApiError {
+  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
+    super(required({ message: '' }, options), ...errors)
+  }
+}
+
+export class InternalError extends GoogleCloudApiError {
+  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
+    super(required({ message: '' }, options), ...errors)
+  }
+}

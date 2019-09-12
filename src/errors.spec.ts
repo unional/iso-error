@@ -1,4 +1,4 @@
-import { Aborted, AlreadyExists, Cancelled, FailedPrecondition, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, DataLoss } from '.';
+import { Aborted, AlreadyExists, Cancelled, DataLoss, FailedPrecondition, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, UnknownError } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -301,6 +301,30 @@ describe('DataLoss', () => {
 
   test('override message', () => {
     const err = new DataLoss({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('UnknownError', () => {
+  test('create with default message', () => {
+    const err = new UnknownError()
+    expect(err.message).toEqual('')
+  })
+
+  test('override message', () => {
+    const err = new UnknownError({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('InternalError', () => {
+  test('create with default message', () => {
+    const err = new InternalError()
+    expect(err.message).toEqual('')
+  })
+
+  test('override message', () => {
+    const err = new InternalError({ message: 'Overridden message' })
     expect(err.message).toEqual('Overridden message')
   })
 })
