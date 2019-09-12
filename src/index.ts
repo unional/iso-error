@@ -1,8 +1,5 @@
-export type SerializableError = {
-  name: string,
-  errors?: SerializableError[],
-  [k: string]: any,
-}
+export type SerializableError = Record<string | number, any>
+
 export type IsoErrorPlugin = {
   toSerializable(err: SerializableError): SerializableError | undefined,
   fromSerializable(jsonObj: Record<keyof any, any>): Error | undefined,
@@ -59,7 +56,7 @@ export class IsoError extends Error {
    * @type P Additonal properties of the IsoError
    * @param text Json representation of a IsoError
    */
-  static parse<P extends Record<string | number, any> = Record<string | number, any>>(text: string): IsoError & P {
+  static parse<P extends SerializableError = SerializableError>(text: string): IsoError & P {
     const err = deserializeError<P>(text)
 
     captureStackTrace(err, IsoError.parse)
@@ -67,14 +64,14 @@ export class IsoError extends Error {
   }
 
   static serialize(err: Error) {
-    return JSON.stringify(IsoError.serializers.reduce<SerializableError | undefined>((p, s) => p || s(err), undefined))
+    return JSON.stringify(IsoError.serializers.reduce<Record<string, any> | undefined>((p, s) => p || s(err), undefined))
   }
 
   /**
    * @type P Additonal properties of the IsoError
    * @param text Json representation of a IsoError
    */
-  static deserialize<P extends Record<string | number, any> = Record<string | number, any>>(text: string): IsoError & P {
+  static deserialize<P extends SerializableError = SerializableError>(text: string): IsoError & P {
     const err = deserializeError<P>(text)
 
     captureStackTrace(err, IsoError.deserialize)
@@ -95,7 +92,7 @@ export class IsoError extends Error {
   }
 }
 
-function deserializeError<P extends Record<string | number, any> = Record<string | number, any>>(text: string): IsoError & P {
+function deserializeError<P extends SerializableError = SerializableError>(text: string): IsoError & P {
   const json = JSON.parse(text)
   let err: any = undefined
   for (let i = 0; i < IsoError.deserializers.length; i++) {
@@ -106,7 +103,7 @@ function deserializeError<P extends Record<string | number, any> = Record<string
   return err || deserializeIsoError(json)
 }
 
-function deserializeIsoError<P extends Record<string | number, any> = Record<string | number, any>>({
+function deserializeIsoError<P extends SerializableError = SerializableError>({
   message = '',
   errors = [],
   ...rest
