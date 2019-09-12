@@ -1,4 +1,4 @@
-import { Aborted, AlreadyExists, Cancelled, DataLoss, FailedPrecondition, InternalError, InvalidArgument, NotFound, NotImplemented, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, UnknownError } from '.';
+import { Aborted, AlreadyExists, Cancelled, DataLoss, FailedPrecondition, InternalError, InvalidArgument, NotFound, NotImplemented, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, UnknownError, DeadlineExceeded } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -360,6 +360,18 @@ describe('Unavailable', () => {
 
   test('override message', () => {
     const err = new Unavailable({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('DeadlineExceeded', () => {
+  test('create with default message', () => {
+    const err = new DeadlineExceeded()
+    expect(err.message).toEqual('')
+  })
+
+  test('override message', () => {
+    const err = new DeadlineExceeded({ message: 'Overridden message' })
     expect(err.message).toEqual('Overridden message')
   })
 })

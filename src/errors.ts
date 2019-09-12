@@ -175,3 +175,9 @@ export class Unavailable extends GoogleCloudApiError {
     super(required({ message: '' }, options), ...errors)
   }
 }
+
+export class DeadlineExceeded extends GoogleCloudApiError {
+  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
+    super(required({ message: '' }, options), ...errors)
+  }
+}
