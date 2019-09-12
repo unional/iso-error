@@ -66,6 +66,12 @@ export type BadRequest = {
 
 export type RequestInfo = {
   '@type': 'type.googleapis.com/google.rpc.RequestInfo',
+  request_id: string,
+  serving_data: string,
+}
+
+export type ResourceInfo = {
+  '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
   resource_type: string,
   resource_name: string,
   owner: string,
@@ -88,4 +94,11 @@ export type LocalizedMessage = {
   '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
   locale: string,
   message: string,
+}
+
+export type PermissionInfo = {
+  '@type': 'google-cloud-api/PermissionInfo',
+  resource_type: string,
+  resource_name: string,
+  permission: string,
 }

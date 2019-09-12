@@ -1,10 +1,9 @@
-import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange, Unauthenticated } from '.';
+import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange, Unauthenticated, PermissionDenied, NotFound } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
     const err = new Cancelled()
     expect(err.message).toEqual('Request cancelled by the client.')
-    expect(err.details).toEqual([])
   })
 
   test('override message', () => {
@@ -18,13 +17,14 @@ describe('Cancelled', () => {
       details: [{
         '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
         locale: 'jp',
-        message: 'canelled, baka'
+        message: 'cancelled, baka'
       }]
     })
+
     expect(err.details[0]).toEqual({
       '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
       locale: 'jp',
-      message: 'canelled, baka'
+      message: 'cancelled, baka'
     })
   })
 })
@@ -135,11 +135,66 @@ describe('Unauthenticated', () => {
   test('create with default message', () => {
     const err = new Unauthenticated()
     expect(err.message).toEqual('Invalid authentication credentials.')
-    expect(err.details).toEqual([])
   })
 
   test('override message', () => {
     const err = new Unauthenticated({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('PermissionDenied', () => {
+  test('use field violation description as message', () => {
+    const err = new PermissionDenied({
+      details: [{
+        '@type': 'google-cloud-api/PermissionInfo',
+        permission: 'read',
+        resource_type: 'file',
+        resource_name: 'file.txt'
+      }]
+    })
+    expect(err.message).toEqual("Resource 'read' denied on file 'file.txt'.")
+  })
+
+  test('override message', () => {
+    const err = new PermissionDenied({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'google-cloud-api/PermissionInfo',
+        permission: 'read',
+        resource_type: 'file',
+        resource_name: 'file.txt'
+      }]
+    })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('NotFound', () => {
+  test('use field violation description as message', () => {
+    const err = new NotFound({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual("Resource 'file.txt' not found.")
+  })
+
+  test('override message', () => {
+    const err = new NotFound({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
     expect(err.message).toEqual('Overridden message')
   })
 })
