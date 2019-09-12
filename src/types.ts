@@ -1,9 +1,10 @@
-export type ErrorStatus<D extends ErrorDetail> = {
+export type ErrorStatus<D extends ErrorDetails = ErrorDetails> = {
   code: number,
   message: string,
-  details: D[],
+  details: D,
 }
 
+export type ErrorDetails = Array<RequestInfo | Help | LocalizedMessage | ErrorDetail>
 
 export type Duration = {
   seconds: number,

@@ -1,6 +1,6 @@
-import { ModuleError, IsoError } from 'iso-error';
-import { required, RequiredPick } from 'type-plus'
-import { BadRequest, DebugInfo, ErrorDetail, Help, LocalizedMessage, RequestInfo, PreconditionFailure, PermissionInfo, ResourceInfo, QuotaFailure, MethodInfo, ErrorStatus, CauseInfo } from './types';
+import { IsoError, ModuleError } from 'iso-error';
+import { required, RequiredPick } from 'type-plus';
+import { BadRequest, CauseInfo, DebugInfo, ErrorDetails, ErrorStatus, MethodInfo, PermissionInfo, PreconditionFailure, QuotaFailure, ResourceInfo } from './types';
 
 export type ErrorOptions<D extends ErrorDetails = ErrorDetails> = {
   message: string,
@@ -10,7 +10,6 @@ export type ErrorOptions<D extends ErrorDetails = ErrorDetails> = {
   debugDetail?: string,
   details?: D
 }
-export type ErrorDetails = Array<RequestInfo | Help | LocalizedMessage | ErrorDetail>
 
 export abstract class GoogleCloudApiError<
   D extends ErrorDetails = ErrorDetails
@@ -25,8 +24,8 @@ export abstract class GoogleCloudApiError<
     this.debugDetail = debugDetail
   }
 
-  toErrorStatus(): ErrorStatus<any> {
-    const details = [...this.details]
+  toErrorStatus(): ErrorStatus<D> {
+    const details = [...this.details] as D
     const debugInfo = this.getDebugInfo()
     // istanbul ignore next
     if (debugInfo) details.push(debugInfo)
