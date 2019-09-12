@@ -1,9 +1,9 @@
-import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange } from './errors';
+import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange, Unauthenticated } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
     const err = new Cancelled()
-    expect(err.message).toEqual('Request cancelled by the client')
+    expect(err.message).toEqual('Request cancelled by the client.')
     expect(err.details).toEqual([])
   })
 
@@ -128,5 +128,18 @@ describe('OutOfRange', () => {
       }]
     })
     expect(err.message).toEqual('Multiple out of range violations, please see details.')
+  })
+})
+
+describe('Unauthenticated', () => {
+  test('create with default message', () => {
+    const err = new Unauthenticated()
+    expect(err.message).toEqual('Invalid authentication credentials.')
+    expect(err.details).toEqual([])
+  })
+
+  test('override message', () => {
+    const err = new Unauthenticated({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
   })
 })

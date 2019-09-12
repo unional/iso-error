@@ -32,7 +32,7 @@ export class GoogleCloudApiError<
 
 export class Cancelled extends GoogleCloudApiError {
   constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(required({ message: 'Request cancelled by the client' }, options), ...errors)
+    super(required({ message: 'Request cancelled by the client.' }, options), ...errors)
   }
 }
 
@@ -73,4 +73,10 @@ function formatOutOfRangeMessage(badRequest: BadRequest) {
     return 'Multiple out of range violations, please see details.'
   }
   return badRequest.field_violations[0].description
+}
+
+export class Unauthenticated extends GoogleCloudApiError {
+  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
+    super(required({ message: 'Invalid authentication credentials.' }, options), ...errors)
+  }
 }
