@@ -16,7 +16,6 @@ export type ErrorDetail = {
   [k: string]: any
 }
 
-
 export type RetryInfo = {
   '@type': 'type.googleapis.com/google.rpc.RetryInfo',
   retry_delay: Duration,
