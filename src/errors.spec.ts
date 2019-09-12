@@ -1,4 +1,7 @@
-import { Aborted, AlreadyExists, Cancelled, DataLoss, FailedPrecondition, InternalError, InvalidArgument, NotFound, NotImplemented, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, UnknownError, DeadlineExceeded } from '.';
+import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, Unimplemented, UnknownError } from '.';
+import a from 'assertron'
+import { has } from 'satisfier';
+import { IsoError } from 'iso-error';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -55,7 +58,10 @@ describe('InvalidArgument', () => {
     const err = new InvalidArgument({
       details: [{
         '@type': 'type.googleapis.com/google.rpc.BadRequest',
-        field_violations: [{ field: 'abc', description: 'desc a' }, { field: 'x.y.z', description: 'desc b' }]
+        field_violations: [
+          { field: 'abc', description: 'desc a' },
+          { field: 'x.y.z', description: 'desc b' }
+        ]
       }]
     })
     expect(err.message).toEqual('Multiple invalid arguments, please see details.')
@@ -331,7 +337,7 @@ describe('InternalError', () => {
 
 describe('NotImplemented', () => {
   test('use field violation description as message', () => {
-    const err = new NotImplemented({
+    const err = new Unimplemented({
       details: [{
         '@type': 'google-cloud-api/MethodInfo',
         method_name: 'batchGet'
@@ -341,7 +347,7 @@ describe('NotImplemented', () => {
   })
 
   test('override message', () => {
-    const err = new NotImplemented({
+    const err = new Unimplemented({
       message: 'Overridden message',
       details: [{
         '@type': 'google-cloud-api/MethodInfo',
@@ -373,5 +379,54 @@ describe('DeadlineExceeded', () => {
   test('override message', () => {
     const err = new DeadlineExceeded({ message: 'Overridden message' })
     expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('toErrorStatus', () => {
+  test('contains DebugInfo', () => {
+    const err = new Unauthenticated()
+    const status = err.toErrorStatus()
+    a.satisfies(status, {
+      code: 16,
+      message: 'Invalid authentication credentials.',
+      details: [
+        {
+          '@type': 'type.googleapis.com/google.rpc.DebugInfo',
+          stack_entries: has(
+            /^Unauthenticated.IsoError/,
+            /^new ModuleError/,
+            /^new GoogleCloudApiError/
+          ),
+          detail: 'Invalid authentication credentials.'
+        }
+      ]
+    })
+  })
+  test('contains CauseInfo when there are inner errors', () => {
+    const err = new Unauthenticated(
+      undefined,
+      new Error('a is wrong'),
+      new IsoError('b is wrong', new IsoError('c is wrong'), new Error('d is wrong'))
+    )
+    const status = err.toErrorStatus()
+    a.satisfies(status, {
+      code: 16,
+      message: 'Invalid authentication credentials.',
+      details: has(
+        {
+          '@type': 'google-cloud-api/CauseInfo',
+          causes: [{
+            description: 'Error: a is wrong'
+          }, {
+            description: 'IsoError: b is wrong',
+            causes: [{
+              description: 'IsoError: c is wrong'
+            }, {
+              description: 'Error: d is wrong'
+            }]
+          }]
+        }
+      )
+    })
   })
 })

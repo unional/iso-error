@@ -107,3 +107,15 @@ export type MethodInfo = {
   '@type': 'google-cloud-api/MethodInfo',
   method_name: string
 }
+
+export namespace CauseInfo {
+  export type Cause = {
+    description: string,
+    causes: Cause[]
+  }
+}
+
+export type CauseInfo = {
+  '@type': 'google-cloud-api/CauseInfo',
+  causes: CauseInfo.Cause[]
+}
