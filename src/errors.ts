@@ -116,3 +116,13 @@ export class Aborted extends GoogleCloudApiError<[ResourceInfo, ...ErrorDetails]
 function formatAbortMessage(info: ResourceInfo) {
   return `Couldn't acquire lock on resource '${info.resource_name}'.`
 }
+
+export class AlreadyExists extends GoogleCloudApiError<[ResourceInfo, ...ErrorDetails]> {
+  constructor(options: RequiredPick<Partial<ErrorOptions<[ResourceInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
+    super(required({ message: formatAlreadyExistsMessage(options.details[0]) }, options), ...errors)
+  }
+}
+
+function formatAlreadyExistsMessage(info: ResourceInfo) {
+  return `Resource '${info.resource_name}' already exists.`
+}

@@ -1,4 +1,4 @@
-import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange, Unauthenticated, PermissionDenied, NotFound, Aborted } from '.';
+import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange, Unauthenticated, PermissionDenied, NotFound, Aborted, AlreadyExists } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -229,3 +229,89 @@ describe('Aborted', () => {
 })
 
 
+describe('Aborted', () => {
+  test('use field violation description as message', () => {
+    const err = new Aborted({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual("Couldn't acquire lock on resource 'file.txt'.")
+  })
+
+  test('override message', () => {
+    const err = new Aborted({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('Aborted', () => {
+  test('use field violation description as message', () => {
+    const err = new Aborted({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual("Couldn't acquire lock on resource 'file.txt'.")
+  })
+
+  test('override message', () => {
+    const err = new Aborted({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('AlreadyExists', () => {
+  test('use field violation description as message', () => {
+    const err = new AlreadyExists({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual("Resource 'file.txt' already exists.")
+  })
+
+  test('override message', () => {
+    const err = new AlreadyExists({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
