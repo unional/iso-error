@@ -1,4 +1,4 @@
-import { Cancelled, InvalidArgument, FailedPrecondition } from './errors';
+import { Cancelled, InvalidArgument, FailedPrecondition, OutOfRange } from './errors';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -95,5 +95,38 @@ describe('FailedPrecondition', () => {
       }]
     })
     expect(err.message).toEqual('Multiple precondition failures, please see details.')
+  })
+})
+
+describe('OutOfRange', () => {
+  test('use field violation description as message', () => {
+    const err = new OutOfRange({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.BadRequest',
+        field_violations: [{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }]
+      }]
+    })
+    expect(err.message).toEqual("Parameter 'age' is out of range [0, 125]")
+  })
+
+  test('override message', () => {
+    const err = new OutOfRange({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.BadRequest',
+        field_violations: [{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }]
+      }]
+    })
+    expect(err.message).toEqual('Overridden message')
+  })
+
+  test('multiple field violation description', () => {
+    const err = new OutOfRange({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.BadRequest',
+        field_violations: [{ field: 'abc', description: 'desc a' }, { field: 'x.y.z', description: 'desc b' }]
+      }]
+    })
+    expect(err.message).toEqual('Multiple out of range violations, please see details.')
   })
 })

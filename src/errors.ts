@@ -61,3 +61,16 @@ function formatFailedPreconditionMessage(badRequest: PreconditionFailure) {
   }
   return badRequest.violations[0].description
 }
+
+export class OutOfRange extends GoogleCloudApiError<[BadRequest, ...(RequestInfo | Help | LocalizedMessage)[]]> {
+  constructor(options: RequiredPick<Partial<ErrorOptions<[BadRequest, ...(RequestInfo | Help | LocalizedMessage)[]]>>, 'details'>, ...errors: Error[]) {
+    super(required({ message: formatOutOfRangeMessage(options.details[0]) }, options), ...errors)
+  }
+}
+
+function formatOutOfRangeMessage(badRequest: BadRequest) {
+  if (badRequest.field_violations.length > 1) {
+    return 'Multiple out of range violations, please see details.'
+  }
+  return badRequest.field_violations[0].description
+}
