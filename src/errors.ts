@@ -11,13 +11,12 @@ export type ErrorOptions<D extends ErrorDetails = ErrorDetails> = {
   details?: D
 }
 
-export abstract class GoogleCloudApiError<
+export class GoogleCloudApiError<
   D extends ErrorDetails = ErrorDetails
   > extends ModuleError {
-  abstract code: number
   private debugDetail: string | undefined
   details: D
-  constructor({ message, debugDetail, details }: ErrorOptions<D>, ...errors: Error[]) {
+  constructor(public code: number, { message, debugDetail, details }: ErrorOptions<D>, ...errors: Error[]) {
     super('google-cloud-api', message, ...errors)
 
     this.details = details || [] as any
@@ -69,16 +68,14 @@ function toCauses(errors: IsoError[]): CauseInfo.Cause[] {
 }
 
 export class Cancelled extends GoogleCloudApiError {
-  code = 1
   constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(required({ message: 'Request cancelled by the client.' }, options), ...errors)
+    super(1, required({ message: 'Request cancelled by the client.' }, options), ...errors)
   }
 }
 
 export class InvalidArgument extends GoogleCloudApiError<[BadRequest, ...ErrorDetails]> {
-  code = 3
   constructor(options: RequiredPick<Partial<ErrorOptions<[BadRequest, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(required({ message: formatInvalidArgumentMessage(options.details[0]) }, options), ...errors)
+    super(3, required({ message: formatInvalidArgumentMessage(options.details[0]) }, options), ...errors)
   }
 }
 
@@ -90,9 +87,8 @@ function formatInvalidArgumentMessage(badRequest: BadRequest) {
 }
 
 export class FailedPrecondition extends GoogleCloudApiError<[PreconditionFailure, ...ErrorDetails]> {
-  code = 9
   constructor(options: RequiredPick<Partial<ErrorOptions<[PreconditionFailure, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(required({ message: formatFailedPreconditionMessage(options.details[0]) }, options), ...errors)
+    super(9, required({ message: formatFailedPreconditionMessage(options.details[0]) }, options), ...errors)
   }
 }
 
@@ -104,9 +100,8 @@ function formatFailedPreconditionMessage(badRequest: PreconditionFailure) {
 }
 
 export class OutOfRange extends GoogleCloudApiError<[BadRequest, ...ErrorDetails]> {
-  code = 11
   constructor(options: RequiredPick<Partial<ErrorOptions<[BadRequest, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(required({ message: formatOutOfRangeMessage(options.details[0]) }, options), ...errors)
+    super(11, required({ message: formatOutOfRangeMessage(options.details[0]) }, options), ...errors)
   }
 }
 
@@ -118,16 +113,14 @@ function formatOutOfRangeMessage(badRequest: BadRequest) {
 }
 
 export class Unauthenticated extends GoogleCloudApiError {
-  code = 16
   constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(required({ message: 'Invalid authentication credentials.' }, options), ...errors)
+    super(16, required({ message: 'Invalid authentication credentials.' }, options), ...errors)
   }
 }
 
 export class PermissionDenied extends GoogleCloudApiError<[PermissionInfo, ...ErrorDetails]> {
-  code = 7
   constructor(options: RequiredPick<Partial<ErrorOptions<[PermissionInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(required({ message: formatPermissionDeniedMessage(options.details[0]) }, options), ...errors)
+    super(7, required({ message: formatPermissionDeniedMessage(options.details[0]) }, options), ...errors)
   }
 }
 
@@ -136,9 +129,8 @@ function formatPermissionDeniedMessage(permissionInfo: PermissionInfo) {
 }
 
 export class NotFound extends GoogleCloudApiError<[ResourceInfo, ...ErrorDetails]> {
-  code = 5
   constructor(options: RequiredPick<Partial<ErrorOptions<[ResourceInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(required({ message: formatNotFoundMessage(options.details[0]) }, options), ...errors)
+    super(5, required({ message: formatNotFoundMessage(options.details[0]) }, options), ...errors)
   }
 }
 
@@ -147,9 +139,8 @@ function formatNotFoundMessage(info: ResourceInfo) {
 }
 
 export class Aborted extends GoogleCloudApiError<[ResourceInfo, ...ErrorDetails]> {
-  code = 10
   constructor(options: RequiredPick<Partial<ErrorOptions<[ResourceInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(required({ message: formatAbortMessage(options.details[0]) }, options), ...errors)
+    super(10, required({ message: formatAbortMessage(options.details[0]) }, options), ...errors)
   }
 }
 
@@ -158,9 +149,8 @@ function formatAbortMessage(info: ResourceInfo) {
 }
 
 export class AlreadyExists extends GoogleCloudApiError<[ResourceInfo, ...ErrorDetails]> {
-  code = 6
   constructor(options: RequiredPick<Partial<ErrorOptions<[ResourceInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(required({ message: formatAlreadyExistsMessage(options.details[0]) }, options), ...errors)
+    super(6, required({ message: formatAlreadyExistsMessage(options.details[0]) }, options), ...errors)
   }
 }
 
@@ -169,9 +159,8 @@ function formatAlreadyExistsMessage(info: ResourceInfo) {
 }
 
 export class ResourceExhausted extends GoogleCloudApiError<[QuotaFailure, ...ErrorDetails]> {
-  code = 8
   constructor(options: RequiredPick<Partial<ErrorOptions<[QuotaFailure, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(required({ message: formatResourceExhaustedMessage(options.details[0]) }, options), ...errors)
+    super(8, required({ message: formatResourceExhaustedMessage(options.details[0]) }, options), ...errors)
   }
 }
 
@@ -183,30 +172,26 @@ function formatResourceExhaustedMessage(quotaFailure: QuotaFailure) {
 }
 
 export class DataLoss extends GoogleCloudApiError {
-  code = 15
   constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(required({ message: '' }, options), ...errors)
+    super(15, required({ message: '' }, options), ...errors)
   }
 }
 
 export class UnknownError extends GoogleCloudApiError {
-  code = 2
   constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(required({ message: '' }, options), ...errors)
+    super(2, required({ message: '' }, options), ...errors)
   }
 }
 
 export class InternalError extends GoogleCloudApiError {
-  code = 13
   constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(required({ message: '' }, options), ...errors)
+    super(13, required({ message: '' }, options), ...errors)
   }
 }
 
 export class Unimplemented extends GoogleCloudApiError<[MethodInfo, ...ErrorDetails]> {
-  code = 12
   constructor(options: RequiredPick<Partial<ErrorOptions<[MethodInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(required({ message: formatNotImplementedMessage(options.details[0]) }, options), ...errors)
+    super(12, required({ message: formatNotImplementedMessage(options.details[0]) }, options), ...errors)
   }
 }
 
@@ -215,15 +200,13 @@ function formatNotImplementedMessage(info: MethodInfo) {
 }
 
 export class Unavailable extends GoogleCloudApiError {
-  code = 14
   constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(required({ message: '' }, options), ...errors)
+    super(14, required({ message: '' }, options), ...errors)
   }
 }
 
 export class DeadlineExceeded extends GoogleCloudApiError {
-  code = 4
   constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(required({ message: '' }, options), ...errors)
+    super(4, required({ message: '' }, options), ...errors)
   }
 }
