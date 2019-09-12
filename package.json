@@ -40,7 +40,7 @@
     }
   },
   "dependencies": {
-    "iso-error": "^2.4.0",
+    "iso-error": "^3.0.0",
     "type-plus": "^1.29.0"
   },
   "devDependencies": {
