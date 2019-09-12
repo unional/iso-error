@@ -27,7 +27,7 @@
     "clean": "rimraf lib libm *.tsbuildinfo",
     "coverage": "jest --coverage",
     "dc": "yarn dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
+    "dependency-check": "dependency-check . --unused --no-dev -i iso-error && dependency-check . --missing --no-dev",
     "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
     "semantic-release": "semantic-release",
     "test": "jest --reporters=default",
@@ -40,8 +40,7 @@
     }
   },
   "dependencies": {
-    "google-cloud-api": "^2.2.0",
-    "iso-error": "^3.0.1"
+    "google-cloud-api": "^2.2.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
@@ -52,8 +51,12 @@
     "codecov": "^3.5.0",
     "commitlint-circle": "^1.0.0",
     "husky": "^3.0.5",
+    "iso-error": "^3.0.1",
     "semantic-release": "^15.13.24",
     "type-plus": "^1.29.0"
+  },
+  "peerDependencies": {
+    "iso-error": "^3.0.0"
   },
   "engines": {
     "node": ">= 8"
