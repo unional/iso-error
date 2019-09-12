@@ -1,4 +1,4 @@
-import { Aborted, AlreadyExists, Cancelled, DataLoss, FailedPrecondition, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, UnknownError, NotImplemented } from '.';
+import { Aborted, AlreadyExists, Cancelled, DataLoss, FailedPrecondition, InternalError, InvalidArgument, NotFound, NotImplemented, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, UnknownError } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -348,6 +348,18 @@ describe('NotImplemented', () => {
         method_name: 'batchGet'
       }]
     })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('Unavailable', () => {
+  test('create with default message', () => {
+    const err = new Unavailable()
+    expect(err.message).toEqual('')
+  })
+
+  test('override message', () => {
+    const err = new Unavailable({ message: 'Overridden message' })
     expect(err.message).toEqual('Overridden message')
   })
 })

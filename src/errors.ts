@@ -169,3 +169,9 @@ export class NotImplemented extends GoogleCloudApiError<[MethodInfo, ...ErrorDet
 function formatNotImplementedMessage(info: MethodInfo) {
   return `Method '${info.method_name}' not implemented.`
 }
+
+export class Unavailable extends GoogleCloudApiError {
+  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
+    super(required({ message: '' }, options), ...errors)
+  }
+}
