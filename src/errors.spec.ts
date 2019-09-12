@@ -1,4 +1,4 @@
-import { Aborted, AlreadyExists, Cancelled, DataLoss, FailedPrecondition, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, UnknownError } from '.';
+import { Aborted, AlreadyExists, Cancelled, DataLoss, FailedPrecondition, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, UnknownError, NotImplemented } from '.';
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -325,6 +325,29 @@ describe('InternalError', () => {
 
   test('override message', () => {
     const err = new InternalError({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('NotImplemented', () => {
+  test('use field violation description as message', () => {
+    const err = new NotImplemented({
+      details: [{
+        '@type': 'google-cloud-api/MethodInfo',
+        method_name: 'batchGet'
+      }]
+    })
+    expect(err.message).toEqual("Method 'batchGet' not implemented.")
+  })
+
+  test('override message', () => {
+    const err = new NotImplemented({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'google-cloud-api/MethodInfo',
+        method_name: 'batchGet'
+      }]
+    })
     expect(err.message).toEqual('Overridden message')
   })
 })

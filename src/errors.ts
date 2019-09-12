@@ -1,6 +1,6 @@
 import { ModuleError } from 'iso-error';
 import { required, RequiredPick } from 'type-plus'
-import { BadRequest, DebugInfo, ErrorDetail, Help, LocalizedMessage, RequestInfo, PreconditionFailure, PermissionInfo, ResourceInfo, QuotaFailure } from './types';
+import { BadRequest, DebugInfo, ErrorDetail, Help, LocalizedMessage, RequestInfo, PreconditionFailure, PermissionInfo, ResourceInfo, QuotaFailure, MethodInfo } from './types';
 
 export type ErrorOptions<D extends ErrorDetails = ErrorDetails> = {
   message: string,
@@ -158,4 +158,14 @@ export class InternalError extends GoogleCloudApiError {
   constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
     super(required({ message: '' }, options), ...errors)
   }
+}
+
+export class NotImplemented extends GoogleCloudApiError<[MethodInfo, ...ErrorDetails]> {
+  constructor(options: RequiredPick<Partial<ErrorOptions<[MethodInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
+    super(required({ message: formatNotImplementedMessage(options.details[0]) }, options), ...errors)
+  }
+}
+
+function formatNotImplementedMessage(info: MethodInfo) {
+  return `Method '${info.method_name}' not implemented.`
 }

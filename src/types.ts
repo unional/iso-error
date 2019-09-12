@@ -102,3 +102,8 @@ export type PermissionInfo = {
   resource_name: string,
   permission: string,
 }
+
+export type MethodInfo = {
+  '@type': 'google-cloud-api/MethodInfo',
+  method_name: string
+}
