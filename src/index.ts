@@ -107,8 +107,8 @@ export class IsoError extends Error {
 
 function deserializeError<P extends SerializableError = SerializableError>(json: SerializableError): IsoError & P {
   let err: any = undefined
-  for (let i = 0; i < deserializers.length; i++) {
-    err = deserializers[i](json)
+  for (const d of deserializers) {
+    err = d(json)
     if (err) break;
   }
 
