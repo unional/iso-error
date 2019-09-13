@@ -5,6 +5,9 @@ export type IsoErrorPlugin = {
   fromSerializable(jsonObj: Record<keyof any, any>): Error | undefined,
 }
 
+const serializers: IsoErrorPlugin['toSerializable'][] = [(err) => toSerializableError(err)]
+const deserializers: IsoErrorPlugin['fromSerializable'][] = []
+
 /**
  * Isomorphic Error that works across physical boundary.
  */
@@ -18,9 +21,6 @@ export class IsoError extends Error {
    * Error causes
    */
   errors?: IsoError[]
-
-  static serializers: IsoErrorPlugin['toSerializable'][] = [(err) => toSerializableError(err)]
-  static deserializers: IsoErrorPlugin['fromSerializable'][] = []
 
   constructor(message: string, ...errors: Error[]) {
     super(message)
@@ -57,14 +57,19 @@ export class IsoError extends Error {
    * @param text Json representation of a IsoError
    */
   static parse<P extends SerializableError = SerializableError>(text: string): IsoError & P {
-    const err = deserializeError<P>(text)
+    const json = JSON.parse(text)
+    const err = deserializeError<P>(json)
 
     captureStackTrace(err, IsoError.parse)
     return err
   }
 
   static serialize(err: Error) {
-    return JSON.stringify(IsoError.serializers.reduce<Record<string, any> | undefined>((p, s) => p || s(err), undefined))
+    return JSON.stringify(this.toSerializable(err))
+  }
+
+  static toSerializable(err: Error) {
+    return serializers.reduce<Record<string, any> | undefined>((p, s) => p || s(err), undefined)
   }
 
   /**
@@ -72,15 +77,23 @@ export class IsoError extends Error {
    * @param text Json representation of a IsoError
    */
   static deserialize<P extends SerializableError = SerializableError>(text: string): IsoError & P {
-    const err = deserializeError<P>(text)
+    const json = JSON.parse(text)
+    const err = deserializeError<P>(json)
 
     captureStackTrace(err, IsoError.deserialize)
     return err
   }
 
+  static fromSerializable<P extends SerializableError = SerializableError>(json: SerializableError): IsoError & P {
+    const err = deserializeError<P>(json)
+
+    captureStackTrace(err, IsoError.fromSerializable)
+    return err
+  }
+
   static addPlugin({ toSerializable: serialize, fromSerializable: deserialize }: IsoErrorPlugin) {
-    IsoError.serializers.unshift(serialize)
-    IsoError.deserializers.unshift(deserialize)
+    serializers.unshift(serialize)
+    deserializers.unshift(deserialize)
   }
   /**
    * returns the error message including the error causes.
@@ -92,16 +105,16 @@ export class IsoError extends Error {
   }
 }
 
-function deserializeError<P extends SerializableError = SerializableError>(text: string): IsoError & P {
-  const json = JSON.parse(text)
+function deserializeError<P extends SerializableError = SerializableError>(json: SerializableError): IsoError & P {
   let err: any = undefined
-  for (let i = 0; i < IsoError.deserializers.length; i++) {
-    err = IsoError.deserializers[i](json)
+  for (let i = 0; i < deserializers.length; i++) {
+    err = deserializers[i](json)
     if (err) break;
   }
 
   return err || deserializeIsoError(json)
 }
+
 
 function deserializeIsoError<P extends SerializableError = SerializableError>({
   message = '',

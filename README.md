@@ -55,7 +55,7 @@ export class YourPackageBaseError extends ModuleError {
 
 `err.toString()` produces the same result as `IsoError.serialize()`.
 
-The errors are serialized to json.
+The errors are serialized to json string.
 
 ```ts
 // service
@@ -80,6 +80,38 @@ fetch('someroute').then(async response => {
   }
 })
 ```
+
+### toSerializable and fromSerializable
+
+If you want to work on object instead of string,
+you can use `toSerializable()` and `fromSerializable()`.
+
+
+```ts
+// service
+import { IsoError } from 'iso-error'
+
+route('someroute', (request, response) => {
+  try {
+    doSomething()
+  }
+  catch (e) {
+    response.status(400)
+    const obj = IsoError.toSerializable(e)
+    response.body(JSON.stringify(obj))
+  }
+})
+
+// client
+import { IsoError } from 'iso-error'
+
+fetch('someroute').then(async response => {
+  if (response.status !== 200) {
+    throw IsoError.fromSerializable(await response.json())
+  }
+})
+```
+
 
 ### Stringify and Parse
 
