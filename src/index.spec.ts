@@ -203,6 +203,23 @@ describe('IsoError', () => {
       })
     })
   })
+
+  describe('IsoError.toSerializable()', () => {
+    test('convert error to a serializable json object', () => {
+      const e = new IsoError('some message')
+      const actual = IsoError.toSerializable(e)
+      expect(actual).toEqual({ name: 'IsoError', message: 'some message', errors: [] })
+    })
+  })
+
+  describe('IsoError.fromSerializable()', () => {
+    test('convert serializable json object back to an error', () => {
+      const actual = IsoError.fromSerializable({ name: 'IsoError', message: 'some message', errors: [] })
+
+      expect(actual).toBeInstanceOf(IsoError)
+      expect(actual.message).toEqual('some message')
+    })
+  })
 })
 
 describe('ModuleError', () => {
