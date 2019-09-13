@@ -1,6 +1,6 @@
-import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, fromErrorStatus, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, Unimplemented, UnknownError } from '.'
+import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, fromErrorStatus, GoogleCloudApiError, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, Unimplemented, UnknownError } from '.'
 import { getStatusExample } from './test-utils'
-import { GoogleCloudApiError } from './errors'
+
 test.each([
   [1, 'Cancelled', Cancelled],
   [3, 'InvalidArgument', InvalidArgument],

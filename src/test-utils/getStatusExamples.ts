@@ -1,6 +1,5 @@
 import { ErrorStatus } from '../types'
 
-
 const statusExamples: ErrorStatus[] = [{
   code: 1,
   message: '',

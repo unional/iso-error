@@ -1,4 +1,4 @@
-import { ErrorStatus } from './types';
+import { ErrorStatus } from './types'
 
 export function isErrorStatus(input: any): input is ErrorStatus {
   return typeof input === 'object' &&

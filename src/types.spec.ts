@@ -1,9 +1,11 @@
-import { ErrorStatus, RetryInfo } from '.';
-import { DebugInfo, ErrorDetail } from './types';
+import { ErrorStatus } from '.'
+
 /* eslint-disable @typescript-eslint/camelcase */
 test('can specify specific detail types', () => {
-  const json: ErrorStatus<RetryInfo | DebugInfo | ErrorDetail> = {
-    code: 200, message: 'msg', details: [{
+  const json: ErrorStatus = {
+    code: 200,
+    message: 'msg',
+    details: [{
       '@type': 'type.googleapis.com/google.rpc.RetryInfo',
       retry_delay: { seconds: 0, nanos: 0 }
     }, {

@@ -1,6 +1,6 @@
-import { IsoError, ModuleError } from 'iso-error';
-import { required, RequiredPick } from 'type-plus';
-import { BadRequest, CauseInfo, DebugInfo, ErrorDetails, ErrorStatus, MethodInfo, PermissionInfo, PreconditionFailure, QuotaFailure, ResourceInfo } from './types';
+import { IsoError, ModuleError } from 'iso-error'
+import { required, RequiredPick } from 'type-plus'
+import { BadRequest, CauseInfo, DebugInfo, ErrorDetails, ErrorStatus, MethodInfo, PermissionInfo, PreconditionFailure, QuotaFailure, ResourceInfo } from './types'
 
 export type ErrorOptions<D extends ErrorDetails = ErrorDetails> = {
   message: string,

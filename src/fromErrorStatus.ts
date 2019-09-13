@@ -1,5 +1,5 @@
+import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, GoogleCloudApiError, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, Unimplemented, UnknownError } from './errors';
 import { ErrorStatus } from './types';
-import { GoogleCloudApiError, Cancelled, InvalidArgument, FailedPrecondition, OutOfRange, Unauthenticated, PermissionDenied, NotFound, Aborted, AlreadyExists, ResourceExhausted, DataLoss, UnknownError, InternalError, Unimplemented, Unavailable, DeadlineExceeded } from './errors';
 
 export function fromErrorStatus(obj: ErrorStatus) {
   switch (obj.code) {
