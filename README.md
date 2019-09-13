@@ -17,6 +17,9 @@
 
 [`iso-error`](https://github.com/unional/iso-error) plugin for [Google Cloud API design](https://cloud.google.com/apis/design/).
 
+Since [`iso-error`](https://github.com/unional/iso-error) is about sending data across physical boundary,
+the `DebugInfo` is removed for security purpose.
+
 ## Install
 
 ```sh
