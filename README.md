@@ -17,6 +17,45 @@
 
 [`iso-error`](https://github.com/unional/iso-error) plugin for [Google Cloud API design](https://cloud.google.com/apis/design/).
 
+## Install
+
+```sh
+yarn add iso-error-google-cloud-api
+```
+
+## Usage
+
+```ts
+// server
+import { IsoError } from 'iso-error'
+import plugin from 'iso-error-google-cloud-api'
+
+IsoError.addPlugin(plugin)
+
+try {
+  doSomeWorkThatThrows()
+}
+catch (e) {
+  const ge = convertToGoogleError(e)
+  response.emit(IsoError.serialize(ge))
+}
+```
+
+```ts
+// client
+import { IsoError } from 'iso-error'
+import plugin from 'iso-error-google-cloud-api'
+
+IsoError.addPlugin(plugin)
+
+try {
+  fetch('<serverUrl>').then(response => {
+    if (!response.ok) {
+      throw IsoError.deserialize(response.text())
+    }
+  })
+}
+```
 
 [circleci-image]: https://circleci.com/gh/unional/iso-error-google-cloud-api/tree/master.svg?style=shield
 [circleci-url]: https://circleci.com/gh/unional/iso-error-google-cloud-api/tree/master

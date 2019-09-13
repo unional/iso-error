@@ -6,7 +6,7 @@ const plugin: IsoErrorPlugin = {
     if (!isGoogleCloudApiError(err)) return undefined
 
     const status = err.toErrorStatus()
-    status.details = status.details.filter(d => d['@type'] != 'type.googleapis.com/google.rpc.DebugInfo')
+    status.details = status.details.filter(d => d['@type'] !== 'type.googleapis.com/google.rpc.DebugInfo')
     return status
   },
   fromSerializable(obj) {
