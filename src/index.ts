@@ -69,7 +69,7 @@ export class IsoError extends Error {
   }
 
   static toSerializable(err: Error) {
-    return serializers.reduce<Record<string, any> | undefined>((p, s) => p || s(err), undefined)
+    return serializers.reduce<Record<string, any> | undefined>((p, s) => p || s(err), undefined)!
   }
 
   /**
