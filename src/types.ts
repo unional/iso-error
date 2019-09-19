@@ -4,7 +4,7 @@ export type ErrorStatus<D extends ErrorDetails = ErrorDetails> = {
   details: D,
 }
 
-export type ErrorDetails = Array<RequestInfo | ResourceInfo | Help | LocalizedMessage | CauseInfo | DebugInfo | ErrorDetail>
+export type ErrorDetails = Array<DebugInfo | RequestInfo | ResourceInfo | Help | LocalizedMessage | PermissionInfo | MethodInfo | CauseInfo | ErrorDetail>
 
 export type Duration = {
   seconds: number,

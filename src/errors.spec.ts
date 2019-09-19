@@ -174,6 +174,16 @@ describe('PermissionDenied', () => {
     })
     expect(err.message).toEqual('Overridden message')
   })
+
+  test('default message is empty', () => {
+    expect(new PermissionDenied().message).toEqual('')
+    expect(new PermissionDenied({
+      details: [{
+        '@type': 'google-cloud-api/CauseInfo',
+        causes: []
+      }]
+    }).message).toEqual('')
+  })
 })
 
 describe('NotFound', () => {
@@ -231,6 +241,16 @@ describe('Aborted', () => {
       }]
     })
     expect(err.message).toEqual('Overridden message')
+  })
+
+  test('default message is empty', () => {
+    expect(new Aborted().message).toEqual('')
+    expect(new Aborted({
+      details: [{
+        '@type': 'google-cloud-api/CauseInfo',
+        causes: []
+      }]
+    }).message).toEqual('')
   })
 })
 
