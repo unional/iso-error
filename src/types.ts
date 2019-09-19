@@ -111,7 +111,7 @@ export type MethodInfo = {
 export namespace CauseInfo {
   export type Cause = {
     description: string,
-    causes: Cause[],
+    causes?: Cause[],
     [k: string]: any
   }
 }
