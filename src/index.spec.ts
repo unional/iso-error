@@ -1,6 +1,7 @@
 import a from 'assertron';
+import { omit } from 'type-plus';
 import { IsoError, ModuleError } from '.';
-import { omit } from 'type-plus'
+
 describe('IsoError', () => {
   test('is instanceof Error', () => {
     const e = new IsoError('instance of')
@@ -294,4 +295,19 @@ describe('IsoError.addPlugin()', () => {
 
     expect(actual.message).toBe('no secret')
   })
+})
+
+test('throwing', () => {
+  class BaseError extends ModuleError {
+    constructor(message: string, ...errors: Error[]) {
+      super('custom', message, ...errors)
+    }
+  }
+  class RealError extends BaseError {
+    constructor(message: string, ...errors: Error[]) {
+      super(message, ...errors)
+    }
+  }
+
+  throw new RealError('asdfs')
 })

@@ -15,15 +15,13 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-An isomorphic error library.
-
-This library defines errors that work across physical boundary.
+Isomorphic errors are errors that work across physical boundaries.
 
 ## IsoError
 
 The base class of all isomorphic errors.
 
-It is the same as the standard `Error` except:
+It improves upon the base `Error` with:
 
 - `name`: the name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
 - `errors`: an optional property that contains the cause(s) of the error.
@@ -53,7 +51,7 @@ export class YourPackageBaseError extends ModuleError {
 
 `IsoError.serialize()` and `IsoError.deserialize()` is the main mechanism to pass `IsoError` across physical boundary.
 
-`err.toString()` produces the same result as `IsoError.serialize()`.
+`isoError.toString()` produces the same result as `IsoError.serialize()`.
 
 The errors are serialized to json string.
 
@@ -172,7 +170,7 @@ You should use the `err.name` to check for the type of your error.
 Stack trace is maintained inside a physical boundary, just like `Error` does.
 For security reasons, stack trace is not propagated accross physical boundary.
 
-If you think about it, stack trace is useful only to your team who orignates the error.
+If you think about it, stack trace is useful only to your team who originates the error.
 Your consumer should not know or care about the stack trace.
 They contains information about the internal structure of your package and is fragile.
 
