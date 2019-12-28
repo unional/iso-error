@@ -297,7 +297,7 @@ describe('IsoError.addPlugin()', () => {
   })
 })
 
-test('throwing', () => {
+test('pass instanceof before serialize', () => {
   class BaseError extends ModuleError {
     constructor(message: string, ...errors: Error[]) {
       super('custom', message, ...errors)
@@ -309,5 +309,5 @@ test('throwing', () => {
     }
   }
 
-  throw new RealError('asdfs')
+  expect(new RealError('asdfs')).toBeInstanceOf(RealError)
 })
