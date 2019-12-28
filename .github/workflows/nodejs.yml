@@ -6,11 +6,14 @@ on:
       - master
   pull_request:
     branches:
-      - '*'
+      - master
 jobs:
   node-latest:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
     - name: setup yarn-cache
       id: yarn-cache
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -21,9 +24,6 @@ jobs:
         key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-node-
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
     - run: yarn
     - run: yarn commitlint-circle
     - run: yarn lint
@@ -40,10 +40,12 @@ jobs:
         node-version: [8.x, 10.x, 12.x]
     needs: node-latest
     steps:
-    - name: Get yarn cache
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+    - name: setup yarn-cache
       id: yarn-cache
       run: echo "::set-output name=dir::$(yarn cache dir)"
-    - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
@@ -56,4 +58,5 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
     - run: yarn
+
     - run: yarn coverage --maxWorkers=2
