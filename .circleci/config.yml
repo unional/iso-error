@@ -10,14 +10,14 @@ workflows:
       - node8:
           requires:
             - node-latest
-      - release:
-          filters:
-            branches:
-              only: master
-          requires:
-            - node-latest
-            - node10
-            - node8
+      # - release:
+      #     filters:
+      #       branches:
+      #         only: master
+      #     requires:
+      #       - node-latest
+      #       - node10
+      #       - node8
 jobs:
   local:
     docker:
@@ -72,12 +72,12 @@ jobs:
       - run: yarn verify
       - store_test_results:
           path: .reports/junit
-  release:
-    docker:
-      - image: circleci/node:11
-    steps:
-      - checkout
-      - attach_workspace:
-          at: '.'
-      - run: yarn build
-      - run: yarn semantic-release
+  # release:
+  #   docker:
+  #     - image: circleci/node:11
+  #   steps:
+  #     - checkout
+  #     - attach_workspace:
+  #         at: '.'
+  #     - run: yarn build
+  #     - run: yarn semantic-release
