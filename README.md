@@ -82,7 +82,6 @@ fetch('someroute').then(async response => {
 If you want to work on object instead of string,
 you can use `toSerializable()` and `fromSerializable()`.
 
-
 ```ts
 // service
 import { IsoError } from 'iso-error'
@@ -107,7 +106,6 @@ fetch('someroute').then(async response => {
   }
 })
 ```
-
 
 ### Stringify and Parse
 
