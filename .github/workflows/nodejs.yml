@@ -79,15 +79,12 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - run: yarn coverage --maxWorkers=2
-      - run: echo ${{ matrix.node-version }}
-      - run: echo ${{ github.ref }}
-      - run: env
       - run: yarn codecov
-        if: matrix.node-version == 12 && runner.os == 'ubuntu-latest'
+        if: ${{ matrix.node-version }} == 12 && ${{ runner.os }} == 'ubuntu-latest'
   release:
     name: release
     runs-on: ubuntu-latest
-    if: github.ref == 'master'
+    if: ${{ github.ref }} == 'master'
     needs:
       - build
       - test
