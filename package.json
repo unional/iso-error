@@ -27,12 +27,10 @@
   "scripts": {
     "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
     "clean": "rimraf lib libm *.tsbuildinfo",
-    "codacy": "cat ./coverage/lcov.info | codacy-coverage",
     "coverage": "jest --coverage",
     "dc": "yarn dependency-check",
     "dependency-check": "dependency-check . --unused --no-dev && dependency-check . --missing --no-dev",
     "lint": "eslint --ext=js,ts .",
-    "semantic-release": "semantic-release",
     "test": "jest --reporters=default",
     "verify": "yarn lint && yarn build && yarn dc && jest --coverage --reporters=default",
     "watch": "jest --watch"
@@ -49,7 +47,6 @@
     "@semantic-release/changelog": "^3.0.6",
     "@unional/devpkg-node": "^1.4.2",
     "assertron": "^7.1.2",
-    "codacy-coverage": "^3.4.0",
     "codecov": "^3.6.1",
     "commitlint-circle": "^1.0.0",
     "husky": "^3.1.0",
