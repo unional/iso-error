@@ -126,6 +126,8 @@ function deserializeIsoError<P extends SerializableError = SerializableError>(va
   if (map[name]) {
     const err = { message, errors, ...rest }
     const proto = Object.create(map[name], { name: { writable: false, value: name } })
+
+    // istanbul ignore next
     if (Object.setPrototypeOf) Object.setPrototypeOf(err, proto)
     else err.__proto__ = proto
     return err
