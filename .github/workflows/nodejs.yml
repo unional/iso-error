@@ -21,7 +21,7 @@ jobs:
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
       - name: setup node-env
-        run: echo "env"
+        run: env
       - name: cache yarn global cache
         uses: actions/cache@v1
         with:
