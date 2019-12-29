@@ -95,7 +95,7 @@ jobs:
       - run: yarn
       - run: yarn coverage --maxWorkers=2
       - run: yarn codecov
-        if: ${{ matrix.node-version }} == '12' && ${{ runner.os }} == 'ubuntu-latest'
+        if: matrix.node-version == '12' && runner.os == 'ubuntu-latest'
   release:
     name: release
     runs-on: ubuntu-latest
