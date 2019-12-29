@@ -17,6 +17,8 @@ jobs:
       - name: setup yarn-cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: setup node-env
+        run: echo "env"
       - name: cache yarn global cache
         uses: actions/cache@v1
         with:
@@ -64,7 +66,7 @@ jobs:
     needs: install
     strategy:
       matrix:
-        os: ['ubuntu-latest', 'macos-latest', 'windows.latest']
+        os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
         node-version: [8, 10, 12]
     steps:
       - uses: actions/checkout@v1
