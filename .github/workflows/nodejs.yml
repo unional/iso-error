@@ -10,7 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.ref }}
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
@@ -79,11 +78,14 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - run: yarn coverage --maxWorkers=2
-      - name: upload codecov
+      - name: codecov
         if: matrix.node-version == 12 && matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+      # - name: codacy
+      #   if: matrix.node-version == 12 && matrix.os == 'ubuntu-latest'
+      #   run: yarn codacy
   release:
     name: release
     runs-on: ubuntu-latest
