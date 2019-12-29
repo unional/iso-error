@@ -3,7 +3,7 @@
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
-![Github NodeJS][github-nodejs-url]
+[![Github NodeJS][github-nodejs]][github-action-url]
 [![Codecov][codecov-image]][codecov-url]
 [![Codacy Badge][codacy-image]][codacy-url]
 
@@ -178,7 +178,8 @@ Use the `errors` property to provide a humanly understandable trace.
 [codecov-url]: https://codecov.io/gh/unional/iso-error
 [downloads-image]: https://img.shields.io/npm/dm/iso-error.svg?style=flat
 [downloads-url]: https://npmjs.org/package/iso-error
-[github-nodejs-url]: https://github.com/unional/iso-error/workflows/nodejs/badge.svg
+[github-nodejs]: https://github.com/unional/iso-error/workflows/nodejs/badge.svg
+[github-action-url]: https://github.com/unional/iso-error/actions
 [greenkeeper-image]: https://badges.greenkeeper.io/unional/iso-error.svg
 [greenkeeper-url]: https://greenkeeper.io/
 [npm-image]: https://img.shields.io/npm/v/iso-error.svg?style=flat
