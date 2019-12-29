@@ -80,8 +80,11 @@ jobs:
           key: ${{ runner.os }}-node-modules-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
       - run: yarn coverage --maxWorkers=2
-      - run: yarn codecov
+      - name: upload codecov
         if: matrix.node-version == 12 && matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
   release:
     name: release
     runs-on: ubuntu-latest
