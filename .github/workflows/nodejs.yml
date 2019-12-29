@@ -10,7 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ github.ref }}
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
