@@ -3,10 +3,8 @@
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
-[![Circle CI][circleci-image]][circleci-url]
-[![Travis CI][travis-image]][travis-url]
+![Github NodeJS][github-nodejs-url]
 [![Codecov][codecov-image]][codecov-url]
-[![Coveralls Status][coveralls-image]][coveralls-url]
 [![Codacy Badge][codacy-image]][codacy-url]
 
 [![Greenkeeper][greenkeeper-image]][greenkeeper-url]
@@ -176,24 +174,19 @@ They contains information about the internal structure of your package and is fr
 
 Use the `errors` property to provide a humanly understandable trace.
 
-[circleci-image]: https://circleci.com/gh/unional/iso-error/tree/master.svg?style=shield
-[circleci-url]: https://circleci.com/gh/unional/iso-error/tree/master
 [codacy-image]: https://api.codacy.com/project/badge/Grade/569e678c65cf4481a172aaeb83b41aef
 [codacy-url]: https://www.codacy.com/app/homawong/iso-error?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unional/iso-error&amp;utm_campaign=Badge_Grade
 [codecov-image]: https://codecov.io/gh/unional/iso-error/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/iso-error
-[coveralls-image]: https://coveralls.io/repos/github/unional/iso-error/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/unional/iso-error?branch=master
 [downloads-image]: https://img.shields.io/npm/dm/iso-error.svg?style=flat
 [downloads-url]: https://npmjs.org/package/iso-error
+[github-nodejs-url]: https://github.com/unional/iso-error/workflows/nodejs/badge.svg
 [greenkeeper-image]: https://badges.greenkeeper.io/unional/iso-error.svg
 [greenkeeper-url]: https://greenkeeper.io/
 [npm-image]: https://img.shields.io/npm/v/iso-error.svg?style=flat
 [npm-url]: https://npmjs.org/package/iso-error
 [semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release-url]: https://github.com/semantic-release/semantic-release
-[travis-image]: https://travis-ci.com/unional/iso-error.svg?branch=master
-[travis-url]: https://travis-ci.com/unional/iso-error?branch=master
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
 [wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg

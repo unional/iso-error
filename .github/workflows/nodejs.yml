@@ -1,5 +1,4 @@
-name: Node CI
-
+name: nodejs
 on:
   push:
     branches:
