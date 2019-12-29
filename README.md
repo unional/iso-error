@@ -172,8 +172,8 @@ They contains information about the internal structure of your package and is fr
 
 Use the `errors` property to provide a humanly understandable trace.
 
-[codacy-image]: https://api.codacy.com/project/badge/Grade/569e678c65cf4481a172aaeb83b41aef
-[codacy-url]: https://www.codacy.com/app/homawong/iso-error?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unional/iso-error&amp;utm_campaign=Badge_Grade
+[codacy-image]: https://api.codacy.com/project/badge/Grade/ff81d2922cac4b249a9fce328e3487cd
+[codacy-url]: https://www.codacy.com/manual/homawong/iso-error?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unional/iso-error&amp;utm_campaign=Badge_Grade
 [codecov-image]: https://codecov.io/gh/unional/iso-error/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/iso-error
 [downloads-image]: https://img.shields.io/npm/dm/iso-error.svg?style=flat
