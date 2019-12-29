@@ -8,8 +8,6 @@ export type IsoErrorPlugin = {
 const serializers: IsoErrorPlugin['toSerializable'][] = []
 const deserializers: IsoErrorPlugin['fromSerializable'][] = []
 
-const map: Record<string, any> = {}
-
 /**
  * Isomorphic Error that works across physical boundary.
  */
@@ -31,9 +29,6 @@ export class IsoError extends Error {
     const actualProto = new.target.prototype
 
     this.name = actualProto.constructor.name
-
-    if (actualProto.constructor !== IsoError)
-      map[this.name] = actualProto
 
     // istanbul ignore next
     if (Object.setPrototypeOf) Object.setPrototypeOf(this, actualProto)
@@ -121,20 +116,8 @@ function deserializeError<P extends SerializableError = SerializableError>(json:
 }
 
 
-function deserializeIsoError<P extends SerializableError = SerializableError>(value: any): IsoError & P {
-  const { name = '', message = '', errors = [], ...rest } = value
-  if (map[name]) {
-    const err = { message, errors, ...rest }
-    const proto = Object.create(map[name], { name: { writable: false, value: name } })
-
-    // istanbul ignore next
-    if (Object.setPrototypeOf) Object.setPrototypeOf(err, proto)
-    else err.__proto__ = proto
-    return err
-  }
-  else {
-    return Object.assign(new IsoError(message, ...errors), rest)
-  }
+function deserializeIsoError<P extends SerializableError = SerializableError>({ message = '', errors = [], ...rest }: any): IsoError & P {
+  return Object.assign(new IsoError(message, ...errors), rest)
 }
 
 export function toSerializableError(err: SerializableError): SerializableError {
