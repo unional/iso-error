@@ -13,6 +13,23 @@ describe('IsoError', () => {
     expect((new IsoError('is iso')) instanceof IsoError).toBeTruthy()
   })
 
+  test('deserialize passes instanceof if target class is defined', () => {
+    class DefinedError extends IsoError {
+      constructor() {
+        super('defined')
+      }
+    }
+
+    const data = IsoError.serialize(new DefinedError())
+    const actual = IsoError.deserialize(data)
+    expect(actual).toBeInstanceOf(DefinedError)
+  })
+
+  test('deserialize not defined error gets IsoError', () => {
+    const actual = IsoError.deserialize(JSON.stringify({ name: 'NotDefinedError' }))
+    expect(actual).toBeInstanceOf(IsoError)
+  })
+
   test('can cause by multiple errors', () => {
     class CustomError extends Error { }
 
