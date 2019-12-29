@@ -84,6 +84,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: codacy
+        if: matrix.node-version == 12 && matrix.os == 'ubuntu-latest'
         run: yarn codacy
   release:
     name: release
