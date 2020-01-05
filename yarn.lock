@@ -3740,10 +3740,10 @@ isexe@^2.0.0:
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-iso-error@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/iso-error/-/iso-error-2.4.0.tgz#8266254ae9d4293937bd63277c1413fba7605029"
-  integrity sha512-NJwC3WolSCDvr6gFcSvQClWGYlxq2P3TlQDSPNUfgZUOUA5LPH5zcGtR92Eo3szt66uSFUBDdFMdbY158hxRQA==
+iso-error@^3.0.0:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/iso-error/-/iso-error-3.2.1.tgz#5ffe6e895e222d7aae376d251582c1dcf3155ee4"
+  integrity sha512-+KxhFbakSs120mlo/+RjNfwEm2NpyTbQHDqwmmEV1ahkXZd2WzQx4gdqxNtwh2hTaxIVqjmPZLh/K3QDuvVMaA==
 
 isobject@^2.0.0:
   version "2.1.0"
@@ -7513,10 +7513,10 @@ type-name@^2.0.1:
   resolved "https://registry.yarnpkg.com/type-name/-/type-name-2.0.2.tgz#efe7d4123d8ac52afff7f40c7e4dec5266008fb4"
   integrity sha1-7+fUEj2KxSr/9/QMfk3sUmYAj7Q=
 
-type-plus@^1.29.0:
-  version "1.29.0"
-  resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-1.29.0.tgz#b4cd7b1a25151378f051ead678beb31bbf15ed9d"
-  integrity sha512-YwkR5pwuKHS6WuQMmng/6LvE4Y92ObV9OkCZYrUJ5ypHJuaKMS2EEy8octHHnVeNStpFebX+aYgyUcpTB2lGmg==
+type-plus@^1.31.2:
+  version "1.31.2"
+  resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-1.31.2.tgz#eb5fc0a886ace74a486ff7326699ef3fae616b7d"
+  integrity sha512-w1X98vQswBQSO1oaGS74p1xI+DWWWU2pk7KYNwQvI8b/P/vublAOHQivuldG++o6pJV6qwTyuzTPasYbt22DJQ==
   dependencies:
     unpartial "^0.6.3"
 
