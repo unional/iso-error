@@ -7513,10 +7513,10 @@ type-name@^2.0.1:
   resolved "https://registry.yarnpkg.com/type-name/-/type-name-2.0.2.tgz#efe7d4123d8ac52afff7f40c7e4dec5266008fb4"
   integrity sha1-7+fUEj2KxSr/9/QMfk3sUmYAj7Q=
 
-type-plus@^1.31.2:
-  version "1.31.2"
-  resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-1.31.2.tgz#eb5fc0a886ace74a486ff7326699ef3fae616b7d"
-  integrity sha512-w1X98vQswBQSO1oaGS74p1xI+DWWWU2pk7KYNwQvI8b/P/vublAOHQivuldG++o6pJV6qwTyuzTPasYbt22DJQ==
+type-plus@^1.31.3:
+  version "1.31.3"
+  resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-1.31.3.tgz#8a947c91ff631a39625630998a7454cfdfb62911"
+  integrity sha512-YIRqkrYaA8O2oPQtgpu/WRbUbevESxllmA+iay3tiKlhBQlti0nuAMHn6hX8Rj66Tcs22VtwHuif4i7EtHDVNg==
   dependencies:
     unpartial "^0.6.3"
 
