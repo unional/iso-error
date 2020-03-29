@@ -13,7 +13,7 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-Isomorphic errors are errors that work across physical boundaries.
+Isomorphic errors are errors that work across physical boundary.
 
 ## IsoError
 
@@ -22,6 +22,7 @@ The base class of all isomorphic errors.
 It improves upon the base `Error` with:
 
 - `name`: the name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
+- Work with `instanceof` (before crossing physical boundary)
 - `errors`: an optional property that contains the cause(s) of the error.
 - The prototype chain is restored for you so you don't need to do `Object.setPrototypeOf(this, new.target.prototype)` yourself.
   For more information, you can check it out [here](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work)
@@ -157,7 +158,7 @@ IsoError.trace(err)
 
 ## Limitation
 
-One limitation remains that you cannot do `err instanceof YourError`.
+One limitation remains that you cannot do `err instanceof YourError` across physical boundary.
 But `err instanceof IsoError` and `err instanceof Error` works fine.
 You should use the `err.name` to check for the type of your error.
 
