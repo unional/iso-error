@@ -100,9 +100,7 @@ export class IsoError extends Error {
    */
   static trace = trace
 
-  toString() {
-    return IsoError.serialize(this)
-  }
+  toString() { return IsoError.serialize(this) }
 }
 
 function deserializeError<P extends SerializableError = SerializableError>(json: SerializableError): IsoError & P {
@@ -132,10 +130,7 @@ function toIsoError(err: Error) {
 
   // When the error is an internal error from deserialzation,
   // the err.constructor.name is object
-  // tslint:disable-next-line: strict-type-predicates
-  const name = err.constructor.name !== 'Object' ? err.constructor.name : err.name
-
-  return Object.assign(err, { name })
+  return Object.assign(err, { name: err.constructor.name !== 'Object' ? err.constructor.name : err.name })
 }
 
 export type Traceable = { name: string, message: string, module?: string, errors?: Traceable[] }
