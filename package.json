@@ -15,6 +15,7 @@
     "name": "Homa Wong (unional)",
     "email": "homawong@gmail.com"
   },
+  "sideEffects": false,
   "main": "lib/index.js",
   "module": "libm/index.js",
   "jsnext:main": "libm/index.js",
@@ -57,6 +58,5 @@
   },
   "engines": {
     "node": ">= 8"
-  },
-  "sideEffect": false
+  }
 }
