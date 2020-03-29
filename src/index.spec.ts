@@ -3,6 +3,11 @@ import { omit } from 'type-plus';
 import { IsoError, ModuleError } from '.';
 
 describe('IsoError', () => {
+  test('message is optional', () => {
+    const error = new IsoError()
+    expect(error).toBeInstanceOf(IsoError)
+  })
+
   test('is instanceof Error', () => {
     const e = new IsoError('instance of')
 
