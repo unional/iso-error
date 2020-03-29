@@ -22,7 +22,7 @@ export class IsoError extends Error {
    */
   errors?: IsoError[]
 
-  constructor(message: string, ...errors: Error[]) {
+  constructor(message?: string, ...errors: Error[]) {
     super(message)
 
     // restore prototype chain
