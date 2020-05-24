@@ -52,7 +52,7 @@
     "codecov": "^3.6.5",
     "commitlint-circle": "^1.0.0",
     "husky": "^4.2.5",
-    "semantic-release": "^15.14.0",
+    "semantic-release": "^17.0.8",
     "type-plus": "^1.35.1"
   },
   "engines": {
