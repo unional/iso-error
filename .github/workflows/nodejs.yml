@@ -3,7 +3,6 @@ on:
   push:
     branches:
       - master
-      - "greenkeeper/*"
   pull_request:
     types: [opened, synchronize]
 jobs:
@@ -34,23 +33,23 @@ jobs:
       - run: yarn lint
       - run: yarn build
       - run: yarn dependency-check
-      - name: upload lib folder
+      - name: upload cjs folder
         uses: actions/upload-artifact@v1
         with:
-          name: lib
-          path: lib
-      - name: upload libm folder
+          name: cjs
+          path: cjs
+      - name: upload esm folder
         uses: actions/upload-artifact@v1
         with:
-          name: libm
-          path: libm
+          name: esm
+          path: esm
   test:
     runs-on: ${{ matrix.os }}
     needs: build
     strategy:
       matrix:
         os: ['ubuntu-latest', 'macos-latest', 'windows-latest']
-        node-version: [8, 10, 12]
+        node-version: [10, 12, 14]
     steps:
       - uses: actions/checkout@v1
         with:
@@ -78,19 +77,19 @@ jobs:
       - run: yarn
       - run: yarn coverage --maxWorkers=2
       - name: codecov
-        if: matrix.node-version == 12 && matrix.os == 'ubuntu-latest'
+        if: matrix.node-version == 14 && matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
       - name: codacy
-        if: matrix.node-version == 12 && matrix.os == 'ubuntu-latest'
+        if: matrix.node-version == 14 && matrix.os == 'ubuntu-latest'
         uses: codacy/codacy-coverage-reporter-action@master
         with:
           project-token: ${{ secrets.CODACY_PROJECT_TOKEN }}
   release:
     name: release
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     needs:
       - build
       - test
@@ -106,14 +105,14 @@ jobs:
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
-      - name: download lib folder
+      - name: download cjs folder
         uses: actions/download-artifact@v1
         with:
-          name: lib
-      - name: download libm folder
+          name: cjs
+      - name: download esm folder
         uses: actions/download-artifact@v1
         with:
-          name: libm
+          name: esm
       - name: cache node_modules
         uses: actions/cache@v1
         with:

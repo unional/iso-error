@@ -58,7 +58,7 @@ The errors are serialized to json string.
 // service
 import { IsoError } from 'iso-error'
 
-route('someroute', (request, response) => {
+route('some/route', (request, response) => {
   try {
     doSomething()
   }
@@ -71,7 +71,7 @@ route('someroute', (request, response) => {
 // client
 import { IsoError } from 'iso-error'
 
-fetch('someroute').then(async response => {
+fetch('some/route').then(async response => {
   if (response.status !== 200) {
     throw IsoError.deserialize(await response.body())
   }
@@ -87,7 +87,7 @@ you can use `toSerializable()` and `fromSerializable()`.
 // service
 import { IsoError } from 'iso-error'
 
-route('someroute', (request, response) => {
+route('some/route', (request, response) => {
   try {
     doSomething()
   }
@@ -101,7 +101,7 @@ route('someroute', (request, response) => {
 // client
 import { IsoError } from 'iso-error'
 
-fetch('someroute').then(async response => {
+fetch('some/route').then(async response => {
   if (response.status !== 200) {
     throw IsoError.fromSerializable(await response.json())
   }
@@ -165,7 +165,7 @@ You should use the `err.name` to check for the type of your error.
 ## What about stack trace
 
 Stack trace is maintained inside a physical boundary, just like `Error` does.
-For security reasons, stack trace is not propagated accross physical boundary.
+For security reasons, stack trace is not propagated across physical boundary.
 
 If you think about it, stack trace is useful only to your team who originates the error.
 Your consumer should not know or care about the stack trace.

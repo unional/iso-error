@@ -1,12 +1,41 @@
-export type SerializableError = Record<string | number, any>
+/* eslint-disable @typescript-eslint/unbound-method */
+export type SerializableError = {
+  message?: string,
+  errors?: SerializableError[]
+} & Record<string | number, any>
 
 export type IsoErrorPlugin = {
   toSerializable(err: SerializableError): SerializableError | undefined,
-  fromSerializable(jsonObj: Record<keyof any, any>): Error | undefined,
+  fromSerializable(jsonObj: Record<string | number, any>): Error | undefined,
 }
 
 const serializers: IsoErrorPlugin['toSerializable'][] = []
 const deserializers: IsoErrorPlugin['fromSerializable'][] = []
+
+// istanbul ignore next
+// eslint-disable-next-line @typescript-eslint/unbound-method
+const captureStackTrace = Error.captureStackTrace || function (error) {
+  const container = new Error()
+
+  Object.defineProperty(error, 'stack', {
+    configurable: true,
+    get: function () {
+      // Replace property with value for faster future accesses.
+      defineStack(this, container.stack)
+      return container.stack
+    },
+    set: function (stack) { defineStack(error, stack) },
+  })
+}
+
+// istanbul ignore next
+function defineStack(target: Record<string, any>, value: string | undefined) {
+  Object.defineProperty(target, 'stack', {
+    configurable: true,
+    value,
+    writable: true,
+  })
+}
 
 /**
  * Isomorphic Error that works across physical boundary.
@@ -32,6 +61,7 @@ export class IsoError extends Error {
 
     // istanbul ignore next
     if (Object.setPrototypeOf) Object.setPrototypeOf(this, actualProto)
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
     else (this as any).__proto__ = actualProto
 
     if (errors.length > 0) this.errors = errors.map(toIsoError)
@@ -53,11 +83,11 @@ export class IsoError extends Error {
   }
 
   /**
-   * @type P Additonal properties of the IsoError
+   * @type P Additional properties of the IsoError
    * @param text Json representation of a IsoError
    */
   static parse<P extends SerializableError = SerializableError>(text: string): IsoError & P {
-    const json = JSON.parse(text)
+    const json = JSON.parse(text) as Record<string, any>
     const err = deserializeError<P>(json)
 
     captureStackTrace(err, IsoError.parse)
@@ -69,15 +99,16 @@ export class IsoError extends Error {
   }
 
   static toSerializable(err: Error) {
-    return serializers.reduce<Record<string, any> | undefined>((p, s) => p || s(err), undefined) || toSerializableError(err)
+    return serializers.reduce<Record<string, any> | undefined>((p, s) => p || s(err), undefined)
+      || toSerializableError(err)
   }
 
   /**
-   * @type P Additonal properties of the IsoError
+   * @type P Additional properties of the IsoError
    * @param text Json representation of a IsoError
    */
   static deserialize<P extends SerializableError = SerializableError>(text: string): IsoError & P {
-    const json = JSON.parse(text)
+    const json = JSON.parse(text) as Record<string, any>
     const err = deserializeError<P>(json)
 
     captureStackTrace(err, IsoError.deserialize)
@@ -103,24 +134,26 @@ export class IsoError extends Error {
   toString() { return IsoError.serialize(this) }
 }
 
-function deserializeError<P extends SerializableError = SerializableError>(json: SerializableError): IsoError & P {
-  let err: any = undefined
+function deserializeError<P extends SerializableError = SerializableError>(json: Record<string, any>): IsoError & P {
+  let err: IsoError & P | undefined = undefined
   for (const d of deserializers) {
-    err = d(json)
-    if (err) break;
+    err = d(json) as IsoError & P | undefined
+    if (err) break
   }
 
   return err || deserializeIsoError(json)
 }
 
 
-function deserializeIsoError<P extends SerializableError = SerializableError>({ message = '', errors = [], ...rest }: any): IsoError & P {
+function deserializeIsoError<
+  P extends SerializableError = SerializableError
+>({ message = '', errors = [], ...rest }: SerializableError): IsoError & P {
+  // @ts-ignore
   return Object.assign(new IsoError(message, ...errors), rest)
 }
 
-export function toSerializableError(err: SerializableError): SerializableError {
+export function toSerializableError(err: Error & { errors?: Error[] }): SerializableError {
   const { message, errors = [] } = err
-
   return { ...err, name: err.constructor.name, message, errors: errors.map(toSerializableError) }
 }
 
@@ -153,28 +186,4 @@ export class ModuleError extends IsoError {
   constructor(public module: string, description: string, ...errors: Error[]) {
     super(description, ...errors)
   }
-}
-
-// istanbul ignore next
-const captureStackTrace = Error.captureStackTrace || function (error) {
-  const container = new Error();
-
-  Object.defineProperty(error, 'stack', {
-    configurable: true,
-    get: function () {
-      // Replace property with value for faster future accesses.
-      defineStack(this, container.stack)
-      return container.stack;
-    },
-    set: function (stack) { defineStack(error, stack) },
-  });
-}
-
-// istanbul ignore next
-function defineStack(target: Record<string, any>, value: string | undefined) {
-  Object.defineProperty(target, 'stack', {
-    configurable: true,
-    value,
-    writable: true,
-  });
 }

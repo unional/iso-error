@@ -1,3 +1,10 @@
 {
-  "eslint.enable": true
+  "eslint.enable": true,
+  "cSpell.words": [
+    "deserializers",
+    "deserialzation",
+    "instanceof",
+    "macos",
+    "serializers"
+  ]
 }
