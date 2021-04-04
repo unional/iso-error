@@ -1,6 +1,6 @@
-import a from 'assertron';
-import { omit } from 'type-plus';
-import { IsoError, ModuleError } from '.';
+import a from 'assertron'
+import { omit } from 'type-plus'
+import { IsoError, ModuleError } from '.'
 
 describe('IsoError', () => {
   test('message is optional', () => {
@@ -11,7 +11,7 @@ describe('IsoError', () => {
   test('is instanceof Error', () => {
     const e = new IsoError('instance of')
 
-    expect(e instanceof Error).toBeTruthy();
+    expect(e instanceof Error).toBeTruthy()
   })
 
   test('is instanceof IsoError', () => {
@@ -108,7 +108,7 @@ describe('IsoError', () => {
     test('custom error', () => {
       class Custom extends IsoError { }
       const err = new Custom('custom')
-      const actual = JSON.parse(IsoError.stringify(err))
+      const actual: unknown = JSON.parse(IsoError.stringify(err))
 
       a.satisfies(actual, {
         name: 'Custom',
@@ -117,7 +117,7 @@ describe('IsoError', () => {
     })
     test('with sub errors', () => {
       const err = new IsoError('with sub', new Error('sub 1'), new IsoError('sub 2'))
-      const actual = JSON.parse(IsoError.stringify(err))
+      const actual: unknown = JSON.parse(IsoError.stringify(err))
 
       a.satisfies(actual, {
         errors: [{
@@ -299,7 +299,7 @@ describe('IsoError.addPlugin()', () => {
     IsoError.addPlugin({
       toSerializable(err) {
         if (err.name === 'WithSecret') {
-          return { ...omit(err, 'secret') } as any
+          return omit(err as Record<string, any>, 'secret')
         }
       },
       fromSerializable(obj) {
@@ -331,5 +331,5 @@ test('pass instanceof before serialize', () => {
     }
   }
 
-  expect(new RealError('asdfs')).toBeInstanceOf(RealError)
+  expect(new RealError('some error')).toBeInstanceOf(RealError)
 })
