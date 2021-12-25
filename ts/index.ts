@@ -19,12 +19,12 @@ const captureStackTrace = Error.captureStackTrace || function (error) {
 
   Object.defineProperty(error, 'stack', {
     configurable: true,
-    get: function () {
+    get: function (this: Error) {
       // Replace property with value for faster future accesses.
       defineStack(this, container.stack)
       return container.stack
     },
-    set: function (stack) { defineStack(error, stack) },
+    set: function (stack: string | undefined) { defineStack(error, stack) },
   })
 }
 
