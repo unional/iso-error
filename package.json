@@ -51,7 +51,6 @@
     "@babel/preset-typescript": "^7.16.5",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
-    "@semantic-release/changelog": "^6.0.1",
     "@size-limit/preset-small-lib": "^7.0.4",
     "@types/jest": "^27.0.3",
     "assertron": "^8.0.0",
