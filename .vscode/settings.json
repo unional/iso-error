@@ -1,10 +1,26 @@
 {
   "eslint.enable": true,
   "cSpell.words": [
+    "deserialization",
     "deserializers",
     "deserialzation",
     "instanceof",
     "macos",
-    "serializers"
+    "serializers",
+    "tsbuildinfo"
+  ],
+  "grammarly.overrides": [
+    {
+      "files": [
+        "**/README.md"
+      ],
+      "config": {
+        "audience": "knowledgeable",
+        "dialect": "american",
+        "domain": "general",
+        "emotions": [],
+        "goals": []
+      }
+    }
   ]
 }

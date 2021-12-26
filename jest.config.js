@@ -1,4 +1,10 @@
 module.exports = {
+  preset: 'ts-jest',
+  globals: {
+    'ts-jest': {
+      isolatedModules: true
+    }
+  },
   'collectCoverageFrom': [
     '<rootDir>/ts/**/*.[jt]s',
     '!<rootDir>/ts/bin.[jt]s'

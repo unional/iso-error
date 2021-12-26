@@ -118,9 +118,8 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
-      - run: yarn add -D -no-lockfile @semantic-release/changelog
-      - run: yarn add -D -no-lockfile semantic-release
-      - run: yarn semantic-release
+      - run: npm install --no-save @semantic-release/changelog
+      - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
