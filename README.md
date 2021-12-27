@@ -13,7 +13,15 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-Isomorphic errors are errors that work across physical boundary.
+Isomorphic errors are errors that work across the physical boundary.
+
+## New in 4.0.0
+
+Support error cause: <https://github.com/tc39/proposal-error-cause>.
+
+This replaces the `errors` feature.
+For consolidating multiple errors (in case of asynchronous code),
+use `AggregateError` to collect them together.
 
 ## IsoError
 
@@ -21,27 +29,26 @@ The base class of all isomorphic errors.
 
 It improves upon the base `Error` with:
 
-- `name`: the name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of the error.
-- Work with `instanceof` (before crossing physical boundary)
-- `errors`: an optional property that contains the cause(s) of the error.
-- The prototype chain is restored for you so you don't need to do `Object.setPrototypeOf(this, new.target.prototype)` yourself.
-  For more information, you can check it out [here](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work)
+- `name`: the name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of error.
+- Restored prototype chain for ES5 environment (before crossing physical boundary)
+  - For more information, you can check it out [here](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work)
+- `cause`: supports <https://github.com/tc39/proposal-error-cause>
 
 ## ModuleError
 
 An `IsoError` with an additional `module` property.
 
-The `module` property indicates the name of the module / package defining the error.
+The `module` property indicates the name of the module/package defining the error.
 
 Most of the time you should use this over the `IsoError` class,
 as it describes the origin of the error.
 
 ```ts
-import { ModuleError } from 'iso-error'
+import { IsoError, ModuleError } from 'iso-error'
 
 export class YourPackageBaseError extends ModuleError {
-  constructor(description: string, ...errors: Error[]) {
-    super('your-package', description, ...errors)
+  constructor(message?: string, options?: IsoError.Options) {
+    super('your-package', message, options)
   }
 }
 ```
@@ -80,8 +87,8 @@ fetch('some/route').then(async response => {
 
 ### toSerializable and fromSerializable
 
-If you want to work on object instead of string,
-you can use `toSerializable()` and `fromSerializable()`.
+If you want to work on an object instead of a string,
+you can use the `toSerializable()` and `fromSerializable()` function.
 
 ```ts
 // service
@@ -116,6 +123,8 @@ fetch('some/route').then(async response => {
 
 You can install plugins to provide special handling of the serialization.
 
+The following example provides a plugin to restore the instanceof support across the physical boundary.
+
 ```ts
 import { IsoError } from 'iso-error'
 import { plugin, InvalidArgument } from 'iso-error-google-cloud-api'
@@ -131,7 +140,7 @@ console.info(actual instanceof InvalidArgument) // true
 
 `IsoError.create()` is a quick way to create an `IsoError` with additional properties.
 
-This is mostly used in one-off situation.
+This is mostly used in one-off situations.
 If your package throws many different errors,
 you should extend from `ModuleError` instead.
 
@@ -158,18 +167,20 @@ IsoError.trace(err)
 
 ## Limitation
 
-One limitation remains that you cannot do `err instanceof YourError` across physical boundary.
-But `err instanceof IsoError` and `err instanceof Error` works fine.
-You should use the `err.name` to check for the type of your error.
+One limitation remains that you cannot do `err instanceof YourError` across the physical boundary.
+But `err instanceof IsoError` and `err instanceof Error` work fine.
+
+You can use `err.name` to check the type of your error,
+or provide a plugin to instantiate the actual error class during deserialization.
 
 ## What about stack trace
 
-Stack trace is maintained inside a physical boundary, just like `Error` does.
-For security reasons, stack trace is not propagated across physical boundary.
+The stack trace is maintained inside a physical boundary, just like `Error` does.
+For security reasons, the stack trace is not propagated across the physical boundary.
 
-If you think about it, stack trace is useful only to your team who originates the error.
+If you think about it, the stack trace is useful only to your team who originates the error.
 Your consumer should not know or care about the stack trace.
-They contains information about the internal structure of your package and is fragile.
+They contain information about the internal structure of your package and are fragile.
 
 Use the `errors` property to provide a humanly understandable trace.
 

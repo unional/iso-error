@@ -74,7 +74,8 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn --ignore-engines
-      - run: yarn coverage --maxWorkers=2
+      - run: yarn test:jsdom
+      - run: yarn coverage
       - name: codecov
         if: matrix.node-version == 16 && matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v1
@@ -118,9 +119,8 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('**/yarn.lock') }}
       - run: yarn
-      - run: yarn add -D -no-lockfile @semantic-release/changelog
-      - run: yarn add -D -no-lockfile semantic-release
-      - run: yarn semantic-release
+      - run: npm install --no-save @semantic-release/changelog
+      - run: npx semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
