@@ -53,22 +53,25 @@ describe('IsoError', () => {
       expect(IsoError.trace(e)).toEqual(`IsoError: with cause
   Error: abc`)
     })
-    test('includes errors in AggregateError with indentation', () => {
-      const e = new IsoError('top', {
-        cause: new AggregateError([
-          new Error('a'),
-          new IsoError('b', {
-            cause: new Error('c')
-          })
-        ], 'agg')
-      })
-      const actual = e.trace()
-      expect(actual).toEqual(`IsoError: top
+    // @ts-ignore
+    if (global.AggregateError) {
+      test('includes errors in AggregateError with indentation', () => {
+        const e = new IsoError('top', {
+          cause: new AggregateError([
+            new Error('a'),
+            new IsoError('b', {
+              cause: new Error('c')
+            })
+          ], 'agg')
+        })
+        const actual = e.trace()
+        expect(actual).toEqual(`IsoError: top
   AggregateError: agg
     Error: a
     IsoError: b
       Error: c`)
-    })
+      })
+    }
   })
   test('e.toString() produces json', () => {
     const e = new IsoError('iso', { cause: new Error('sub') })
@@ -151,18 +154,21 @@ describe('IsoError.trace() produces a readable digest of the error', () => {
     expect(IsoError.trace(err)).toEqual(`IsoError: base
   ModuleError(module-x): some error`)
   })
-  test('AggregateError non Error in the `errors` field', () => {
-    const e = new AggregateError([
-      'wrong', 'even worse', 1, true, ['a'], { b: 1 }
-    ], 'agg')
-    expect(IsoError.trace(e)).toEqual(`AggregateError: agg
+  // @ts-ignore
+  if (global.AggregateError) {
+    test('AggregateError non Error in the `errors` field', () => {
+      const e = new AggregateError([
+        'wrong', 'even worse', 1, true, ['a'], { b: 1 }
+      ], 'agg')
+      expect(IsoError.trace(e)).toEqual(`AggregateError: agg
   wrong
   even worse
   1
   true
   ["a"]
   {"b":1}`)
-  })
+    })
+  }
 })
 
 describe('IsoError.serialize()', () => {
@@ -191,23 +197,26 @@ describe('IsoError.serialize()', () => {
       }
     })
   })
-  test('work with AggregateError', () => {
-    const e = new AggregateError(
-      [new Error('a'), new Error('b')], 'aggregate')
-    const actual = IsoError.serialize(e)
+  // @ts-ignore
+  if (global.AggregateError) {
+    test('work with AggregateError', () => {
+      const e = new AggregateError(
+        [new Error('a'), new Error('b')], 'aggregate')
+      const actual = IsoError.serialize(e)
 
-    expect(JSON.parse(actual)).toEqual({
-      name: 'AggregateError',
-      message: 'aggregate',
-      errors: [{
-        name: 'Error',
-        message: 'a'
-      }, {
-        name: 'Error',
-        message: 'b'
-      }]
+      expect(JSON.parse(actual)).toEqual({
+        name: 'AggregateError',
+        message: 'aggregate',
+        errors: [{
+          name: 'Error',
+          message: 'a'
+        }, {
+          name: 'Error',
+          message: 'b'
+        }]
+      })
     })
-  })
+  }
   test('work with IsoError', () => {
     const e = new IsoError('iso')
     const actual = IsoError.serialize(e)
@@ -334,12 +343,15 @@ describe('serialization', () => {
     })
   })
 
-  test('retains instance of through serialization', () => {
-    const e = new AggregateError([new Error('a'), new Error('b')], 'abc')
-    const actual = IsoError.deserialize(IsoError.serialize(e))
+  // @ts-ignore
+  if (global.AggregateError) {
+    test('retains instance of through serialization', () => {
+      const e = new AggregateError([new Error('a'), new Error('b')], 'abc')
+      const actual = IsoError.deserialize(IsoError.serialize(e))
 
-    expect(actual).toBeInstanceOf(AggregateError)
-  })
+      expect(actual).toBeInstanceOf(AggregateError)
+    })
+  }
 })
 
 describe('IsoError.toSerializable()', () => {

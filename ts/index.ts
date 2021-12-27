@@ -188,7 +188,7 @@ function defaultDeserializeError<
 }
 
 export function toSerializableError(err: Error & { cause?: Error }): IsoError.Serializable {
-  if (AggregateError && err instanceof AggregateError) {
+  if (global.AggregateError && err instanceof AggregateError) {
     return {
       ...err, name: err.constructor.name, message: err.message,
       errors: err.errors.map(toSerializableError)
@@ -221,7 +221,7 @@ function trace(err: unknown) {
     messages.push(`${err.name}: ${err.message}`)
   }
 
-  if (err instanceof AggregateError) {
+  if (global.AggregateError && err instanceof AggregateError) {
     err.errors.forEach(e => messages.push(...trace(e).split('\n').map(s => '  ' + s)))
   }
   if (err instanceof Error) {
