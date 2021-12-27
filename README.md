@@ -155,14 +155,13 @@ throw IsoError.create({ message: 'some message', code: 123, detail: 'some more d
 Returns the error message including its error causes.
 
 ```ts
-const err = new IsoError('msg-1', new Error('msg-2'), new IsoError('msg-3'))
+const err = new IsoError('msg-1', { cause: new Error('msg-2') })
 
 IsoError.trace(err)
 
 // output:
 // IsoError: msg-1
 //   Error: msg-2
-//   IsoError: msg-3
 ```
 
 ## Limitation
