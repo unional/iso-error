@@ -197,26 +197,6 @@ describe('IsoError.serialize()', () => {
       }
     })
   })
-  // @ts-ignore
-  if (global.AggregateError) {
-    test('work with AggregateError', () => {
-      const e = new AggregateError(
-        [new Error('a'), new Error('b')], 'aggregate')
-      const actual = IsoError.serialize(e)
-
-      expect(JSON.parse(actual)).toEqual({
-        name: 'AggregateError',
-        message: 'aggregate',
-        errors: [{
-          name: 'Error',
-          message: 'a'
-        }, {
-          name: 'Error',
-          message: 'b'
-        }]
-      })
-    })
-  }
   test('work with IsoError', () => {
     const e = new IsoError('iso')
     const actual = IsoError.serialize(e)
@@ -254,6 +234,37 @@ describe('IsoError.serialize()', () => {
       other: 'abc'
     })
   })
+  // @ts-ignore
+  if (global.AggregateError) {
+    test('work with AggregateError', () => {
+      const e = new AggregateError(
+        [new Error('a'), new Error('b')], 'aggregate')
+      const actual = IsoError.serialize(e)
+
+      expect(JSON.parse(actual)).toEqual({
+        name: 'AggregateError',
+        message: 'aggregate',
+        errors: [{
+          name: 'Error',
+          message: 'a'
+        }, {
+          name: 'Error',
+          message: 'b'
+        }]
+      })
+    })
+    test('AggregateError with non-error in the errors property', () => {
+      const e = new AggregateError(
+        ['a', 'b'], 'aggregate')
+      const actual = IsoError.serialize(e)
+
+      expect(JSON.parse(actual)).toEqual({
+        name: 'AggregateError',
+        message: 'aggregate',
+        errors: ['a', 'b']
+      })
+    })
+  }
 })
 
 describe('IsoError.deserialize()', () => {
@@ -275,6 +286,13 @@ describe('IsoError.deserialize()', () => {
     const actual = IsoError.deserialize(IsoError.serialize(e))
     expect(actual).not.toBeInstanceOf(IsoError)
     expect(actual).toBeInstanceOf(Error)
+  })
+  test('work with Error with cause', () => {
+    const e = new Error();
+    (e as Record<string, any>).cause = new Error('sub')
+    const actual = IsoError.deserialize(IsoError.serialize(e))
+    expect(actual.cause).toBeInstanceOf(Error)
+    expect(actual.cause?.message).toBe('sub')
   })
   test('restore cause', () => {
     const e = new IsoError('iso', { cause: new Error('a') })

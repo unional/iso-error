@@ -187,7 +187,7 @@ function defaultDeserializeError<
   return Object.assign(new IsoError(message, causeError ? { cause: causeError } : undefined), rest)
 }
 
-export function toSerializableError(err: Error & { cause?: Error }): IsoError.Serializable {
+function toSerializableError(err: Error & { cause?: Error }): IsoError.Serializable {
   if (global.AggregateError && err instanceof AggregateError) {
     return {
       ...err, name: err.constructor.name, message: err.message,

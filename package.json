@@ -33,6 +33,7 @@
     "lint": "eslint --ext=js,ts .",
     "nuke": "yarn clean && rimraf node_modules",
     "test": "jest --reporters=default",
+    "test:jsdom": "jest -c jest.config.jsdom.js --reporters=default",
     "verify": "yarn lint && yarn build && yarn depcheck && size-limit && jest --coverage --reporters=default",
     "watch": "jest --watch"
   },

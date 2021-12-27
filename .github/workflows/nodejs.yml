@@ -74,7 +74,8 @@ jobs:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ matrix.node-version }}-${{ hashFiles('**/yarn.lock') }}
       - run: yarn --ignore-engines
-      - run: yarn coverage --maxWorkers=2
+      - run: yarn test:jsdom
+      - run: yarn coverage
       - name: codecov
         if: matrix.node-version == 16 && matrix.os == 'ubuntu-latest'
         uses: codecov/codecov-action@v1
