@@ -13,7 +13,7 @@
 [![Visual Studio Code][vscode-image]][vscode-url]
 [![Wallaby.js][wallaby-image]][wallaby-url]
 
-Isomorphic errors work across the physical boundary.
+Isomorphic errors are errors that work across the physical boundary.
 
 ## New in 4.0.0
 

@@ -1,13 +1,6 @@
 /* eslint-disable @typescript-eslint/unbound-method */
 
-export type IsoErrorPlugin = {
-  toSerializable(err: Error): IsoError.Serializable | undefined,
-  fromSerializable(jsonObj: Record<string | number, any>): Error | undefined,
-}
-
-const serializers: IsoErrorPlugin['toSerializable'][] = []
-const deserializers: IsoErrorPlugin['fromSerializable'][] = []
-
+//#region captureStackTrace polyfill
 // istanbul ignore next
 const captureStackTrace = Error.captureStackTrace || function (error) {
   const container = new Error()
@@ -31,11 +24,82 @@ function defineStack(target: Record<string, any>, value: string | undefined) {
     writable: true,
   })
 }
+//#endregion
+
+export type IsoErrorPlugin = {
+  toSerializable(err: Error): Record<string | number, any> | undefined,
+  fromSerializable(jsonObj: Record<string | number, any>): Error | undefined,
+}
+
+const serializers: IsoErrorPlugin['toSerializable'][] = []
+const deserializers: IsoErrorPlugin['fromSerializable'][] = []
 
 /**
  * Isomorphic Error that works across physical boundary.
  */
 export class IsoError extends Error {
+  /**
+   * Create an IsoError with additional properties without the need to create a new class.
+   * @param props properties of the IsoError
+   */
+  static create<P extends { message: string, cause?: Error }>(props: P): IsoError & Pick<P, Exclude<keyof P, 'cause' | 'message'>> {
+    const { message, cause, ...rest } = props
+    const err = new IsoError(message, { cause })
+    captureStackTrace(err, IsoError.create)
+    return Object.assign(err, rest)
+  }
+
+  static stringify(err: Error) {
+    return this.serialize(err)
+  }
+
+  static serialize(err: Error) {
+    return JSON.stringify(this.toSerializable(err))
+  }
+
+  /**
+   * @type P Additional properties of the IsoError
+   * @param text Json representation of a IsoError
+   */
+  static parse<E extends IsoError.ErrorWithCause = IsoError.ErrorWithCause>(text: string): E {
+    return deserialize<E>(IsoError.parse, text)
+  }
+
+  /**
+   * @type P Additional properties of the IsoError
+   * @param text Json representation of a IsoError
+   */
+  static deserialize<
+    E extends IsoError.ErrorWithCause = IsoError.ErrorWithCause
+  >(text: string): E {
+    return deserialize<E>(IsoError.deserialize, text)
+  }
+
+  static toSerializable(err: Error) {
+    return serializers.reduce<Record<string, any> | undefined>((p, s) => p || s(err), undefined)
+      || toSerializableError(err)
+  }
+
+  static fromSerializable<
+    E extends IsoError.ErrorWithCause = IsoError.ErrorWithCause
+  >(json: IsoError.Serializable): E {
+    const err = deserializeError<E>(json)
+
+    captureStackTrace(err, IsoError.fromSerializable)
+    return err
+  }
+  /**
+   * returns the error message including the error causes.
+   */
+  static trace(err: Error) {
+    return trace(err)
+  }
+
+  static addPlugin({ toSerializable, fromSerializable }: IsoErrorPlugin) {
+    serializers.unshift(toSerializable)
+    deserializers.unshift(fromSerializable)
+  }
+
   /**
    * Name of the error
    */
@@ -44,7 +108,7 @@ export class IsoError extends Error {
   /**
    * Error cause
    */
-  cause?: IsoError
+  cause?: IsoError.ErrorWithCause
 
   constructor(message?: string, options?: IsoError.Options) {
     super(message)
@@ -62,106 +126,81 @@ export class IsoError extends Error {
     if (options?.cause) this.cause = toIsoError(options.cause)
   }
 
-  /**
-   * Create an IsoError with additional properties without the need to create a new class.
-   * @param props properties of the IsoError
-   */
-  static create<P extends { message: string, cause?: Error }>(props: P): IsoError & Pick<P, Exclude<keyof P, 'cause' | 'message'>> {
-    const { message, cause, ...rest } = props
-    const err = new IsoError(message, { cause })
-    captureStackTrace(err, IsoError.create)
-    return Object.assign(err, rest)
-  }
-
-  static stringify(err: Error) {
-    return this.serialize(err)
-  }
-
-  /**
-   * @type P Additional properties of the IsoError
-   * @param text Json representation of a IsoError
-   */
-  static parse<P extends IsoError.Serializable = IsoError.Serializable>(text: string): IsoError & P {
-    const json = JSON.parse(text) as Record<string, any>
-    const err = deserializeError<P>(json)
-
-    captureStackTrace(err, IsoError.parse)
-    return err
-  }
-
-  static serialize(err: Error) {
-    return JSON.stringify(this.toSerializable(err))
-  }
-
-  static toSerializable(err: Error) {
-    return serializers.reduce<Record<string, any> | undefined>((p, s) => p || s(err), undefined)
-      || toSerializableError(err)
-  }
-
-  /**
-   * @type P Additional properties of the IsoError
-   * @param text Json representation of a IsoError
-   */
-  static deserialize<P extends IsoError.Serializable = IsoError.Serializable>(text: string): IsoError & P {
-    const json = JSON.parse(text) as Record<string, any>
-    const err = deserializeError<P>(json)
-
-    captureStackTrace(err, IsoError.deserialize)
-    return err
-  }
-
-  static fromSerializable<P extends IsoError.Serializable = IsoError.Serializable>(json: IsoError.Serializable): IsoError & P {
-    const err = deserializeError<P>(json)
-
-    captureStackTrace(err, IsoError.fromSerializable)
-    return err
-  }
-
-  static addPlugin({ toSerializable, fromSerializable }: IsoErrorPlugin) {
-    serializers.unshift(toSerializable)
-    deserializers.unshift(fromSerializable)
-  }
-  /**
-   * returns the error message including the error causes.
-   */
-  static trace = trace
-
   toString() { return IsoError.serialize(this) }
+
+  trace() { return IsoError.trace(this) }
 }
 
 export namespace IsoError {
   export type Options = { cause?: Error }
 
+  export type ErrorWithCause = Error & Options
+
   export type Serializable = {
+    name: string,
     message?: string,
     cause?: Serializable
   } & Record<string | number, any>
 
 }
 
-function deserializeError<P extends IsoError.Serializable = IsoError.Serializable>(json: Record<string, any>): IsoError & P {
-  let err: IsoError & P | undefined = undefined
+function deserialize<
+  E extends IsoError.ErrorWithCause = IsoError.ErrorWithCause
+>(fn: (text: string) => E, text: string) {
+  const json = JSON.parse(text) as Record<string, any>
+  const err = deserializeError<E>(json)
+
+  captureStackTrace(err, fn)
+  return err
+}
+
+function deserializeError<
+  E extends IsoError.ErrorWithCause
+>(json: Record<string, any>): E {
+  let err: E | undefined = undefined
   for (const d of deserializers) {
-    err = d(json) as IsoError & P | undefined
+    err = d(json) as E | undefined
     if (err) break
   }
 
-  return err || deserializeIsoError(json)
+  return err || defaultDeserializeError<E>(json)
 }
 
 
-function deserializeIsoError<
-  P extends IsoError.Serializable = IsoError.Serializable
->({ message = '', cause, ...rest }: IsoError.Serializable): IsoError & P {
+function defaultDeserializeError<
+  E extends IsoError.ErrorWithCause
+>(json: Record<string | number, any>): E {
+  if (json.name === 'AggregateError') {
+    const { message, errors, ...rest } = json as { message: string, errors: any[] }
+    // @ts-ignore
+    return Object.assign(new AggregateError(errors as unknown, message), rest)
+  }
+
+  const { message, cause, ...rest } = json as { message?: string, cause?: unknown } & Record<string | number, any>
+  const causeError = cause ? deserializeError(cause as Error) : undefined
+
+  if (json.name === 'Error') {
+    return Object.assign(new Error(message), causeError ? { ...rest, cause: causeError } : rest) as E
+  }
+
   // @ts-ignore
-  return Object.assign(new IsoError(message, { cause }), rest)
+  return Object.assign(new IsoError(message, causeError ? { cause: causeError } : undefined), rest)
 }
 
 export function toSerializableError(err: Error & { cause?: Error }): IsoError.Serializable {
-  const { message, cause } = err
-  return cause
-    ? { ...err, name: err.constructor.name, message, cause: toSerializableError(cause) }
-    : { ...err, name: err.constructor.name, message }
+  if (AggregateError && err instanceof AggregateError) {
+    return {
+      ...err, name: err.constructor.name, message: err.message,
+      errors: err.errors.map(toSerializableError)
+    }
+  }
+  if (err instanceof Error) {
+    const { message, cause } = err
+    return cause
+      ? { ...err, name: err.constructor.name, message, cause: toSerializableError(cause) }
+      : { ...err, name: err.constructor.name, message }
+  }
+  return err
 }
 
 // NOTE: In this function I have to to Object.assign to keep the err instance and its stack trace.
@@ -173,13 +212,31 @@ function toIsoError(err: Error) {
   return Object.assign(err, { name: err.constructor.name !== 'Object' ? err.constructor.name : err.name })
 }
 
-export type Traceable = { name: string, message: string, module?: string, cause?: Traceable }
+function trace(err: unknown) {
+  const messages: string[] = []
+  if (err instanceof ModuleError) {
+    messages.push(`${err.name}(${err.module}): ${err.message}`)
+  }
+  else if (err instanceof Error) {
+    messages.push(`${err.name}: ${err.message}`)
+  }
 
-function trace(err: Traceable) {
-  const messages = [`${err.name}${err.module ? `(${err.module})` : ''}: ${err.message}`]
-  if (err.cause) messages.push(...trace(err.cause).split('\n').map(s => '  ' + s))
+  if (err instanceof AggregateError) {
+    err.errors.forEach(e => messages.push(...trace(e).split('\n').map(s => '  ' + s)))
+  }
+  if (err instanceof Error) {
+    if (hasCause(err)) messages.push(...trace(err.cause).split('\n').map(s => '  ' + s))
+  }
+  else {
+    messages.push(typeof err === 'string' ? err : JSON.stringify(err))
+  }
 
   return messages.join('\n')
+}
+
+function hasCause(x: any): x is { cause: Error } {
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+  return !!x.cause
 }
 
 /**
