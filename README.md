@@ -33,6 +33,7 @@ It improves upon the base `Error` with:
 - Restored prototype chain for ES5 environment (before crossing physical boundary)
   - For more information, you can check it out [here](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work)
 - `cause`: supports <https://github.com/tc39/proposal-error-cause>
+- `ssf`: `captureStackTrace` support. Allow you to specify the function to start the stack trace from.
 
 ## ModuleError
 

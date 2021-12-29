@@ -2,18 +2,20 @@
 
 //#region captureStackTrace polyfill
 // istanbul ignore next
-const captureStackTrace = Error.captureStackTrace || function (error) {
-  const container = new Error()
+if (!Error.captureStackTrace) {
+  Error.captureStackTrace = function (error) {
+    const container = new Error()
 
-  Object.defineProperty(error, 'stack', {
-    configurable: true,
-    get: function (this: Error) {
-      // Replace property with value for faster future accesses.
-      defineStack(this, container.stack)
-      return container.stack
-    },
-    set: function (stack: string | undefined) { defineStack(error, stack) },
-  })
+    Object.defineProperty(error, 'stack', {
+      configurable: true,
+      get: function (this: Error) {
+        // Replace property with value for faster future accesses.
+        defineStack(this, container.stack)
+        return container.stack
+      },
+      set: function (stack: string | undefined) { defineStack(error, stack) },
+    })
+  }
 }
 
 // istanbul ignore next
@@ -44,8 +46,7 @@ export class IsoError extends Error {
    */
   static create<P extends { message: string, cause?: Error }>(props: P): IsoError & Pick<P, Exclude<keyof P, 'cause' | 'message'>> {
     const { message, cause, ...rest } = props
-    const err = new IsoError(message, { cause })
-    captureStackTrace(err, IsoError.create)
+    const err = new IsoError(message, { cause, ssf: IsoError.create })
     return Object.assign(err, rest)
   }
 
@@ -85,7 +86,7 @@ export class IsoError extends Error {
   >(json: IsoError.Serializable): E {
     const err = deserializeError<E>(json)
 
-    captureStackTrace(err, IsoError.fromSerializable)
+    Error.captureStackTrace(err, IsoError.fromSerializable)
     return err
   }
   /**
@@ -124,6 +125,7 @@ export class IsoError extends Error {
     else (this as any).__proto__ = actualProto
 
     if (options?.cause) this.cause = toIsoError(options.cause)
+    if (options?.ssf) Error.captureStackTrace(this, options.ssf)
   }
 
   toString() { return IsoError.serialize(this) }
@@ -132,7 +134,10 @@ export class IsoError extends Error {
 }
 
 export namespace IsoError {
-  export type Options = { cause?: Error }
+  export type Options = {
+    cause?: Error,
+    ssf?: (...args: any) => any
+  }
 
   export type ErrorWithCause = Error & Options
 
@@ -150,7 +155,7 @@ function deserialize<
   const json = JSON.parse(text) as Record<string, any>
   const err = deserializeError<E>(json)
 
-  captureStackTrace(err, fn)
+  Error.captureStackTrace(err, fn)
   return err
 }
 
