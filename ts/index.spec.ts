@@ -89,6 +89,16 @@ describe('IsoError', () => {
     const e = new IsoError('iso', { cause: new Error('sub') })
     expect(e.toString()).toEqual(IsoError.serialize(e))
   })
+  test('support ssf', () => {
+    function foo() {
+      boo()
+    }
+    function boo() {
+      throw new IsoError('throw in boo', { ssf: foo })
+    }
+
+    expect(a.throws(foo).stack).not.toMatch('at boo')
+  })
 })
 
 describe('ModuleError', () => {
