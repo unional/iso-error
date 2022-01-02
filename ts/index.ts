@@ -137,7 +137,7 @@ export namespace IsoError {
   export type Options = {
     cause?: Error,
     /**
-     * start stack function
+     * stack start function
      */
     ssf?: (...args: any) => any
   }
