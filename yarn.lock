@@ -1177,24 +1177,19 @@ arrify@^1.0.1:
   resolved "https://registry.yarnpkg.com/arrify/-/arrify-1.0.1.tgz#898508da2226f380df904728456849c1501a4b0d"
   integrity sha1-iYUI2iIm84DfkEcoRWhJwVAaSw0=
 
-assertion-error@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/assertion-error/-/assertion-error-1.1.0.tgz#e60b6b0e8f301bd97e5375215bda406c85118c0b"
-  integrity sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==
-
-assertron@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/assertron/-/assertron-8.0.0.tgz#4d49218244db71f0149e17a2e5dbc442bef67e0e"
-  integrity sha512-l8nyC297Ty2EI2r9VOW04bhVhmNf3XBeSqQT5jnZJh2fQT82SZFJodF6AqLSpDjIj5kkXWh49zN9K8eoqcDsHg==
+assertron@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/assertron/-/assertron-9.0.0.tgz#bae2db0ae82cb07f6fa8d2751ad1256e78de2c90"
+  integrity sha512-+bzXqqwzPmKX+GheB7vpegy6SS0satWBG3kAOrSKhzBn8kJ2nXnY26UjWJW8DNdGGA0r2nTyIS81yE+6XqsoGg==
   dependencies:
-    assertion-error "^1.1.0"
     is-node "^1.0.2"
     is-promise "^4.0.0"
+    iso-error "^4.1.0"
     path-equal "^1.1.1"
     satisfier "^5.1.1"
     tersify "^3.7.9"
     tslib "^2.3.1"
-    type-plus "^3.13.1"
+    type-plus "^3.14.0"
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -2876,6 +2871,11 @@ isexe@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/isexe/-/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
+
+iso-error@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/iso-error/-/iso-error-4.1.0.tgz#5af84b9021d844e6fbf6974c257b90b639ff4902"
+  integrity sha512-lKyiHIxpZ7g2hKffg5TEXoSdSSyhgixFoBGYKdaXFjgeIll/ODLT65oC0BFVNzubBfHUo/mfODys434VyhF9/w==
 
 istanbul-lib-coverage@^3.0.0, istanbul-lib-coverage@^3.2.0:
   version "3.2.0"
@@ -4872,7 +4872,7 @@ terminal-link@^2.0.0:
     ansi-escapes "^4.2.1"
     supports-hyperlinks "^2.0.0"
 
-tersify@^3.7.8, tersify@^3.7.9:
+tersify@^3.7.9:
   version "3.7.9"
   resolved "https://registry.yarnpkg.com/tersify/-/tersify-3.7.9.tgz#a5e9376252c7fac1a1b6a3105620deed18d4dd83"
   integrity sha512-RpZaOa+hLvobkClgm0bH+wNeuJjzJkPuVLiIitKTPEMPtA4NDw/Op4V4tCMXzAHwPLHXjllRzObQlZ7PxUFB+A==
@@ -5066,13 +5066,13 @@ type-fest@^0.8.1:
   resolved "https://registry.yarnpkg.com/type-fest/-/type-fest-0.8.1.tgz#09e249ebde851d3b1e48d27c105444667f17b83d"
   integrity sha512-4dbzIzqvjtgiM5rw1k5rEHtBANKmdudhGyBEajN01fEyhaAIhsoKNy6y7+IN93IfpFtwY9iqi7kD+xwKhQsNJA==
 
-type-plus@^3.13.1:
-  version "3.14.0"
-  resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-3.14.0.tgz#49ab0716e0b627c702e7909d3109e1a856171519"
-  integrity sha512-i0dR8kVNeVF9CECxuAhWJgjljsJGvf67iqAkW0bocbXddrNbODqKXCl+YJnw11Dq9asfbOWKbm4WdCb3PXWOtQ==
+type-plus@^3.14.0:
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/type-plus/-/type-plus-3.15.0.tgz#478bf73739e323a7c0b5b78e2b83c06849f1f9ff"
+  integrity sha512-iUiJgXQW2dsAmtJITdLDqBnzwh/M0l/fVBUL07B9z9wQQ08pMNGbEWoJH5udBBGt7bnS3aMxAGoZQYai9Eu6bA==
   dependencies:
-    tersify "^3.7.8"
-    unpartial "^0.6.3"
+    tersify "^3.8.0"
+    unpartial "^0.6.4"
 
 type-plus@^4.0.0:
   version "4.0.0"
@@ -5130,7 +5130,7 @@ universalify@^2.0.0:
   resolved "https://registry.yarnpkg.com/universalify/-/universalify-2.0.0.tgz#75a4984efedc4b08975c5aeb73f530d02df25717"
   integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
 
-unpartial@^0.6.1, unpartial@^0.6.3, unpartial@^0.6.4:
+unpartial@^0.6.1, unpartial@^0.6.4:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/unpartial/-/unpartial-0.6.4.tgz#9cf878d3c8335919b250cfb3393751ca12cc26a4"
   integrity sha512-t/aGg/x8vW0KCjPB8A6TBB1hd0wnWMze8WD83uUpqSDm99jmhY2ZcHpivlvvSGmPCJ/S5ASZzxeQHga4JTW/4A==
