@@ -23,7 +23,7 @@
   "files": [
     "cjs",
     "esm",
-    "src"
+    "ts"
   ],
   "scripts": {
     "build": "run-p build:cjs build:esm",
