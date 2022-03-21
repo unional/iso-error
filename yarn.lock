@@ -3103,10 +3103,10 @@ globby@^9.2.0:
     pify "^4.0.1"
     slash "^2.0.0"
 
-google-cloud-api@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/google-cloud-api/-/google-cloud-api-2.2.0.tgz#d93c1c9af680e1b6fd3183feacae1725cc06affa"
-  integrity sha512-I4M6j+HdoE1hJu8Bmh61s7kPIuuOjXtdtTy9liMIHgAPyFFe74pjkIhXDTLj2RsHAVGSWpN/VQCG6ogbJkkwHw==
+google-cloud-api@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/google-cloud-api/-/google-cloud-api-2.3.0.tgz#0a05a84b41917da72ba0e5920cc4edf9d4e57115"
+  integrity sha512-Q9S5BU7CWHCRztwwKcoEBj7s7Qy8PwIcxQdueObwJvUnGW2ruLcepkjjDUl2sbWcqXnxSfSrLCVhMwqqRHhiOQ==
   dependencies:
     iso-error "^3.0.0"
     type-plus "^1.29.0"
