@@ -1,0 +1,10 @@
+name: nodejs
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize]
+jobs:
+  library:
+    uses: unional/.github/.github/workflows/yarn2-library-linux.yml@main

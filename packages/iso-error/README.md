@@ -3,15 +3,10 @@
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
 
-[![Github NodeJS][github-nodejs]][github-action-url]
+[![GitHub Action][github-nodejs-verify]][github-action-url]
 [![Codecov][codecov-image]][codecov-url]
-[![Codacy Badge][codacy-image]][codacy-url]
-
-[![Greenkeeper][greenkeeper-image]][greenkeeper-url]
-[![Semantic Release][semantic-release-image]][semantic-release-url]
 
 [![Visual Studio Code][vscode-image]][vscode-url]
-[![Wallaby.js][wallaby-image]][wallaby-url]
 
 Isomorphic errors are errors that work across the physical boundary.
 
@@ -29,7 +24,7 @@ The base class of all isomorphic errors.
 
 It improves upon the base `Error` with:
 
-- `name`: the name of the error is adjusted to be the name of the sub-class. This means it can be used to check for the type of error.
+- `name`: the name of the error is adjusted to be the name of the subclass. This means it can be used to check for the type of error.
 - Restored prototype chain for ES5 environment (before crossing physical boundary)
   - For more information, you can check it out [here](https://github.com/Microsoft/TypeScript-wiki/blob/master/Breaking-Changes.md#extending-built-ins-like-error-array-and-map-may-no-longer-work)
 - `cause`: supports <https://github.com/tc39/proposal-error-cause>
@@ -37,7 +32,7 @@ It improves upon the base `Error` with:
 
 ## ModuleError
 
-An `IsoError` with an additional `module` property.
+A `IsoError` with an additional `module` property.
 
 The `module` property indicates the name of the module/package defining the error.
 
@@ -60,7 +55,7 @@ export class YourPackageBaseError extends ModuleError {
 
 `isoError.toString()` produces the same result as `IsoError.serialize()`.
 
-The errors are serialized to json string.
+The errors are serialized to JSON string.
 
 ```ts
 // service
@@ -124,7 +119,7 @@ fetch('some/route').then(async response => {
 
 You can install plugins to provide special handling of the serialization.
 
-The following example provides a plugin to restore the instanceof support across the physical boundary.
+The following example provides a plugin to restore the `instanceof` support across the physical boundary.
 
 ```ts
 import { IsoError } from 'iso-error'
@@ -139,10 +134,10 @@ console.info(actual instanceof InvalidArgument) // true
 
 ### IsoError.create(props)
 
-`IsoError.create()` is a quick way to create an `IsoError` with additional properties.
+`IsoError.create()` is a quick way to create a `IsoError` with additional properties.
 
 This is mostly used in one-off situations.
-If your package throws many different errors,
+If your package throws many errors,
 you should extend from `ModuleError` instead.
 
 ```ts
@@ -184,21 +179,13 @@ They contain information about the internal structure of your package and are fr
 
 Use the `errors` property to provide a humanly understandable trace.
 
-[codacy-image]: https://api.codacy.com/project/badge/Grade/ff81d2922cac4b249a9fce328e3487cd
-[codacy-url]: https://www.codacy.com/gh/unional/iso-error/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unional/iso-error&amp;utm_campaign=Badge_Grade
 [codecov-image]: https://codecov.io/gh/unional/iso-error/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/iso-error
 [downloads-image]: https://img.shields.io/npm/dm/iso-error.svg?style=flat
 [downloads-url]: https://npmjs.org/package/iso-error
-[github-nodejs]: https://github.com/unional/iso-error/workflows/nodejs/badge.svg
+[github-nodejs-verify]: https://github.com/unional/iso-error/workflows/nodejs-verify/badge.svg
 [github-action-url]: https://github.com/unional/iso-error/actions
-[greenkeeper-image]: https://badges.greenkeeper.io/unional/iso-error.svg
-[greenkeeper-url]: https://greenkeeper.io/
 [npm-image]: https://img.shields.io/npm/v/iso-error.svg?style=flat
 [npm-url]: https://npmjs.org/package/iso-error
-[semantic-release-image]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
-[semantic-release-url]: https://github.com/semantic-release/semantic-release
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
-[wallaby-image]: https://img.shields.io/badge/wallaby.js-configured-green.svg
-[wallaby-url]: https://wallabyjs.com

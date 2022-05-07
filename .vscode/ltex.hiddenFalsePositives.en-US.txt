@@ -1,1 +1,6 @@
 {"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qiso-error\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q![GitHub Action][github-nodejs-verify] [Codecov]codecov-url\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[NPM version]npm-url [NPM downloads]downloads-url\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Visual Studio Code]vscode-url [Wallaby.js]wallaby-url\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[GitHub Action]github-action-url [Codecov]codecov-url\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Visual Studio Code]vscode-url\\E$"}

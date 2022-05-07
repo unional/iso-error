@@ -4,5 +4,5 @@ on:
     branches:
       - main
 jobs:
-  release:
+  library:
     uses: unional/.github/.github/workflows/yarn2-library-release.yml@main
