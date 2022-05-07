@@ -9,6 +9,7 @@
     "macos",
     "Miku",
     "serializers",
+    "snyk",
     "tsbuildinfo"
   ],
   "grammarly.overrides": [

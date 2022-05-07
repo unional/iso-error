@@ -1,0 +1,8 @@
+name: nodejs
+on:
+  push:
+    branches:
+      - main
+jobs:
+  release:
+    uses: unional/.github/.github/workflows/yarn2-library-release.yml@main
