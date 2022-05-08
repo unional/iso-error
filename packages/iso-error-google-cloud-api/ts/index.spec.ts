@@ -7,6 +7,7 @@ beforeAll(() => {
   IsoError.addPlugin(plugin)
 })
 
+// TODO: need to migrate, upgrade google-cloud-api and then fix this
 test('Cancelled', () => {
   const err = new Cancelled()
   const json = IsoError.serialize(err)
