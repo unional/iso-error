@@ -1,6 +1,5 @@
 import { ErrorStatus } from '.'
 
-/* eslint-disable @typescript-eslint/camelcase */
 test('can specify specific detail types', () => {
   const json: ErrorStatus = {
     code: 200,
@@ -20,4 +19,3 @@ test('can specify specific detail types', () => {
 
   expect(json).toBeDefined()
 })
-/* eslint-enable @typescript-eslint/camelcase */
