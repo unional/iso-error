@@ -26,11 +26,8 @@
     "ts"
   ],
   "scripts": {
-    "build": "run-p build:cjs build:esm",
-    "build:cjs": "tsc -p tsconfig.cjs.json",
-    "build:esm": "tsc -p tsconfig.esm.json",
-    "build:watch": "tsc -p tsconfig.build.json --watch",
-    "clean": "rimraf .nyc_output .typescript coverage cjs esm lib",
+    "build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm",
+    "clean": "rimraf .nyc_output *.tsbuildinfo coverage cjs esm lib || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
@@ -38,6 +35,10 @@
     "nuke:local": "rimraf node_modules || true",
     "size": "size-limit",
     "test": "jest",
+    "ts:build:cjs": "tsc -p tsconfig.cjs.json",
+    "ts:build:esm": "tsc -p tsconfig.esm.json",
+    "ts:clean": "rimraf *.tsbuildinfo || true",
+    "ts:test": "tsc",
     "verify": "npm-run-all -p build lint coverage depcheck -s size",
     "watch": "jest --watch"
   },

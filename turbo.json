@@ -12,7 +12,8 @@
         "!ts/**/*.stories.tsx?"
       ],
       "outputs": [
-        "lib/**"
+        "cjs/**",
+        "esm/**"
       ]
     },
     "clean": {
