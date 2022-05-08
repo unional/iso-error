@@ -6,3 +6,5 @@
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Visual Studio Code]vscode-url\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q![GitHub Action][github-release] ![VS Code][vscode-image]\\E$"}
 {"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[GitHub Action]github-action-url [VS Code]vscode-url\\E$"}
+
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[NPM version]npm-url [NPM downloads]downloads-url [Codecov]codecov-url\\E$"}

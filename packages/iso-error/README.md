@@ -2,11 +2,7 @@
 
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
-
-[![GitHub Action][github-nodejs-verify]][github-action-url]
 [![Codecov][codecov-image]][codecov-url]
-
-[![Visual Studio Code][vscode-image]][vscode-url]
 
 Isomorphic errors are errors that work across the physical boundary.
 
@@ -183,9 +179,5 @@ Use the `errors` property to provide a humanly understandable trace.
 [codecov-url]: https://codecov.io/gh/unional/iso-error
 [downloads-image]: https://img.shields.io/npm/dm/iso-error.svg?style=flat
 [downloads-url]: https://npmjs.org/package/iso-error
-[github-nodejs-verify]: https://github.com/unional/iso-error/workflows/nodejs-verify/badge.svg
-[github-action-url]: https://github.com/unional/iso-error/actions
 [npm-image]: https://img.shields.io/npm/v/iso-error.svg?style=flat
 [npm-url]: https://npmjs.org/package/iso-error
-[vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
-[vscode-url]: https://code.visualstudio.com/
