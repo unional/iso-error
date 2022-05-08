@@ -1,6 +1,6 @@
 {
   "name": "iso-error-google-cloud-api",
-  "version": "0.0.0-development",
+  "version": "1.0.2",
   "description": "iso-error plugin for Google Cloud API design",
   "homepage": "https://github.com/unional/iso-error-google-cloud-api",
   "bugs": {
@@ -43,7 +43,8 @@
     "google-cloud-api": "^2.3.0"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.5",
+    "@size-limit/file": "^7.0.8",
+    "@size-limit/webpack": "^7.0.8",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.8",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
@@ -69,10 +70,5 @@
   },
   "engines": {
     "node": ">= 8"
-  },
-  "size-limit": [
-    {
-      "limit": "5 kb"
-    }
-  ]
+  }
 }

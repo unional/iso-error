@@ -1,6 +1,11 @@
 {
   "files": [],
-  "references": [{
-    "path": "packages/iso-error"
-  }]
+  "references": [
+    {
+      "path": "packages/iso-error"
+    },
+    {
+      "path": "packages/iso-error-google-cloud-api"
+    }
+  ]
 }
