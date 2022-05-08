@@ -1,0 +1,64 @@
+{
+  "name": "iso-error-google-cloud-api",
+  "version": "0.0.0-development",
+  "description": "iso-error plugin for Google Cloud API design",
+  "homepage": "https://github.com/unional/iso-error-google-cloud-api",
+  "bugs": {
+    "url": "https://github.com/unional/iso-error-google-cloud-api/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unional/iso-error-google-cloud-api.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Homa Wong (unional)",
+    "email": "homawong@gmail.com"
+  },
+  "files": [
+    "lib",
+    "libm",
+    "src"
+  ],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
+    "clean": "rimraf lib libm *.tsbuildinfo",
+    "coverage": "jest --coverage",
+    "dc": "yarn dependency-check",
+    "dependency-check": "dependency-check . --unused --no-dev -i iso-error && dependency-check . --missing --no-dev",
+    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
+    "semantic-release": "semantic-release",
+    "test": "jest --reporters=default",
+    "verify": "yarn lint && yarn build && yarn dc && jest --coverage --reporters=default",
+    "watch": "jest --watch"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "dependencies": {
+    "google-cloud-api": "^2.3.0"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@semantic-release/changelog": "^3.0.4",
+    "@unional/devpkg-node": "^1.4.1",
+    "assertron": "^7.1.2",
+    "codecov": "^3.5.0",
+    "commitlint-circle": "^1.0.0",
+    "husky": "^3.0.5",
+    "iso-error": "^3.0.1",
+    "semantic-release": "^15.13.24",
+    "type-plus": "^1.29.0"
+  },
+  "peerDependencies": {
+    "iso-error": "^3.0.0"
+  },
+  "engines": {
+    "node": ">= 8"
+  }
+}
