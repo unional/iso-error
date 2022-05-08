@@ -1,9 +1,6 @@
 {
-  "extends": "./tsconfig.cjs.json",
-  "compilerOptions": {
-  },
-  "include": [
-    "ts",
-    "typings"
-  ]
+  "files": [],
+  "references": [{
+    "path": "packages/iso-error"
+  }]
 }

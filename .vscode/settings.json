@@ -1,5 +1,4 @@
 {
-  "eslint.enable": true,
   "cSpell.words": [
     "deserialization",
     "deserializers",
@@ -9,20 +8,29 @@
     "macos",
     "Miku",
     "serializers",
+    "snyk",
     "tsbuildinfo"
   ],
+  "eslint.enable": true,
+  "eslint.nodePath": ".yarn/sdks",
   "grammarly.overrides": [
     {
-      "files": [
-        "**/README.md"
-      ],
       "config": {
         "audience": "knowledgeable",
         "dialect": "american",
         "domain": "general",
         "emotions": [],
         "goals": []
-      }
+      },
+      "files": [
+        "**/README.md"
+      ]
     }
-  ]
+  ],
+  "search.exclude": {
+    "**/.pnp.*": true,
+    "**/.yarn": true
+  },
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": ".yarn/sdks/typescript/lib"
 }
