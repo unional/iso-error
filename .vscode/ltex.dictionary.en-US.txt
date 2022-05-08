@@ -6,3 +6,6 @@ toSerializable
 fromSerializable
 Stringify
 deserialization
+PnP
+corepack
+changesets
