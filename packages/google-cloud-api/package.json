@@ -1,0 +1,72 @@
+{
+  "name": "google-cloud-api",
+  "version": "0.0.0-development",
+  "description": "API utility library that follows Google Cloud API design",
+  "homepage": "https://github.com/unional/iso-error/tree/main/packages/google-cloud-api",
+  "bugs": {
+    "url": "https://github.com/unional/iso-error/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/unional/iso-error.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Homa Wong (unional)",
+    "email": "homawong@gmail.com"
+  },
+  "files": [
+    "lib",
+    "libm",
+    "src"
+  ],
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "npm-run-all ts:clean ts:build:cjs ts:build:esm",
+    "clean": "rimraf lib libm *.tsbuildinfo || true",
+    "coverage": "jest --coverage",
+    "depcheck": "depcheck",
+    "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
+    "nuke": "run-s clean nuke:local",
+    "nuke:local": "rimraf node_modules || true",
+    "size": "size-limit",
+    "test": "jest --reporters=default",
+    "ts:build:cjs": "tsc -p tsconfig.es5.json",
+    "ts:build:esm": "tsc -p tsconfig.esnext.json",
+    "ts:clean": "rimraf *.tsbuildinfo || true",
+    "ts:test": "tsc",
+    "verify": "npm-run-all -p build lint coverage depcheck -s size",
+    "watch": "jest --watch"
+  },
+  "dependencies": {
+    "iso-error": "^3.0.0",
+    "type-plus": "^1.33.0"
+  },
+  "devDependencies": {
+    "@size-limit/file": "^7.0.8",
+    "@size-limit/webpack": "^7.0.8",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "assertron": "^9.0.0",
+    "cross-env": "7.0.3",
+    "depcheck": "1.4.3",
+    "eslint": "8.15.0",
+    "eslint-plugin-harmony": "^6.0.0",
+    "jest": "28.1.0",
+    "jest-validate": "28.1.0",
+    "jest-watch-suspend": "1.1.2",
+    "jest-watch-toggle-config": "2.0.1",
+    "jest-watch-typeahead": "1.1.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "satisfier": "^5.1.4",
+    "size-limit": "^7.0.5",
+    "ts-jest": "^28.0.1",
+    "typescript": "^4.6.4"
+  },
+  "engines": {
+    "node": ">= 8"
+  }
+}
