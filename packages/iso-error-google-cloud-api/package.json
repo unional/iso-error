@@ -15,50 +15,64 @@
     "name": "Homa Wong (unional)",
     "email": "homawong@gmail.com"
   },
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
     "lib",
     "libm",
     "src"
   ],
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
   "scripts": {
-    "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.esnext.json",
-    "clean": "rimraf lib libm *.tsbuildinfo",
+    "build": "npm-run-all ts:clean ts:build:cjs ts:build:esm",
+    "clean": "rimraf lib libm *.tsbuildinfo || true",
     "coverage": "jest --coverage",
-    "dc": "yarn dependency-check",
-    "dependency-check": "dependency-check . --unused --no-dev -i iso-error && dependency-check . --missing --no-dev",
-    "lint": "eslint \"**/*.{ts,tsx,js,jsx}\"",
-    "semantic-release": "semantic-release",
+    "depcheck": "depcheck",
+    "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
+    "nuke": "run-s clean nuke:local",
+    "nuke:local": "rimraf node_modules || true",
+    "size": "size-limit",
     "test": "jest --reporters=default",
-    "verify": "yarn lint && yarn build && yarn dc && jest --coverage --reporters=default",
+    "ts:build:cjs": "tsc -p tsconfig.es5.json",
+    "ts:build:esm": "tsc -p tsconfig.esnext.json",
+    "ts:clean": "rimraf *.tsbuildinfo || true",
+    "ts:test": "tsc",
+    "verify": "npm-run-all -p build lint coverage depcheck -s size",
     "watch": "jest --watch"
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "dependencies": {
     "google-cloud-api": "^2.3.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-conventional": "^8.1.0",
-    "@semantic-release/changelog": "^3.0.4",
-    "@unional/devpkg-node": "^1.4.1",
-    "assertron": "^7.1.2",
-    "codecov": "^3.5.0",
-    "commitlint-circle": "^1.0.0",
-    "husky": "^3.0.5",
+    "@size-limit/preset-small-lib": "^7.0.5",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.8",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "assertron": "^9.0.0",
+    "cross-env": "7.0.3",
+    "depcheck": "1.4.3",
+    "eslint": "8.15.0",
+    "eslint-plugin-harmony": "^6.0.0",
     "iso-error": "^3.0.1",
-    "semantic-release": "^15.13.24",
-    "type-plus": "^1.29.0"
+    "jest": "28.1.0",
+    "jest-validate": "28.1.0",
+    "jest-watch-suspend": "1.1.2",
+    "jest-watch-toggle-config": "2.0.1",
+    "jest-watch-typeahead": "1.1.0",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "size-limit": "^7.0.5",
+    "ts-jest": "^28.0.1",
+    "typescript": "^4.6.4"
   },
   "peerDependencies": {
     "iso-error": "^3.0.0"
   },
   "engines": {
     "node": ">= 8"
-  }
+  },
+  "size-limit": [
+    {
+      "limit": "5 kb"
+    }
+  ]
 }
