@@ -1,8 +1,8 @@
 {
-  "name": "iso-error",
-  "version": "4.1.2",
-  "description": "An isomorphic error library",
-  "homepage": "https://github.com/unional/iso-error/tree/main/packages/iso-error",
+  "name": "iso-error-google-cloud-api",
+  "version": "1.0.2",
+  "description": "iso-error plugin for Google Cloud API design",
+  "homepage": "https://github.com/unional/iso-error/tree/main/packages/iso-error-google-cloud-api",
   "bugs": {
     "url": "https://github.com/unional/iso-error/issues"
   },
@@ -15,35 +15,36 @@
     "name": "Homa Wong (unional)",
     "email": "homawong@gmail.com"
   },
-  "sideEffects": false,
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
-  "jsnext:main": "esm/index.js",
-  "typings": "esm/index.d.ts",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
   "files": [
-    "cjs",
-    "esm",
-    "ts"
+    "lib",
+    "libm",
+    "src"
   ],
   "scripts": {
-    "build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm",
-    "clean": "rimraf .nyc_output *.tsbuildinfo coverage cjs esm lib || true",
+    "build": "npm-run-all ts:clean ts:build:cjs ts:build:esm",
+    "clean": "rimraf lib libm *.tsbuildinfo || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
     "nuke": "run-s clean nuke:local",
     "nuke:local": "rimraf node_modules || true",
     "size": "size-limit",
-    "test": "jest",
-    "ts:build:cjs": "tsc -p tsconfig.cjs.json",
-    "ts:build:esm": "tsc -p tsconfig.esm.json",
+    "test": "jest --reporters=default",
+    "ts:build:cjs": "tsc -p tsconfig.es5.json",
+    "ts:build:esm": "tsc -p tsconfig.esnext.json",
     "ts:clean": "rimraf *.tsbuildinfo || true",
     "ts:test": "tsc",
     "verify": "npm-run-all -p build lint coverage depcheck -s size",
     "watch": "jest --watch"
   },
+  "dependencies": {
+    "google-cloud-api": "^2.3.0"
+  },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.5",
+    "@size-limit/file": "^7.0.8",
+    "@size-limit/webpack": "^7.0.8",
     "@types/jest": "^27.4.0",
     "@types/node": "^17.0.8",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
@@ -52,6 +53,7 @@
     "depcheck": "1.4.3",
     "eslint": "8.15.0",
     "eslint-plugin-harmony": "^6.0.0",
+    "iso-error": "workspace:*",
     "jest": "28.1.0",
     "jest-validate": "28.1.0",
     "jest-watch-suspend": "1.1.2",
@@ -61,15 +63,12 @@
     "rimraf": "^3.0.2",
     "size-limit": "^7.0.5",
     "ts-jest": "^28.0.1",
-    "type-plus": "^4.0.0",
     "typescript": "^4.6.4"
   },
-  "engines": {
-    "node": ">= 10"
+  "peerDependencies": {
+    "iso-error": "^3.0.0"
   },
-  "size-limit": [
-    {
-      "limit": "5 kb"
-    }
-  ]
+  "engines": {
+    "node": ">= 8"
+  }
 }

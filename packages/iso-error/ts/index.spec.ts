@@ -1,4 +1,3 @@
-
 import a from 'assertron'
 import { omit } from 'type-plus'
 import { IsoError, ModuleError } from '.'

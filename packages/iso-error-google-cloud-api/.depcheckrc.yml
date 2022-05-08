@@ -1,0 +1,4 @@
+ignores:
+  - '@size-limit/*'
+  - '@types/node'
+  - '@typescript-eslint/*'

@@ -21,17 +21,25 @@
     },
     "coverage": {
       "dependsOn": [
-        "^build"
+        "build"
       ],
       "inputs": [
         "ts/**/*.tsx?"
       ]
     },
-    "depcheck": {},
+    "depcheck": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
     "dev": {
       "cache": false
     },
-    "lint": {},
+    "lint": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
     "size": {
       "dependsOn": [
         "build"
