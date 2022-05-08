@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "iso-error": "^3.0.0",
-    "type-plus": "^1.33.0"
+    "type-plus": "^4.0.0"
   },
   "devDependencies": {
     "@size-limit/file": "^7.0.8",
