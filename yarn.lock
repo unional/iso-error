@@ -5572,7 +5572,7 @@ __metadata:
     eslint: 8.15.0
     eslint-plugin-harmony: ^6.0.0
     google-cloud-api: ^2.3.0
-    iso-error: ^3.0.1
+    iso-error: "workspace:*"
     jest: 28.1.0
     jest-validate: 28.1.0
     jest-watch-suspend: 1.1.2
@@ -5588,7 +5588,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"iso-error@^4.1.2, iso-error@workspace:packages/iso-error":
+"iso-error@^4.1.2, iso-error@workspace:*, iso-error@workspace:packages/iso-error":
   version: 0.0.0-use.local
   resolution: "iso-error@workspace:packages/iso-error"
   dependencies:
@@ -5615,7 +5615,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"iso-error@npm:^3.0.0, iso-error@npm:^3.0.1":
+"iso-error@npm:^3.0.0":
   version: 3.2.5
   resolution: "iso-error@npm:3.2.5"
   checksum: 8809ecb4499751fcfbc88d91be0987839b2498329ee8eb30bbeb6a7b460d7479694645aa1ad0e9492f9587e5cb8374390e1cd705d526b006d3926e1311f121bc
