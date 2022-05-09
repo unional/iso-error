@@ -11,3 +11,4 @@ corepack
 changesets
 
 enum
+protobuf

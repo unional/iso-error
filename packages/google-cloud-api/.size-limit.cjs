@@ -1,5 +1,5 @@
 module.exports = [
   {
-    limit: '5 kb'
+    limit: '10 kb'
   }
 ]

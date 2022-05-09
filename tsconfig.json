@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": [
-      "ES2015.Promise"
+      "ES2021.Promise"
     ]
   },
   "files": [],

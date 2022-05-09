@@ -2,25 +2,11 @@
 
 [![NPM version][npm-image]][npm-url]
 [![NPM downloads][downloads-image]][downloads-url]
-
-[![Circle CI][circleci-image]][circleci-url]
-[![Travis CI][travis-image]][travis-url]
 [![Codecov][codecov-image]][codecov-url]
-[![Coveralls Status][coveralls-image]][coveralls-url]
-[![Codacy Badge][codacy-image]][codacy-url]
 
-[![Greenkeeper][greenkeeper-image]][greenkeeper-url]
-[![Semantic Release][semantic-release-image]][semantic-release-url]
+A TypeScript implementation of [Google Cloud API design].
 
-[![Visual Studio Code][vscode-image]][vscode-url]
-[![Wallaby.js][wallaby-image]][wallaby-url]
-
-API utility library follows [Google Cloud API design](https://cloud.google.com/apis/design/).
-
-[circleci-image]: https://circleci.com/gh/unional/google-cloud-api/tree/master.svg?style=shield
-[circleci-url]: https://circleci.com/gh/unional/google-cloud-api/tree/master
-[codacy-image]: https://api.codacy.com/project/badge/Grade/569e678c65cf4481a172aaeb83b41aef
-[codacy-url]: https://www.codacy.com/app/homawong/google-cloud-api?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=unional/google-cloud-api&amp;utm_campaign=Badge_Grade
+[Google Cloud API design]: https://cloud.google.com/apis/design/
 [codecov-image]: https://codecov.io/gh/unional/google-cloud-api/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/google-cloud-api
 [coveralls-image]: https://coveralls.io/repos/github/unional/google-cloud-api/badge.svg?branch=master

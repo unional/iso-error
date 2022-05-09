@@ -4,7 +4,7 @@
 
 ## Errors
 
-We follows the error model of the Google Cloud Design.
+We follow the error model of the Google Cloud Design.
 
 - <https://cloud.google.com/apis/design/errors>
 
@@ -44,7 +44,7 @@ enum Code {
   ALREADY_EXISTS, // 409 Conflict
   PERMISSION_DENIED, // 403 Forbidden
   UNAUTHENTICATED, // 401 Unauthorized
-  RESOURCE_EXHAUSED, // 429 Too Many Requests
+  RESOURCE_EXHAUSTED, // 429 Too Many Requests
   FAILED_PRECONDITION, // 400 Bad Request
   ABORTED, // 409 Conflict
   OUT_OF_RANGE, // 400 Bad Request

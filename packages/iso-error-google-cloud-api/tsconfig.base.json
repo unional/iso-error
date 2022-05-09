@@ -3,7 +3,8 @@
     "declaration": true,
     "esModuleInterop": true,
     "lib": [
-      "es2015"
+      "es2015",
+      "ES2021.Promise"
     ],
     "moduleResolution": "node",
     "newLine": "LF",

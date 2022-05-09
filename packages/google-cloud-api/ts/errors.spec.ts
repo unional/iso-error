@@ -1,7 +1,11 @@
 import a from 'assertron'
 import { IsoError } from 'iso-error'
 import { has } from 'satisfier'
-import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, Unimplemented, UnknownError } from '.'
+import {
+  Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition,
+  InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted,
+  Unauthenticated, Unavailable, Unimplemented, UnknownError,
+} from '.'
 
 describe('Cancelled', () => {
   test('create with default message', () => {
@@ -16,7 +20,7 @@ describe('Cancelled', () => {
 
   test('specify details', () => {
     const err = new Cancelled({
-      message: 'cancelled, haha',
+      message: 'cancelled, ha',
       details: [{
         '@type': 'type.googleapis.com/google.rpc.LocalizedMessage',
         locale: 'jp',
@@ -29,6 +33,18 @@ describe('Cancelled', () => {
       locale: 'jp',
       message: 'cancelled, baka'
     })
+  })
+})
+
+describe('UnknownError', () => {
+  test('create with default message', () => {
+    const err = new UnknownError()
+    expect(err.message).toEqual('Unknown error')
+  })
+
+  test('override message', () => {
+    const err = new UnknownError({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
   })
 })
 
@@ -64,87 +80,76 @@ describe('InvalidArgument', () => {
         ]
       }]
     })
-    expect(err.message).toEqual('Multiple invalid arguments, please see details.')
+    expect(err.message).toEqual('Multiple violations, please see details.')
   })
 })
 
-describe('FailedPrecondition', () => {
-  test('use field violation description as message', () => {
-    const err = new FailedPrecondition({
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.PreconditionFailure',
-        violations: [{ type: 'TOS', subject: 'google.com/cloud', description: 'Terms of service not accepted' }]
-      }]
-    })
-    expect(err.message).toEqual('Terms of service not accepted')
-  })
-
-  test('override message', () => {
-    const err = new FailedPrecondition({
-      message: 'Overridden message',
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.PreconditionFailure',
-        violations: [{ type: 'TOS', subject: 'google.com/cloud', description: 'Terms of service not accepted' }]
-      }]
-    })
-    expect(err.message).toEqual('Overridden message')
-  })
-
-  test('multiple violations description', () => {
-    const err = new FailedPrecondition({
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.PreconditionFailure',
-        violations: [
-          { type: 'TOS', subject: 'google.com/cloud', description: 'Terms of service not accepted' },
-          { type: 'TOS', subject: 'google.com/cloud2', description: 'Terms of service not accepted' },
-        ]
-      }]
-    })
-    expect(err.message).toEqual('Multiple precondition failures, please see details.')
-  })
-})
-
-describe('OutOfRange', () => {
-  test('use field violation description as message', () => {
-    const err = new OutOfRange({
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.BadRequest',
-        field_violations: [{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }]
-      }]
-    })
-    expect(err.message).toEqual("Parameter 'age' is out of range [0, 125]")
-  })
-
-  test('override message', () => {
-    const err = new OutOfRange({
-      message: 'Overridden message',
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.BadRequest',
-        field_violations: [{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }]
-      }]
-    })
-    expect(err.message).toEqual('Overridden message')
-  })
-
-  test('multiple field violation description', () => {
-    const err = new OutOfRange({
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.BadRequest',
-        field_violations: [{ field: 'abc', description: 'desc a' }, { field: 'x.y.z', description: 'desc b' }]
-      }]
-    })
-    expect(err.message).toEqual('Multiple out of range violations, please see details.')
-  })
-})
-
-describe('Unauthenticated', () => {
+describe('DeadlineExceeded', () => {
   test('create with default message', () => {
-    const err = new Unauthenticated()
-    expect(err.message).toEqual('Invalid authentication credentials.')
+    const err = new DeadlineExceeded()
+    expect(err.message).toEqual('Deadline Exceeded')
   })
 
   test('override message', () => {
-    const err = new Unauthenticated({ message: 'Overridden message' })
+    const err = new DeadlineExceeded({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('NotFound', () => {
+  test('use field violation description as message', () => {
+    const err = new NotFound({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual("Resource 'file: root/file.txt' not found.")
+  })
+
+  test('override message', () => {
+    const err = new NotFound({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('AlreadyExists', () => {
+  test('use field violation description as message', () => {
+    const err = new AlreadyExists({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual("Resource 'file: root/file.txt' already exists.")
+  })
+
+  test('override message', () => {
+    const err = new AlreadyExists({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
     expect(err.message).toEqual('Overridden message')
   })
 })
@@ -186,103 +191,6 @@ describe('PermissionDenied', () => {
   })
 })
 
-describe('NotFound', () => {
-  test('use field violation description as message', () => {
-    const err = new NotFound({
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual("Resource 'file.txt' not found.")
-  })
-
-  test('override message', () => {
-    const err = new NotFound({
-      message: 'Overridden message',
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual('Overridden message')
-  })
-})
-
-describe('Aborted', () => {
-  test('use field violation description as message', () => {
-    const err = new Aborted({
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual("Couldn't acquire lock on resource 'file.txt'.")
-  })
-
-  test('override message', () => {
-    const err = new Aborted({
-      message: 'Overridden message',
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual('Overridden message')
-  })
-
-  test('default message is empty', () => {
-    expect(new Aborted().message).toEqual('')
-    expect(new Aborted({
-      details: [{
-        '@type': 'google-cloud-api/CauseInfo',
-        causes: []
-      }]
-    }).message).toEqual('')
-  })
-})
-
-describe('AlreadyExists', () => {
-  test('use field violation description as message', () => {
-    const err = new AlreadyExists({
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual("Resource 'file.txt' already exists.")
-  })
-
-  test('override message', () => {
-    const err = new AlreadyExists({
-      message: 'Overridden message',
-      details: [{
-        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
-        resource_type: 'file',
-        resource_name: 'file.txt',
-        owner: 'root',
-        description: 'some description'
-      }]
-    })
-    expect(err.message).toEqual('Overridden message')
-  })
-})
-
 describe('ResourceExhausted', () => {
   test('use field violation description as message', () => {
     const err = new ResourceExhausted({
@@ -315,47 +223,119 @@ describe('ResourceExhausted', () => {
         ]
       }]
     })
-    expect(err.message).toEqual('Multiple quota violations, please see details.')
+    expect(err.message).toEqual('Multiple violations, please see details.')
   })
 })
 
-describe('DataLoss', () => {
-  test('create with default message', () => {
-    const err = new DataLoss()
-    expect(err.message).toEqual('')
+describe('FailedPrecondition', () => {
+  test('use field violation description as message', () => {
+    const err = new FailedPrecondition({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.PreconditionFailure',
+        violations: [{ type: 'TOS', subject: 'google.com/cloud', description: 'Terms of service not accepted' }]
+      }]
+    })
+    expect(err.message).toEqual('Terms of service not accepted')
   })
 
   test('override message', () => {
-    const err = new DataLoss({ message: 'Overridden message' })
+    const err = new FailedPrecondition({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.PreconditionFailure',
+        violations: [{ type: 'TOS', subject: 'google.com/cloud', description: 'Terms of service not accepted' }]
+      }]
+    })
     expect(err.message).toEqual('Overridden message')
+  })
+
+  test('multiple violations description', () => {
+    const err = new FailedPrecondition({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.PreconditionFailure',
+        violations: [
+          { type: 'TOS', subject: 'google.com/cloud', description: 'Terms of service not accepted' },
+          { type: 'TOS', subject: 'google.com/cloud2', description: 'Terms of service not accepted' },
+        ]
+      }]
+    })
+    expect(err.message).toEqual('Multiple violations, please see details.')
   })
 })
 
-describe('UnknownError', () => {
-  test('create with default message', () => {
-    const err = new UnknownError()
-    expect(err.message).toEqual('')
+describe('Aborted', () => {
+  test('use field violation description as message', () => {
+    const err = new Aborted({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
+    expect(err.message).toEqual("Couldn't acquire lock on resource 'file: root/file.txt'.")
   })
 
   test('override message', () => {
-    const err = new UnknownError({ message: 'Overridden message' })
+    const err = new Aborted({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.ResourceInfo',
+        resource_type: 'file',
+        resource_name: 'file.txt',
+        owner: 'root',
+        description: 'some description'
+      }]
+    })
     expect(err.message).toEqual('Overridden message')
+  })
+
+  test('default message is empty', () => {
+    expect(new Aborted().message).toEqual('')
+    expect(new Aborted({
+      details: [{
+        '@type': 'google-cloud-api/CauseInfo',
+        causes: []
+      }]
+    }).message).toEqual('')
   })
 })
 
-describe('InternalError', () => {
-  test('create with default message', () => {
-    const err = new InternalError()
-    expect(err.message).toEqual('')
+describe('OutOfRange', () => {
+  test('use field violation description as message', () => {
+    const err = new OutOfRange({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.BadRequest',
+        field_violations: [{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }]
+      }]
+    })
+    expect(err.message).toEqual("Parameter 'age' is out of range [0, 125]")
   })
 
   test('override message', () => {
-    const err = new InternalError({ message: 'Overridden message' })
+    const err = new OutOfRange({
+      message: 'Overridden message',
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.BadRequest',
+        field_violations: [{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }]
+      }]
+    })
     expect(err.message).toEqual('Overridden message')
+  })
+
+  test('multiple field violation description', () => {
+    const err = new OutOfRange({
+      details: [{
+        '@type': 'type.googleapis.com/google.rpc.BadRequest',
+        field_violations: [{ field: 'abc', description: 'desc a' }, { field: 'x.y.z', description: 'desc b' }]
+      }]
+    })
+    expect(err.message).toEqual('Multiple violations, please see details.')
   })
 })
 
-describe('NotImplemented', () => {
+describe('Unimplemented', () => {
   test('use field violation description as message', () => {
     const err = new Unimplemented({
       details: [{
@@ -378,10 +358,22 @@ describe('NotImplemented', () => {
   })
 })
 
+describe('InternalError', () => {
+  test('create with default message', () => {
+    const err = new InternalError()
+    expect(err.message).toEqual('Internal Error')
+  })
+
+  test('override message', () => {
+    const err = new InternalError({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
 describe('Unavailable', () => {
   test('create with default message', () => {
     const err = new Unavailable()
-    expect(err.message).toEqual('')
+    expect(err.message).toEqual('Unavailable')
   })
 
   test('override message', () => {
@@ -390,14 +382,26 @@ describe('Unavailable', () => {
   })
 })
 
-describe('DeadlineExceeded', () => {
+describe('DataLoss', () => {
   test('create with default message', () => {
-    const err = new DeadlineExceeded()
-    expect(err.message).toEqual('')
+    const err = new DataLoss()
+    expect(err.message).toEqual('Data loss')
   })
 
   test('override message', () => {
-    const err = new DeadlineExceeded({ message: 'Overridden message' })
+    const err = new DataLoss({ message: 'Overridden message' })
+    expect(err.message).toEqual('Overridden message')
+  })
+})
+
+describe('Unauthenticated', () => {
+  test('create with default message', () => {
+    const err = new Unauthenticated()
+    expect(err.message).toEqual('Invalid authentication credentials.')
+  })
+
+  test('override message', () => {
+    const err = new Unauthenticated({ message: 'Overridden message' })
     expect(err.message).toEqual('Overridden message')
   })
 })
@@ -405,11 +409,11 @@ describe('DeadlineExceeded', () => {
 describe('toErrorStatus', () => {
   test('contains DebugInfo', () => {
     const err = new Unauthenticated()
-    const status = err.toErrorStatus()
+    const status = err.toRpcStatus()
     a.satisfies(status, {
       code: 16,
       message: 'Invalid authentication credentials.',
-      details: [
+      details: has(
         {
           '@type': 'type.googleapis.com/google.rpc.DebugInfo',
           stack_entries: has(
@@ -419,30 +423,34 @@ describe('toErrorStatus', () => {
           ),
           detail: 'Invalid authentication credentials.'
         }
-      ]
+      )
     })
   })
   test('contains CauseInfo when there are inner errors', () => {
-    const err = new Unauthenticated(
-      undefined,
-      new Error('a is wrong'),
-      new IsoError('b is wrong', new IsoError('c is wrong'), new Error('d is wrong'))
-    )
-    const status = err.toErrorStatus()
+    const err = new Unauthenticated({
+      cause: new AggregateError([
+        new Error('a is wrong'),
+        new IsoError('b is wrong', {
+          cause: new AggregateError([new IsoError('c is wrong'), new Error('d is wrong')])
+        })
+      ])
+    })
+    const status = err.toRpcStatus()
     a.satisfies(status, {
       code: 16,
       message: 'Invalid authentication credentials.',
       details: has(
         {
           '@type': 'google-cloud-api/CauseInfo',
+          message: 'Unauthenticated: Invalid authentication credentials.',
           causes: [{
-            description: 'Error: a is wrong'
+            message: 'Error: a is wrong'
           }, {
-            description: 'IsoError: b is wrong',
+            message: 'IsoError: b is wrong',
             causes: [{
-              description: 'IsoError: c is wrong'
+              message: 'IsoError: c is wrong'
             }, {
-              description: 'Error: d is wrong'
+              message: 'Error: d is wrong'
             }]
           }]
         }

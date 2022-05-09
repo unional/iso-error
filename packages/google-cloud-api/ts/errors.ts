@@ -1,34 +1,29 @@
-import { IsoError, ModuleError } from 'iso-error'
-import { required, RequiredPick } from 'type-plus'
-import { BadRequest, CauseInfo, DebugInfo, ErrorDetails, ErrorStatus, MethodInfo, PermissionInfo, PreconditionFailure, QuotaFailure, ResourceInfo } from './types'
+import { isAggregateError, IsoError, ModuleError } from 'iso-error'
+import { required } from 'type-plus'
+import { rpc } from './rpc'
 
-export type ErrorOptions<D extends ErrorDetails = ErrorDetails> = {
-  message: string,
-  /**
-   * Detail message for DebugInfo
-   */
-  debugDetail?: string,
+export interface ErrorOptions<D extends rpc.Detail[] = rpc.Detail[]> extends IsoError.Options {
+  message?: string,
   details?: D
 }
 
-export class GoogleCloudApiError<D extends ErrorDetails = ErrorDetails> extends ModuleError {
-  private debugDetail: string | undefined
+export class GoogleCloudApiError<D extends rpc.Detail[] = rpc.Detail[]> extends ModuleError {
+  code: number
   details: D
-  constructor(public code: number, { message, debugDetail, details }: ErrorOptions<D>, ...errors: Error[]) {
-    super('google-cloud-api', message, ...errors)
+  constructor(options: ErrorOptions<D> & { code: number }) {
+    super('google-cloud-api', options.message, options)
 
-    this.details = details || [] as any
-    this.debugDetail = debugDetail
+    this.code = options.code
+    this.details = options?.details || [] as unknown as D
   }
 
-  toErrorStatus(): ErrorStatus<D> {
-    const details = [...this.details] as D
-    const debugInfo = this.getDebugInfo()
-    // istanbul ignore next
-    if (debugInfo) details.push(debugInfo)
+  toRpcStatus(): rpc.Status<D> {
+    // TODO aggregate debugInfo and causeInfo
+    const details = [...(this.details || [])] as unknown as D
 
-    const causeInfo = this.getCauseInfo()
-    if (causeInfo) details.push(causeInfo)
+    if (this.stack) details.push(this.getDebugInfo())
+    details.push(this.getCauseInfo())
+
     return {
       code: this.code,
       message: this.message,
@@ -36,187 +31,248 @@ export class GoogleCloudApiError<D extends ErrorDetails = ErrorDetails> extends 
     }
   }
 
-  private getDebugInfo(): DebugInfo | undefined {
-    // istanbul ignore next
-    if (!this.stack) return undefined
-
-    const stack_entries = this.stack.split('\n').slice(1).map(s => s.trim().slice(3))
+  private getDebugInfo(): rpc.DebugInfo {
+    const stack_entries = this.stack!.split('\n').slice(1).map(s => s.trim().slice(3))
     return {
       '@type': 'type.googleapis.com/google.rpc.DebugInfo',
       stack_entries,
-      detail: this.debugDetail || this.message
+      detail: this.message
     }
   }
 
-  private getCauseInfo(): CauseInfo | undefined {
-    if (!this.errors) return undefined
-
+  private getCauseInfo(): rpc.CauseInfo {
     return {
       '@type': 'google-cloud-api/CauseInfo',
-      causes: toCauses(this.errors)
+      ...toCauses(this)
     }
   }
 }
 
-function toCauses(errors: IsoError[]): CauseInfo.Cause[] {
-  return errors.map(e => ({
-    description: `${e.name}: ${e.message}`,
-    causes: e.errors ? toCauses(e.errors) : []
-  }))
+function toCauses(error: Error): { message: string, causes?: rpc.CauseInfo.Cause[] } {
+  const message = `${error.name}: ${error.message}`
+  const cause = (error as any).cause
+  if (!cause) {
+    return { message }
+  }
+
+  if (isAggregateError(cause)) {
+    return {
+      message,
+      causes: cause.errors.map(toCauses)
+    }
+  }
+
+  return {
+    message,
+    causes: [toCauses(cause)]
+  }
 }
 
 export class Cancelled extends GoogleCloudApiError {
-  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(1, required({ message: 'Request cancelled by the client.' }, options), ...errors)
-  }
-}
-
-export class InvalidArgument extends GoogleCloudApiError<[BadRequest, ...ErrorDetails]> {
-  constructor(options: RequiredPick<Partial<ErrorOptions<[BadRequest, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(3, required({ message: formatBadRequestMessage(options.details[0]) }, options), ...errors)
-  }
-}
-
-function formatBadRequestMessage(badRequest: BadRequest) {
-  if (badRequest.field_violations.length > 1) {
-    return 'Multiple invalid arguments, please see details.'
-  }
-  return badRequest.field_violations[0].description
-}
-
-export class FailedPrecondition extends GoogleCloudApiError<[PreconditionFailure, ...ErrorDetails]> {
-  constructor(options: RequiredPick<Partial<ErrorOptions<[PreconditionFailure, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(9, required({ message: formatPreconditionFailureMessage(options.details[0]) }, options), ...errors)
-  }
-}
-
-function formatPreconditionFailureMessage(badRequest: PreconditionFailure) {
-  if (badRequest.violations.length > 1) {
-    return 'Multiple precondition failures, please see details.'
-  }
-  return badRequest.violations[0].description
-}
-
-export class OutOfRange extends GoogleCloudApiError<[BadRequest, ...ErrorDetails]> {
-  constructor(options: RequiredPick<Partial<ErrorOptions<[BadRequest, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(11, required({ message: formatOutOfRangeMessage(options.details[0]) }, options), ...errors)
-  }
-}
-
-function formatOutOfRangeMessage(badRequest: BadRequest) {
-  if (badRequest.field_violations.length > 1) {
-    return 'Multiple out of range violations, please see details.'
-  }
-  return badRequest.field_violations[0].description
-}
-
-export class Unauthenticated extends GoogleCloudApiError {
-  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(16, required({ message: 'Invalid authentication credentials.' }, options), ...errors)
-  }
-}
-
-export class PermissionDenied extends GoogleCloudApiError {
-  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(7, required({ message: getPermissionDeniedMessage(options && options.details) }, options), ...errors)
-  }
-}
-
-function getPermissionDeniedMessage(details: ErrorDetails | undefined) {
-  if (!details) return ''
-  const info: PermissionInfo | undefined = details.find(d => d['@type'] === 'google-cloud-api/PermissionInfo') as any
-  return info ? formatPermissionDeniedMessage(info) : ''
-}
-
-function formatPermissionDeniedMessage(permissionInfo: PermissionInfo) {
-  return `Resource '${permissionInfo.permission}' denied on ${permissionInfo.resource_type} '${permissionInfo.resource_name}'.`
-}
-
-export class NotFound extends GoogleCloudApiError<[ResourceInfo, ...ErrorDetails]> {
-  constructor(options: RequiredPick<Partial<ErrorOptions<[ResourceInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(5, required({ message: formatNotFoundMessage(options.details[0]) }, options), ...errors)
-  }
-}
-
-function formatNotFoundMessage(info: ResourceInfo) {
-  return `Resource '${info.resource_name}' not found.`
-}
-
-export class Aborted extends GoogleCloudApiError {
-  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(10, required({ message: getAbortMessage(options && options.details) }, options), ...errors)
-  }
-}
-
-function getAbortMessage(details: ErrorDetails | undefined) {
-  if (!details) return ''
-  const info: ResourceInfo | undefined = details.find(d => d['@type'] === 'type.googleapis.com/google.rpc.ResourceInfo') as any
-  return info ? formatAbortMessage(info) : ''
-}
-
-function formatAbortMessage(info: ResourceInfo) {
-  return `Couldn't acquire lock on resource '${info.resource_name}'.`
-}
-
-export class AlreadyExists extends GoogleCloudApiError<[ResourceInfo, ...ErrorDetails]> {
-  constructor(options: RequiredPick<Partial<ErrorOptions<[ResourceInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(6, required({ message: formatAlreadyExistsMessage(options.details[0]) }, options), ...errors)
-  }
-}
-
-function formatAlreadyExistsMessage(info: ResourceInfo) {
-  return `Resource '${info.resource_name}' already exists.`
-}
-
-export class ResourceExhausted extends GoogleCloudApiError<[QuotaFailure, ...ErrorDetails]> {
-  constructor(options: RequiredPick<Partial<ErrorOptions<[QuotaFailure, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(8, required({ message: formatResourceExhaustedMessage(options.details[0]) }, options), ...errors)
-  }
-}
-
-function formatResourceExhaustedMessage(quotaFailure: QuotaFailure) {
-  if (quotaFailure.violations.length > 1) {
-    return 'Multiple quota violations, please see details.'
-  }
-  return quotaFailure.violations[0].description
-}
-
-export class DataLoss extends GoogleCloudApiError {
-  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(15, required({ message: '' }, options), ...errors)
+  constructor(options?: ErrorOptions) {
+    super(required({ message: 'Request cancelled by the client.' }, options, { code: 1 }))
   }
 }
 
 export class UnknownError extends GoogleCloudApiError {
-  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(2, required({ message: '' }, options), ...errors)
+  constructor(options?: ErrorOptions) {
+    super(required({ message: 'Unknown error' }, options, { code: 2 }))
   }
 }
 
-export class InternalError extends GoogleCloudApiError {
-  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(13, required({ message: '' }, options), ...errors)
+export class InvalidArgument<D extends [rpc.BadRequest, ...Exclude<rpc.Detail, rpc.BadRequest>[]]>
+  extends GoogleCloudApiError<D> {
+  constructor(options?: ErrorOptions<D>) {
+    super(required(
+      { message: formatBadRequestMessage(options?.details) ?? 'Invalid Argument' },
+      options,
+      { code: 3 }))
   }
 }
 
-export class Unimplemented extends GoogleCloudApiError<[MethodInfo, ...ErrorDetails]> {
-  constructor(options: RequiredPick<Partial<ErrorOptions<[MethodInfo, ...ErrorDetails]>>, 'details'>, ...errors: Error[]) {
-    super(12, required({ message: formatNotImplementedMessage(options.details[0]) }, options), ...errors)
-  }
+function formatBadRequestMessage(details: rpc.Detail[] | undefined) {
+  const detail = findDetail<rpc.BadRequest>('type.googleapis.com/google.rpc.BadRequest', details)
+  return detail ? extractViolationDescription(detail.field_violations) : undefined
 }
 
-function formatNotImplementedMessage(info: MethodInfo) {
-  return `Method '${info.method_name}' not implemented.`
+function findDetail<D extends rpc.Detail>(type: D['@type'], details: rpc.Detail[] | undefined): D | undefined {
+  if (!details) return undefined
+  return details.find(
+    d => d['@type'] === type
+  ) as D | undefined
 }
 
-export class Unavailable extends GoogleCloudApiError {
-  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(14, required({ message: '' }, options), ...errors)
+function extractViolationDescription(violations: Array<{ description: string }>) {
+  if (violations.length > 1) {
+    return 'Multiple violations, please see details.'
   }
+  return violations[0].description
 }
 
 export class DeadlineExceeded extends GoogleCloudApiError {
-  constructor(options?: Partial<ErrorOptions>, ...errors: Error[]) {
-    super(4, required({ message: '' }, options), ...errors)
+  constructor(options?: ErrorOptions) {
+    super(required({ message: 'Deadline Exceeded' }, options, { code: 4 }))
+  }
+}
+
+export class NotFound<D extends [rpc.ResourceInfo, ...rpc.Detail[]]> extends GoogleCloudApiError<D> {
+  constructor(options: ErrorOptions<D>) {
+    super(required(
+      { message: formatNotFoundMessage(options.details) ?? 'Not Found' },
+      options,
+      { code: 5 }))
+  }
+}
+
+function formatNotFoundMessage(details: rpc.Detail[] | undefined) {
+  const messages = extractResourceInfoMessages(details)
+  return `Resource '${messages.length > 1 ? `[${messages.join(', ')}]` : messages.join()}' not found.`
+}
+
+export class AlreadyExists<D extends [rpc.ResourceInfo, ...rpc.Detail[]]> extends GoogleCloudApiError<D> {
+  constructor(options: ErrorOptions<D>) {
+    super(required({ message: formatAlreadyExistsMessage(options.details) ?? 'Already Exists' }, options, { code: 6 }))
+  }
+}
+
+function formatAlreadyExistsMessage(details: rpc.Detail[] | undefined) {
+  const messages = extractResourceInfoMessages(details)
+  return `Resource '${messages.length > 1 ? `[${messages.join(', ')}]` : messages.join()}' already exists.`
+}
+
+function extractResourceInfoMessages(details: rpc.Detail[] | undefined) {
+  if (!details) return []
+  const resourceInfos = details.filter(
+    d => d['@type'] === 'type.googleapis.com/google.rpc.ResourceInfo'
+  ) as rpc.ResourceInfo[]
+
+  return resourceInfos.map((d: rpc.ResourceInfo) => formatResourceInfo(d))
+}
+
+function formatResourceInfo(d: rpc.ResourceInfo) {
+  return `${d.resource_type}: ${d.owner}/${d.resource_name}`
+}
+
+export class PermissionDenied extends GoogleCloudApiError {
+  constructor(options?: Partial<ErrorOptions>) {
+    super(required({ message: getPermissionDeniedMessage(options?.details) }, options, { code: 7 }))
+  }
+}
+
+function getPermissionDeniedMessage(details: rpc.Detail[] | undefined) {
+  if (!details) return ''
+  const info = details.find(
+    d => d['@type'] === 'google-cloud-api/PermissionInfo'
+  ) as rpc.PermissionInfo | undefined
+  return info ? formatPermissionDeniedMessage(info) : ''
+}
+
+function formatPermissionDeniedMessage(permissionInfo: rpc.PermissionInfo) {
+  return `Resource '${permissionInfo.permission}' denied on ${permissionInfo.resource_type} '${permissionInfo.resource_name}'.`
+}
+
+export class ResourceExhausted<D extends [rpc.QuotaFailure, ...rpc.Detail[]]> extends GoogleCloudApiError<D> {
+  constructor(options: ErrorOptions<D>) {
+    super(required(
+      { message: formatResourceExhaustedMessage(options.details) ?? 'Resource Exhausted' },
+      options,
+      { code: 8 }))
+  }
+}
+
+function formatResourceExhaustedMessage(details: rpc.Detail[] | undefined) {
+  const detail = findDetail<rpc.QuotaFailure>('type.googleapis.com/google.rpc.QuotaFailure', details)
+  return detail ? extractViolationDescription(detail.violations) : undefined
+}
+
+export class FailedPrecondition<D extends [rpc.PreconditionFailure, ...Exclude<rpc.Detail, rpc.PreconditionFailure>[]]>
+  extends GoogleCloudApiError<D> {
+  constructor(options?: ErrorOptions<D>) {
+    super(required(
+      { message: formatPreconditionFailureMessage(options?.details) ?? 'Failed Precondition' },
+      options,
+      { code: 9 }))
+  }
+}
+
+function formatPreconditionFailureMessage(details: rpc.Detail[] | undefined) {
+  const detail = findDetail<rpc.PreconditionFailure>('type.googleapis.com/google.rpc.PreconditionFailure', details)
+  return detail ? extractViolationDescription(detail.violations) : undefined
+}
+
+export class Aborted extends GoogleCloudApiError {
+  constructor(options?: ErrorOptions) {
+    super(required(
+      { message: getAbortMessage(options?.details) ?? 'Aborted' },
+      options,
+      { code: 10 }))
+  }
+}
+
+function getAbortMessage(details: rpc.Detail[] | undefined) {
+  const info = findDetail<rpc.ResourceInfo>('type.googleapis.com/google.rpc.ResourceInfo', details)
+  return info ? formatAbortMessage(info) : ''
+}
+
+function formatAbortMessage(info: rpc.ResourceInfo) {
+  return `Couldn't acquire lock on resource '${formatResourceInfo(info)}'.`
+}
+
+export class OutOfRange<D extends [rpc.BadRequest, ...rpc.Detail[]]> extends GoogleCloudApiError<D> {
+  constructor(options: ErrorOptions<D>) {
+    super(required(
+      { message: formatBadRequestMessage(options.details) ?? 'Our of range' },
+      options,
+      { code: 11 }))
+  }
+}
+
+export class Unimplemented<D extends [rpc.MethodInfo, ...rpc.Detail[]]> extends GoogleCloudApiError<D> {
+  constructor(options: ErrorOptions<D>) {
+    super(required(
+      { message: formatNotImplementedMessage(options.details) ?? 'Our of range' },
+      options,
+      { code: 11 }))
+  }
+}
+
+function formatNotImplementedMessage(details: rpc.Detail[] | undefined) {
+  const info = findDetail<rpc.MethodInfo>('google-cloud-api/MethodInfo', details)!
+  return `Method '${info.method_name}' not implemented.`
+}
+
+export class InternalError extends GoogleCloudApiError {
+  constructor(options?: ErrorOptions) {
+    super(required({ message: 'Internal Error' }, options, { code: 13 }))
+  }
+}
+
+export class Unavailable extends GoogleCloudApiError {
+  constructor(options?: ErrorOptions) {
+    super({
+      message: 'Unavailable',
+      ...options,
+      code: 14
+    })
+  }
+}
+
+export class DataLoss extends GoogleCloudApiError {
+  constructor(options?: ErrorOptions) {
+    super({
+      message: 'Data loss',
+      ...options,
+      code: 15
+    })
+  }
+}
+
+export class Unauthenticated extends GoogleCloudApiError {
+  constructor(options?: ErrorOptions) {
+    super({
+      message: 'Invalid authentication credentials.',
+      ...options,
+      code: 16
+    })
   }
 }
