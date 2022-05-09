@@ -1,1 +1,5 @@
 node_modules
+packages/*/cjs
+packages/*/esm
+packages/*/lib
+packages/*/libm

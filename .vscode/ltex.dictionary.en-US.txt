@@ -9,3 +9,5 @@ deserialization
 PnP
 corepack
 changesets
+
+enum

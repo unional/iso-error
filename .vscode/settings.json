@@ -1,5 +1,6 @@
 {
   "cSpell.words": [
+    "baka",
     "deserialization",
     "deserializers",
     "deserialzation",
@@ -7,6 +8,8 @@
     "jsdom",
     "macos",
     "Miku",
+    "nanos",
+    "protobuf",
     "serializers",
     "snyk",
     "tsbuildinfo"
