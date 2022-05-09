@@ -1,0 +1,10 @@
+flags:
+  iso-error:
+    paths:
+      - packages/iso-error/**
+  google-cloud-api:
+    paths:
+      - packages/google-cloud-api/**
+  iso-error-google-cloud-api:
+    paths:
+      - packages/iso-error-google-cloud-api/**
