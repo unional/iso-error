@@ -1,11 +1,18 @@
-import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, GoogleCloudApiError, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, Unimplemented, UnknownError } from './errors';
-import { ErrorStatus } from './types';
+import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, GoogleCloudApiError, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, Unimplemented, UnknownError } from '../errors'
+import { Status } from './types'
 
-export function fromErrorStatus(obj: ErrorStatus) {
+export function isStatus(input: any): input is Status {
+  return typeof input === 'object' &&
+    typeof input.code === 'number' &&
+    typeof input.message === 'string' &&
+    Array.isArray(input.details)
+}
+
+export function statusToError(obj: Status) {
   switch (obj.code) {
     case 1: return new Cancelled(obj)
-    case 3: return new InvalidArgument(obj as any)
     case 2: return new UnknownError(obj)
+    case 3: return new InvalidArgument(obj as any)
     case 4: return new DeadlineExceeded(obj)
     case 5: return new NotFound(obj as any)
     case 6: return new AlreadyExists(obj as any)
@@ -19,6 +26,6 @@ export function fromErrorStatus(obj: ErrorStatus) {
     case 14: return new Unavailable(obj)
     case 15: return new DataLoss(obj)
     case 16: return new Unauthenticated(obj)
-    default: return new GoogleCloudApiError(obj.code, obj)
+    default: return new GoogleCloudApiError(obj)
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "google-cloud-api",
-  "version": "0.0.0-development",
+  "version": "2.3.0",
   "description": "API utility library that follows Google Cloud API design",
   "homepage": "https://github.com/unional/iso-error/tree/main/packages/google-cloud-api",
   "bugs": {
@@ -20,6 +20,7 @@
     "libm",
     "src"
   ],
+  "sideEffects": false,
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "scripts": {
@@ -40,8 +41,8 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "iso-error": "^3.0.0",
-    "type-plus": "^1.33.0"
+    "iso-error": "workspace:*",
+    "type-plus": "^4.9.0"
   },
   "devDependencies": {
     "@size-limit/file": "^7.0.8",

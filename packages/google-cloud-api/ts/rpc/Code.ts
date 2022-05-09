@@ -1,4 +1,4 @@
-export enum ErrorCode {
+export enum Code {
   OK = 0,
   CANCELLED = 1,
   UNKNOWN = 2,
@@ -38,9 +38,10 @@ const codeMap: Record<number, string> = {
   16: 'UNAUTHENTICATED',
 }
 
-export function getCodeName(code: number): string | undefined {
+export function codeName(code: number): string | undefined {
   return codeMap[code]
 }
+
 
 const httpMap: Record<number, number> = {
   0: 200,
@@ -62,6 +63,6 @@ const httpMap: Record<number, number> = {
   15: 500
 }
 
-export function getHttpStatus(code: number) {
+export function codeToHttpStatus(code: number) {
   return httpMap[code] || 500
 }
