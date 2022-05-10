@@ -181,7 +181,15 @@ function defaultDeserializeError<
   if (json.name === 'AggregateError') {
     const { message, errors, ...rest } = json as { message: string, errors: any[] }
     // @ts-ignore
-    return Object.assign(new AggregateError(errors as unknown, message), rest)
+    if (global.AggregateError) {
+      return Object.assign(new AggregateError(errors as unknown as any, message), rest) as unknown as E
+    }
+    else {
+      return Object.assign(new Error(message), {
+        ...rest,
+        errors
+      }) as unknown as E
+    }
   }
 
   const { message, cause, ...rest } = json as { message?: string, cause?: unknown } & Record<string | number, any>
