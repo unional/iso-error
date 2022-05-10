@@ -1,6 +1,7 @@
 import { isAggregateError } from '.'
 
-if (AggregateError) {
+// @ts-ignore
+if (global.AggregateError) {
   it('returns true for AggregateError', () => {
     expect(isAggregateError(new AggregateError([]))).toBe(true)
   })
