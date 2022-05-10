@@ -426,35 +426,39 @@ describe('toErrorStatus', () => {
       )
     })
   })
-  test('contains CauseInfo when there are inner errors', () => {
-    const err = new Unauthenticated({
-      cause: new AggregateError([
-        new Error('a is wrong'),
-        new IsoError('b is wrong', {
-          cause: new AggregateError([new IsoError('c is wrong'), new Error('d is wrong')])
-        })
-      ])
-    })
-    const status = err.toRpcStatus()
-    a.satisfies(status, {
-      code: 16,
-      message: 'Invalid authentication credentials.',
-      details: has(
-        {
-          '@type': 'google-cloud-api/CauseInfo',
-          message: 'Unauthenticated: Invalid authentication credentials.',
-          causes: [{
-            message: 'Error: a is wrong'
-          }, {
-            message: 'IsoError: b is wrong',
+
+  // @ts-ignore
+  if (global.AggregateError) {
+    test('contains CauseInfo when there are inner errors', () => {
+      const err = new Unauthenticated({
+        cause: new AggregateError([
+          new Error('a is wrong'),
+          new IsoError('b is wrong', {
+            cause: new AggregateError([new IsoError('c is wrong'), new Error('d is wrong')])
+          })
+        ])
+      })
+      const status = err.toRpcStatus()
+      a.satisfies(status, {
+        code: 16,
+        message: 'Invalid authentication credentials.',
+        details: has(
+          {
+            '@type': 'google-cloud-api/CauseInfo',
+            message: 'Unauthenticated: Invalid authentication credentials.',
             causes: [{
-              message: 'IsoError: c is wrong'
+              message: 'Error: a is wrong'
             }, {
-              message: 'Error: d is wrong'
+              message: 'IsoError: b is wrong',
+              causes: [{
+                message: 'IsoError: c is wrong'
+              }, {
+                message: 'Error: d is wrong'
+              }]
             }]
-          }]
-        }
-      )
+          }
+        )
+      })
     })
-  })
+  }
 })
