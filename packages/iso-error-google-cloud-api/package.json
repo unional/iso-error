@@ -1,6 +1,6 @@
 {
   "name": "iso-error-google-cloud-api",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "description": "iso-error plugin for Google Cloud API design",
   "homepage": "https://github.com/unional/iso-error/tree/main/packages/iso-error-google-cloud-api",
   "bugs": {
@@ -67,7 +67,7 @@
     "typescript": "^4.6.4"
   },
   "peerDependencies": {
-    "iso-error": "^4.0.0"
+    "iso-error": "^4.2.0"
   },
   "engines": {
     "node": ">= 8"
