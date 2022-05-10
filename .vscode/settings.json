@@ -6,6 +6,7 @@
     "deserialzation",
     "instanceof",
     "jsdom",
+    "libm",
     "macos",
     "Miku",
     "nanos",
