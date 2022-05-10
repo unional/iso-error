@@ -3,20 +3,27 @@ import { Cancelled } from 'google-cloud-api'
 import { IsoError } from 'iso-error'
 import plugin from '.'
 
-beforeAll(() => {
-  IsoError.addPlugin(plugin)
-})
+beforeAll(() => IsoError.addPlugin(plugin))
 
-// TODO: need to migrate, upgrade google-cloud-api and then fix this
 test('Cancelled', () => {
   const err = new Cancelled()
   const json = IsoError.serialize(err)
-  expect(json).toEqual('{"code":1,"message":"Request cancelled by the client.","details":[]}')
-  const actual = IsoError.deserialize(json)
+  a.satisfies(JSON.parse(json), {
+    code: 1,
+    message: 'Request cancelled by the client.',
+    details: [{
+      '@type': 'google-cloud-api/CauseInfo',
+      message: 'Cancelled: Request cancelled by the client.'
+    }]
+  })
+  const actual: Cancelled = IsoError.deserialize(json)
   expect(actual).toBeInstanceOf(Cancelled)
   a.satisfies(actual, {
     code: 1,
     message: 'Request cancelled by the client.',
-    details: []
+    details: [{
+      '@type': 'google-cloud-api/CauseInfo',
+      message: 'Cancelled: Request cancelled by the client.'
+    }]
   })
 })

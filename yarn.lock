@@ -4752,17 +4752,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"google-cloud-api@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "google-cloud-api@npm:2.3.0"
-  dependencies:
-    iso-error: ^3.0.0
-    type-plus: ^1.29.0
-  checksum: 37f066615aa4cc59ddd1e944b537e628c4ba0448a4aaff767a722833d28b945f5532bc197dbc82cd4965b254b287df31c7d56d9fe3874035317027c95fe72cbe
-  languageName: node
-  linkType: hard
-
-"google-cloud-api@workspace:packages/google-cloud-api":
+"google-cloud-api@workspace:*, google-cloud-api@workspace:packages/google-cloud-api":
   version: 0.0.0-use.local
   resolution: "google-cloud-api@workspace:packages/google-cloud-api"
   dependencies:
@@ -5601,7 +5591,7 @@ __metadata:
     depcheck: 1.4.3
     eslint: 8.15.0
     eslint-plugin-harmony: ^6.0.0
-    google-cloud-api: ^2.3.0
+    google-cloud-api: "workspace:*"
     iso-error: "workspace:*"
     jest: 28.1.0
     jest-validate: 28.1.0
@@ -5614,7 +5604,7 @@ __metadata:
     ts-jest: ^28.0.1
     typescript: ^4.6.4
   peerDependencies:
-    iso-error: ^3.0.0
+    iso-error: ^4.0.0
   languageName: unknown
   linkType: soft
 
@@ -5644,13 +5634,6 @@ __metadata:
     typescript: ^4.6.4
   languageName: unknown
   linkType: soft
-
-"iso-error@npm:^3.0.0":
-  version: 3.2.5
-  resolution: "iso-error@npm:3.2.5"
-  checksum: 8809ecb4499751fcfbc88d91be0987839b2498329ee8eb30bbeb6a7b460d7479694645aa1ad0e9492f9587e5cb8374390e1cd705d526b006d3926e1311f121bc
-  languageName: node
-  linkType: hard
 
 "isobject@npm:^2.0.0":
   version: 2.1.0
@@ -9737,15 +9720,6 @@ __metadata:
   version: 0.8.1
   resolution: "type-fest@npm:0.8.1"
   checksum: d61c4b2eba24009033ae4500d7d818a94fd6d1b481a8111612ee141400d5f1db46f199c014766b9fa9b31a6a7374d96fc748c6d688a78a3ce5a33123839becb7
-  languageName: node
-  linkType: hard
-
-"type-plus@npm:^1.29.0":
-  version: 1.35.1
-  resolution: "type-plus@npm:1.35.1"
-  dependencies:
-    unpartial: ^0.6.3
-  checksum: 77c93fb68a030504a3b57828e42b73645892fc8a6e8d2732c677cea76d3b23198f68bda10d4e93dca6e975e25f02272ef2a1d3ab6b11a73b41c707cae8f85b80
   languageName: node
   linkType: hard
 

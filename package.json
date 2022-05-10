@@ -10,6 +10,7 @@
     "cs": "changeset",
     "depcheck": "turbo run depcheck",
     "dev": "turbo run dev --parallel",
+    "gca": "yarn workspace google-cloud-api",
     "iso-error": "yarn workspace iso-error",
     "lint": "turbo run lint",
     "nuke": "turbo run nuke",
