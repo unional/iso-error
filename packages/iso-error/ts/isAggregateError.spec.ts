@@ -1,8 +1,10 @@
 import { isAggregateError } from '.'
 
-it('returns true for AggregateError', () => {
-  expect(isAggregateError(new AggregateError([]))).toBe(true)
-})
+if (AggregateError) {
+  it('returns true for AggregateError', () => {
+    expect(isAggregateError(new AggregateError([]))).toBe(true)
+  })
+}
 
 it('returns true for custom implementation of AggregateError as long as it has an array of errors',
   () => {
