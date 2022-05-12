@@ -53,7 +53,7 @@
     "cross-env": "7.0.3",
     "depcheck": "1.4.3",
     "eslint": "8.15.0",
-    "eslint-plugin-harmony": "^6.0.0",
+    "eslint-plugin-harmony": "^7.0.0",
     "iso-error": "workspace:*",
     "jest": "28.1.0",
     "jest-validate": "28.1.0",
