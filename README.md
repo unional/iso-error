@@ -12,6 +12,7 @@ Packages:
 - [`iso-error`]
 - [`google-cloud-api`]
 - [`iso-error-google-cloud-api`]
+- [`iso-error-web`]
 
 ## Contributing
 
@@ -28,6 +29,7 @@ please run `yarn changeset` (or `yarn cs` for short) to describe your changes.
 [`google-cloud-api`]: https://github.com/unional/iso-error/tree/main/packages/google-cloud-api
 [`iso-error`]: https://github.com/unional/iso-error/tree/main/packages/iso-error
 [`iso-error-google-cloud-api`]: https://github.com/unional/iso-error/tree/main/packages/iso-error-google-cloud-api
+[`iso-error-web`]: https://github.com/unional/iso-error/tree/main/packages/iso-error-web
 [changesets]: https://github.com/changesets/changesets
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [corepack]: https://nodejs.org/api/corepack.html
