@@ -1,5 +1,16 @@
 # google-cloud-api
 
+## 3.1.0
+
+### Minor Changes
+
+- fa5c192: add ESM support
+
+### Patch Changes
+
+- Updated dependencies [ab570ca]
+  - iso-error@4.3.0
+
 ## 3.0.0
 
 ### Major Changes
