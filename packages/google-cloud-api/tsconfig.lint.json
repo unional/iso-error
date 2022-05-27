@@ -1,10 +1,6 @@
 {
-  "extends": "./tsconfig.cjs.json",
+  "extends": "./tsconfig.base.json",
   "compilerOptions": {
     "noEmit": true
-  },
-  "include": [
-    "ts",
-    "typings"
-  ]
+  }
 }

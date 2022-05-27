@@ -1,8 +1,6 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
-    "module": "commonjs",
-    "outDir": "lib",
-    "target": "es5"
+    "noEmit": true
   }
 }

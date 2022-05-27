@@ -1,7 +1,7 @@
-import a from 'assertron'
+import { assertron as a } from 'assertron'
 import { Cancelled } from 'google-cloud-api'
 import { IsoError } from 'iso-error'
-import plugin from '.'
+import plugin from './index.js'
 
 beforeAll(() => IsoError.addPlugin(plugin))
 
