@@ -1,5 +1,5 @@
-import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, GoogleCloudApiError, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, Unimplemented, UnknownError } from '../errors'
-import { Status } from './types'
+import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, GoogleCloudApiError, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, Unauthenticated, Unavailable, Unimplemented, UnknownError } from '../errors.js'
+import { Status } from './types.js'
 
 export function isStatus(input: any): input is Status {
   return typeof input === 'object' &&

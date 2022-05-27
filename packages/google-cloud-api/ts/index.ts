@@ -1,4 +1,4 @@
-export * from './errors'
-export * from './protobuf'
-export * from './rpc'
+export * from './errors.js'
+export * from './protobuf/index.js'
+export * from './rpc/index.js'
 

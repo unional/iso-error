@@ -1,1 +1,1 @@
-export * as rpc from './rpc'
+export * as rpc from './rpc.js'

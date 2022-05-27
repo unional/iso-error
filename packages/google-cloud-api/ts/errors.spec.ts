@@ -1,11 +1,11 @@
-import a from 'assertron'
+import { assertron as a } from 'assertron'
 import { IsoError } from 'iso-error'
 import { has } from 'satisfier'
 import {
   Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition,
   InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted,
   Unauthenticated, Unavailable, Unimplemented, UnknownError,
-} from '.'
+} from './index.js'
 
 describe('Cancelled', () => {
   test('create with default message', () => {

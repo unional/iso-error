@@ -3,7 +3,7 @@
  * @see https://github.com/googleapis/googleapis/tree/master/google/rpc
  */
 
-import { protobuf } from '../protobuf/types'
+import { protobuf } from '../protobuf/types.js'
 
 export interface RetryInfo {
   '@type': 'type.googleapis.com/google.rpc.RetryInfo',

@@ -1,4 +1,4 @@
-import { rpc } from '..'
+import { rpc } from '../rpc/index.js'
 
 describe('getCodeName()', () => {
   test.each<[number, string]>([
