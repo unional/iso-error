@@ -32,7 +32,7 @@
   ],
   "scripts": {
     "build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm",
-    "clean": "rimraf .nyc_output coverage cjs esm || true",
+    "clean": "rimraf .nyc_output .tsbuildinfo coverage cjs esm || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
@@ -44,7 +44,7 @@
     "test:jsdom": "jest -c jest.config.jsdom.cjs",
     "ts:build:cjs": "tsc -p tsconfig.cjs.json",
     "ts:build:esm": "tsc -p tsconfig.esm.json",
-    "ts:clean": "rimraf *.tsbuildinfo || true",
+    "ts:clean": "rimraf .tsbuildinfo || true",
     "ts:test": "tsc",
     "verify": "npm-run-all -p build lint coverage depcheck -s size",
     "watch": "jest --watch"

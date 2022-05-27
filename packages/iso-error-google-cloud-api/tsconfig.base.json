@@ -13,6 +13,7 @@
     "noUnusedParameters": false,
     "outDir": "cjs",
     "removeComments": false,
+    "rootDir": "ts",
     "sourceMap": true,
     "strict": true,
     "stripInternal": true,
