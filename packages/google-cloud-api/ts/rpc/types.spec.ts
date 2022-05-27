@@ -1,5 +1,5 @@
 import { canAssign } from 'type-plus'
-import { rpc } from '.'
+import { rpc } from './index.js'
 
 describe('rpc.Status', () => {
   it('can specify specific detail types', () => {

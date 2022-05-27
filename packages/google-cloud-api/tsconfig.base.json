@@ -18,7 +18,9 @@
     },
     "removeComments": false,
     "sourceMap": true,
-    "strict": true
+    "strict": true,
+    "stripInternal": true,
+    "useDefineForClassFields": true
   },
   "include": [
     "typings"

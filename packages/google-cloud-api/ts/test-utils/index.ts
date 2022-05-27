@@ -1,1 +1,1 @@
-export * from './getStatusExamples'
+export * from './getStatusExamples.js'

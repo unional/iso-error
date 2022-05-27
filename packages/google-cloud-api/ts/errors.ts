@@ -1,6 +1,6 @@
 import { isAggregateError, IsoError, ModuleError } from 'iso-error'
 import { required } from 'type-plus'
-import { rpc } from './rpc'
+import { rpc } from './rpc/index.js'
 
 export interface ErrorOptions<D extends rpc.Detail[] = rpc.Detail[]> extends IsoError.Options {
   message?: string,
@@ -50,6 +50,7 @@ export class GoogleCloudApiError<D extends rpc.Detail[] = rpc.Detail[]> extends 
 
 function toCauses(error: Error): { message: string, causes?: rpc.CauseInfo.Cause[] } {
   const message = `${error.name}: ${error.message}`
+  // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
   const cause = (error as any).cause
   if (!cause) {
     return { message }

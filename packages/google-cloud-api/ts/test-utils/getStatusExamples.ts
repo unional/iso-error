@@ -1,6 +1,6 @@
-import { ErrorStatus } from '../types'
+import type { Status } from '../rpc/types.js'
 
-const statusExamples: ErrorStatus[] = [{
+const statusExamples: Status[] = [{
   code: 1,
   message: '',
   details: []

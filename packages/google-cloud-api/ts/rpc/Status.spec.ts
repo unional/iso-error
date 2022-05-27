@@ -1,7 +1,7 @@
 import { omit } from 'type-plus'
-import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, GoogleCloudApiError, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, rpc, Unauthenticated, Unavailable, Unimplemented, UnknownError } from '..'
-import { getStatusExample } from '../test-utils'
-import { statusToError } from './Status'
+import { Aborted, AlreadyExists, Cancelled, DataLoss, DeadlineExceeded, FailedPrecondition, GoogleCloudApiError, InternalError, InvalidArgument, NotFound, OutOfRange, PermissionDenied, ResourceExhausted, rpc, Unauthenticated, Unavailable, Unimplemented, UnknownError } from '../index.js'
+import { getStatusExample } from '../test-utils/index.js'
+import { statusToError } from './Status.js'
 
 describe('isStatus', () => {
   const validStatus = {
@@ -46,7 +46,7 @@ describe('statusToError', () => {
     [15, 'DataLoss', DataLoss],
     [16, 'Unauthenticated', Unauthenticated],
   ])('status %d converts to Error %s', (code, _name, c) => {
-    expect(statusToError(getStatusExample(code as number)!)).toBeInstanceOf(c)
+    expect(statusToError(getStatusExample(code)!)).toBeInstanceOf(c)
   })
 
   test('unknown code converts to base GoogleCloudApiError', () => {

@@ -15,26 +15,33 @@
     "name": "Homa Wong (unional)",
     "email": "homawong@gmail.com"
   },
-  "files": [
-    "lib",
-    "libm",
-    "src"
-  ],
   "sideEffects": false,
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "type": "module",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./cjs/index.js"
+  },
+  "main": "./cjs/index.js",
+  "types": "./esm/index.d.ts",
+  "files": [
+    "cjs",
+    "esm",
+    "ts",
+    "!ts/**/*.spec.ts",
+    "!ts/test-utils"
+  ],
   "scripts": {
-    "build": "npm-run-all ts:clean ts:build:cjs ts:build:esm",
-    "clean": "rimraf lib libm *.tsbuildinfo || true",
+    "build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm",
+    "clean": "rimraf .nyc_output coverage cjs esm || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
     "nuke": "run-s clean nuke:local",
     "nuke:local": "rimraf node_modules || true",
     "size": "size-limit",
-    "test": "jest --reporters=default",
-    "ts:build:cjs": "tsc -p tsconfig.es5.json",
-    "ts:build:esm": "tsc -p tsconfig.esnext.json",
+    "test": "jest",
+    "ts:build:cjs": "tsc -p tsconfig.cjs.json",
+    "ts:build:esm": "tsc -p tsconfig.esm.json",
     "ts:clean": "rimraf *.tsbuildinfo || true",
     "ts:test": "tsc",
     "verify": "npm-run-all -p build lint coverage depcheck -s size",
@@ -42,7 +49,7 @@
   },
   "dependencies": {
     "iso-error": "workspace:*",
-    "type-plus": "^4.9.0"
+    "type-plus": "^4.9.1"
   },
   "devDependencies": {
     "@size-limit/file": "^7.0.8",
