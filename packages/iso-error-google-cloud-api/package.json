@@ -16,16 +16,22 @@
     "email": "homawong@gmail.com"
   },
   "sideEffects": false,
-  "main": "lib/index.js",
-  "typings": "lib/index.d.ts",
+  "type": "module",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./cjs/index.js"
+  },
+  "main": "./cjs/index.js",
+  "types": "./esm/index.d.ts",
   "files": [
-    "lib",
-    "libm",
-    "src"
+    "cjs",
+    "esm",
+    "ts",
+    "!ts/**/*.spec.ts"
   ],
   "scripts": {
     "build": "npm-run-all ts:clean ts:build:cjs ts:build:esm",
-    "clean": "rimraf lib libm *.tsbuildinfo || true",
+    "clean": "rimraf cjs esm lib libm *.tsbuildinfo || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
@@ -33,8 +39,8 @@
     "nuke:local": "rimraf node_modules || true",
     "size": "size-limit",
     "test": "jest --reporters=default",
-    "ts:build:cjs": "tsc -p tsconfig.es5.json",
-    "ts:build:esm": "tsc -p tsconfig.esnext.json",
+    "ts:build:cjs": "tsc -p tsconfig.cjs.json",
+    "ts:build:esm": "tsc -p tsconfig.esm.json",
     "ts:clean": "rimraf *.tsbuildinfo || true",
     "ts:test": "tsc",
     "verify": "npm-run-all -p build lint coverage depcheck -s size",

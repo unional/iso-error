@@ -1,4 +1,7 @@
 ignores:
   - '@size-limit/*'
+  - '@types/jest'
   - '@types/node'
   - '@typescript-eslint/*'
+  - jest*
+  - ts-jest

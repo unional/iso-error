@@ -1,10 +1,7 @@
 {
-  "extends": "./tsconfig.esnext.json",
+  "extends": "./tsconfig.esm.json",
   "compilerOptions": {
     "noEmit": true
   },
-  "include": [
-    "ts",
-    "typings"
-  ]
+  "exclude": []
 }
