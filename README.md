@@ -7,14 +7,17 @@ Welcome to the [`iso-error`] monorepo.
 
 [`iso-error`] is about making errors work across the physical boundary.
 
+Packages:
+
+- [`iso-error`]
+- [`google-cloud-api`]
+- [`iso-error-google-cloud-api`]
+
 ## Contributing
 
-This repository uses [yarn PnP].
+This repository uses [yarn] v3.
 
 You should use [corepack] to manage your package managers.
-
-When using [VS Code][vscode-url],
-please first install the recommended extensions before running `yarn`.
 
 We follow [conventional commits] to manage our changes,
 and we use [changesets] to manage versioning.
@@ -22,7 +25,9 @@ and we use [changesets] to manage versioning.
 If you are creating an PR,
 please run `yarn changeset` (or `yarn cs` for short) to describe your changes.
 
+[`google-cloud-api`]: https://github.com/unional/iso-error/tree/main/packages/google-cloud-api
 [`iso-error`]: https://github.com/unional/iso-error/tree/main/packages/iso-error
+[`iso-error-google-cloud-api`]: https://github.com/unional/iso-error/tree/main/packages/iso-error-google-cloud-api
 [changesets]: https://github.com/changesets/changesets
 [conventional commits]: https://www.conventionalcommits.org/en/v1.0.0/
 [corepack]: https://nodejs.org/api/corepack.html
