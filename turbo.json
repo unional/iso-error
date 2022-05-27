@@ -7,8 +7,13 @@
         "^build"
       ],
       "inputs": [
-        "ts/**/*.tsx?",
+        "ts/*.ts",
+        "ts/*.tsx",
+        "ts/**/*.ts",
+        "ts/**/*.tsx",
+        "!ts/*.spec.tsx?",
         "!ts/**/*.spec.tsx?",
+        "!ts/*.stories.tsx?",
         "!ts/**/*.stories.tsx?"
       ],
       "outputs": [
@@ -24,7 +29,10 @@
         "build"
       ],
       "inputs": [
-        "ts/**/*.tsx?"
+        "ts/*.ts",
+        "ts/*.tsx",
+        "ts/**/*.ts",
+        "ts/**/*.tsx"
       ]
     },
     "depcheck": {
@@ -50,16 +58,34 @@
         "^build"
       ],
       "inputs": [
-        "ts/**/*.tsx?"
+        "ts/*.ts",
+        "ts/*.tsx",
+        "ts/**/*.ts",
+        "ts/**/*.tsx"
       ]
     },
-    "verify": {},
+    "verify": {
+      "inputs": [
+        "ts/*.ts",
+        "ts/*.tsx",
+        "ts/**/*.ts",
+        "ts/**/*.tsx"
+      ],
+      "outputs": [
+        "coverage/**",
+        "cjs/**",
+        "esm/**"
+      ]
+    },
     "watch": {
       "dependsOn": [
         "^build"
       ],
       "inputs": [
-        "ts/**/*.tsx?"
+        "ts/*.ts",
+        "ts/*.tsx",
+        "ts/**/*.ts",
+        "ts/**/*.tsx"
       ]
     }
   }

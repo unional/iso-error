@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "declaration": true,
+    "declarationMap": true,
     "esModuleInterop": true,
     "lib": [
       "ES2015",
@@ -10,6 +11,11 @@
     "newLine": "LF",
     "noUnusedLocals": true,
     "noUnusedParameters": false,
+    "paths": {
+      "iso-error": [
+        "../iso-error/ts"
+      ]
+    },
     "removeComments": false,
     "sourceMap": true,
     "strict": true

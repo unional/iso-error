@@ -16,25 +16,32 @@
     "email": "homawong@gmail.com"
   },
   "sideEffects": false,
-  "main": "cjs/index.js",
-  "module": "esm/index.js",
-  "jsnext:main": "esm/index.js",
-  "typings": "esm/index.d.ts",
+  "type": "module",
+  "exports": {
+    "import": "./esm/index.js",
+    "require": "./cjs/index.js"
+  },
+  "main": "./cjs/index.js",
+  "types": "./esm/index.d.ts",
   "files": [
     "cjs",
     "esm",
-    "ts"
+    "ts",
+    "!ts/**/*.spec.ts",
+    "!ts/testErrors.ts"
   ],
   "scripts": {
     "build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm",
-    "clean": "rimraf .nyc_output *.tsbuildinfo coverage cjs esm lib || true",
+    "clean": "rimraf .nyc_output coverage cjs esm || true",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
     "nuke": "run-s clean nuke:local",
     "nuke:local": "rimraf node_modules || true",
     "size": "size-limit",
-    "test": "jest",
+    "test": "run-p test:node test:jsdom",
+    "test:node": "jest",
+    "test:jsdom": "jest -c jest.config.jsdom.cjs",
     "ts:build:cjs": "tsc -p tsconfig.cjs.json",
     "ts:build:esm": "tsc -p tsconfig.esm.json",
     "ts:clean": "rimraf *.tsbuildinfo || true",
@@ -53,6 +60,7 @@
     "eslint": "8.16.0",
     "eslint-plugin-harmony": "^7.1.0",
     "jest": "28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
     "jest-validate": "28.1.0",
     "jest-watch-suspend": "1.1.2",
     "jest-watch-toggle-config": "2.0.1",
@@ -66,10 +74,5 @@
   },
   "engines": {
     "node": ">= 10"
-  },
-  "size-limit": [
-    {
-      "limit": "5 kb"
-    }
-  ]
+  }
 }

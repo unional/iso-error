@@ -1,4 +1,4 @@
-import { IsoError, ModuleError } from '.'
+import { IsoError, ModuleError } from './index.js'
 
 export class SubError extends IsoError { }
 

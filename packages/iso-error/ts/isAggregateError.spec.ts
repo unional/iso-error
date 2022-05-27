@@ -1,4 +1,4 @@
-import { isAggregateError } from '.'
+import { isAggregateError } from './index.js'
 
 // @ts-ignore
 if (global.AggregateError) {
