@@ -1,6 +1,6 @@
 {
   "name": "iso-error",
-  "version": "4.2.0",
+  "version": "4.3.0",
   "description": "An isomorphic error library",
   "homepage": "https://github.com/unional/iso-error/tree/main/packages/iso-error",
   "bugs": {

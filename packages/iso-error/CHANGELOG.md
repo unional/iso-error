@@ -1,5 +1,12 @@
 # iso-error
 
+## 4.3.0
+
+### Minor Changes
+
+- ab570ca: Adding ESM Module support.
+  Removing extra ts files in the package.
+
 ## 4.2.0
 
 ### Minor Changes

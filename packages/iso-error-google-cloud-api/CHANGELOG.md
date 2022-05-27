@@ -1,5 +1,18 @@
 # iso-error-google-cloud-api
 
+## 3.0.0
+
+### Minor Changes
+
+- 7758090: add ESM support
+
+### Patch Changes
+
+- Updated dependencies [ab570ca]
+- Updated dependencies [fa5c192]
+  - iso-error@4.3.0
+  - google-cloud-api@3.1.0
+
 ## 2.0.0
 
 ### Major Changes
