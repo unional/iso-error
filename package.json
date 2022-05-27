@@ -13,6 +13,7 @@
     "gca": "yarn workspace google-cloud-api",
     "iso": "yarn workspace iso-error",
     "iso-gca": "yarn workspace iso-error-google-cloud-api",
+    "iso-web": "yarn workspace iso-error-web",
     "lint": "turbo run lint",
     "nuke": "turbo run nuke",
     "nuke:local": "rimraf node_modules || true",

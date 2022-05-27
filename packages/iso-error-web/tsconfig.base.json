@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "esModuleInterop": true,
+    "lib": [
+      "ES2015",
+      "ESNext.Promise"
+    ],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "newLine": "LF",
+    "noUnusedLocals": true,
+    "noUnusedParameters": false,
+    "outDir": "cjs",
+    "removeComments": false,
+    "rootDir": "ts",
+    "sourceMap": true,
+    "strict": true,
+    "stripInternal": true,
+    "target": "es5",
+    "tsBuildInfoFile": ".tsbuildinfo",
+    "useDefineForClassFields": true
+  },
+  "references": [
+    {
+      "path": "../iso-error"
+    }
+  ],
+  "include": [
+    "ts",
+    "typings"
+  ]
+}
