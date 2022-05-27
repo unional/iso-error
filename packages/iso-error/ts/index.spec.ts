@@ -1,7 +1,7 @@
-import a from 'assertron'
+import { assertron as a } from 'assertron'
 import { omit } from 'type-plus'
-import { IsoError, ModuleError } from '.'
-import { createError, MikuSickError, MyModuleError, SubError } from './testErrors'
+import { IsoError, ModuleError } from './index.js'
+import { createError, MikuSickError, MyModuleError, SubError } from './testErrors.js'
 
 describe('IsoError', () => {
   test('IsoError extends Error', () => {

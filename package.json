@@ -11,7 +11,8 @@
     "depcheck": "turbo run depcheck",
     "dev": "turbo run dev --parallel",
     "gca": "yarn workspace google-cloud-api",
-    "iso-error": "yarn workspace iso-error",
+    "iso": "yarn workspace iso-error",
+    "iso-gca": "yarn workspace iso-error-google-cloud-api",
     "lint": "turbo run lint",
     "nuke": "turbo run nuke",
     "nuke:local": "rimraf node_modules || true",
@@ -26,10 +27,10 @@
     "@changesets/cli": "2.22.0",
     "@commitlint/cli": "17.0.1",
     "@commitlint/config-conventional": "17.0.0",
-    "@typescript-eslint/eslint-plugin": "^5.22.0",
-    "@typescript-eslint/parser": "^5.23.0",
+    "@typescript-eslint/eslint-plugin": "^5.26.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "eslint": "8.16.0",
-    "eslint-plugin-harmony": "^7.0.0",
+    "eslint-plugin-harmony": "^7.1.0",
     "husky": "8.0.1",
     "jest": "28.1.0",
     "jest-progress-tracker": "3.0.4",
@@ -41,7 +42,7 @@
     "npm-check-updates": "13.0.3",
     "rimraf": "3.0.2",
     "turbo": "latest",
-    "typescript": "4.6.4"
+    "typescript": "4.7.2"
   },
   "packageManager": "yarn@3.2.1"
 }
