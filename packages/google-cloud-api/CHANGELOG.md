@@ -1,5 +1,11 @@
 # google-cloud-api
 
+## 3.1.1
+
+### Patch Changes
+
+- d369043: re-release due to `workspace:*` not replaced.
+
 ## 3.1.0
 
 ### Minor Changes

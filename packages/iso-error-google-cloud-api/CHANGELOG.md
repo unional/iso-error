@@ -1,5 +1,13 @@
 # iso-error-google-cloud-api
 
+## 3.0.1
+
+### Patch Changes
+
+- d369043: re-release due to `workspace:*` not replaced.
+- Updated dependencies [d369043]
+  - google-cloud-api@3.1.1
+
 ## 3.0.0
 
 ### Minor Changes
