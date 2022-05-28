@@ -18,6 +18,8 @@
     "nuke": "turbo run nuke",
     "nuke:local": "rimraf node_modules || true",
     "prepare": "husky install",
+    "version": "yarn cs version && yarn",
+    "publish": "yarn workspaces foreach npm publish && yarn cs tags",
     "release": "turbo run build",
     "size": "turbo run size",
     "test": "turbo run test",
