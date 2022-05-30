@@ -1,5 +1,14 @@
 # iso-error-google-cloud-api
 
+## 3.0.3
+
+### Patch Changes
+
+- 4817de0: add d.ts for cjs
+- Updated dependencies [4817de0]
+  - google-cloud-api@3.1.3
+  - iso-error@4.3.1
+
 ## 3.0.1
 
 ### Patch Changes
