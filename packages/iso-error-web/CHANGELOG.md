@@ -1,5 +1,13 @@
 # iso-error-web
 
+## 1.0.3
+
+### Patch Changes
+
+- 4817de0: add d.ts for cjs
+- Updated dependencies [4817de0]
+  - iso-error@4.3.1
+
 ## 1.0.1
 
 ### Patch Changes

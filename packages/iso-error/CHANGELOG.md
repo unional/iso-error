@@ -1,5 +1,11 @@
 # iso-error
 
+## 4.3.1
+
+### Patch Changes
+
+- 4817de0: add d.ts for cjs
+
 ## 4.3.0
 
 ### Minor Changes
