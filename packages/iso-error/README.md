@@ -14,6 +14,17 @@ This replaces the `errors` feature.
 For consolidating multiple errors (in case of asynchronous code),
 use `AggregateError` to collect them together.
 
+`AggregateError` is defined in `ES2021.promise`.
+To use it in TypeScript, you need to include it in your `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "lib": ["ES2021.promise"]
+  }
+}
+```
+
 ## IsoError
 
 The base class of all isomorphic errors.

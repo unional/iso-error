@@ -1,5 +1,12 @@
 # google-cloud-api
 
+## 3.1.5
+
+### Patch Changes
+
+- Updated dependencies
+  - iso-error@4.3.3
+
 ## 3.1.4
 
 ### Patch Changes

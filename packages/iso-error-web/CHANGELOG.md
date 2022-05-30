@@ -1,5 +1,12 @@
 # iso-error-web
 
+## 1.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  - iso-error@4.3.3
+
 ## 1.0.4
 
 ### Patch Changes

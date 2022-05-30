@@ -1,5 +1,11 @@
 # iso-error
 
+## 4.3.3
+
+### Patch Changes
+
+- Mention ES2021.promise in readme
+
 ## 4.3.2
 
 ### Patch Changes
