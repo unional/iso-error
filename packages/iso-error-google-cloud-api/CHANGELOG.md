@@ -1,5 +1,14 @@
 # iso-error-google-cloud-api
 
+## 3.0.4
+
+### Patch Changes
+
+- re-release
+- Updated dependencies
+  - google-cloud-api@3.1.4
+  - iso-error@4.3.2
+
 ## 3.0.3
 
 ### Patch Changes
