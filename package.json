@@ -45,7 +45,7 @@
     "npm-check-updates": "13.1.1",
     "rimraf": "3.0.2",
     "turbo": "latest",
-    "typescript": "4.7.2"
+    "typescript": "4.7.3"
   },
   "packageManager": "yarn@3.2.1"
 }
