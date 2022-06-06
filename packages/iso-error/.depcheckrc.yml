@@ -5,3 +5,4 @@ ignores:
   - '@typescript-eslint/*'
   - jest*
   - ts-jest
+  - tslib
