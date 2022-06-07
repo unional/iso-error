@@ -1,5 +1,13 @@
 # google-cloud-api
 
+## 3.1.6
+
+### Patch Changes
+
+- 70d94e7: Add cjs package.json workaround
+- Updated dependencies [70d94e7]
+  - iso-error@4.3.4
+
 ## 3.1.5
 
 ### Patch Changes
