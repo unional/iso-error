@@ -1,5 +1,13 @@
 # iso-error-web
 
+## 1.0.6
+
+### Patch Changes
+
+- 70d94e7: Add cjs package.json workaround
+- Updated dependencies [70d94e7]
+  - iso-error@4.3.4
+
 ## 1.0.5
 
 ### Patch Changes

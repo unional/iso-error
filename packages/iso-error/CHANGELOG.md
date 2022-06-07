@@ -1,5 +1,11 @@
 # iso-error
 
+## 4.3.4
+
+### Patch Changes
+
+- 70d94e7: Add cjs package.json workaround
+
 ## 4.3.3
 
 ### Patch Changes
