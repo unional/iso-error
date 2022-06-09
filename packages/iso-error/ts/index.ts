@@ -267,6 +267,6 @@ export class ModuleError extends IsoError {
   }
 }
 
-export function isAggregateError(error: Error | unknown): error is AggregateError {
+export function isAggregateError(error: Error | unknown): error is Error & { errors: Error[] } {
   return error instanceof Error && Array.isArray((error as any).errors)
 }
