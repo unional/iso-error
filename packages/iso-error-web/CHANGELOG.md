@@ -1,5 +1,12 @@
 # iso-error-web
 
+## 1.0.7
+
+### Patch Changes
+
+- Updated dependencies [d55dc6a]
+  - iso-error@4.3.5
+
 ## 1.0.6
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # iso-error
 
+## 4.3.5
+
+### Patch Changes
+
+- d55dc6a: Polyfill `AggregateError` type.
+
 ## 4.3.4
 
 ### Patch Changes
