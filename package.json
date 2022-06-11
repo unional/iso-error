@@ -27,7 +27,7 @@
     "watch": "jest --watch"
   },
   "devDependencies": {
-    "@changesets/cli": "2.22.0",
+    "@changesets/cli": "2.23.0",
     "@commitlint/cli": "17.0.2",
     "@commitlint/config-conventional": "17.0.2",
     "@typescript-eslint/eslint-plugin": "^5.26.0",
