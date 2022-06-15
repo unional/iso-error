@@ -52,16 +52,16 @@
   },
   "devDependencies": {
     "@size-limit/preset-small-lib": "^7.0.8",
-    "@types/jest": "^28.0.0",
-    "@types/node": "^17.0.8",
-    "@typescript-eslint/eslint-plugin": "^5.26.0",
-    "assertron": "^9.0.9",
+    "@types/jest": "^28.1.1",
+    "@types/node": "^17.0.43",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "assertron": "^9.2.5",
     "cross-env": "7.0.3",
     "depcheck": "1.4.3",
     "eslint": "8.17.0",
     "eslint-plugin-harmony": "^7.1.0",
     "jest": "28.1.1",
-    "jest-environment-jsdom": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.1",
     "jest-validate": "28.1.1",
     "jest-watch-suspend": "1.1.2",
     "jest-watch-toggle-config": "2.0.1",
@@ -69,10 +69,10 @@
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2",
     "size-limit": "^7.0.8",
-    "ts-jest": "^28.0.3",
+    "ts-jest": "^28.0.5",
     "tslib": "^2.4.0",
-    "type-plus": "^4.9.1",
-    "typescript": "^4.7.2"
+    "type-plus": "^4.10.2",
+    "typescript": "^4.7.3"
   },
   "engines": {
     "node": ">= 10"
