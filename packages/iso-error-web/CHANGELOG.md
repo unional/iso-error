@@ -1,5 +1,11 @@
 # iso-error-web
 
+## 1.0.8
+
+### Patch Changes
+
+- e27a828: Fix `iso-error` versioning
+
 ## 1.0.7
 
 ### Patch Changes

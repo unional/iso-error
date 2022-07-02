@@ -1,5 +1,13 @@
 # iso-error-google-cloud-api
 
+## 3.0.8
+
+### Patch Changes
+
+- e27a828: Fix `iso-error` versioning
+- Updated dependencies [e27a828]
+  - google-cloud-api@3.1.8
+
 ## 3.0.7
 
 ### Patch Changes
