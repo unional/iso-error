@@ -51,7 +51,7 @@
     "watch": "jest --watch"
   },
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^7.0.8",
+    "@size-limit/preset-small-lib": "^8.0.0",
     "@types/jest": "^28.1.1",
     "@types/node": "^17.0.43",
     "@typescript-eslint/eslint-plugin": "^5.28.0",
