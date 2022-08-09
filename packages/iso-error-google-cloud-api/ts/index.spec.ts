@@ -27,3 +27,10 @@ test('Cancelled', () => {
     }]
   })
 })
+
+it('can use toSerializable() and fromSerializable()', () => {
+  const err = new Cancelled()
+  const serializable = IsoError.toSerializable(err)
+  const actual: Cancelled = IsoError.fromSerializable(serializable)
+  expect(actual).toBeInstanceOf(Cancelled)
+})

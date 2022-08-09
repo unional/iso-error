@@ -83,7 +83,7 @@ export class IsoError extends Error {
 
   static fromSerializable<
     E extends IsoError.ErrorWithCause = IsoError.ErrorWithCause
-  >(json: IsoError.Serializable): E {
+  >(json: Record<string | number, any>): E {
     const err = deserializeError<E>(json)
 
     Error.captureStackTrace(err, IsoError.fromSerializable)
@@ -144,12 +144,15 @@ export namespace IsoError {
 
   export type ErrorWithCause = Error & Options
 
+  /**
+   * @deprecated This appears to be not needed.
+   * Will be removed in the next release.
+   */
   export type Serializable = {
     name: string,
     message?: string,
     cause?: Serializable
   } & Record<string | number, any>
-
 }
 
 function deserialize<
@@ -203,7 +206,7 @@ function defaultDeserializeError<
   return Object.assign(new IsoError(message, causeError ? { cause: causeError } : undefined), rest)
 }
 
-function toSerializableError(err: Error & { cause?: Error }): IsoError.Serializable {
+function toSerializableError(err: Error & { cause?: Error }): Record<string | number, any> {
   if (isAggregateError(err)) {
     return {
       ...err, name: err.constructor.name, message: err.message,
