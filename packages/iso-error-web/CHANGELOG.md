@@ -1,5 +1,12 @@
 # iso-error-web
 
+## 1.0.10
+
+### Patch Changes
+
+- Updated dependencies [f2e1629]
+  - iso-error@4.3.6
+
 ## 1.0.8
 
 ### Patch Changes
