@@ -1,5 +1,12 @@
 # google-cloud-api
 
+## 3.1.10
+
+### Patch Changes
+
+- Updated dependencies [f2e1629]
+  - iso-error@4.3.6
+
 ## 3.1.8
 
 ### Patch Changes
