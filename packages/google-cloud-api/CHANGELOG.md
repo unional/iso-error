@@ -1,5 +1,11 @@
 # google-cloud-api
 
+## 3.1.11
+
+### Patch Changes
+
+- a1aab90: update type-plus
+
 ## 3.1.10
 
 ### Patch Changes
