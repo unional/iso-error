@@ -2767,18 +2767,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"assertron@npm:^9.2.5":
-  version: 9.2.5
-  resolution: "assertron@npm:9.2.5"
+"assertron@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "assertron@npm:10.0.0"
   dependencies:
-    is-node: ^1.0.2
     is-promise: ^4.0.0
     iso-error: ^4.3.5
     path-equal: ^1.2.2
     satisfier: ^5.2.2
     tersify: ^3.10.2
     type-plus: ^4.10.1
-  checksum: 32468c21a681a9bd7791cc4048fcf7881162dd1fc6b4061970dc45fc523b8b5d80a9047fd31688ea15a3b85aa6f8214f0446cc72d339d53eab81f63e38d71f9a
+  checksum: 55b108ffb05a3616b7bf01d42b89205ba2644129eb0e97903c2c954ee56ade985304965883c7de14c7ce6fe7beb84f07250e956f154be14e6c783d5979fe4a8d
   languageName: node
   linkType: hard
 
@@ -5272,7 +5271,7 @@ __metadata:
     "@types/jest": ^28.1.6
     "@types/node": ^18.6.5
     "@typescript-eslint/eslint-plugin": ^5.33.0
-    assertron: ^9.2.5
+    assertron: ^10.0.0
     cross-env: ^7.0.3
     depcheck: ^1.4.3
     eslint: ^8.21.0
@@ -5927,13 +5926,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"is-node@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "is-node@npm:1.0.2"
-  checksum: 94234415e5690a485aae4cd7ad9645673bac34c819e219c947f2261d2c2b03991e9c89017f804b5eac10a3c33da681e6fbaaffff65aa545b873a5dab347026ed
-  languageName: node
-  linkType: hard
-
 "is-npm@npm:^6.0.0":
   version: 6.0.0
   resolution: "is-npm@npm:6.0.0"
@@ -6125,7 +6117,7 @@ __metadata:
     "@types/jest": ^28.1.6
     "@types/node": ^18.6.5
     "@typescript-eslint/eslint-plugin": ^5.33.0
-    assertron: ^9.2.5
+    assertron: ^10.0.0
     cross-env: ^7.0.3
     depcheck: ^1.4.3
     eslint: ^8.21.0
@@ -6183,7 +6175,7 @@ __metadata:
     "@types/jest": ^28.1.6
     "@types/node": ^18.6.5
     "@typescript-eslint/eslint-plugin": ^5.33.0
-    assertron: ^9.2.5
+    assertron: ^10.0.0
     cross-env: ^7.0.3
     depcheck: ^1.4.3
     eslint: ^8.21.0
