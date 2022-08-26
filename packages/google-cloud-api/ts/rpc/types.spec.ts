@@ -50,4 +50,15 @@ describe('rpc.CauseInfo', () => {
       }]
     })
   })
+  it('can contain module', () => {
+    canAssign<rpc.CauseInfo>()({
+      '@type': 'google-cloud-api/CauseInfo',
+      message: '',
+      causes: [{
+        module: 'some_module',
+        message: '',
+        causes: [{ message: '' }]
+      }]
+    })
+  })
 })

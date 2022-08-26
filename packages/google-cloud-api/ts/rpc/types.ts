@@ -113,6 +113,15 @@ export interface MethodInfo {
 export namespace CauseInfo {
   export interface Cause {
     message: string,
+    /**
+     * Module which the cause originates from.
+     * This is useful to find out which module/team creates the error,
+     * so that you can quickly identify the right team to look at the issue.
+     *
+     * This provides similar benefits as the stack trace `file:line:column`,
+     * without the risk of being reverse engineered.
+     */
+    module?: string,
     causes?: Cause[],
   }
 }
