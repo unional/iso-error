@@ -13,6 +13,10 @@ most notably:
   providing better security and traceability.
 - `getCauseInfo(error)` get `google-cloud-api/CauseInfo` from any error.
 
+References:
+
+- <https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto>
+
 [Google Cloud API design]: https://cloud.google.com/apis/design/
 [codecov-image]: https://codecov.io/gh/unional/google-cloud-api/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/google-cloud-api

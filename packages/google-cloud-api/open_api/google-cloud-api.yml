@@ -1,0 +1,206 @@
+components:
+  schemas:
+    google-cloud-api_error:
+      title: Google Cloud API Error
+      type: object
+      properties:
+        code:
+          type: number
+        details:
+          $ref: "#/components/schemas/google-cloud-api_error-details"
+    google-cloud-api_cancelled-error:
+      title: Cancelled Error
+      type: object
+      properties:
+        code:
+          type: number
+          enum:
+            - 499
+        message:
+          type: string
+          default: Request cancelled by the client.
+        details:
+          $ref: "#/components/schemas/google-cloud-api_error-details"
+        required:
+          - code
+          - message
+    google-cloud-api_status:
+      title: Status
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: "#/components/schemas/google-cloud-api_error-details"
+    google-cloud-api_error-details:
+      anyOf:
+        - $ref: "#/components/schemas/google-cloud-api_error-details_retry-info"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_debug-info"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_quota-failure"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_error-info"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_precondition-failure"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_bad-request"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_request-info"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_resource-info"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_help"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_localized-message"
+        - $ref: "#/components/schemas/google-cloud-api_error-details_cause-info"
+    google-cloud-api_error-details_retry-info:
+      title: Retry Info
+      type: object
+      properties:
+          retry_delay:
+            type:
+              $ref: "protobuf.yml#/components/schemas/protobuf_duration"
+    google-cloud-api_error-details_debug-info:
+      title: Debug Info
+      type: object
+      properties:
+        stack_entries:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+    google-cloud-api_error-details_quota-failure:
+      title: Quota Failure
+      type: object
+      properties:
+        violations:
+          type: array
+          items:
+            type:
+              $ref: "#/components/schemas/google-cloud-api_error-details_quota-failure_violation"
+    google-cloud-api_error-details_quota-failure_violation:
+      title: Violation
+      type: object
+      properties:
+        subject:
+          type: string
+        description:
+          type: string
+    google-cloud-api_error-details_error-info:
+      title: Error Info
+      type: object
+      properties:
+        reason:
+          type: string
+        domain:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    google-cloud-api_error-details_precondition-failure:
+      title: Precondition Failure
+      type: object
+      properties:
+        violations:
+          type: array
+          items:
+            type:
+              $ref: "#/components/schemas/google-cloud-api_error-details_precondition-failure_violation"
+    google-cloud-api_error-details_precondition-failure_violation:
+      title: Violation
+      type: object
+      properties:
+        type:
+          type: string
+        subject:
+          type: string
+        description:
+          type: string
+    google-cloud-api_error-details_bad-request:
+      title: Bad Request
+      type: object
+      properties:
+        field_violations:
+          type: array
+          items:
+            type:
+              $ref: "#/components/schemas/google-cloud-api_error-details_bad-request_field-violation"
+    google-cloud-api_error-details_bad-request_field-violation:
+      title: Field Violation
+      type: object
+      properties:
+        field:
+          type: string
+        description:
+          type: string
+    google-cloud-api_error-details_request-info:
+      title: Request Info
+      type: object
+      properties:
+        request_id:
+          type: string
+        serving_data:
+          type: string
+    google-cloud-api_error-details_resource-info:
+      title: Resource Info
+      type: object
+      properties:
+        resource_type:
+          type: string
+        resource_name:
+          type: string
+        owner:
+          type: string
+        description:
+          type: string
+    google-cloud-api_error-details_help:
+      title: Help
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            type:
+              $ref: "#/components/schemas/google-cloud-api_error-details_help_link"
+    google-cloud-api_error-details_help_link:
+      title: Link
+      type: object
+      properties:
+        description:
+          type: string
+        url:
+          type: string
+    google-cloud-api_error-details_localized-message:
+      title: Localized Message
+      type: object
+      properties:
+        locale:
+          type: string
+        message:
+          type: string
+    google-cloud-api_error-details_cause-info:
+      title: Cause Info
+      type: object
+      properties:
+        "@type":
+          type: string
+          enum:
+            - google-cloud-api/CauseInfo
+        causes:
+          $ref: "#/components/schemas/google-cloud-api_error-details_cause-info_causes"
+      required:
+        - "@type"
+        - "causes"
+    google-cloud-api_error-details_cause-info_causes:
+      type: array
+      items:
+        $ref: "#/components/schemas/google-cloud-api_error-details_cause-info_cause"
+    google-cloud-api_error-details_cause-info_cause:
+      type: object
+      properties:
+        module:
+          type: string
+        message:
+          type: string
+        causes:
+          $ref: "#/components/schemas/google-cloud-api_error-details_cause-info_causes"
+      required:
+        - message

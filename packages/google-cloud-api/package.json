@@ -28,7 +28,8 @@
     "esm",
     "ts",
     "!ts/**/*.spec.ts",
-    "!ts/test-utils"
+    "!ts/test-utils",
+    "open_api/google-cloud-api.yml"
   ],
   "scripts": {
     "build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm",
