@@ -41,10 +41,14 @@ export class GoogleCloudApiError<D extends rpc.Detail[] = rpc.Detail[]> extends 
   }
 
   private getCauseInfo(): rpc.CauseInfo {
-    return {
-      '@type': 'google-cloud-api/CauseInfo',
-      ...toCauses(this)
-    }
+    return getCauseInfo(this)
+  }
+}
+
+export function getCauseInfo(error: Error): rpc.CauseInfo {
+  return {
+    '@type': 'google-cloud-api/CauseInfo',
+    ...toCauses(error)
   }
 }
 

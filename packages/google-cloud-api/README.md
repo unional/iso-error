@@ -10,7 +10,8 @@ This package provides some additional definitions,
 most notably:
 
 - `google-cloud-api/CauseInfo`: alternative for `type.googleapis.com/google.rpc.DebugInfo`,\
-  providing better security and tracability.
+  providing better security and traceability.
+- `getCauseInfo(error)` get `google-cloud-api/CauseInfo` from any error.
 
 [Google Cloud API design]: https://cloud.google.com/apis/design/
 [codecov-image]: https://codecov.io/gh/unional/google-cloud-api/branch/master/graph/badge.svg
