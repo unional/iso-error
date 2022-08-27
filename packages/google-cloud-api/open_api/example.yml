@@ -1,0 +1,37 @@
+openapi: 3.0.0
+info:
+  title: Google Cloud API Example
+  description: Google Cloud API specification example
+  license:
+    name: MIT
+    url: ../license
+  version: "1"
+servers:
+  - url: "{protocol}://example.com"
+    variables:
+      protocol:
+        enum:
+          - https
+        default: https
+paths:
+  /customers:
+    get:
+      operationId: getCustomers
+      summary: get customers
+      responses:
+        200:
+          description: "hello"
+        400:
+          description: bad request
+          content:
+            application/json:
+              schema:
+                $ref: google-cloud-api.yml#/components/schemas/google-cloud-api_error
+        499:
+          description: Client Closed Request
+          content:
+            application/json:
+              schema:
+                type: number
+                default: 499
+                $ref: google-cloud-api.yml#/components/schemas/google-cloud-api_cancelled-error

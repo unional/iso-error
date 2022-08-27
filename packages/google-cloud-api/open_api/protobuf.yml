@@ -1,0 +1,9 @@
+components:
+  schemas:
+    protobuf_duration:
+      type: object
+      properties:
+        seconds:
+          type: number
+        nanos:
+          type: number
