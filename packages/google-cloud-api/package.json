@@ -37,6 +37,7 @@
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
+    "openapi:lint": "redocly lint",
     "nuke": "run-s clean nuke:local",
     "nuke:local": "rimraf node_modules || true",
     "size": "size-limit",
@@ -53,6 +54,7 @@
     "type-plus": "^4.11.1"
   },
   "devDependencies": {
+    "@redocly/cli": "^1.0.0-beta.108",
     "@size-limit/file": "^8.0.0",
     "@size-limit/webpack": "^8.0.0",
     "@types/jest": "^28.1.6",

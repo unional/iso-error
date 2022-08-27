@@ -4,7 +4,7 @@ apis:
   # Update the apiName with your actual API name, and the version with your actual API version.
   google-cloud-api@v1:
     # Update the path to your OpenAPI root file
-    root: ./open_api/example.yml
+    root: ./packages/google-cloud-api/open_api/example.yml
 
 styleguide:
   extends:

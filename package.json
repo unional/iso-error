@@ -16,6 +16,7 @@
     "iso-gca": "yarn workspace iso-error-google-cloud-api",
     "iso-web": "yarn workspace iso-error-web",
     "lint": "turbo run lint",
+    "openapi:lint": "turbo run openapi:lint",
     "nuke": "turbo run nuke",
     "nuke:local": "rimraf node_modules || true",
     "prepack": "pinst --disable",

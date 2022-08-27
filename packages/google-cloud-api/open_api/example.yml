@@ -26,12 +26,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: google-cloud-api.yml#/components/schemas/google-cloud-api_error
-        499:
-          description: Client Closed Request
-          content:
-            application/json:
-              schema:
-                type: number
-                default: 499
-                $ref: google-cloud-api.yml#/components/schemas/google-cloud-api_cancelled-error
+                type: object
+                properties:
+                  error:
+                    $ref: google.rpc.status.yml#/components/schemas/google.rpc.Status
+                  code:
+                    $ref: google.rpc.code.yml#/components/schemas/google.rpc.Code

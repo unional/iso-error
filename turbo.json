@@ -1,6 +1,5 @@
 {
   "$schema": "https://turborepo.org/schema.json",
-  "baseBranch": "origin/main",
   "pipeline": {
     "build": {
       "dependsOn": [
@@ -47,6 +46,8 @@
       "dependsOn": [
         "^build"
       ]
+    },
+    "openapi:lint": {
     },
     "size": {
       "dependsOn": [
