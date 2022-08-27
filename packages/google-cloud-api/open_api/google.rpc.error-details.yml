@@ -1,0 +1,161 @@
+components:
+  schemas:
+    google.rpc.error:
+      title: Google Cloud API Error
+      type: object
+      properties:
+        code:
+          type: number
+        details:
+          $ref: "#/components/schemas/google.rpc.error-details"
+    google.rpc.cancelled-error:
+      title: Cancelled Error
+      type: object
+      properties:
+        code:
+          type: number
+          enum:
+            - 499
+        message:
+          type: string
+          default: Request cancelled by the client.
+        details:
+          $ref: "#/components/schemas/google.rpc.error-details"
+        required:
+          - code
+          - message
+    google.rpc.ErrorDetails:
+      anyOf:
+        - $ref: "#/components/schemas/google.rpc.RetryInfo"
+        - $ref: "#/components/schemas/google.rpc.DebugInfo"
+        - $ref: "#/components/schemas/google.rpc.QuotaFailure"
+        - $ref: "#/components/schemas/google.rpc.ErrorInfo"
+        - $ref: "#/components/schemas/google.rpc.PreconditionFailure"
+        - $ref: "#/components/schemas/google.rpc.BadRequest"
+        - $ref: "#/components/schemas/google.rpc.RequestInfo"
+        - $ref: "#/components/schemas/google.rpc.ResourceInfo"
+        - $ref: "#/components/schemas/google.rpc.Help"
+        - $ref: "#/components/schemas/google.rpc.LocalizedMessage"
+        - $ref: google-cloud-api.yml#/components/schemas/google-cloud-api.CauseInfo
+    google.rpc.RetryInfo:
+      title: Retry Info
+      type: object
+      properties:
+        retry_delay:
+          $ref: google.protobuf.yml#/components/schemas/google.protobuf.Duration
+    google.rpc.DebugInfo:
+      title: Debug Info
+      type: object
+      properties:
+        stack_entries:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+    google.rpc.QuotaFailure:
+      title: Quota Failure
+      type: object
+      properties:
+        violations:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.rpc.QuotaFailure.Violation"
+    google.rpc.QuotaFailure.Violation:
+      title: Violation
+      type: object
+      properties:
+        subject:
+          type: string
+        description:
+          type: string
+    google.rpc.ErrorInfo:
+      title: Error Info
+      type: object
+      properties:
+        reason:
+          type: string
+        domain:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    google.rpc.PreconditionFailure:
+      title: Precondition Failure
+      type: object
+      properties:
+        violations:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.rpc.PreconditionFailure.Violation"
+    google.rpc.PreconditionFailure.Violation:
+      title: Violation
+      type: object
+      properties:
+        type:
+          type: string
+        subject:
+          type: string
+        description:
+          type: string
+    google.rpc.BadRequest:
+      title: Bad Request
+      type: object
+      properties:
+        field_violations:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.rpc.BadRequest.FieldViolation"
+    google.rpc.BadRequest.FieldViolation:
+      title: Field Violation
+      type: object
+      properties:
+        field:
+          type: string
+        description:
+          type: string
+    google.rpc.RequestInfo:
+      title: Request Info
+      type: object
+      properties:
+        request_id:
+          type: string
+        serving_data:
+          type: string
+    google.rpc.ResourceInfo:
+      title: Resource Info
+      type: object
+      properties:
+        resource_type:
+          type: string
+        resource_name:
+          type: string
+        owner:
+          type: string
+        description:
+          type: string
+    google.rpc.Help:
+      title: Help
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.rpc.Help.Link"
+    google.rpc.Help.Link:
+      title: Link
+      type: object
+      properties:
+        description:
+          type: string
+        url:
+          type: string
+    google.rpc.LocalizedMessage:
+      title: Localized Message
+      type: object
+      properties:
+        locale:
+          type: string
+        message:
+          type: string

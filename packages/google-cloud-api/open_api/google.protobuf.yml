@@ -1,0 +1,42 @@
+components:
+  schemas:
+    # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/duration.proto
+    google.protobuf.Duration:
+      type: object
+      properties:
+        seconds:
+          type: number
+        nanos:
+          type: number
+    # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto
+    google.protobuf.Timestamp:
+      type: object
+      properties:
+        seconds:
+          type: number
+        nanos:
+          type: number
+    # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto
+    google.protobuf.Struct:
+      type: object
+      properties:
+        fields:
+          type: object
+          additionalProperties:
+            type: string
+    google.protobuf.Value:
+      oneOf:
+        - $ref: "#/components/schemas/google.protobuf.NullValue"
+        - number
+        - string
+        - boolean
+        - $ref: "#/components/schemas/google.protobuf.Struct"
+        - $ref: "#/components/schemas/google.protobuf.ListValue"
+    google.protobuf.NullValue:
+      type: number
+      enum:
+        - 0 # NULL_VALUE
+    google.protobuf.ListValue:
+      type: array
+      items:
+        $ref: "#/components/schemas/google.protobuf.Value"
