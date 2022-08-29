@@ -25,7 +25,7 @@
     "test": "turbo run test",
     "verify": "turbo run lint build coverage depcheck size",
     "version": "changeset version && yarn install",
-    "publish": "yarn workspaces foreach npm publish --access public && changeset tag",
+    "publish": "yarn workspaces foreach yarn npm publish --access public && changeset tag",
     "watch": "jest --watch"
   },
   "devDependencies": {
