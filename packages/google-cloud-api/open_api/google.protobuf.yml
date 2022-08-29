@@ -1,5 +1,18 @@
+openapi: 3.0.0
+info:
+  title: Google Protobuf specification
+  version: "1"
 components:
   schemas:
+    # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/any.proto
+    google.protobuf.Any:
+      type: object
+      properties:
+        type_url:
+          type: string
+        value:
+          # Serialized value in `bytes`, assume it is serialize to a JSON string here.
+          type: string
     # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/duration.proto
     google.protobuf.Duration:
       type: object
@@ -8,14 +21,20 @@ components:
           type: number
         nanos:
           type: number
-    # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto
-    google.protobuf.Timestamp:
+    # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto
+    google.protobuf.FieldMask:
       type: object
       properties:
-        seconds:
-          type: number
-        nanos:
-          type: number
+        paths:
+          type: array
+          additionalProperties:
+            type: string
+    # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/source_context.proto
+    google.protobuf.SourceContext:
+      type: object
+      properties:
+        file_name:
+          type: string
     # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto
     google.protobuf.Struct:
       type: object
@@ -27,9 +46,9 @@ components:
     google.protobuf.Value:
       oneOf:
         - $ref: "#/components/schemas/google.protobuf.NullValue"
-        - number
-        - string
-        - boolean
+        - type: number
+        - type: string
+        - type: boolean
         - $ref: "#/components/schemas/google.protobuf.Struct"
         - $ref: "#/components/schemas/google.protobuf.ListValue"
     google.protobuf.NullValue:
@@ -40,3 +59,154 @@ components:
       type: array
       items:
         $ref: "#/components/schemas/google.protobuf.Value"
+    # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto
+    google.protobuf.Timestamp:
+      type: object
+      properties:
+        seconds:
+          type: number
+        nanos:
+          type: number
+    # https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/type.proto
+    google.protobuf.Type:
+      type: object
+      properties:
+        name:
+          type: string
+        fields:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.protobuf.Field"
+        oneofs:
+          type: array
+          items:
+            type: string
+        options:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.protobuf.Option"
+        source_context:
+          $ref: "#/components/schemas/google.protobuf.SourceContext"
+        syntax:
+          $ref: "#/components/schemas/google.protobuf.Syntax"
+    google.protobuf.Field:
+      type: object
+      properties:
+        kind:
+          $ref: "#/components/schemas/google.protobuf.Field.Kind"
+        cardinality:
+          $ref: "#/components/schemas/google.protobuf.Field.Cardinality"
+        number:
+          type: number
+        name:
+          type: string
+        type_url:
+          type: string
+        oneof_index:
+          type: number
+        options:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.protobuf.Option"
+        json_name:
+          type: string
+        default_value:
+          type: string
+    google.protobuf.Field.Kind:
+      type: number
+      enum:
+        # Field type unknown.
+        - 0 # TYPE_UNKNOWN
+        # Field type double.
+        - 1 # TYPE_DOUBLE
+        # Field type float.
+        - 2 # TYPE_FLOAT
+        # Field type int64.
+        - 3 # TYPE_INT64
+        # Field type uint64.
+        - 4 # TYPE_UINT64
+        # Field type int32.
+        - 5 # TYPE_INT32
+        # Field type fixed64.
+        - 6 # TYPE_FIXED64
+        # Field type fixed32.
+        - 7 # TYPE_FIXED32
+        # Field type bool.
+        - 8 # TYPE_BOOL
+        # Field type string.
+        - 9 # TYPE_STRING
+        # Field type group. Proto2 syntax only, and deprecated.
+        - 10 # TYPE_GROUP
+        # Field type message.
+        - 11 # TYPE_MESSAGE
+        # Field type bytes.
+        - 12 # TYPE_BYTES
+        # Field type uint32.
+        - 13 # TYPE_UINT32
+        # Field type enum.
+        - 14 # TYPE_ENUM
+        # Field type sfixed32.
+        - 15 # TYPE_SFIXED32
+        # Field type sfixed64.
+        - 16 # TYPE_SFIXED64
+        # Field type sint32.
+        - 17 # TYPE_SINT32
+        # Field type sint64.
+        - 18 # TYPE_SINT64
+    google.protobuf.Field.Cardinality:
+      type: number
+      enum:
+        # For fields with unknown cardinality.
+        - 0 # CARDINALITY_UNKNOWN
+        # For optional fields.
+        - 1 # CARDINALITY_OPTIONAL
+        # For required fields. Proto2 syntax only.
+        - 2 # CARDINALITY_REQUIRED
+        # For repeated fields.
+        - 3 # CARDINALITY_REPEATED
+    google.protobuf.Enum:
+      type: object
+      properties:
+        name:
+          type: string
+        enumvalue:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.protobuf.EnumValue"
+        options:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.protobuf.Option"
+        source_context:
+          $ref: "#/components/schemas/google.protobuf.SourceContext"
+        syntax:
+          $ref: "#/components/schemas/google.protobuf.Syntax"
+    google.protobuf.EnumValue:
+      type: object
+      properties:
+        name:
+          type: string
+        number:
+          type: number
+        options:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.protobuf.Option"
+    google.protobuf.Option:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          $ref: "#/components/schemas/google.protobuf.Any"
+    google.protobuf.Syntax:
+      type: number
+      enum:
+        - 0 # SYNTAX_PROTO2
+        - 1 # SYNTAX_PROTO3
+paths:
+  /dummy:
+    get:
+      responses:
+        200:
+          description: dummy

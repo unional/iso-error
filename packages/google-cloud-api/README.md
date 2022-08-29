@@ -12,6 +12,7 @@ most notably:
 - `google-cloud-api/CauseInfo`: alternative for `type.googleapis.com/google.rpc.DebugInfo`,\
   providing better security and traceability.
 - `getCauseInfo(error)` get `google-cloud-api/CauseInfo` from any error.
+- Open API Specification for `Google Protobuf`, `Google RPC` and the extended definitions in this package (`google-cloud-api`).
 
 References:
 
