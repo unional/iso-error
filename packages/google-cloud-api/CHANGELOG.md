@@ -1,5 +1,13 @@
 # google-cloud-api
 
+## 3.2.2
+
+### Patch Changes
+
+- 12b6beb: re-release for workspace resolution
+- Updated dependencies [12b6beb]
+  - iso-error@4.3.8
+
 ## 3.2.1
 
 ### Patch Changes

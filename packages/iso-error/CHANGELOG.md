@@ -1,5 +1,11 @@
 # iso-error
 
+## 4.3.8
+
+### Patch Changes
+
+- 12b6beb: re-release for workspace resolution
+
 ## 4.3.7
 
 ### Patch Changes
