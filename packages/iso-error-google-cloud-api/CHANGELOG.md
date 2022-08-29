@@ -1,5 +1,14 @@
 # iso-error-google-cloud-api
 
+## 3.0.12
+
+### Patch Changes
+
+- Updated dependencies [ceacf3f]
+- Updated dependencies [c390c90]
+- Updated dependencies [fbb9aa9]
+  - google-cloud-api@3.2.0
+
 ## 3.0.11
 
 ### Patch Changes
