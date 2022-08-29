@@ -1,0 +1,342 @@
+openapi: 3.0.0
+info:
+  title: Google RPC specification
+  version: "1"
+components:
+  schemas:
+    # https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
+    google.rpc.Code:
+      type: number
+      enum:
+        - 0 # OK: 200 OK
+        - 1 # CANCELLED: 499 Client Closed Request
+        - 2 # UNKNOWN: 500 Internal Server Error
+        - 3 # INVALID_ARGUMENT: 400 Bad Request
+        - 4 # DEADLINE_EXCEEDED: 504 Gateway Timeout
+        - 5 # NOT_FOUND: 404 Not Found
+        - 6 # ALREADY_EXISTS: 409 Conflict
+        - 7 # PERMISSION_DENIED: 403 Forbidden
+        - 8 # RESOURCE_EXHAUSTED: 429 Too Many Requests
+        - 9 # FAILED_PRECONDITION: 400 Bad Request
+        - 10 # ABORTED: 409 Conflict
+        - 11 # OUT_OF_RANGE: 400 Bad Request
+        - 12 # UNIMPLEMENTED: 501 Not Implemented
+        - 13 # INTERNAL: 500 Internal Server Error
+        - 14 # UNAVAILABLE: 503 Service Unavailable
+        - 15 # DATA_LOSS: 500 Internal Server Error
+        - 16 # UNAUTHENTICATED: 401 Unauthorized
+    # https://github.com/googleapis/googleapis/blob/master/google/rpc/context/attribute_context.proto
+    google.rpc.context.AttributeContext:
+      type: object
+      properties:
+        origin:
+          $ref: "#/components/schemas/google.rpc.context.AttributeContext.Peer"
+        source:
+          $ref: "#/components/schemas/google.rpc.context.AttributeContext.Peer"
+        destination:
+          $ref: "#/components/schemas/google.rpc.context.AttributeContext.Peer"
+        request:
+          $ref: "#/components/schemas/google.rpc.context.AttributeContext.Request"
+        response:
+          $ref: "#/components/schemas/google.rpc.context.AttributeContext.Response"
+        resource:
+          $ref: "#/components/schemas/google.rpc.context.AttributeContext.Resource"
+        api:
+          $ref: "#/components/schemas/google.rpc.context.AttributeContext.Api"
+        extensions:
+          type: array
+    google.rpc.context.AttributeContext.Peer:
+      type: object
+      properties:
+        ip:
+          type: string
+        port:
+          type: number
+        labels:
+          type: object
+          additionalProperties:
+            type: string
+        principal:
+          type: string
+        region_code:
+          type: string
+    google.rpc.context.AttributeContext.Api:
+      type: object
+      properties:
+        service:
+          type: string
+        operation:
+          type: string
+        protocol:
+          type: string
+        version:
+          type: string
+    google.rpc.context.AttributeContext.Auth:
+      type: object
+      properties:
+        principal:
+          type: string
+        audiences:
+          type: array
+          items:
+            type: string
+        presenter:
+          type: string
+        claims:
+          $ref: google.protobuf.yml#/components/schemas/google.protobuf.Struct
+        access_levels:
+          type: array
+          items:
+            type: string
+    google.rpc.context.AttributeContext.Request:
+      type: object
+      properties:
+        id:
+          type: string
+        method:
+          type: string
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        path:
+          type: string
+        host:
+          type: string
+        scheme:
+          type: string
+        query:
+          type: string
+        time:
+          $ref: google.protobuf.yml#/components/schemas/google.protobuf.Timestamp
+        size:
+          type: number
+        protocol:
+          type: string
+        reason:
+          type: string
+        auth:
+          $ref: "#/components/schemas/google.rpc.context.AttributeContext.Auth"
+    google.rpc.context.AttributeContext.Response:
+      type: object
+      properties:
+        code:
+          type: number
+        size:
+          type: number
+        headers:
+          type: object
+          additionalProperties:
+            type: string
+        time:
+          $ref: google.protobuf.yml#/components/schemas/google.protobuf.Timestamp
+        backend_latency:
+          $ref: google.protobuf.yml#/components/schemas/google.protobuf.Duration
+    google.rpc.context.AttributeContext.Resource:
+      type: object
+      properties:
+        service:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        lables:
+          type: object
+          additionalProperties:
+            type: string
+        uid:
+          type: string
+        annotations:
+          type: object
+          additionalProperties:
+            type: string
+        display_name:
+          type: string
+        create_time:
+          $ref: google.protobuf.yml#/components/schemas/google.protobuf.Timestamp
+        update_time:
+          $ref: google.protobuf.yml#/components/schemas/google.protobuf.Timestamp
+        delete_time:
+          $ref: google.protobuf.yml#/components/schemas/google.protobuf.Timestamp
+        etag:
+          type: string
+        location:
+          type: string
+    google.rpc.error:
+      title: Google Cloud API Error
+      type: object
+      properties:
+        code:
+          type: number
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.cancelled-error:
+      title: Cancelled Error
+      type: object
+      properties:
+        code:
+          type: number
+          enum:
+            - 499
+        message:
+          type: string
+          default: Request cancelled by the client.
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+      required:
+        - code
+        - message
+    google.rpc.ErrorDetails:
+      anyOf:
+        - $ref: "#/components/schemas/google.rpc.RetryInfo"
+        - $ref: "#/components/schemas/google.rpc.DebugInfo"
+        - $ref: "#/components/schemas/google.rpc.QuotaFailure"
+        - $ref: "#/components/schemas/google.rpc.ErrorInfo"
+        - $ref: "#/components/schemas/google.rpc.PreconditionFailure"
+        - $ref: "#/components/schemas/google.rpc.BadRequest"
+        - $ref: "#/components/schemas/google.rpc.RequestInfo"
+        - $ref: "#/components/schemas/google.rpc.ResourceInfo"
+        - $ref: "#/components/schemas/google.rpc.Help"
+        - $ref: "#/components/schemas/google.rpc.LocalizedMessage"
+        - $ref: google-cloud-api.yml#/components/schemas/google-cloud-api.CauseInfo
+    google.rpc.RetryInfo:
+      title: Retry Info
+      type: object
+      properties:
+        retry_delay:
+          $ref: google.protobuf.yml#/components/schemas/google.protobuf.Duration
+    google.rpc.DebugInfo:
+      title: Debug Info
+      type: object
+      properties:
+        stack_entries:
+          type: array
+          items:
+            type: string
+        detail:
+          type: string
+    google.rpc.QuotaFailure:
+      title: Quota Failure
+      type: object
+      properties:
+        violations:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.rpc.QuotaFailure.Violation"
+    google.rpc.QuotaFailure.Violation:
+      title: Violation
+      type: object
+      properties:
+        subject:
+          type: string
+        description:
+          type: string
+    google.rpc.ErrorInfo:
+      title: Error Info
+      type: object
+      properties:
+        reason:
+          type: string
+        domain:
+          type: string
+        metadata:
+          type: object
+          additionalProperties:
+            type: string
+    google.rpc.PreconditionFailure:
+      title: Precondition Failure
+      type: object
+      properties:
+        violations:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.rpc.PreconditionFailure.Violation"
+    google.rpc.PreconditionFailure.Violation:
+      title: Violation
+      type: object
+      properties:
+        type:
+          type: string
+        subject:
+          type: string
+        description:
+          type: string
+    google.rpc.BadRequest:
+      title: Bad Request
+      type: object
+      properties:
+        field_violations:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.rpc.BadRequest.FieldViolation"
+    google.rpc.BadRequest.FieldViolation:
+      title: Field Violation
+      type: object
+      properties:
+        field:
+          type: string
+        description:
+          type: string
+    google.rpc.RequestInfo:
+      title: Request Info
+      type: object
+      properties:
+        request_id:
+          type: string
+        serving_data:
+          type: string
+    google.rpc.ResourceInfo:
+      title: Resource Info
+      type: object
+      properties:
+        resource_type:
+          type: string
+        resource_name:
+          type: string
+        owner:
+          type: string
+        description:
+          type: string
+    google.rpc.Help:
+      title: Help
+      type: object
+      properties:
+        links:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.rpc.Help.Link"
+    google.rpc.Help.Link:
+      title: Link
+      type: object
+      properties:
+        description:
+          type: string
+        url:
+          type: string
+    google.rpc.LocalizedMessage:
+      title: Localized Message
+      type: object
+      properties:
+        locale:
+          type: string
+        message:
+          type: string
+    google.rpc.Status:
+      title: Status
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: "#/components/schemas/google.rpc.ErrorDetails"
+paths:
+  /dummy:
+    get:
+      responses:
+        200:
+          description: dummy

@@ -1,3 +1,7 @@
+openapi: 3.0.0
+info:
+  title: google-cloud-api exteneded specification
+  version: "1"
 components:
   schemas:
     google-cloud-api.CauseInfo:
@@ -28,3 +32,9 @@ components:
           $ref: "#/components/schemas/google-cloud-api.CauseInfo.Causes"
       required:
         - message
+paths:
+  /dummy:
+    get:
+      responses:
+        200:
+          description: dummy

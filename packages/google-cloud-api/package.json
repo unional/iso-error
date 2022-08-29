@@ -29,7 +29,7 @@
     "ts",
     "!ts/**/*.spec.ts",
     "!ts/test-utils",
-    "open_api/google-cloud-api.yml"
+    "open_api"
   ],
   "scripts": {
     "build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm",
@@ -37,7 +37,10 @@
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
-    "openapi:lint": "redocly lint",
+    "openapi:validate": "run-p openapi:validate:google-clould-api openapi:validate:protobuf openapi:validate:rpc",
+    "openapi:validate:google-clould-api": "swagger-cli validate open_api/google-cloud-api.yml",
+    "openapi:validate:protobuf": "swagger-cli validate open_api/google.protobuf.yml",
+    "openapi:validate:rpc": "swagger-cli validate open_api/google.rpc.yml",
     "nuke": "run-s clean nuke:local",
     "nuke:local": "rimraf node_modules || true",
     "size": "size-limit",
@@ -46,7 +49,7 @@
     "ts:build:esm": "tsc -p tsconfig.esm.json",
     "ts:clean": "rimraf .tsbuildinfo || true",
     "ts:test": "tsc",
-    "verify": "npm-run-all -p build lint coverage depcheck -s size",
+    "verify": "npm-run-all -p build lint coverage depcheck openapi:validate -s size",
     "watch": "jest --watch"
   },
   "dependencies": {
@@ -54,7 +57,7 @@
     "type-plus": "^4.11.1"
   },
   "devDependencies": {
-    "@redocly/cli": "^1.0.0-beta.108",
+    "@apidevtools/swagger-cli": "^4.0.4",
     "@size-limit/file": "^8.0.0",
     "@size-limit/webpack": "^8.0.0",
     "@types/jest": "^28.1.6",
