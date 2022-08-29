@@ -1,5 +1,11 @@
 # iso-error
 
+## 4.3.7
+
+### Patch Changes
+
+- 028438d: fix workspace protocol
+
 ## 4.3.6
 
 ### Patch Changes
