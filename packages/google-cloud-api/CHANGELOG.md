@@ -1,5 +1,13 @@
 # google-cloud-api
 
+## 3.2.0
+
+### Minor Changes
+
+- ceacf3f: Add definition for `Cause.module`
+- c390c90: add Open API spec for `google-cloud-api`, protobuf, and RPC
+- fbb9aa9: expose `getCauseInfo(error)`
+
 ## 3.1.11
 
 ### Patch Changes
