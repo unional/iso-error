@@ -10,11 +10,11 @@
     "cs": "changeset",
     "depcheck": "turbo run depcheck",
     "dev": "turbo run dev --parallel",
-    "gca": "yarn workspace google-cloud-api",
+    "gca": "pnpm run --filter google-cloud-api",
     "postinstall": "husky install",
-    "iso": "yarn workspace iso-error",
-    "iso-gca": "yarn workspace iso-error-google-cloud-api",
-    "iso-web": "yarn workspace iso-error-web",
+    "iso": "pnpm run --filter iso-error",
+    "iso-gca": "pnpm run --filter iso-error-google-cloud-api",
+    "iso-web": "pnpm run --filter iso-error-web",
     "lint": "turbo run lint",
     "openapi:lint": "turbo run openapi:lint",
     "nuke": "turbo run nuke",
@@ -24,16 +24,14 @@
     "size": "turbo run size",
     "test": "turbo run test",
     "verify": "turbo run lint build coverage depcheck size",
-    "version": "changeset version && yarn install",
-    "publish": "yarn workspaces foreach yarn npm publish --access public && changeset tag",
+    "version": "changeset version && pnpm install",
+    "publish": "changeset publish",
     "watch": "jest --watch"
   },
   "devDependencies": {
     "@changesets/cli": "2.24.3",
     "@commitlint/cli": "17.1.2",
     "@commitlint/config-conventional": "17.1.0",
-    "@typescript-eslint/eslint-plugin": "^5.33.0",
-    "@typescript-eslint/parser": "^5.33.0",
     "eslint": "^8.21.0",
     "eslint-plugin-harmony": "^7.1.0",
     "husky": "^8.0.1",
@@ -50,5 +48,5 @@
     "turbo": "^1.4.3",
     "typescript": "^4.7.4"
   },
-  "packageManager": "yarn@3.2.3"
+  "packageManager": "pnpm@7.9.5"
 }
