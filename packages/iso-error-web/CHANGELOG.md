@@ -1,5 +1,13 @@
 # iso-error-web
 
+## 1.0.11
+
+### Patch Changes
+
+- 028438d: fix workspace protocol
+- Updated dependencies [028438d]
+  - iso-error@4.3.7
+
 ## 1.0.10
 
 ### Patch Changes

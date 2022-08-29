@@ -1,5 +1,13 @@
 # google-cloud-api
 
+## 3.2.1
+
+### Patch Changes
+
+- 028438d: fix workspace protocol
+- Updated dependencies [028438d]
+  - iso-error@4.3.7
+
 ## 3.2.0
 
 ### Minor Changes
