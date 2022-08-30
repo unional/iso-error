@@ -20,7 +20,7 @@ Packages:
 
 ## Contributing
 
-This repository uses [yarn] v3.
+This repository uses [pnpm].
 
 You should use [corepack] to manage your package managers.
 
@@ -28,7 +28,7 @@ We follow [conventional commits] to manage our changes,
 and we use [changesets] to manage versioning.
 
 If you are creating an PR,
-please run `yarn changeset` (or `yarn cs` for short) to describe your changes.
+please run `pnpm changeset` (or `pnpm cs` for short) to describe your changes.
 
 [`google-cloud-api`]: https://github.com/unional/iso-error/tree/main/packages/google-cloud-api
 [`iso-error-google-cloud-api`]: https://github.com/unional/iso-error/tree/main/packages/iso-error-google-cloud-api
