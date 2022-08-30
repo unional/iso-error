@@ -53,7 +53,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "iso-error": "workspace:*",
+    "iso-error": "workspace:^",
     "type-plus": "^4.11.1"
   },
   "devDependencies": {
