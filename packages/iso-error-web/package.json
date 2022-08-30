@@ -47,7 +47,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "iso-error": "workspace:*"
+    "iso-error": "workspace:^"
   },
   "devDependencies": {
     "@size-limit/file": "^8.0.0",

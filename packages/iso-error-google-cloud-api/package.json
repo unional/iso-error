@@ -47,7 +47,7 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "google-cloud-api": "workspace:*"
+    "google-cloud-api": "workspace:^"
   },
   "devDependencies": {
     "@size-limit/file": "^8.0.0",
