@@ -493,18 +493,20 @@ components:
         - code
         - message
     google.rpc.ErrorDetails:
-      anyOf:
-        - $ref: "#/components/schemas/google.rpc.RetryInfo"
-        - $ref: "#/components/schemas/google.rpc.DebugInfo"
-        - $ref: "#/components/schemas/google.rpc.QuotaFailure"
-        - $ref: "#/components/schemas/google.rpc.ErrorInfo"
-        - $ref: "#/components/schemas/google.rpc.PreconditionFailure"
-        - $ref: "#/components/schemas/google.rpc.BadRequest"
-        - $ref: "#/components/schemas/google.rpc.RequestInfo"
-        - $ref: "#/components/schemas/google.rpc.ResourceInfo"
-        - $ref: "#/components/schemas/google.rpc.Help"
-        - $ref: "#/components/schemas/google.rpc.LocalizedMessage"
-        - $ref: google-cloud-api.yml#/components/schemas/google-cloud-api.CauseInfo
+      type: array
+      items:
+        anyOf:
+          - $ref: "#/components/schemas/google.rpc.RetryInfo"
+          - $ref: "#/components/schemas/google.rpc.DebugInfo"
+          - $ref: "#/components/schemas/google.rpc.QuotaFailure"
+          - $ref: "#/components/schemas/google.rpc.ErrorInfo"
+          - $ref: "#/components/schemas/google.rpc.PreconditionFailure"
+          - $ref: "#/components/schemas/google.rpc.BadRequest"
+          - $ref: "#/components/schemas/google.rpc.RequestInfo"
+          - $ref: "#/components/schemas/google.rpc.ResourceInfo"
+          - $ref: "#/components/schemas/google.rpc.Help"
+          - $ref: "#/components/schemas/google.rpc.LocalizedMessage"
+          - $ref: google-cloud-api.yml#/components/schemas/google-cloud-api.CauseInfo
     google.rpc.RetryInfo:
       title: Retry Info
       type: object
