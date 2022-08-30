@@ -30,6 +30,7 @@ components:
           type: string
         causes:
           $ref: "#/components/schemas/google-cloud-api.CauseInfo.Causes"
+      additionalProperties: true
       required:
         - message
 paths:
