@@ -511,12 +511,18 @@ components:
       title: Retry Info
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.RetryInfo"]
         retry_delay:
           $ref: google.protobuf.yml#/components/schemas/google.protobuf.Duration
     google.rpc.DebugInfo:
       title: Debug Info
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.DebugInfo"]
         stack_entries:
           type: array
           items:
@@ -527,6 +533,9 @@ components:
       title: Quota Failure
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.QuotaFailure"]
         violations:
           type: array
           items:
@@ -543,6 +552,9 @@ components:
       title: Error Info
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.ErrorInfo"]
         reason:
           type: string
         domain:
@@ -555,6 +567,9 @@ components:
       title: Precondition Failure
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.PreconditionFailure"]
         violations:
           type: array
           items:
@@ -573,6 +588,9 @@ components:
       title: Bad Request
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.BadRequest"]
         field_violations:
           type: array
           items:
@@ -589,6 +607,9 @@ components:
       title: Request Info
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.RequestInfo"]
         request_id:
           type: string
         serving_data:
@@ -597,6 +618,9 @@ components:
       title: Resource Info
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.ResourceInfo"]
         resource_type:
           type: string
         resource_name:
@@ -609,6 +633,9 @@ components:
       title: Help
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.Help"]
         links:
           type: array
           items:
@@ -625,6 +652,9 @@ components:
       title: Localized Message
       type: object
       properties:
+        "@type":
+          type: string
+          enum: ["type.googleapis.com/google.rpc.LocalizedMessage"]
         locale:
           type: string
         message:

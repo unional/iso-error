@@ -10,8 +10,7 @@ components:
       properties:
         "@type":
           type: string
-          enum:
-            - google-cloud-api/CauseInfo
+          enum: [google-cloud-api/CauseInfo]
         causes:
           $ref: "#/components/schemas/google-cloud-api.CauseInfo.Causes"
       required:
