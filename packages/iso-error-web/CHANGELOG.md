@@ -1,5 +1,11 @@
 # iso-error-web
 
+## 1.0.13
+
+### Patch Changes
+
+- 44efe9d: Loosen workspace deps to `^workspace:*`
+
 ## 1.0.12
 
 ### Patch Changes
