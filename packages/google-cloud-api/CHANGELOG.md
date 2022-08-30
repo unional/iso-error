@@ -1,5 +1,12 @@
 # google-cloud-api
 
+## 3.2.4
+
+### Patch Changes
+
+- 601c5b8: Fix google.rpc.ErrorDetails schema
+- 2b0a93c: Remove extra response
+
 ## 3.2.3
 
 ### Patch Changes
