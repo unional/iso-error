@@ -1,6 +1,6 @@
 openapi: 3.0.0
 info:
-  title: google-cloud-api exteneded specification
+  title: google-cloud-api extended specification
   version: "1"
 components:
   schemas:
