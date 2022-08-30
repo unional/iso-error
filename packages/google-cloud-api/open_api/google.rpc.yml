@@ -3,6 +3,168 @@ info:
   title: Google RPC specification
   version: "1"
 components:
+  responses:
+    google.rpc.Cancelled:
+      description: 499 Client Closed Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.Cancelled"
+    google.rpc.Unknown:
+      description: 500 Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.Unknown"
+    google.rpc.InvalidArgument:
+      description: 400 Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.InvalidArgument"
+    google.rpc.DeadlineExceeded:
+      description: 504 Gateway Timeout
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.DeadlineExceeded"
+    google.rpc.NotFound:
+      description: 404 Not Found
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.NotFound"
+    google.rpc.AlreadyExists:
+      description: 409 Conflict
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.AlreadyExists"
+    google.rpc.PermissionDenied:
+      description: 403 Forbidden
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.PermissionDenied"
+    google.rpc.ResourceExhausted:
+      description: 429 Too Many Requests
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.ResourceExhausted"
+    google.rpc.FailedPrecondition:
+      description: 400 Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.FailedPrecondition"
+    google.rpc.Aborted:
+      description: 409 Conflict
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.Aborted"
+    google.rpc.OutOfRange:
+      description: 400 Bad Request
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.OutOfRange"
+    google.rpc.Unimplemented:
+      description: 501 Not Implemented
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.Unimplemented"
+    google.rpc.Internal:
+      description: 500 Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.Internal"
+    google.rpc.Unavailable:
+      description: 503 Service Unavailable
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.Unavailable"
+    google.rpc.DataLoss:
+      description: 500 Internal Server Error
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.DataLoss"
+    google.rpc.Unauthenticated:
+      description: 401 Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                $ref: "#/components/schemas/google.rpc.Code.Unauthenticated"
+    google.rpc.Unauthorized:
+      description: 401 Unauthorized
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    enum: [16]
+                  message:
+                    type: string
+                  details:
+                    $ref: "#/components/schemas/google.rpc.ErrorDetails"
   schemas:
     # https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
     google.rpc.Code:
@@ -25,6 +187,166 @@ components:
         - 14 # UNAVAILABLE: 503 Service Unavailable
         - 15 # DATA_LOSS: 500 Internal Server Error
         - 16 # UNAUTHENTICATED: 401 Unauthorized
+    google.rpc.Code.Cancelled:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [1]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.Unknown:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [2]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.InvalidArgument:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [3]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.DeadlineExceeded:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [4]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.NotFound:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [5]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.AlreadyExists:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [6]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.PermissionDenied:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [7]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.ResourceExhausted:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [8]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.FailedPrecondition:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [9]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.Aborted:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [10]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.OutOfRange:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [11]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.Unimplemented:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [12]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.Internal:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [13]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.Unavailable:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [14]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.DataLoss:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [15]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
+    google.rpc.Code.Unauthenticated:
+      type: object
+      properties:
+        code:
+          type: number
+          enum: [16]
+        message:
+          type: string
+        details:
+          $ref: "#/components/schemas/google.rpc.ErrorDetails"
     # https://github.com/googleapis/googleapis/blob/master/google/rpc/context/attribute_context.proto
     google.rpc.context.AttributeContext:
       type: object
@@ -334,6 +656,7 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/google.rpc.ErrorDetails"
+
 paths:
   /dummy:
     get:
