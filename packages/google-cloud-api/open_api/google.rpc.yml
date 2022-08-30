@@ -148,23 +148,6 @@ components:
             properties:
               error:
                 $ref: "#/components/schemas/google.rpc.Code.Unauthenticated"
-    google.rpc.Unauthorized:
-      description: 401 Unauthorized
-      content:
-        application/json:
-          schema:
-            type: object
-            properties:
-              error:
-                type: object
-                properties:
-                  code:
-                    type: number
-                    enum: [16]
-                  message:
-                    type: string
-                  details:
-                    $ref: "#/components/schemas/google.rpc.ErrorDetails"
   schemas:
     # https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto
     google.rpc.Code:
