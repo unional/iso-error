@@ -1,5 +1,13 @@
 # iso-error-google-cloud-api
 
+## 3.0.15
+
+### Patch Changes
+
+- 44efe9d: Loosen workspace deps to `^workspace:*`
+- Updated dependencies [44efe9d]
+  - google-cloud-api@3.2.3
+
 ## 3.0.14
 
 ### Patch Changes

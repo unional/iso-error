@@ -1,5 +1,11 @@
 # google-cloud-api
 
+## 3.2.3
+
+### Patch Changes
+
+- 44efe9d: Loosen workspace deps to `^workspace:*`
+
 ## 3.2.2
 
 ### Patch Changes
