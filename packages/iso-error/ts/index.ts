@@ -270,6 +270,10 @@ export class ModuleError extends IsoError {
   }
 }
 
+export namespace ModuleError {
+  export type Options = IsoError.Options
+}
+
 export function isAggregateError(error: Error | unknown): error is Error & { errors: Error[] } {
   return error instanceof Error && Array.isArray((error as any).errors)
 }
