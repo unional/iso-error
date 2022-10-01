@@ -21,11 +21,11 @@
     "nuke:local": "rimraf node_modules || true",
     "prepack": "pinst --disable",
     "postpack": "pinst --enable",
+    "release": "changeset publish",
     "size": "turbo run size",
     "test": "turbo run test",
     "verify": "turbo run lint build coverage depcheck size",
     "version": "changeset version && pnpm install",
-    "publish": "changeset publish",
     "watch": "jest --watch"
   },
   "devDependencies": {
