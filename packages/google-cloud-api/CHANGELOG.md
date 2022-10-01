@@ -1,5 +1,14 @@
 # google-cloud-api
 
+## 3.2.5
+
+### Patch Changes
+
+- 809b7c3: fix: add `@types` to error details
+- 59b3b72: fix: allow additional properties for `CauseInfo.Causes`
+- Updated dependencies [19ecd12]
+  - iso-error@4.4.0
+
 ## 3.2.4
 
 ### Patch Changes
