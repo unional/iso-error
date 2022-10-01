@@ -1,5 +1,13 @@
 # iso-error
 
+## 4.4.0
+
+### Minor Changes
+
+- 19ecd12: Add `ModuleError.Options` which is an alias of `IsoError.Options`.
+
+  `IsoError.Options` is used on every error you create so adding this alias so that you don't have to import both types.
+
 ## 4.3.8
 
 ### Patch Changes
