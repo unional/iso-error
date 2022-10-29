@@ -4,7 +4,7 @@ importers:
 
   .:
     specifiers:
-      '@changesets/cli': 2.25.0
+      '@changesets/cli': 2.25.1
       '@commitlint/cli': 17.1.2
       '@commitlint/config-conventional': 17.1.0
       eslint: ^8.21.0
@@ -23,7 +23,7 @@ importers:
       turbo: ^1.4.3
       typescript: ^4.7.4
     devDependencies:
-      '@changesets/cli': 2.25.0
+      '@changesets/cli': 2.25.1
       '@commitlint/cli': 17.1.2
       '@commitlint/config-conventional': 17.1.0
       eslint: 8.23.0
@@ -92,7 +92,7 @@ importers:
       rimraf: 3.0.2
       satisfier: 5.2.2
       size-limit: 8.0.1
-      ts-jest: 29.0.0_zkbnlten3vqoiybfdtguywcl7u
+      ts-jest: 29.0.0_aqclllrwqhdrf37c5pjob7flby
       typescript: 4.8.2
 
   packages/iso-error:
@@ -136,7 +136,7 @@ importers:
       npm-run-all: 4.1.5
       rimraf: 3.0.2
       size-limit: 8.0.1
-      ts-jest: 29.0.0_zkbnlten3vqoiybfdtguywcl7u
+      ts-jest: 29.0.0_aqclllrwqhdrf37c5pjob7flby
       tslib: 2.4.0
       type-plus: 4.11.1
       typescript: 4.8.2
@@ -187,7 +187,7 @@ importers:
       npm-run-all: 4.1.5
       rimraf: 3.0.2
       size-limit: 8.0.1
-      ts-jest: 29.0.0_zkbnlten3vqoiybfdtguywcl7u
+      ts-jest: 29.0.0_aqclllrwqhdrf37c5pjob7flby
       typescript: 4.8.2
 
   packages/iso-error-web:
@@ -233,7 +233,7 @@ importers:
       npm-run-all: 4.1.5
       rimraf: 3.0.2
       size-limit: 8.0.1
-      ts-jest: 29.0.0_zkbnlten3vqoiybfdtguywcl7u
+      ts-jest: 29.0.0_aqclllrwqhdrf37c5pjob7flby
       type-plus: 4.11.1
       typescript: 4.8.2
 
@@ -673,8 +673,8 @@ packages:
       '@changesets/types': 5.2.0
     dev: true
 
-  /@changesets/cli/2.25.0:
-    resolution: {integrity: sha512-Svu5KD2enurVHGEEzCRlaojrHjVYgF9srmMP9VQSy9c1TspX6C9lDPpulsSNIjYY9BuU/oiWpjBgR7RI9eQiAA==}
+  /@changesets/cli/2.25.1:
+    resolution: {integrity: sha512-e65ZJ7QKq7aERV/vAeuG0DTkkuEnTZK8eVNYqnd6wBsc9YTK+5iuuzp8aG0E80AngxeOaI4u77OIfzE9fv2T5Q==}
     hasBin: true
     dependencies:
       '@babel/runtime': 7.18.9
@@ -8252,7 +8252,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /ts-jest/29.0.0_zkbnlten3vqoiybfdtguywcl7u:
+  /ts-jest/29.0.0_aqclllrwqhdrf37c5pjob7flby:
     resolution: {integrity: sha512-OxUaigbv5Aon3OMLY9HBtwkGMs1upWE/URrmmVQFzzOcGlEPVuWzGmXUIkWGt/95Dj/T6MGuTrHHGL6kT6Yn8g==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     hasBin: true
@@ -8273,6 +8273,7 @@ packages:
       esbuild:
         optional: true
     dependencies:
+      '@babel/core': 7.18.13
       bs-logger: 0.2.6
       fast-json-stable-stringify: 2.1.0
       jest: 29.0.1_@types+node@18.7.13
