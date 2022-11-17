@@ -1,5 +1,13 @@
 # iso-error-google-cloud-api
 
+## 4.0.1
+
+### Patch Changes
+
+- 936d275: Fix CJS usage by adding cjs/package.json
+- Updated dependencies [936d275]
+  - google-cloud-api@3.2.6
+
 ## 4.0.0
 
 ### Patch Changes
