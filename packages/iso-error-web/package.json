@@ -38,7 +38,7 @@
     "nuke": "rimraf node_modules",
     "size": "size-limit",
     "test": "jest --reporters=default",
-    "ts:build:cjs": "tsc -p tsconfig.cjs.json",
+    "ts:build:cjs": "tsc -p tsconfig.cjs.json && ncp ../../config/package.cjs.json cjs/package.json",
     "ts:build:esm": "tsc -p tsconfig.esm.json",
     "ts:clean": "rimraf .tsbuildinfo",
     "ts:test": "tsc",
@@ -46,7 +46,8 @@
     "watch": "jest --watch"
   },
   "dependencies": {
-    "iso-error": "workspace:^4.4.0"
+    "iso-error": "workspace:^4.4.0",
+    "ncp": "^2.0.0"
   },
   "devDependencies": {
     "@size-limit/file": "^8.1.0",
