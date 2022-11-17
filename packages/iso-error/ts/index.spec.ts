@@ -4,7 +4,7 @@ import { IsoError, ModuleError } from './index.js'
 import { createError, MikuSickError, MyModuleError, SubError } from './testErrors.js'
 
 describe('IsoError', () => {
-  test('IsoError extends Error', () => {
+  it('is an instance of Error', () => {
     expect(new IsoError()).toBeInstanceOf(Error)
   })
   test('instanceof is working with restored prototype chain when transpiled to ES5', () => {
