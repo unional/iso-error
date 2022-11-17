@@ -1,5 +1,11 @@
 # iso-error
 
+## 4.4.1
+
+### Patch Changes
+
+- 936d275: Fix CJS usage by adding cjs/package.json
+
 ## 4.4.0
 
 ### Minor Changes

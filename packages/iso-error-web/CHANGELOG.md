@@ -1,5 +1,13 @@
 # iso-error-web
 
+## 1.0.15
+
+### Patch Changes
+
+- 936d275: Fix CJS usage by adding cjs/package.json
+- Updated dependencies [936d275]
+  - iso-error@4.4.1
+
 ## 1.0.14
 
 ### Patch Changes
