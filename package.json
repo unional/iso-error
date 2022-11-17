@@ -24,7 +24,7 @@
     "size": "turbo run size",
     "test": "turbo run test",
     "verify": "turbo run lint build coverage depcheck size",
-    "version": "changeset version && pnpm install",
+    "version": "changeset version",
     "watch": "jest --watch"
   },
   "devDependencies": {
