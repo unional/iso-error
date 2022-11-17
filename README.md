@@ -47,4 +47,3 @@ please run `pnpm changeset` (or `pnpm cs` for short) to describe your changes.
 [npm-url]: https://npmjs.org/package/iso-error
 [vscode-image]: https://img.shields.io/badge/vscode-ready-green.svg
 [vscode-url]: https://code.visualstudio.com/
-[yarn PnP]: https://yarnpkg.com/features/pnp

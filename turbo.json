@@ -47,7 +47,12 @@
         "^build"
       ]
     },
-    "openapi:lint": {
+    "openapi:lint": {},
+    "nuke": {
+      "dependsOn": [
+        "clean"
+      ],
+      "cache": false
     },
     "size": {
       "dependsOn": [

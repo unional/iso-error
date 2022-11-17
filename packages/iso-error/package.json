@@ -32,12 +32,11 @@
   ],
   "scripts": {
     "build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm ts:build:tslib",
-    "clean": "rimraf .nyc_output .tsbuildinfo coverage cjs esm || true",
+    "clean": "rimraf .nyc_output .tsbuildinfo coverage cjs esm tslib",
     "coverage": "jest --coverage",
     "depcheck": "depcheck",
     "lint": "cross-env TIMING=1 eslint --ext=js,ts .",
-    "nuke": "run-s clean nuke:local",
-    "nuke:local": "rimraf node_modules || true",
+    "nuke": "rimraf node_modules",
     "size": "size-limit",
     "test": "run-p test:node test:jsdom",
     "test:node": "jest",
@@ -45,7 +44,7 @@
     "ts:build:cjs": "tsc -p tsconfig.cjs.json",
     "ts:build:esm": "tsc -p tsconfig.esm.json",
     "ts:build:tslib": "tsc -p tsconfig.tslib.json",
-    "ts:clean": "rimraf .tsbuildinfo || true",
+    "ts:clean": "rimraf .tsbuildinfo",
     "ts:test": "tsc",
     "verify": "npm-run-all -p build lint coverage depcheck -s size",
     "watch": "jest --watch"

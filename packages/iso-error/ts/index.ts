@@ -114,7 +114,7 @@ export class IsoError extends Error {
   constructor(message?: string, options?: IsoError.Options) {
     super(message)
 
-    //restore prototype chain
+    // restore prototype chain
     const actualProto = new.target.prototype
 
     this.name = actualProto.constructor.name

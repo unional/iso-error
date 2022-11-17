@@ -4,6 +4,7 @@ module.exports = {
   ],
   projects: [
     'packages/*',
+    'packages/iso-error/jest.jsdom.mjs'
   ],
   watchPlugins: [
     'jest-watch-suspend',
