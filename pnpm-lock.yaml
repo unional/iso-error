@@ -55,12 +55,13 @@ importers:
       depcheck: ^1.4.3
       eslint: ^8.27.0
       eslint-plugin-harmony: ^7.1.0
-      iso-error: workspace:^4.4.0
+      iso-error: workspace:^
       jest: ^29.3.1
       jest-validate: ^29.3.1
       jest-watch-suspend: ^1.1.2
       jest-watch-toggle-config: ^2.0.1
       jest-watch-typeahead: ^2.2.1
+      ncp: ^2.0.0
       npm-run-all: ^4.1.5
       rimraf: ^3.0.2
       satisfier: ^5.4.2
@@ -70,6 +71,7 @@ importers:
       typescript: ^4.9.3
     dependencies:
       iso-error: link:../iso-error
+      ncp: 2.0.0
       type-plus: 4.17.0
     devDependencies:
       '@apidevtools/swagger-cli': 4.0.4_openapi-types@12.0.2
@@ -111,6 +113,7 @@ importers:
       jest-watch-suspend: ^1.1.2
       jest-watch-toggle-config: ^2.0.1
       jest-watch-typeahead: ^2.2.1
+      ncp: ^2.0.0
       npm-run-all: ^4.1.5
       rimraf: ^3.0.2
       size-limit: ^8.1.0
@@ -118,6 +121,8 @@ importers:
       tslib: ^2.4.1
       type-plus: ^4.17.0
       typescript: ^4.9.3
+    dependencies:
+      ncp: 2.0.0
     devDependencies:
       '@size-limit/preset-small-lib': 8.1.0_size-limit@8.1.0
       '@types/jest': 29.2.3
@@ -160,6 +165,7 @@ importers:
       jest-watch-suspend: ^1.1.2
       jest-watch-toggle-config: ^2.0.1
       jest-watch-typeahead: ^2.2.1
+      ncp: ^2.0.0
       npm-run-all: ^4.1.5
       rimraf: ^3.0.2
       size-limit: ^8.1.0
@@ -167,6 +173,7 @@ importers:
       typescript: ^4.9.3
     dependencies:
       google-cloud-api: link:../google-cloud-api
+      ncp: 2.0.0
     devDependencies:
       '@size-limit/file': 8.1.0_size-limit@8.1.0
       '@size-limit/webpack': 8.1.0_size-limit@8.1.0
@@ -207,6 +214,7 @@ importers:
       jest-watch-suspend: ^1.1.2
       jest-watch-toggle-config: ^2.0.1
       jest-watch-typeahead: ^2.2.1
+      ncp: ^2.0.0
       npm-run-all: ^4.1.5
       rimraf: ^3.0.2
       size-limit: ^8.1.0
@@ -215,6 +223,7 @@ importers:
       typescript: ^4.9.3
     dependencies:
       iso-error: link:../iso-error
+      ncp: 2.0.0
     devDependencies:
       '@size-limit/file': 8.1.0_size-limit@8.1.0
       '@size-limit/webpack': 8.1.0_size-limit@8.1.0
@@ -6469,6 +6478,11 @@ packages:
   /natural-compare/1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
+
+  /ncp/2.0.0:
+    resolution: {integrity: sha512-zIdGUrPRFTUELUvr3Gmc7KZ2Sw/h1PiVM0Af/oHB6zgnV1ikqSfRk+TOufi79aHYCW3NiOXmr1BP5nWbzojLaA==}
+    hasBin: true
+    dev: false
 
   /negotiator/0.6.3:
     resolution: {integrity: sha512-+EUsqGPLsM+j/zdChZjsnX51g4XrHFOIXwfnCVPGlQk/k5giakcKsuxCObBRu6DSm9opw/O6slWbJdghQM4bBg==}
