@@ -1,4 +1,4 @@
-import { assertron as a } from 'assertron'
+import { a } from 'assertron'
 import { isType, omit } from 'type-plus'
 import { IsoError, ModuleError } from './index.js'
 import { createError, MikuSickError, MyModuleError, SubError } from './testErrors.js'
@@ -458,7 +458,7 @@ describe('IsoError.addPlugin()', () => {
     IsoError.addPlugin({
       toSerializable(err) {
         if (err.name === 'WithSecret') {
-          return omit(err as any, 'secret') as IsoError.Serializable
+          return omit(err as any, 'secret')
         }
       },
       fromSerializable(obj) {
