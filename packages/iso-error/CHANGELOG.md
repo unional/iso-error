@@ -1,5 +1,19 @@
 # iso-error
 
+## 5.0.0
+
+### Major Changes
+
+- 2c2798f: `CJS` code upgrade to `ES2015` to support private fields.
+- 74adb0d: Remove `IsoError.Serializable`.
+
+  While the concept is still there (`SerializableConverter`),
+  the type is not needed because the value across physically boundary is untyped.
+
+### Minor Changes
+
+- 2c2798f: Add `SerializableConverter`.
+
 ## 4.4.1
 
 ### Patch Changes
