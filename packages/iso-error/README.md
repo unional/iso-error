@@ -112,6 +112,8 @@ fetch('some/route').then(async response => {
 })
 ```
 
+The static method under `IsoError` works with plugins.
+
 ### Stringify and Parse
 
 `IsoError.stringify()` and `IsoError.parse()` are alias to `IsoError.serialize()` and `IsoError.deserialize()` respectively.
@@ -159,6 +161,32 @@ IsoError.trace(err)
 // output:
 // IsoError: msg-1
 //   Error: msg-2
+```
+
+## SerializableConverter
+
+`SerializableConverter` converts Error to and from `Serializable`.
+
+It is used for `serialize()` and `deserialize()`.
+
+You can use this to provide a different serialization mechanism.
+
+Here is an example of using `@ungap/structured-clone`:
+
+```ts
+import { parse, stringify } from '@ungap/structured-clone/json'
+import { SerializableConverter } from 'iso-error'
+
+const converter = new SerializableConverter()
+
+function serialize(err: Error) {
+  return stringify(converter.toSerializable(err))
+}
+
+function deserialize(text: string) {
+  const value = parse(text)
+  return converter.fromSerializable(value, { ssf: deserialize })
+}
 ```
 
 ## Limitation

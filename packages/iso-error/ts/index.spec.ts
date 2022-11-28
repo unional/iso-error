@@ -458,7 +458,7 @@ describe('IsoError.addPlugin()', () => {
     IsoError.addPlugin({
       toSerializable(err) {
         if (err.name === 'WithSecret') {
-          return omit(err as Record<string, any>, 'secret')
+          return omit(err as any, 'secret') as IsoError.Serializable
         }
       },
       fromSerializable(obj) {
