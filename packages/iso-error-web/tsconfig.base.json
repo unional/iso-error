@@ -8,8 +8,8 @@
       "ES2015",
       "ESNext.Promise"
     ],
-    "module": "commonjs",
-    "moduleResolution": "node",
+    "module": "CommonJS",
+    "moduleResolution": "Node",
     "newLine": "LF",
     "noUnusedLocals": true,
     "noUnusedParameters": false,
@@ -19,7 +19,7 @@
     "sourceMap": true,
     "strict": true,
     "stripInternal": true,
-    "target": "es5",
+    "target": "ES2015",
     "tsBuildInfoFile": ".tsbuildinfo",
     "useDefineForClassFields": true
   },
