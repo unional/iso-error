@@ -1,5 +1,18 @@
 # google-cloud-api
 
+## 4.0.0
+
+### Major Changes
+
+- 2c2798f: `CJS` code upgrade to `ES2015` to support private fields.
+
+### Patch Changes
+
+- Updated dependencies [2c2798f]
+- Updated dependencies [74adb0d]
+- Updated dependencies [2c2798f]
+  - iso-error@5.0.0
+
 ## 3.2.6
 
 ### Patch Changes
