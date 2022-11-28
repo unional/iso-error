@@ -417,9 +417,7 @@ describe('toErrorStatus', () => {
         {
           '@type': 'type.googleapis.com/google.rpc.DebugInfo',
           stack_entries: has(
-            /^Unauthenticated.IsoError/,
-            /^new ModuleError/,
-            /^new GoogleCloudApiError/
+            /errors.spec.ts/
           ),
           detail: 'Invalid authentication credentials.'
         }

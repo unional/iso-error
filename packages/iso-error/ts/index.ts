@@ -36,7 +36,7 @@ export type IsoErrorPlugin = {
   /**
    * Serialize `Error` to `Serializable`
    */
-  toSerializable(err: Error): IsoError.Serializable | undefined,
+  toSerializable(err: Error): Record<string | number, any> | undefined,
 }
 
 export class SerializableConverter {
@@ -103,13 +103,13 @@ export class SerializableConverter {
    * Serialize `Error` to `Serializable`
    */
   toSerializable(err: Error) {
-    return this.#plugins.reduce<IsoError.Serializable | undefined>(
+    return this.#plugins.reduce<Record<string | number, any> | undefined>(
       (p, s) => p || s.toSerializable(err),
       undefined
     ) || this.#toSerializable(err)
   }
 
-  #toSerializable(err: Error & { cause?: Error }): IsoError.Serializable {
+  #toSerializable(err: Error & { cause?: Error }): Record<string | number, any> {
     if (isAggregateError(err)) {
       return {
         ...err, name: err.constructor.name, message: err.message,
@@ -159,7 +159,7 @@ export class IsoError extends Error {
    * @param text Json representation of a IsoError
    */
   static parse<E extends IsoError.ErrorWithCause = IsoError.ErrorWithCause>(text: string): E {
-    const json = JSON.parse(text) as IsoError.Serializable
+    const json = JSON.parse(text) as Record<string | number, any>
     return this.converter.fromSerializable(json, { ssf: IsoError.parse })
   }
 
@@ -170,13 +170,13 @@ export class IsoError extends Error {
   static deserialize<
     E extends IsoError.ErrorWithCause = IsoError.ErrorWithCause
   >(text: string): E {
-    const json = JSON.parse(text) as IsoError.Serializable
+    const json = JSON.parse(text) as Record<string | number, any>
     return this.converter.fromSerializable(json, { ssf: IsoError.deserialize })
   }
 
   static fromSerializable<
     E extends IsoError.ErrorWithCause = IsoError.ErrorWithCause
-  >(json: IsoError.Serializable): E {
+  >(json: Record<string | number, any>): E {
     return this.converter.fromSerializable(json, { ssf: IsoError.fromSerializable })
   }
   /**
@@ -269,21 +269,6 @@ export namespace IsoError {
   }
 
   export type ErrorWithCause = Error & Options
-
-  /**
-   * Data structure that is used to pass Error accross physical boundary.
-   *
-   * This is the logical structure,
-   * not necessary the physical representation.
-   *
-   * For example, the physical representation can be JSON, Flatted,
-   * or blob.
-   */
-  export type Serializable = {
-    name: string,
-    message?: string,
-    cause?: Serializable
-  } & Record<string | number, any>
 }
 
 /**

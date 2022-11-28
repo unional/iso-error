@@ -41,6 +41,7 @@
     "test": "run-p test:node test:jsdom",
     "test:node": "jest",
     "test:jsdom": "jest -c jest.config.jsdom.cjs",
+    "test:watch": "jest --watch",
     "ts:build:cjs": "tsc -p tsconfig.cjs.json && ncp ../../config/package.cjs.json cjs/package.json",
     "ts:build:esm": "tsc -p tsconfig.esm.json",
     "ts:build:tslib": "tsc -p tsconfig.tslib.json && ncp ../../config/package.cjs.json tslib/package.json",
