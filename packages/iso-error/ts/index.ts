@@ -62,9 +62,10 @@ export class SerializableConverter {
     if (json.name === 'AggregateError') {
       const { message, errors, ...rest } = json as unknown as { message: string, errors: any[] }
       // @ts-ignore
+      // istanbul ignore next
       if (global.AggregateError) {
         return Object.assign(
-          new AggregateError(errors as unknown as any, message),
+          new AggregateError(errors as any, message),
           rest
         ) as unknown as E
       }
@@ -217,7 +218,7 @@ export class IsoError extends Error {
   static #toIsoError(err: Error) {
     if (err instanceof IsoError) return err
 
-    // When the error is an internal error from deserialzation,
+    // When the error is an internal error from deserialization,
     // the err.constructor.name is object
     return Object.assign(
       err,
