@@ -317,6 +317,13 @@ describe('IsoError.deserialize()', () => {
     const actual = IsoError.deserialize(IsoError.serialize(createError()))
     expect(actual.stack).toMatch(/Error:.*\n.*index.spec.ts/)
   })
+  it('keeps cause Error name', () => {
+    const e = new Error();
+    (e as Record<string, any>).cause = new SubError('sub')
+    const actual = IsoError.deserialize(IsoError.serialize(e))
+    expect(actual.cause).toBeInstanceOf(Error)
+    expect(actual.cause?.name).toBe('SubError')
+  })
 })
 
 describe('serialization', () => {

@@ -214,15 +214,13 @@ export class IsoError extends Error {
     this.converter.addPlugin(plugin)
   }
 
-  // NOTE: In this function I have to to Object.assign to keep the err instance and its stack trace.
   static #toIsoError(err: Error) {
-    if (err instanceof IsoError) return err
-
     // When the error is an internal error from deserialization,
-    // the err.constructor.name is object
+    // the err.constructor.name is object.
+    // I have to to Object.assign to keep the err instance and its stack trace.
     return Object.assign(
       err,
-      { name: err.constructor.name !== 'Object' ? err.constructor.name : err.name }
+      { name: err.name ?? err.constructor.name }
     )
   }
 
