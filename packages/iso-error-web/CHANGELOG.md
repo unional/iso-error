@@ -1,5 +1,12 @@
 # iso-error-web
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies [ca454a5]
+  - iso-error@5.0.1
+
 ## 2.0.0
 
 ### Major Changes

@@ -1,5 +1,11 @@
 # iso-error-google-cloud-api
 
+## 5.0.1
+
+### Patch Changes
+
+- google-cloud-api@4.0.1
+
 ## 5.0.0
 
 ### Major Changes
