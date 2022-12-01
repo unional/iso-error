@@ -1,5 +1,11 @@
 # iso-error-google-cloud-api
 
+## 5.0.2
+
+### Patch Changes
+
+- 29bd0ce: rename `plugin`
+
 ## 5.0.1
 
 ### Patch Changes
