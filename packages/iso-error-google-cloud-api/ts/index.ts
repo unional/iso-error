@@ -1,7 +1,7 @@
 import { rpc, GoogleCloudApiError } from 'google-cloud-api'
 import { IsoErrorPlugin } from 'iso-error'
 
-const plugin: IsoErrorPlugin = {
+const googleCloudApiPlugin: IsoErrorPlugin = {
   toSerializable(err) {
     if (!isGoogleCloudApiError(err)) return undefined
 
@@ -18,4 +18,4 @@ function isGoogleCloudApiError(err: any): err is GoogleCloudApiError {
   return err instanceof GoogleCloudApiError
 }
 
-export default plugin
+export default googleCloudApiPlugin
