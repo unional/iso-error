@@ -1,5 +1,6 @@
+import { IsoError } from 'iso-error'
 import { AnyConstructor } from 'type-plus'
-import { BadGateway, BadRequest, Conflict, createHttpError, Forbidden, GatewayTimeout, Gone, HttpStatus, InternalServerError, MethodNotAllowed, NetworkAuthenticationRequired, NotFound, NotImplemented, PayloadTooLarge, PermanentRedirect, RequestTimeout, ServiceUnavailable, Unauthorized, UnsupportedMediaType } from './index.js'
+import webPlugin, { BadGateway, BadRequest, Conflict, createHttpError, Forbidden, GatewayTimeout, Gone, HttpStatus, InternalServerError, MethodNotAllowed, NetworkAuthenticationRequired, NotFound, NotImplemented, PayloadTooLarge, PermanentRedirect, RequestTimeout, ServiceUnavailable, Unauthorized, UnsupportedMediaType } from './index.js'
 
 describe('HttpStatus', () => {
   it('defines Http status code', () => {
@@ -54,3 +55,36 @@ function assertCreateHttpError(ErrorClass: AnyConstructor, status: number, messa
   expect(a.status).toBe(status)
   expect(a.message)
 }
+
+describe(`webPlugin`, () => {
+  it('restores instanceOf check', () => {
+    IsoError.addPlugin(webPlugin)
+
+    assertDeserializeRestoresInstanceOf(PermanentRedirect)
+    assertDeserializeRestoresInstanceOf(BadRequest)
+    assertDeserializeRestoresInstanceOf(Unauthorized)
+    assertDeserializeRestoresInstanceOf(Forbidden)
+    assertDeserializeRestoresInstanceOf(NotFound)
+    assertDeserializeRestoresInstanceOf(MethodNotAllowed)
+    assertDeserializeRestoresInstanceOf(RequestTimeout)
+    assertDeserializeRestoresInstanceOf(Conflict)
+    assertDeserializeRestoresInstanceOf(Gone)
+    assertDeserializeRestoresInstanceOf(PayloadTooLarge)
+    assertDeserializeRestoresInstanceOf(UnsupportedMediaType)
+    assertDeserializeRestoresInstanceOf(InternalServerError)
+    assertDeserializeRestoresInstanceOf(NotImplemented)
+    assertDeserializeRestoresInstanceOf(BadGateway)
+    assertDeserializeRestoresInstanceOf(ServiceUnavailable)
+    assertDeserializeRestoresInstanceOf(GatewayTimeout)
+    assertDeserializeRestoresInstanceOf(NetworkAuthenticationRequired)
+
+    // Base error still works
+    assertDeserializeRestoresInstanceOf(IsoError)
+  })
+
+  function assertDeserializeRestoresInstanceOf(ErrorClass: new (...args: any[]) => Error) {
+    const err = IsoError.deserialize(IsoError.serialize(new ErrorClass('msg')))
+    expect(err).toBeInstanceOf(ErrorClass)
+    expect(err.message).toEqual('msg')
+  }
+})

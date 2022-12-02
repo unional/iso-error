@@ -1,4 +1,4 @@
-import { IsoError, ModuleError } from 'iso-error'
+import { IsoError, IsoErrorPlugin, ModuleError } from 'iso-error'
 
 export class HttpError extends ModuleError {
   constructor(public status: number, message: string, options?: IsoError.Options) {
@@ -150,3 +150,39 @@ export function createHttpError(status: number, message: string, options?: IsoEr
     default: return new HttpError(status, message, options)
   }
 }
+
+const webPlugin: IsoErrorPlugin = {
+  toSerializable(err) {
+    if (err instanceof HttpError) return {
+      name: err.name,
+      module: err.module,
+      status: err.status,
+      message: err.message
+    }
+    return undefined
+  },
+  fromSerializable(obj) {
+    switch (obj.name) {
+      case 'PermanentRedirect': return new PermanentRedirect(obj.message)
+      case 'BadRequest': return new BadRequest(obj.message)
+      case 'Unauthorized': return new Unauthorized(obj.message)
+      case 'Forbidden': return new Forbidden(obj.message)
+      case 'NotFound': return new NotFound(obj.message)
+      case 'MethodNotAllowed': return new MethodNotAllowed(obj.message)
+      case 'RequestTimeout': return new RequestTimeout(obj.message)
+      case 'Conflict': return new Conflict(obj.message)
+      case 'Gone': return new Gone(obj.message)
+      case 'PayloadTooLarge': return new PayloadTooLarge(obj.message)
+      case 'UnsupportedMediaType': return new UnsupportedMediaType(obj.message)
+      case 'InternalServerError': return new InternalServerError(obj.message)
+      case 'NotImplemented': return new NotImplemented(obj.message)
+      case 'BadGateway': return new BadGateway(obj.message)
+      case 'ServiceUnavailable': return new ServiceUnavailable(obj.message)
+      case 'GatewayTimeout': return new GatewayTimeout(obj.message)
+      case 'NetworkAuthenticationRequired': return new NetworkAuthenticationRequired(obj.message)
+      default: return undefined
+    }
+  }
+}
+
+export default webPlugin
