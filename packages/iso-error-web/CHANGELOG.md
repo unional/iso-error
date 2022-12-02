@@ -1,5 +1,13 @@
 # iso-error-web
 
+## 2.1.0
+
+### Minor Changes
+
+- 40f0213: Add `webPlugin`.
+  Using the `webPlugin`,
+  We can deserialize the err supporting `instanceOf`
+
 ## 2.0.1
 
 ### Patch Changes
