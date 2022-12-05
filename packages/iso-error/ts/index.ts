@@ -128,8 +128,8 @@ export class SerializableConverter {
 }
 const getCircularReplacer = () => {
   const seen = new WeakSet()
-  return (_: string, value: any) => {
-    if (typeof value === "object" && value !== null) {
+  return (_: string, value: any): any => {
+    if (typeof value === 'object' && value !== null) {
       if (seen.has(value)) {
         return
       }
