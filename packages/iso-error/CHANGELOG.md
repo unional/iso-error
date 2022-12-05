@@ -1,5 +1,11 @@
 # iso-error
 
+## 5.0.2
+
+### Patch Changes
+
+- 84fc334: Skip field when it is circular
+
 ## 5.0.1
 
 ### Patch Changes
