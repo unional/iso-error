@@ -126,6 +126,18 @@ export class SerializableConverter {
     return err
   }
 }
+const getCircularReplacer = () => {
+  const seen = new WeakSet()
+  return (_: string, value: any) => {
+    if (typeof value === "object" && value !== null) {
+      if (seen.has(value)) {
+        return
+      }
+      seen.add(value)
+    }
+    return value
+  }
+}
 
 /**
  * Isomorphic Error that works across physical boundary.
@@ -148,7 +160,7 @@ export class IsoError extends Error {
   }
 
   static serialize(err: Error) {
-    return JSON.stringify(this.toSerializable(err))
+    return JSON.stringify(this.toSerializable(err), getCircularReplacer())
   }
 
   static toSerializable(err: Error) {

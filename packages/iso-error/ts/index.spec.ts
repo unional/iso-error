@@ -247,6 +247,17 @@ describe('IsoError.serialize()', () => {
       other: 'abc'
     })
   })
+  it('ignore circular reference', () => {
+    class CirError extends Error {
+      error: CirError
+      constructor() {
+        super()
+        this.error = this
+      }
+    }
+    const r = IsoError.serialize(new CirError())
+    expect(r).toEqual('{"error":{},"name":"CirError","message":""}')
+  })
   // @ts-ignore
   if (global.AggregateError) {
     test('work with AggregateError', () => {
