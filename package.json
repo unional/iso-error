@@ -11,7 +11,7 @@
     "postinstall": "husky install",
     "iso": "pnpm --filter=iso-error",
     "iso-gca": "pnpm --filter=iso-error-google-cloud-api",
-    "iso-web": "pnpm --filter=iso-error-web",
+    "web": "pnpm --filter=iso-error-web",
     "lint": "turbo run lint",
     "openapi:lint": "turbo run openapi:lint",
     "nuke": "turbo run nuke && rimraf node_modules",
