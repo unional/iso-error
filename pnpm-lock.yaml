@@ -67,11 +67,11 @@ importers:
       satisfier: ^5.4.2
       size-limit: ^8.1.0
       ts-jest: ^29.0.3
-      type-plus: ^4.17.0
+      type-plus: ^5.0.0
       typescript: ^4.9.3
     dependencies:
       iso-error: link:../iso-error
-      type-plus: 4.17.0
+      type-plus: 5.0.0
     devDependencies:
       '@apidevtools/swagger-cli': 4.0.4_openapi-types@12.0.2
       '@size-limit/file': 8.1.0_size-limit@8.1.0
@@ -119,7 +119,7 @@ importers:
       size-limit: ^8.1.0
       ts-jest: ^29.0.3
       tslib: ^2.4.1
-      type-plus: ^4.17.0
+      type-plus: ^5.0.0
       typescript: ^4.9.3
     devDependencies:
       '@size-limit/preset-small-lib': 8.1.0_size-limit@8.1.0
@@ -142,7 +142,7 @@ importers:
       size-limit: 8.1.0
       ts-jest: 29.0.3_6crhf7ajeizammv76u753sn6i4
       tslib: 2.4.1
-      type-plus: 4.17.0
+      type-plus: 5.0.0
       typescript: 4.9.3
 
   packages/iso-error-google-cloud-api:
@@ -218,7 +218,7 @@ importers:
       rimraf: ^3.0.2
       size-limit: ^8.1.0
       ts-jest: ^29.0.3
-      type-plus: ^4.17.0
+      type-plus: ^5.0.0
       typescript: ^4.9.3
     dependencies:
       iso-error: link:../iso-error
@@ -242,7 +242,7 @@ importers:
       rimraf: 3.0.2
       size-limit: 8.1.0
       ts-jest: 29.0.3_6crhf7ajeizammv76u753sn6i4
-      type-plus: 4.17.0
+      type-plus: 5.0.0
       typescript: 4.9.3
 
 packages:
@@ -8122,6 +8122,14 @@ packages:
       acorn: 8.8.1
       is-buffer: 2.0.5
       unpartial: 1.0.4
+    dev: true
+
+  /tersify/3.11.1:
+    resolution: {integrity: sha512-W/Kv1z+cgDRsI10p9CyCZJ+gopPUVOz1/h7OPntr6D52iIHQTbsg40MBUoaG82q8IgD/GKoWhoujg/rOxQW7SA==}
+    dependencies:
+      acorn: 8.8.1
+      is-buffer: 2.0.5
+      unpartial: 1.0.4
 
   /test-exclude/6.0.0:
     resolution: {integrity: sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w==}
@@ -8455,7 +8463,14 @@ packages:
   /type-plus/4.17.0:
     resolution: {integrity: sha512-1KiW6kqhaqHSRou4OIiPl0YocrgA/5evOSj+sHUZ20FyjVuSs/eKEtdOALKd4UD4LBviWW38SRWGeYJzX5+zMA==}
     dependencies:
-      tersify: 3.10.5
+      tersify: 3.11.1
+      unpartial: 1.0.4
+    dev: true
+
+  /type-plus/5.0.0:
+    resolution: {integrity: sha512-nKp5pOQDldmR9BdEjLplLFwiXTVhOK2kReBSgVJ65URDLXCqENYzVDCONaExADIIc1CAGzvzTkB0TUgMAWR2qQ==}
+    dependencies:
+      tersify: 3.11.1
       unpartial: 1.0.4
 
   /typedarray-to-buffer/3.1.5:
