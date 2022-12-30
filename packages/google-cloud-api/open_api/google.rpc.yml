@@ -468,30 +468,6 @@ components:
           type: string
         location:
           type: string
-    google.rpc.error:
-      title: Google Cloud API Error
-      type: object
-      properties:
-        code:
-          type: number
-        details:
-          $ref: "#/components/schemas/google.rpc.ErrorDetails"
-    google.rpc.cancelled-error:
-      title: Cancelled Error
-      type: object
-      properties:
-        code:
-          type: number
-          enum:
-            - 499
-        message:
-          type: string
-          default: Request cancelled by the client.
-        details:
-          $ref: "#/components/schemas/google.rpc.ErrorDetails"
-      required:
-        - code
-        - message
     google.rpc.ErrorDetails:
       type: array
       items:
@@ -671,7 +647,6 @@ components:
           type: array
           items:
             $ref: "#/components/schemas/google.rpc.ErrorDetails"
-
 paths:
   /dummy:
     get:
