@@ -1,5 +1,17 @@
 # iso-error
 
+## 6.0.0
+
+### Major Changes
+
+- 8f6e39e: Adjust `ErrorWithCause` to match `ES2022` definition.
+
+  standard type `ES2022` adds `cause?: unknown` to the `Error` type.
+
+  It is not compatiable with the more restricted `cause?: Error`.
+
+  So we need to adjust `ErrorWithCause` to match `ES2022` definition.
+
 ## 5.0.2
 
 ### Patch Changes
