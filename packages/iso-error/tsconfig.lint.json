@@ -2,9 +2,5 @@
   "extends": "./tsconfig.cjs.json",
   "compilerOptions": {
     "noEmit": true
-  },
-  "include": [
-    "ts",
-    "typings"
-  ]
+  }
 }

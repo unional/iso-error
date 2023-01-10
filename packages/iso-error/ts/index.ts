@@ -279,7 +279,7 @@ export namespace IsoError {
     ssf?: (...args: any) => any
   }
 
-  export type ErrorWithCause = Error & Options
+  export type ErrorWithCause = Error & { cause?: unknown }
 }
 
 /**
