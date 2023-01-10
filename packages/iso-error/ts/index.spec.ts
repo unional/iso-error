@@ -5,11 +5,11 @@ import { createError, MikuSickError, MyModuleError, SubError } from './testError
 
 describe('IsoError', () => {
   it('is an instance of Error', () => {
-    expect(new IsoError()).toBeInstanceOf(Error)
+    a.isInstanceof(new IsoError(), Error)
   })
   test('instanceof is working with restored prototype chain when transpiled to ES5', () => {
     // `jest` is using `ts-jest` with `tsconfig.json` which transpile to ES5
-    expect(new IsoError()).toBeInstanceOf(IsoError)
+    a.isInstanceof(new IsoError(), IsoError)
   })
   test('e.name is the name of the Error', () => {
     expect(new IsoError().name).toBe('IsoError')
@@ -315,13 +315,13 @@ describe('IsoError.deserialize()', () => {
     const e = new Error();
     (e as Record<string, any>).cause = new Error('sub')
     const actual = IsoError.deserialize(IsoError.serialize(e))
-    expect(actual.cause).toBeInstanceOf(Error)
+    a.isInstanceof(actual.cause, Error)
     expect(actual.cause?.message).toBe('sub')
   })
   test('restore cause', () => {
     const e = new IsoError('iso', { cause: new Error('a') })
     const actual = IsoError.deserialize(IsoError.serialize(e))
-    expect(actual.cause).toBeInstanceOf(Error)
+    a.isInstanceof(actual.cause, Error)
     expect(actual.cause?.message).toBe('a')
   })
   test('stack trace starts at call site', () => {
@@ -332,7 +332,7 @@ describe('IsoError.deserialize()', () => {
     const e = new Error();
     (e as Record<string, any>).cause = new SubError('sub')
     const actual = IsoError.deserialize(IsoError.serialize(e))
-    expect(actual.cause).toBeInstanceOf(Error)
+    a.isInstanceof(actual.cause, Error)
     expect(actual.cause?.name).toBe('SubError')
   })
 })
@@ -343,7 +343,7 @@ describe('serialization', () => {
 
     const actual = IsoError.parse(IsoError.stringify(e))
 
-    expect(actual).toBeInstanceOf(IsoError)
+    a.isInstanceof(actual, IsoError)
     expect(actual.name).toBe('IsoError')
     expect(actual.message).toBe('roundtrip')
   })
@@ -351,7 +351,8 @@ describe('serialization', () => {
   test('work with custom error, but only pass instanceof IsoError', () => {
     const e = new SubError('sub')
     const actual = IsoError.parse(IsoError.stringify(e))
-    expect(actual).toBeInstanceOf(IsoError)
+
+    a.isInstanceof(actual, IsoError)
     expect(actual.name).toBe('SubError')
     expect(actual.message).toBe('sub')
   })
@@ -398,7 +399,7 @@ describe('serialization', () => {
       const e = new AggregateError([new Error('a'), new Error('b')], 'abc')
       const actual = IsoError.deserialize(IsoError.serialize(e))
 
-      expect(actual).toBeInstanceOf(AggregateError)
+      a.isInstanceof(actual, AggregateError)
     })
   }
 })
@@ -415,7 +416,7 @@ describe('IsoError.fromSerializable()', () => {
   test('convert serializable json object back to an error', () => {
     const actual = IsoError.fromSerializable({ name: 'IsoError', message: 'some message' })
 
-    expect(actual).toBeInstanceOf(IsoError)
+    a.isInstanceof(actual, IsoError)
     expect(actual.message).toEqual('some message')
   })
 })
