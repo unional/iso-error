@@ -1,5 +1,12 @@
 # iso-error-web
 
+## 2.2.1
+
+### Patch Changes
+
+- Updated dependencies [8f6e39e]
+  - iso-error@6.0.0
+
 ## 2.2.0
 
 ### Minor Changes
