@@ -1,6 +1,12 @@
 import { rpc, GoogleCloudApiError } from 'google-cloud-api'
 import { IsoErrorPlugin } from 'iso-error'
 
+/**
+ * re-exporting `google-cloud-api` so that consumer will always use the matching version.
+ * If not, the `instanceof` check might fail.
+ */
+export * from 'google-cloud-api'
+
 const googleCloudApiPlugin: IsoErrorPlugin = {
   toSerializable(err) {
     if (!isGoogleCloudApiError(err)) return undefined
