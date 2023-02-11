@@ -4,28 +4,27 @@
  * @see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf
  */
 
-
 /**
  * @see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#google.protobuf.Duration
  */
 export interface Duration {
-  seconds: number,
-  nanos: number,
+	seconds: number
+	nanos: number
 }
 
 /**
  * @see https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/timestamp.proto
  */
 export interface Timestamp {
-  seconds: number,
-  nanos: number
+	seconds: number
+	nanos: number
 }
 
 /**
  * @see https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto
  */
 export interface Struct {
-  fields: Record<string, string>
+	fields: Record<string, string>
 }
 
 /**
@@ -37,7 +36,7 @@ export type Value = NullValue | number | string | boolean | Struct | ListValue
  * @see https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto
  */
 export enum NullValue {
-  NULL_VALUE = 0
+	NULL_VALUE = 0
 }
 
 /**

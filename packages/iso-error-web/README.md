@@ -22,6 +22,21 @@ import { createHttpError, HttpStatus } from 'iso-error-web'
 const error = createHttpError(HttpStatus.BadRequest, 'message', optionalIsoErrorOption)
 ```
 
+It also provides a plugin for serialization:
+
+```ts
+import { IsoError } from 'iso-error'
+import { webPlugin } from 'iso-error-web'
+
+IsoError.addPlugin(webPlugin)
+
+try {
+  doSomeWorkThatThrows()
+} catch (e) {
+  response.emit(IsoError.serialize(e))
+}
+```
+
 [`iso-error`]: https://github.com/unional/iso-error/tree/main/packages/iso-error
 [codecov-image]: https://codecov.io/gh/unional/iso-error-web/branch/main/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/unional/iso-error-web

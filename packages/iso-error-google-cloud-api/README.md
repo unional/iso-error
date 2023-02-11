@@ -20,9 +20,9 @@ yarn add iso-error-google-cloud-api
 ```ts
 // server
 import { IsoError } from 'iso-error'
-import plugin from 'iso-error-google-cloud-api'
+import { googleCloudApiPlugin } from 'iso-error-google-cloud-api'
 
-IsoError.addPlugin(plugin)
+IsoError.addPlugin(googleCloudApiPlugin)
 
 try {
   doSomeWorkThatThrows()
@@ -36,9 +36,9 @@ catch (e) {
 ```ts
 // client
 import { IsoError } from 'iso-error'
-import plugin from 'iso-error-google-cloud-api'
+import { googleCloudApiPlugin } from 'iso-error-google-cloud-api'
 
-IsoError.addPlugin(plugin)
+IsoError.addPlugin(googleCloudApiPlugin)
 
 try {
   fetch('<serverUrl>').then(response => {

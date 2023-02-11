@@ -1,12 +1,10 @@
 {
-  "extends": "./tsconfig.base.json",
-  "compilerOptions": {
-    "module": "NodeNext",
-    "moduleResolution": "NodeNext",
-    "outDir": "esm",
-    "target": "ES2020"
-  },
-  "exclude": [
-    "ts/**/*.spec.ts"
-  ]
+	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"module": "NodeNext",
+		"moduleResolution": "NodeNext",
+		"outDir": "esm",
+		"target": "ES2020"
+	},
+	"exclude": ["ts/**/*.spec.ts"]
 }

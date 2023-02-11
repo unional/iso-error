@@ -1,24 +1,18 @@
 {
-  "compilerOptions": {
-    "declaration": true,
-    "declarationMap": true,
-    "esModuleInterop": true,
-    "lib": [
-      "ES2015",
-      "ES2021.Promise"
-    ],
-    "newLine": "LF",
-    "noUnusedLocals": true,
-    "noUnusedParameters": false,
-    "removeComments": false,
-    "rootDir": "ts",
-    "sourceMap": true,
-    "strict": true,
-    "stripInternal": true,
-    "useDefineForClassFields": true
-  },
-  "include": [
-    "ts",
-    "types"
-  ]
+	"compilerOptions": {
+		"declaration": true,
+		"declarationMap": true,
+		"esModuleInterop": true,
+		"lib": ["ES2015", "ES2021.Promise"],
+		"newLine": "LF",
+		"noUnusedLocals": true,
+		"noUnusedParameters": false,
+		"removeComments": false,
+		"rootDir": "ts",
+		"sourceMap": true,
+		"strict": true,
+		"stripInternal": true,
+		"useDefineForClassFields": true
+	},
+	"include": ["ts", "types"]
 }

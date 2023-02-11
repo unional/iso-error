@@ -95,7 +95,7 @@ route('some/route', (request, response) => {
   try {
     doSomething()
   }
-  catch (e) {
+   catch (e) {
     response.status(400)
     const obj = IsoError.toSerializable(e)
     response.body(JSON.stringify(obj))

@@ -1,55 +1,55 @@
 {
-  "cSpell.words": [
-    "baka",
-    "bfnrt",
-    "decycle",
-    "derez",
-    "deserialization",
-    "deserializers",
-    "deserialzation",
-    "enumvalue",
-    "etag",
-    "Goessner's",
-    "instanceof",
-    "jsdom",
-    "libm",
-    "macos",
-    "Miku",
-    "mocktomata",
-    "nanos",
-    "occurance",
-    "oneof",
-    "oneofs",
-    "pnpm",
-    "Proto",
-    "protobuf",
-    "serializers",
-    "sfixed",
-    "sint",
-    "snyk",
-    "Struct",
-    "tsbuildinfo"
-  ],
-  "eslint.enable": true,
-  "eslint.nodePath": ".yarn/sdks",
-  "grammarly.overrides": [
-    {
-      "config": {
-        "audience": "knowledgeable",
-        "dialect": "american",
-        "domain": "general",
-        "emotions": [],
-        "goals": []
-      },
-      "files": [
-        "**/README.md"
-      ]
-    }
-  ],
-  "search.exclude": {
-    "**/.pnp.*": true,
-    "**/.yarn": true
-  },
-  "typescript.enablePromptUseWorkspaceTsdk": true,
-  "typescript.tsdk": "node_modules/typescript/lib"
+	"cSpell.words": [
+		"baka",
+		"bfnrt",
+		"decycle",
+		"derez",
+		"deserialization",
+		"deserializers",
+		"deserialzation",
+		"enumvalue",
+		"etag",
+		"Goessner's",
+		"instanceof",
+		"jsdom",
+		"libm",
+		"macos",
+		"Miku",
+		"mocktomata",
+		"nanos",
+		"occurance",
+		"oneof",
+		"oneofs",
+		"pinst",
+		"pnpm",
+		"Proto",
+		"protobuf",
+		"serializers",
+		"sfixed",
+		"sint",
+		"snyk",
+		"Struct",
+		"tsbuildinfo",
+		"ungap"
+	],
+	"eslint.enable": true,
+	"eslint.nodePath": ".yarn/sdks",
+	"grammarly.overrides": [
+		{
+			"config": {
+				"audience": "knowledgeable",
+				"dialect": "american",
+				"domain": "general",
+				"emotions": [],
+				"goals": []
+			},
+			"files": ["**/README.md"]
+		}
+	],
+	"search.exclude": {
+		"**/.pnp.*": true,
+		"**/.yarn": true
+	},
+	"typescript.enablePromptUseWorkspaceTsdk": true,
+	"typescript.tsdk": "node_modules/typescript/lib"
 }
