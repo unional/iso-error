@@ -1,5 +1,11 @@
 # iso-error-google-cloud-api
 
+## 5.2.0
+
+### Minor Changes
+
+- cde80f1: Export plugin as named export.
+
 ## 5.1.0
 
 ### Minor Changes
