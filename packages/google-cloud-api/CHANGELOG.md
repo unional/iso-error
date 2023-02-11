@@ -1,5 +1,11 @@
 # google-cloud-api
 
+## 4.0.4
+
+### Patch Changes
+
+- 003cf8d: Add MIT license to the api spec
+
 ## 4.0.3
 
 ### Patch Changes
