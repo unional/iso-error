@@ -1,5 +1,22 @@
 # iso-error-google-cloud-api
 
+## 5.1.0
+
+### Minor Changes
+
+- 003cf8d: Re-export `google-cloud-api`.
+  So now consumer can get code in `google-cloud-api` directly from `iso-error-google-cloud-api`.
+
+  This ensure the same version is being used.
+
+  If not, the serialization might fail due to version mismatch,
+  and `instanceof` check will fail.
+
+### Patch Changes
+
+- Updated dependencies [003cf8d]
+  - google-cloud-api@4.0.4
+
 ## 5.0.4
 
 ### Patch Changes
