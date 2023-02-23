@@ -1,5 +1,12 @@
 # iso-error-web
 
+## 2.3.1
+
+### Patch Changes
+
+- 4dc76ff: Fix module name for `HttpError`.
+  It should be `iso-error-web/http`
+
 ## 2.3.0
 
 ### Minor Changes
