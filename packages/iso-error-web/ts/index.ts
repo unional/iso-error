@@ -2,7 +2,7 @@ import { IsoError, ModuleError, type IsoErrorPlugin } from 'iso-error'
 
 export class HttpError extends ModuleError {
 	constructor(public status: number, message: string, options?: IsoError.Options) {
-		super('iso-error-http', message, options)
+		super('iso-error-web/http', message, options)
 	}
 }
 export class MultipleChoices extends HttpError {
