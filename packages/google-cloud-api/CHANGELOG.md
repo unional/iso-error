@@ -1,5 +1,13 @@
 # google-cloud-api
 
+## 4.0.5
+
+### Patch Changes
+
+- e7606b6: Fix constructor options for some of the errors.
+
+  The `options` should be optional.
+
 ## 4.0.4
 
 ### Patch Changes
