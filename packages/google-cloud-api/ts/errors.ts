@@ -130,9 +130,9 @@ export class DeadlineExceeded extends GoogleCloudApiError {
 export class NotFound<
 	D extends [rpc.ResourceInfo, ...rpc.Detail[]]
 > extends GoogleCloudApiError<D> {
-	constructor(options: ErrorOptions<D>) {
+	constructor(options?: ErrorOptions<D>) {
 		super(
-			required({ message: formatNotFoundMessage(options.details) ?? 'Not Found' }, options, {
+			required({ message: formatNotFoundMessage(options?.details) ?? 'Not Found' }, options, {
 				code: 5
 			})
 		)
@@ -149,10 +149,10 @@ function formatNotFoundMessage(details: rpc.Detail[] | undefined) {
 export class AlreadyExists<
 	D extends [rpc.ResourceInfo, ...rpc.Detail[]]
 > extends GoogleCloudApiError<D> {
-	constructor(options: ErrorOptions<D>) {
+	constructor(options?: ErrorOptions<D>) {
 		super(
 			required(
-				{ message: formatAlreadyExistsMessage(options.details) ?? 'Already Exists' },
+				{ message: formatAlreadyExistsMessage(options?.details) ?? 'Already Exists' },
 				options,
 				{ code: 6 }
 			)
@@ -201,10 +201,10 @@ function formatPermissionDeniedMessage(permissionInfo: rpc.PermissionInfo) {
 export class ResourceExhausted<
 	D extends [rpc.QuotaFailure, ...rpc.Detail[]]
 > extends GoogleCloudApiError<D> {
-	constructor(options: ErrorOptions<D>) {
+	constructor(options?: ErrorOptions<D>) {
 		super(
 			required(
-				{ message: formatResourceExhaustedMessage(options.details) ?? 'Resource Exhausted' },
+				{ message: formatResourceExhaustedMessage(options?.details) ?? 'Resource Exhausted' },
 				options,
 				{ code: 8 }
 			)
@@ -262,9 +262,9 @@ function formatAbortMessage(info: rpc.ResourceInfo) {
 export class OutOfRange<
 	D extends [rpc.BadRequest, ...rpc.Detail[]]
 > extends GoogleCloudApiError<D> {
-	constructor(options: ErrorOptions<D>) {
+	constructor(options?: ErrorOptions<D>) {
 		super(
-			required({ message: formatBadRequestMessage(options.details) ?? 'Our of range' }, options, {
+			required({ message: formatBadRequestMessage(options?.details) ?? 'Our of range' }, options, {
 				code: 11
 			})
 		)
@@ -274,10 +274,10 @@ export class OutOfRange<
 export class Unimplemented<
 	D extends [rpc.MethodInfo, ...rpc.Detail[]]
 > extends GoogleCloudApiError<D> {
-	constructor(options: ErrorOptions<D>) {
+	constructor(options?: ErrorOptions<D>) {
 		super(
 			required(
-				{ message: formatNotImplementedMessage(options.details) ?? 'Our of range' },
+				{ message: formatNotImplementedMessage(options?.details) ?? 'Our of range' },
 				options,
 				{ code: 11 }
 			)
