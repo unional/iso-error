@@ -67,11 +67,11 @@ importers:
       satisfier: ^5.4.2
       size-limit: ^8.1.0
       ts-jest: ^29.0.3
-      type-plus: ^5.0.0
+      type-plus: ^6.0.0
       typescript: ^5.0.0
     dependencies:
       iso-error: link:../iso-error
-      type-plus: 5.0.0
+      type-plus: 6.0.0
     devDependencies:
       '@apidevtools/swagger-cli': 4.0.4_openapi-types@12.1.0
       '@size-limit/file': 8.1.0_size-limit@8.1.0
@@ -119,7 +119,7 @@ importers:
       size-limit: ^8.1.0
       ts-jest: ^29.0.3
       tslib: ^2.4.1
-      type-plus: ^5.0.0
+      type-plus: ^6.0.0
       typescript: ^5.0.0
     devDependencies:
       '@size-limit/preset-small-lib': 8.1.0_size-limit@8.1.0
@@ -142,7 +142,7 @@ importers:
       size-limit: 8.1.0
       ts-jest: 29.0.3_oi7nmolcnmyqply4ewqwuryc6q
       tslib: 2.4.1
-      type-plus: 5.0.0
+      type-plus: 6.0.0
       typescript: 5.0.2
 
   packages/iso-error-google-cloud-api:
@@ -218,7 +218,7 @@ importers:
       rimraf: ^3.0.2
       size-limit: ^8.1.0
       ts-jest: ^29.0.3
-      type-plus: ^5.0.0
+      type-plus: ^6.0.0
       typescript: ^5.0.0
     dependencies:
       iso-error: link:../iso-error
@@ -242,7 +242,7 @@ importers:
       rimraf: 3.0.2
       size-limit: 8.1.0
       ts-jest: 29.0.3_oi7nmolcnmyqply4ewqwuryc6q
-      type-plus: 5.0.0
+      type-plus: 6.0.0
       typescript: 5.0.2
 
 packages:
@@ -8746,18 +8746,18 @@ packages:
     engines: {node: '>=14.16'}
     dev: true
 
-  /type-plus/5.0.0:
-    resolution: {integrity: sha512-nKp5pOQDldmR9BdEjLplLFwiXTVhOK2kReBSgVJ65URDLXCqENYzVDCONaExADIIc1CAGzvzTkB0TUgMAWR2qQ==}
-    dependencies:
-      tersify: 3.11.1
-      unpartial: 1.0.4
-
   /type-plus/5.1.0:
     resolution: {integrity: sha512-1+meU/urZTVvH0bvMgQkGtkVU6qUTkXSH36CTeRXjhzlOYKVW8/i5AuG0divp3LE6d3iUODBPzraLDrL2iB91Q==}
     dependencies:
       tersify: 3.11.1
       unpartial: 1.0.4
     dev: true
+
+  /type-plus/6.0.0:
+    resolution: {integrity: sha512-ezkCTr6LGC87w9LHc83XJnJFfaeEa/nPhr4yzBKv2+Pw0y4FXKHgrJ2GWM4H1nSKzcEPv4q/Sfw4MKmi8NTxbg==}
+    dependencies:
+      tersify: 3.11.1
+      unpartial: 1.0.4
 
   /typedarray-to-buffer/3.1.5:
     resolution: {integrity: sha512-zdu8XMNEDepKKR+XYOXAVPtWui0ly0NtohUscw+UmaHiAWT8hrV1rr//H6V+0DvJ3OQ19S979M0laLfX8rm82Q==}

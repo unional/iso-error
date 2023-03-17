@@ -54,7 +54,7 @@
 	},
 	"dependencies": {
 		"iso-error": "workspace:^",
-		"type-plus": "^5.0.0"
+		"type-plus": "^6.0.0"
 	},
 	"devDependencies": {
 		"@apidevtools/swagger-cli": "^4.0.4",
