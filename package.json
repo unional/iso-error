@@ -25,7 +25,7 @@
 		"web": "pnpm --filter=iso-error-web"
 	},
 	"devDependencies": {
-		"@changesets/cli": "2.26.0",
+		"@changesets/cli": "2.26.1",
 		"@commitlint/cli": "17.4.4",
 		"@commitlint/config-conventional": "17.4.4",
 		"eslint": "^8.27.0",
