@@ -1,6 +1,6 @@
 {
 	"name": "iso-error-web",
-	"version": "2.3.1",
+	"version": "2.3.2",
 	"description": "iso-error web extension",
 	"homepage": "https://github.com/unional/iso-error/tree/main/packages/iso-error-web",
 	"bugs": {

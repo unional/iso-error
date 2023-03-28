@@ -1,6 +1,6 @@
 {
 	"name": "google-cloud-api",
-	"version": "4.0.5",
+	"version": "4.0.6",
 	"description": "API utility library that follows Google Cloud API design",
 	"homepage": "https://github.com/unional/iso-error/tree/main/packages/google-cloud-api",
 	"bugs": {

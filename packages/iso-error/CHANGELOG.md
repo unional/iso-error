@@ -1,5 +1,19 @@
 # iso-error
 
+## 6.0.1
+
+### Patch Changes
+
+- c4a4701: Remove usage of private fields on `SerializableConverter`.
+
+  Private field does not work with proxy,
+  causing issue like: https://github.com/mocktomata/mocktomata/issues/523
+
+  Since it does not gain additional benefits and there are nothing to hide,
+  relying on `private` modifier in TypeScript is suffice.
+
+  The `IsoError` still have some static private fields, but should not affect anything.
+
 ## 6.0.0
 
 ### Major Changes
