@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/unbound-method */
-
 //#region captureStackTrace polyfill
 // istanbul ignore next
 if (!Error.captureStackTrace) {
@@ -42,9 +40,9 @@ export type IsoErrorPlugin = {
 }
 
 export class SerializableConverter {
-	#plugins: IsoErrorPlugin[] = []
+	private plugins: IsoErrorPlugin[] = []
 	addPlugin(plugin: IsoErrorPlugin) {
-		this.#plugins.unshift(plugin)
+		this.plugins.unshift(plugin)
 	}
 	/**
 	 * Deserialize an `Error` from `Serializable`
@@ -53,13 +51,13 @@ export class SerializableConverter {
 		json: Record<string | number, any>,
 		options?: { ssf: (...args: any) => any }
 	) {
-		const err = this.#deserializeError<E>(json)
+		const err = this.deserializeError<E>(json)
 
 		Error.captureStackTrace(err, options?.ssf)
 		return err
 	}
 
-	#fromSerializable<E extends IsoError.ErrorWithCause>(json: Record<string | number, any>): E {
+	private fromSerializableImpl<E extends IsoError.ErrorWithCause>(json: Record<string | number, any>): E {
 		if (json.name === 'AggregateError') {
 			const { message, errors, ...rest } = json as unknown as { message: string; errors: any[] }
 			// @ts-ignore
@@ -75,7 +73,7 @@ export class SerializableConverter {
 		}
 
 		const { message, cause, ...rest } = json
-		const causeError = cause ? this.#deserializeError(cause as Error) : undefined
+		const causeError = cause ? this.deserializeError(cause as Error) : undefined
 
 		if (json.name === 'Error') {
 			return Object.assign(
@@ -91,14 +89,16 @@ export class SerializableConverter {
 		)
 	}
 
-	#deserializeError<E extends IsoError.ErrorWithCause>(json: Record<string | number, any>): E {
+	private deserializeError<E extends IsoError.ErrorWithCause>(
+		json: Record<string | number, any>
+	): E {
 		let err: E | undefined = undefined
-		for (const { fromSerializable } of this.#plugins) {
+		for (const { fromSerializable } of this.plugins) {
 			err = fromSerializable(json) as E | undefined
 			if (err) break
 		}
 
-		return err || this.#fromSerializable<E>(json)
+		return err || this.fromSerializableImpl<E>(json)
 	}
 
 	/**
@@ -106,26 +106,26 @@ export class SerializableConverter {
 	 */
 	toSerializable(err: Error) {
 		return (
-			this.#plugins.reduce<Record<string | number, any> | undefined>(
+			this.plugins.reduce<Record<string | number, any> | undefined>(
 				(p, s) => p || s.toSerializable(err),
 				undefined
-			) || this.#toSerializable(err)
+			) || this.toSerializableImpl(err)
 		)
 	}
 
-	#toSerializable(err: Error & { cause?: Error }): Record<string | number, any> {
+	private toSerializableImpl(err: Error & { cause?: Error }): Record<string | number, any> {
 		if (isAggregateError(err)) {
 			return {
 				...err,
 				name: err.constructor.name,
 				message: err.message,
-				errors: err.errors.map(this.#toSerializable)
+				errors: err.errors.map(this.toSerializableImpl)
 			}
 		}
 		if (err instanceof Error) {
 			const { message, cause } = err
 			return cause
-				? { ...err, name: err.constructor.name, message, cause: this.#toSerializable(cause) }
+				? { ...err, name: err.constructor.name, message, cause: this.toSerializableImpl(cause) }
 				: { ...err, name: err.constructor.name, message }
 		}
 		return err
@@ -230,7 +230,6 @@ export class IsoError extends Error {
 	}
 
 	static #hasCause(x: any): x is { cause: Error } {
-		// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
 		return !!x.cause
 	}
 
