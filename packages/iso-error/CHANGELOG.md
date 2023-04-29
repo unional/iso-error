@@ -1,5 +1,13 @@
 # iso-error
 
+## 6.0.2
+
+### Patch Changes
+
+- 33ccdb0: Improve code quality with newer typescript settings.
+
+  Improve `exports` field.
+
 ## 6.0.1
 
 ### Patch Changes
