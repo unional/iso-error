@@ -118,7 +118,7 @@ function extractViolationDescription(violations: Array<{ description: string }>)
 	if (violations.length > 1) {
 		return 'Multiple violations, please see details.'
 	}
-	return violations[0].description
+	return violations[0]?.description
 }
 
 export class DeadlineExceeded extends GoogleCloudApiError {

@@ -310,7 +310,7 @@ describe('IsoError.deserialize()', () => {
 	})
 	test('work with Error with cause', () => {
 		const e = new Error()
-		;(e as Record<string, any>).cause = new Error('sub')
+		;(e as Record<string, any>)['cause'] = new Error('sub')
 		const actual = IsoError.deserialize(IsoError.serialize(e))
 		a.isInstanceof(actual.cause, Error)
 		expect(actual.cause?.message).toBe('sub')
@@ -327,7 +327,7 @@ describe('IsoError.deserialize()', () => {
 	})
 	it('keeps cause Error name', () => {
 		const e = new Error()
-		;(e as Record<string, any>).cause = new SubError('sub')
+		;(e as Record<string, any>)['cause'] = new SubError('sub')
 		const actual = IsoError.deserialize(IsoError.serialize(e))
 		a.isInstanceof(actual.cause, Error)
 		expect(actual.cause?.name).toBe('SubError')
@@ -362,7 +362,7 @@ describe('serialization', () => {
 
 	test('extra fields are parsed', () => {
 		const actual: Record<any, any> = IsoError.parse('{"other":"abc"}')
-		expect(actual.other).toBe('abc')
+		expect(actual['other']).toBe('abc')
 	})
 
 	test('can define return type', () => {
@@ -480,7 +480,7 @@ describe('IsoError.addPlugin()', () => {
 				}
 			},
 			fromSerializable(obj) {
-				if (obj.name === 'WithSecret') {
+				if (obj['name'] === 'WithSecret') {
 					return new WithSecret('no secret')
 				}
 			}

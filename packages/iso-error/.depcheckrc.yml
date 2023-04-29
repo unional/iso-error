@@ -1,8 +1,11 @@
 ignores:
+  - '@repobuddy/*'
   - '@size-limit/*'
   - '@types/jest'
   - '@types/node'
   - '@typescript-eslint/*'
   - jest*
+  - repobuddy
+  - rimraf
   - ts-jest
   - tslib

@@ -1,7 +1,5 @@
-import base from '../../config/jest.base.mjs'
-
+/** @type {import('jest').Config} */
 export default {
-	...base,
-	displayName: 'iso-error/jsdom',
-	testEnvironment: 'jsdom'
+	preset: '@repobuddy/jest/presets/jsdom-ts-esm-watch',
+	displayName: 'iso-error/jsdom'
 }

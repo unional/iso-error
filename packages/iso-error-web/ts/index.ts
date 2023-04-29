@@ -455,105 +455,105 @@ export const webPlugin: IsoErrorPlugin = {
 		return undefined
 	},
 	fromSerializable(obj) {
-		switch (obj.name) {
+		switch (obj['name']) {
 			case 'MultipleChoices':
-				return new MultipleChoices(obj.message)
+				return new MultipleChoices(obj['message'])
 			case 'MovedPermanently':
-				return new MovedPermanently(obj.message)
+				return new MovedPermanently(obj['message'])
 			case 'Found':
-				return new Found(obj.message)
+				return new Found(obj['message'])
 			case 'SeeOther':
-				return new SeeOther(obj.message)
+				return new SeeOther(obj['message'])
 			case 'NotModified':
-				return new NotModified(obj.message)
+				return new NotModified(obj['message'])
 			case 'UseProxy':
-				return new UseProxy(obj.message)
+				return new UseProxy(obj['message'])
 			case 'Unused':
-				return new Unused(obj.message)
+				return new Unused(obj['message'])
 			case 'TemporaryRedirect':
-				return new TemporaryRedirect(obj.message)
+				return new TemporaryRedirect(obj['message'])
 			case 'PermanentRedirect':
-				return new PermanentRedirect(obj.message)
+				return new PermanentRedirect(obj['message'])
 			case 'BadRequest':
-				return new BadRequest(obj.message)
+				return new BadRequest(obj['message'])
 			case 'Unauthorized':
-				return new Unauthorized(obj.message)
+				return new Unauthorized(obj['message'])
 			case 'PaymentRequired':
-				return new PaymentRequired(obj.message)
+				return new PaymentRequired(obj['message'])
 			case 'Forbidden':
-				return new Forbidden(obj.message)
+				return new Forbidden(obj['message'])
 			case 'NotFound':
-				return new NotFound(obj.message)
+				return new NotFound(obj['message'])
 			case 'MethodNotAllowed':
-				return new MethodNotAllowed(obj.message)
+				return new MethodNotAllowed(obj['message'])
 			case 'NotAcceptable':
-				return new NotAcceptable(obj.message)
+				return new NotAcceptable(obj['message'])
 			case 'ProxyAuthenticationRequired':
-				return new ProxyAuthenticationRequired(obj.message)
+				return new ProxyAuthenticationRequired(obj['message'])
 			case 'RequestTimeout':
-				return new RequestTimeout(obj.message)
+				return new RequestTimeout(obj['message'])
 			case 'Conflict':
-				return new Conflict(obj.message)
+				return new Conflict(obj['message'])
 			case 'Gone':
-				return new Gone(obj.message)
+				return new Gone(obj['message'])
 			case 'LengthRequired':
-				return new LengthRequired(obj.message)
+				return new LengthRequired(obj['message'])
 			case 'PreconditionFailed':
-				return new PreconditionFailed(obj.message)
+				return new PreconditionFailed(obj['message'])
 			case 'PayloadTooLarge':
-				return new PayloadTooLarge(obj.message)
+				return new PayloadTooLarge(obj['message'])
 			case 'UriTooLong':
-				return new UriTooLong(obj.message)
+				return new UriTooLong(obj['message'])
 			case 'UnsupportedMediaType':
-				return new UnsupportedMediaType(obj.message)
+				return new UnsupportedMediaType(obj['message'])
 			case 'RangeNotSatisfiable':
-				return new RangeNotSatisfiable(obj.message)
+				return new RangeNotSatisfiable(obj['message'])
 			case 'ExpectationFailed':
-				return new ExpectationFailed(obj.message)
+				return new ExpectationFailed(obj['message'])
 			case 'IAmATeapot':
-				return new IAmATeapot(obj.message)
+				return new IAmATeapot(obj['message'])
 			case 'MisdirectedRequest':
-				return new MisdirectedRequest(obj.message)
+				return new MisdirectedRequest(obj['message'])
 			case 'UnprocessableEntity':
-				return new UnprocessableEntity(obj.message)
+				return new UnprocessableEntity(obj['message'])
 			case 'Locked':
-				return new Locked(obj.message)
+				return new Locked(obj['message'])
 			case 'FailedDependency':
-				return new FailedDependency(obj.message)
+				return new FailedDependency(obj['message'])
 			case 'TooEarly':
-				return new TooEarly(obj.message)
+				return new TooEarly(obj['message'])
 			case 'UpgradeRequired':
-				return new UpgradeRequired(obj.message)
+				return new UpgradeRequired(obj['message'])
 			case 'PreconditionRequired':
-				return new PreconditionRequired(obj.message)
+				return new PreconditionRequired(obj['message'])
 			case 'TooManyRequests':
-				return new TooManyRequests(obj.message)
+				return new TooManyRequests(obj['message'])
 			case 'RequestHeaderFieldsTooLarge':
-				return new RequestHeaderFieldsTooLarge(obj.message)
+				return new RequestHeaderFieldsTooLarge(obj['message'])
 			case 'UnavailableForLegalReasons':
-				return new UnavailableForLegalReasons(obj.message)
+				return new UnavailableForLegalReasons(obj['message'])
 			case 'InternalServerError':
-				return new InternalServerError(obj.message)
+				return new InternalServerError(obj['message'])
 			case 'NotImplemented':
-				return new NotImplemented(obj.message)
+				return new NotImplemented(obj['message'])
 			case 'BadGateway':
-				return new BadGateway(obj.message)
+				return new BadGateway(obj['message'])
 			case 'ServiceUnavailable':
-				return new ServiceUnavailable(obj.message)
+				return new ServiceUnavailable(obj['message'])
 			case 'GatewayTimeout':
-				return new GatewayTimeout(obj.message)
+				return new GatewayTimeout(obj['message'])
 			case 'HttpVersionNotSupported':
-				return new HttpVersionNotSupported(obj.message)
+				return new HttpVersionNotSupported(obj['message'])
 			case 'VariantAlsoNegotiates':
-				return new VariantAlsoNegotiates(obj.message)
+				return new VariantAlsoNegotiates(obj['message'])
 			case 'InsufficientStorage':
-				return new InsufficientStorage(obj.message)
+				return new InsufficientStorage(obj['message'])
 			case 'LoopDetected':
-				return new LoopDetected(obj.message)
+				return new LoopDetected(obj['message'])
 			case 'NotExtended':
-				return new NotExtended(obj.message)
+				return new NotExtended(obj['message'])
 			case 'NetworkAuthenticationRequired':
-				return new NetworkAuthenticationRequired(obj.message)
+				return new NetworkAuthenticationRequired(obj['message'])
 			default:
 				return undefined
 		}

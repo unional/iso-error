@@ -1,4 +1,9 @@
 {
 	"extends": "./tsconfig.base.json",
+	"compilerOptions": {
+		"module": "CommonJS",
+		"outDir": "cjs",
+		"target": "ES2015"
+	},
 	"exclude": ["ts/**/*.spec.ts"]
 }
