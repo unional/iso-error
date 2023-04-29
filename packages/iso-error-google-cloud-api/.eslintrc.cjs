@@ -9,11 +9,8 @@ module.exports = {
 	extends: ['plugin:harmony/latest'],
 	overrides: [
 		{
-			extends: 'plugin:harmony/ts-recommended-type-check',
+			extends: 'plugin:harmony/ts-prettier',
 			files: ['*.ts', '*.tsx'],
-			parserOptions: {
-				project: path.resolve(__dirname, 'tsconfig.lint.json')
-			},
 			rules: {
 				'no-use-before-define': 'off'
 			}
