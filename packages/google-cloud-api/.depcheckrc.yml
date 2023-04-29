@@ -4,6 +4,7 @@ ignores:
   - '@types/jest'
   - '@types/node'
   - '@typescript-eslint/*'
+  - eslint*
   - jest*
   - repobuddy
   - rimraf
