@@ -1,7 +1,7 @@
-node_modules
-cjs
-dist
-esm
-lib
-out
-tslib
+node_modules/
+cjs/
+dist/
+esm/
+lib/
+out/
+tslib/

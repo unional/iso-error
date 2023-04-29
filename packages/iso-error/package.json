@@ -18,21 +18,29 @@
 	"sideEffects": false,
 	"type": "module",
 	"exports": {
-		"import": "./esm/index.js",
-		"require": "./cjs/index.js"
+		"import": {
+			"type": "./esm/index.d.ts",
+			"default": "./esm/index.js"
+		},
+		"require": {
+			"type": "./cjs/index.d.ts",
+			"default": "./cjs/index.js"
+		},
+		"default": "./esm/index.js"
 	},
 	"main": "./cjs/index.js",
+	"module": "./esm/index.js",
 	"types": "./esm/index.d.ts",
 	"files": [
 		"cjs",
 		"esm",
 		"ts",
-		"!ts/**/*.spec.ts",
-		"!ts/testErrors.ts"
+		"!**/*.{spec,test,unit,accept,integrate,system,perf,stress}.*",
+		"!**/testErrors.*"
 	],
 	"scripts": {
 		"build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm ts:build:tslib",
-		"clean": "rimraf .nyc_output .tsbuildinfo coverage cjs esm tslib",
+		"clean": "rimraf coverage cjs esm lib libm tslib --glob *.tsbuildinfo",
 		"coverage": "jest --coverage",
 		"depcheck": "depcheck",
 		"lint": "cross-env TIMING=1 eslint --ext=js,ts .",
@@ -42,34 +50,36 @@
 		"test:node": "jest",
 		"test:jsdom": "jest -c jest.jsdom.mjs",
 		"test:watch": "jest --watch",
-		"ts:build:cjs": "tsc -p tsconfig.cjs.json && ncp ../../config/package.cjs.json cjs/package.json",
+		"ts:build:cjs": "buddy ts build cjs",
 		"ts:build:esm": "tsc -p tsconfig.esm.json",
-		"ts:build:tslib": "tsc -p tsconfig.tslib.json && ncp ../../config/package.cjs.json tslib/package.json",
+		"ts:build:tslib": "buddy ts build tslib",
 		"ts:clean": "rimraf .tsbuildinfo",
 		"ts:test": "tsc",
 		"verify": "npm-run-all -p build lint coverage depcheck -s size",
 		"watch": "jest --watch"
 	},
 	"devDependencies": {
+		"@repobuddy/jest": "^3.3.0",
+		"@repobuddy/typescript": "^1.1.2",
 		"@size-limit/preset-small-lib": "^8.1.0",
-		"@types/jest": "^29.2.3",
+		"@types/jest": "^29.5.1",
 		"@types/node": "^18.11.9",
 		"assertron": "^11.1.1",
 		"cross-env": "^7.0.3",
 		"depcheck": "^1.4.3",
 		"eslint": "^8.27.0",
 		"eslint-plugin-harmony": "^7.1.0",
-		"jest": "^29.3.1",
-		"jest-environment-jsdom": "^29.3.1",
-		"jest-validate": "^29.3.1",
+		"jest": "^29.5.0",
+		"jest-environment-jsdom": "^29.5.0",
+		"jest-validate": "^29.5.0",
 		"jest-watch-suspend": "^1.1.2",
-		"jest-watch-toggle-config": "^3.0.0",
-		"jest-watch-typeahead": "^2.2.1",
-		"ncp": "^2.0.0",
+		"jest-watch-toggle-config-2": "^2.1.0",
+		"jest-watch-typeahead": "^2.2.2",
 		"npm-run-all": "^4.1.5",
-		"rimraf": "^3.0.2",
+		"repobuddy": "^1.0.1",
+		"rimraf": "^5.0.0",
 		"size-limit": "^8.1.0",
-		"ts-jest": "^29.0.3",
+		"ts-jest": "^29.1.0",
 		"tslib": "^2.4.1",
 		"type-plus": "^6.0.0",
 		"typescript": "^5.0.0"

@@ -1,6 +1,5 @@
-import base from '../../config/jest.base.mjs'
-
+/** @type {import('jest').Config} */
 export default {
-	...base,
+	preset: '@repobuddy/jest/presets/ts-esm-watch',
 	displayName: 'iso-gca'
 }

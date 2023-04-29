@@ -58,7 +58,7 @@ export class SerializableConverter {
 	}
 
 	private fromSerializableImpl<E extends IsoError.ErrorWithCause>(json: Record<string | number, any>): E {
-		if (json.name === 'AggregateError') {
+		if (json['name'] === 'AggregateError') {
 			const { message, errors, ...rest } = json as unknown as { message: string; errors: any[] }
 			// @ts-ignore
 			// istanbul ignore next
@@ -75,7 +75,7 @@ export class SerializableConverter {
 		const { message, cause, ...rest } = json
 		const causeError = cause ? this.deserializeError(cause as Error) : undefined
 
-		if (json.name === 'Error') {
+		if (json['name'] === 'Error') {
 			return Object.assign(
 				new Error(message),
 				causeError ? { ...rest, cause: causeError } : rest
@@ -152,7 +152,7 @@ export class IsoError extends Error {
 	 * Create an IsoError with additional properties without the need to create a new class.
 	 * @param props properties of the IsoError
 	 */
-	static create<P extends { message: string; cause?: Error }>(
+	static create<P extends { message: string; cause?: Error | undefined }>(
 		props: P
 	): IsoError & Pick<P, Exclude<keyof P, 'cause' | 'message'>> {
 		const { message, cause, ...rest } = props
@@ -284,11 +284,11 @@ export class IsoError extends Error {
 
 export namespace IsoError {
 	export type Options = {
-		cause?: Error
+		cause?: Error | undefined
 		/**
 		 * stack start function
 		 */
-		ssf?: (...args: any) => any
+		ssf?: ((...args: any) => any) | undefined
 	}
 
 	export type ErrorWithCause = Error & { cause?: unknown }
