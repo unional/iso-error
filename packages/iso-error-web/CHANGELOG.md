@@ -1,5 +1,16 @@
 # iso-error-web
 
+## 2.3.3
+
+### Patch Changes
+
+- 33ccdb0: Improve code quality with newer typescript settings.
+
+  Improve `exports` field.
+
+- Updated dependencies [33ccdb0]
+  - iso-error@6.0.2
+
 ## 2.3.2
 
 ### Patch Changes

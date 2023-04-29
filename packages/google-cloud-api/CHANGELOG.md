@@ -1,5 +1,16 @@
 # google-cloud-api
 
+## 4.0.7
+
+### Patch Changes
+
+- 33ccdb0: Improve code quality with newer typescript settings.
+
+  Improve `exports` field.
+
+- Updated dependencies [33ccdb0]
+  - iso-error@6.0.2
+
 ## 4.0.6
 
 ### Patch Changes
