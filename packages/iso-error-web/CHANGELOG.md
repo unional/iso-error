@@ -1,5 +1,16 @@
 # iso-error-web
 
+## 2.3.4
+
+### Patch Changes
+
+- 9d56e0f: Adjust or add back `main` export.
+
+  Allow older systems which does not support `exports` field to use the module.
+
+- Updated dependencies [9d56e0f]
+  - iso-error@6.0.3
+
 ## 2.3.3
 
 ### Patch Changes

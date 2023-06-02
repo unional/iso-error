@@ -1,5 +1,15 @@
 # iso-error-google-cloud-api
 
+## 5.2.4
+
+### Patch Changes
+
+- 9d56e0f: Adjust or add back `main` export.
+
+  Allow older systems which does not support `exports` field to use the module.
+
+  - google-cloud-api@4.0.8
+
 ## 5.2.3
 
 ### Patch Changes
