@@ -28,6 +28,9 @@
 		},
 		"default": "./esm/index.js"
 	},
+	"main": "./cjs/index.js",
+	"module": "./esm/index.js",
+	"types": "./cjs/index.d.ts",
 	"files": [
 		"cjs",
 		"esm",

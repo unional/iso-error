@@ -30,7 +30,7 @@
 	},
 	"main": "./cjs/index.js",
 	"module": "./esm/index.js",
-	"types": "./esm/index.d.ts",
+	"types": "./cjs/index.d.ts",
 	"files": [
 		"cjs",
 		"esm",
