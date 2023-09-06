@@ -45,8 +45,8 @@ importers:
         specifier: workspace:^
         version: link:../iso-error
       type-plus:
-        specifier: ^6.0.0
-        version: 6.0.0
+        specifier: ^7.0.0
+        version: 7.6.0
     devDependencies:
       '@apidevtools/swagger-cli':
         specifier: ^4.0.4
@@ -190,8 +190,8 @@ importers:
         specifier: ^2.4.1
         version: 2.4.1
       type-plus:
-        specifier: ^6.0.0
-        version: 6.0.0
+        specifier: ^7.0.0
+        version: 7.6.0
       typescript:
         specifier: ^5.0.0
         version: 5.0.2
@@ -336,8 +336,8 @@ importers:
         specifier: ^29.1.0
         version: 29.1.0(@babel/core@7.21.5)(jest@29.5.0)(typescript@5.0.2)
       type-plus:
-        specifier: ^6.0.0
-        version: 6.0.0
+        specifier: ^7.0.0
+        version: 7.6.0
       typescript:
         specifier: ^5.0.0
         version: 5.0.2
@@ -7385,18 +7385,18 @@ packages:
       unpartial: 1.0.4
     dev: true
 
-  /type-plus@6.0.0:
-    resolution: {integrity: sha512-ezkCTr6LGC87w9LHc83XJnJFfaeEa/nPhr4yzBKv2+Pw0y4FXKHgrJ2GWM4H1nSKzcEPv4q/Sfw4MKmi8NTxbg==}
-    dependencies:
-      tersify: 3.11.1
-      unpartial: 1.0.4
-
   /type-plus@6.6.0:
     resolution: {integrity: sha512-mTi2ZIx9+Uh9vh2Xr/ydjpfbwl8iDADTAty5JNZ1fo5qIzEqWVMT0YnCqnESQk5mEc6g7Xg5fC95X6HSntzhlw==}
     dependencies:
       tersify: 3.11.1
       unpartial: 1.0.4
     dev: true
+
+  /type-plus@7.6.0:
+    resolution: {integrity: sha512-ijsLw2QQDynAMpANnCc4jWUfeo65EGDHXeiqUaUKxq6bxuoTvcXHJGbOihGQMhHjxE4159pkWiTLP1xu/6xdhA==}
+    dependencies:
+      tersify: 3.11.1
+      unpartial: 1.0.4
 
   /typescript@5.0.2:
     resolution: {integrity: sha512-wVORMBGO/FAs/++blGNeAVdbNKtIh1rbBL2EyQ1+J9lClJ93KiiKe8PmFIVdXhHcyv44SL9oglmfeSsndo0jRw==}
