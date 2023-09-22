@@ -443,6 +443,58 @@ export function createHttpError(status: number, message: string, options?: IsoEr
 	}
 }
 
+export const HttpStatusText = {
+	[HttpStatus.MultipleChoices]: 'Multiple Choices',
+	[HttpStatus.MovedPermanently]: 'Moved Permanently',
+	[HttpStatus.Found]: 'Found',
+	[HttpStatus.SeeOther]: 'See Other',
+	[HttpStatus.NotModified]: 'Not Modified',
+	[HttpStatus.UseProxy]: 'Use Proxy',
+	[HttpStatus.Unused]: 'Unused',
+	[HttpStatus.TemporaryRedirect]: 'Temporary Redirect',
+	[HttpStatus.PermanentRedirect]: 'Permanent Redirect',
+	[HttpStatus.BadRequest]: 'Bad Request',
+	[HttpStatus.Unauthorized]: 'Unauthorized',
+	[HttpStatus.PaymentRequired]: 'Payment Required',
+	[HttpStatus.Forbidden]: 'Forbidden',
+	[HttpStatus.NotFound]: 'Not Found',
+	[HttpStatus.MethodNotAllowed]: 'Method Not Allowed',
+	[HttpStatus.NotAcceptable]: 'Not Acceptable',
+	[HttpStatus.ProxyAuthenticationRequired]: 'Proxy Authentication Required',
+	[HttpStatus.RequestTimeout]: 'Request Timeout',
+	[HttpStatus.Conflict]: 'Conflict',
+	[HttpStatus.Gone]: 'Gone',
+	[HttpStatus.LengthRequired]: 'Length Required',
+	[HttpStatus.PreconditionFailed]: 'Precondition Failed',
+	[HttpStatus.PayloadTooLarge]: 'Payload Too Large',
+	[HttpStatus.UriTooLong]: 'URI Too Long',
+	[HttpStatus.UnsupportedMediaType]: 'Unsupported Media Type',
+	[HttpStatus.RangeNotSatisfiable]: 'Range Not Satisfiable',
+	[HttpStatus.ExpectationFailed]: 'Expectation Failed',
+	[HttpStatus.IAmATeapot]: 'I\'m a teapot',
+	[HttpStatus.MisdirectedRequest]: 'Misdirected Request',
+	[HttpStatus.UnprocessableEntity]: 'Unprocessable Entity',
+	[HttpStatus.Locked]: 'Locked',
+	[HttpStatus.FailedDependency]: 'Failed Dependency',
+	[HttpStatus.TooEarly]: 'Too Early',
+	[HttpStatus.UpgradeRequired]: 'Upgrade Required',
+	[HttpStatus.PreconditionRequired]: 'Precondition Required',
+	[HttpStatus.TooManyRequests]: 'Too Many Requests',
+	[HttpStatus.RequestHeaderFieldsTooLarge]: 'Request Header Fields Too Large',
+	[HttpStatus.UnavailableForLegalReasons]: 'Unavailable For Legal Reasons',
+	[HttpStatus.InternalServerError]: 'Internal Server Error',
+	[HttpStatus.NotImplemented]: 'Not Implemented',
+	[HttpStatus.BadGateway]: 'Bad Gateway',
+	[HttpStatus.ServiceUnavailable]: 'Service Unavailable',
+	[HttpStatus.GatewayTimeout]: 'Gateway Timeout',
+	[HttpStatus.HttpVersionNotSupported]: 'HTTP Version Not Supported',
+	[HttpStatus.VariantAlsoNegotiates]: 'Variant Also Negotiates',
+	[HttpStatus.InsufficientStorage]: 'Insufficient Storage',
+	[HttpStatus.LoopDetected]: 'Loop Detected',
+	[HttpStatus.NotExtended]: 'Not Extended',
+	[HttpStatus.NetworkAuthenticationRequired]: 'Network Authentication Required'
+} as const
+
 export const webPlugin: IsoErrorPlugin = {
 	toSerializable(err) {
 		if (err instanceof HttpError)
