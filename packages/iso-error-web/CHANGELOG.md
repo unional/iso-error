@@ -1,5 +1,11 @@
 # iso-error-web
 
+## 2.4.0
+
+### Minor Changes
+
+- 430aa8f: Add HttpStatusText map
+
 ## 2.3.4
 
 ### Patch Changes
