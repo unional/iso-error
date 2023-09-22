@@ -1,0 +1,7 @@
+title: Field Violation
+type: object
+properties:
+  field:
+    type: string
+  description:
+    type: string

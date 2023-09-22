@@ -1,0 +1,4 @@
+type: number
+enum:
+  - 0 # SYNTAX_PROTO2
+  - 1 # SYNTAX_PROTO3

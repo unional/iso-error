@@ -1,0 +1,8 @@
+description: 499 Client Closed Request
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../schemas/google.rpc.code.cancelled.yaml

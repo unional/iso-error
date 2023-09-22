@@ -1,0 +1,10 @@
+title: Quota Failure
+type: object
+properties:
+  "@type":
+    type: string
+    enum: ["type.googleapis.com/google.rpc.QuotaFailure"]
+  violations:
+    type: array
+    items:
+      $ref: google.rpc.quota_failure.violation.yaml

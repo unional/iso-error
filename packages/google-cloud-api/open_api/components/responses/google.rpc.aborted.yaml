@@ -1,0 +1,9 @@
+x-summary: ''
+description: 409 Conflict
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../schemas/google.rpc.code.aborted.yaml

@@ -1,0 +1,7 @@
+title: Link
+type: object
+properties:
+  description:
+    type: string
+  url:
+    type: string

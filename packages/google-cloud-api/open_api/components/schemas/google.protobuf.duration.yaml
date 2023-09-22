@@ -1,0 +1,7 @@
+# https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/duration.proto
+type: object
+properties:
+  seconds:
+    type: number
+  nanos:
+    type: number

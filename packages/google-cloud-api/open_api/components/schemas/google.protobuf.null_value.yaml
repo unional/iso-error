@@ -1,0 +1,4 @@
+# https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto
+type: number
+enum:
+  - 0 # NULL_VALUE

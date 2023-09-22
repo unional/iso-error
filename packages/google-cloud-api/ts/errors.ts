@@ -54,19 +54,26 @@ export function getCauseInfo(error: Error): rpc.CauseInfo {
 	}
 }
 
-function toCauses(error: Error): { message: string; causes?: rpc.CauseInfo.Cause[] } {
+function toCauses(error: Error): {
+	message: string
+	module?: string | undefined
+	causes?: rpc.CauseInfo.Cause[]
+} {
 	const message = `${error.name}: ${error.message}`
+	const module = error instanceof GoogleCloudApiError ? error.module : undefined
 	const cause = error.cause
 	if (isType<Error>(cause, s => s instanceof Error)) {
 		if (isAggregateError(cause)) {
 			return {
 				message,
+				module,
 				causes: cause.errors.map(toCauses)
 			}
 		}
 
 		return {
 			message,
+			module,
 			causes: [toCauses(cause)]
 		}
 	}

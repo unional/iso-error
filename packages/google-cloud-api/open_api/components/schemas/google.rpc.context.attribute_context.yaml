@@ -1,0 +1,19 @@
+# https://github.com/googleapis/googleapis/blob/master/google/rpc/context/attribute_context.proto
+type: object
+properties:
+  origin:
+    $ref: google.rpc.context.attribute_context.peer.yaml
+  source:
+    $ref: google.rpc.context.attribute_context.peer.yaml
+  destination:
+    $ref: google.rpc.context.attribute_context.peer.yaml
+  request:
+    $ref: google.rpc.context.attribute_context.request.yaml
+  response:
+    $ref: google.rpc.context.attribute_context.response.yaml
+  resource:
+    $ref: google.rpc.context.attribute_context.resource.yaml
+  api:
+    $ref: google.rpc.context.attribute_context.api.yaml
+  extensions:
+    type: array

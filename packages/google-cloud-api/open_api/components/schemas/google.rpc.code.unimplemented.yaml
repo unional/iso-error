@@ -1,0 +1,9 @@
+type: object
+properties:
+  code:
+    type: number
+    enum: [12]
+  message:
+    type: string
+  details:
+    $ref: google.rpc.error_details.yaml

@@ -1,0 +1,3 @@
+type: array
+items:
+  $ref: google_cloud_api.cause_info.cause.yaml

@@ -1,0 +1,8 @@
+description: 429 Too Many Requests
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../schemas/google.rpc.code.resource_exhausted.yaml

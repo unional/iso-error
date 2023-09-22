@@ -1,0 +1,7 @@
+# https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/field_mask.proto
+type: object
+properties:
+  paths:
+    type: array
+    additionalProperties:
+      type: string

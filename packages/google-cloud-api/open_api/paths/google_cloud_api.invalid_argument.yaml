@@ -1,0 +1,6 @@
+get:
+  summary: google-cloud-api.InvalidArgument
+  operationId: google-cloud-api.invalid_argument
+  responses:
+    409:
+      $ref: ../components/responses/google_cloud_api.invalid_argument.yaml

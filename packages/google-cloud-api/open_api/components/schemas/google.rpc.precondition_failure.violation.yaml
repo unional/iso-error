@@ -1,0 +1,9 @@
+title: Violation
+type: object
+properties:
+  type:
+    type: string
+  subject:
+    type: string
+  description:
+    type: string

@@ -121,8 +121,8 @@ export namespace CauseInfo {
 		 * This provides similar benefits as the stack trace `file:line:column`,
 		 * without the risk of being reverse engineered.
 		 */
-		module?: string
-		causes?: Cause[]
+		module?: string | undefined
+		causes?: Cause[] | undefined
 	}
 }
 

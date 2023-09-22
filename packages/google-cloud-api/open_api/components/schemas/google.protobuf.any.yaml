@@ -1,0 +1,8 @@
+# https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/any.proto
+type: object
+properties:
+  type_url:
+    type: string
+  value:
+    # Serialized value in `bytes`, assume it is serialize to a JSON string here.
+    type: string

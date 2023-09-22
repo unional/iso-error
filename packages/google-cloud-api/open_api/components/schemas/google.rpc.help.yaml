@@ -1,0 +1,10 @@
+title: Help
+type: object
+properties:
+  "@type":
+    type: string
+    enum: ["type.googleapis.com/google.rpc.Help"]
+  links:
+    type: array
+    items:
+      $ref: google.rpc.help.link.yaml

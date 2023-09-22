@@ -1,0 +1,16 @@
+type: object
+properties:
+  name:
+    type: string
+  enumvalue:
+    type: array
+    items:
+      $ref: google.protobuf.enum_value.yaml
+  options:
+    type: array
+    items:
+      $ref: google.protobuf.option.yaml
+  source_context:
+    $ref: google.protobuf.source_context.yaml
+  syntax:
+    $ref: google.protobuf.syntax.yaml

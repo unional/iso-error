@@ -1,0 +1,8 @@
+description: 404 Not Found
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../schemas/google_cloud_api.code.not_found.yaml

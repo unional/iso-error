@@ -1,0 +1,8 @@
+title: Retry Info
+type: object
+properties:
+  "@type":
+    type: string
+    enum: ["type.googleapis.com/google.rpc.RetryInfo"]
+  retry_delay:
+    $ref: google.protobuf.duration.yaml

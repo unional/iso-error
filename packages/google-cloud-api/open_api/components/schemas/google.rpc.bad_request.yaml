@@ -1,0 +1,10 @@
+title: Bad Request
+type: object
+properties:
+  "@type":
+    type: string
+    enum: ["type.googleapis.com/google.rpc.BadRequest"]
+  field_violations:
+    type: array
+    items:
+      $ref: google.rpc.bad_request.field_violation.yaml

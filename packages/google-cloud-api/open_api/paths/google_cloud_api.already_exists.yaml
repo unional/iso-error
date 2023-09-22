@@ -1,0 +1,6 @@
+post:
+  summary: google-cloud-api.AlreadyExists
+  operationId: google-cloud-api.already_exists
+  responses:
+    409:
+      $ref: ../components/responses/google_cloud_api.already_exists.yaml

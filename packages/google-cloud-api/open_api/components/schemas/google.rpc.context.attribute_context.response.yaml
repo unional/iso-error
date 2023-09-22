@@ -1,0 +1,14 @@
+type: object
+properties:
+  code:
+    type: number
+  size:
+    type: number
+  headers:
+    type: object
+    additionalProperties:
+      type: string
+  time:
+    $ref: google.protobuf.timestamp.yaml
+  backend_latency:
+    $ref: google.protobuf.duration.yaml

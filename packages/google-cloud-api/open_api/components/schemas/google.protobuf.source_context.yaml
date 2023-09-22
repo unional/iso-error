@@ -1,0 +1,5 @@
+# https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/source_context.proto
+type: object
+properties:
+  file_name:
+    type: string

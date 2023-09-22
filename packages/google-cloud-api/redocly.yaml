@@ -1,18 +1,24 @@
 # See https://redocly.com/docs/cli/configuration/
 
+extends:
+  - minimal
 apis:
-  # Update the apiName with your actual API name, and the version with your actual API version.
-  google-cloud-api@v1:
-    # Update the path to your OpenAPI root file
-    root: ./open_api/example.yml
-
-styleguide:
-  extends:
-    - recommended
-
-features.openapi:
-  generateCodeSamples:
-    languages:
-      - lang: curl
-      - lang: Node.js
-      - lang: Python
+  google-cloud-api:
+    root: open_api/google_cloud_api.yaml
+rules:
+  no-unused-components: off
+  no-empty-servers: off
+  operation-2xx-response: off
+  operation-4xx-response: off
+  operation-operationId: off
+  security-defined: off
+theme:
+  openapi:
+    htmlTemplate: docs/index.html
+    generateCodeSamples:
+      languages:
+        - lang: curl
+        - lang: Node.js
+        - lang: JavaScript
+        - lang: Go
+        - lang: Python

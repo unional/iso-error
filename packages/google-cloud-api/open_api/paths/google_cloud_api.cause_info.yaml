@@ -1,0 +1,45 @@
+get:
+  summary: google-cloud-api.CauseInfo
+  description: |
+    `google-cloud-api.CauseInfo` is an alternative to `type.googleapis.com/google.rpc.DebugInfo`.
+
+    `google-cloud-api.CauseInfo` does not have the `stack_entries` field,
+    which can cause leak sensitive information.
+
+    Instead, it contain a `causes` field,
+    which has `message`, `module`, and a recursive `causes` fields.
+
+    These fields are provided by the service.
+    By default they are extracted from using the `name`, `message`, and `module` (if available) of the error.
+  operationId: google-cloud-api.cause_info
+  responses:
+    default:
+      description: ''
+      headers:
+        Content-Type:
+          description: |
+            While optional, it is recommended to use this header,
+            following [[RFC 7807](https://tools.ietf.org/html/rfc7807)].
+          schema:
+            type: string
+            enum:
+              - application/problem+json
+      content:
+        application/problem+json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: object
+                properties:
+                  code:
+                    type: number
+                    description: |
+                      `google-cloud-api.CauseInfo` can be used on any `code`.
+                  message:
+                    type: string
+                  details:
+                    type: array
+                    items:
+                      anyOf:
+                        - $ref: ../components/schemas/google_cloud_api.cause_info.yaml

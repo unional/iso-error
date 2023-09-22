@@ -1,0 +1,11 @@
+title: Status
+type: object
+properties:
+  code:
+    type: number
+  message:
+    type: string
+  details:
+    type: array
+    items:
+      $ref: google.rpc.error_details.yaml

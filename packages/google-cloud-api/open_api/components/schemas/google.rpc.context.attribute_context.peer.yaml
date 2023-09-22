@@ -1,0 +1,14 @@
+type: object
+properties:
+  ip:
+    type: string
+  port:
+    type: number
+  labels:
+    type: object
+    additionalProperties:
+      type: string
+  principal:
+    type: string
+  region_code:
+    type: string

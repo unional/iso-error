@@ -1,0 +1,14 @@
+title: Resource Info
+type: object
+properties:
+  "@type":
+    type: string
+    enum: ["type.googleapis.com/google.rpc.ResourceInfo"]
+  resource_type:
+    type: string
+  resource_name:
+    type: string
+  owner:
+    type: string
+  description:
+    type: string

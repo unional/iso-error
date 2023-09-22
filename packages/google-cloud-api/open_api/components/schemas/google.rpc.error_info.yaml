@@ -1,0 +1,14 @@
+title: Error Info
+type: object
+properties:
+  "@type":
+    type: string
+    enum: ["type.googleapis.com/google.rpc.ErrorInfo"]
+  reason:
+    type: string
+  domain:
+    type: string
+  metadata:
+    type: object
+    additionalProperties:
+      type: string

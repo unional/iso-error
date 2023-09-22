@@ -1,0 +1,13 @@
+type: array
+items:
+  anyOf:
+    - $ref: google.rpc.retry_info.yaml
+    - $ref: google.rpc.debug_info.yaml
+    - $ref: google.rpc.quota_failure.yaml
+    - $ref: google.rpc.error_info.yaml
+    - $ref: google.rpc.precondition_failure.yaml
+    - $ref: google.rpc.bad_request.yaml
+    - $ref: google.rpc.request_info.yaml
+    - $ref: google.rpc.resource_info.yaml
+    - $ref: google.rpc.help.yaml
+    - $ref: google.rpc.localized_message.yaml

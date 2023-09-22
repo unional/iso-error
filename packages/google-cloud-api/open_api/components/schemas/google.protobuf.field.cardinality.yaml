@@ -1,0 +1,10 @@
+type: number
+enum:
+  # For fields with unknown cardinality.
+  - 0 # CARDINALITY_UNKNOWN
+  # For optional fields.
+  - 1 # CARDINALITY_OPTIONAL
+  # For required fields. Proto2 syntax only.
+  - 2 # CARDINALITY_REQUIRED
+  # For repeated fields.
+  - 3 # CARDINALITY_REPEATED

@@ -1,0 +1,9 @@
+type: object
+properties:
+  code:
+    type: number
+    enum: [7]
+  message:
+    type: string
+  details:
+    $ref: google_cloud_api.error_details.yaml

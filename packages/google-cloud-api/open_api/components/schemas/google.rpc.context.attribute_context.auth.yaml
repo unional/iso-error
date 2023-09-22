@@ -1,0 +1,16 @@
+type: object
+properties:
+  principal:
+    type: string
+  audiences:
+    type: array
+    items:
+      type: string
+  presenter:
+    type: string
+  claims:
+    $ref: google.protobuf.struct.yaml
+  access_levels:
+    type: array
+    items:
+      type: string

@@ -1,0 +1,8 @@
+description: 400 Bad Request
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../schemas/google.rpc.code.failed_precondition.yaml

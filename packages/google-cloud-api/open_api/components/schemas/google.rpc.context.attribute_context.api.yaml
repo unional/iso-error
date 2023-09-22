@@ -1,0 +1,10 @@
+type: object
+properties:
+  service:
+    type: string
+  operation:
+    type: string
+  protocol:
+    type: string
+  version:
+    type: string

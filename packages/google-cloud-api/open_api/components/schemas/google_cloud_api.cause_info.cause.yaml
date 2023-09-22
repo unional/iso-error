@@ -1,0 +1,11 @@
+type: object
+properties:
+  module:
+    type: string
+  message:
+    type: string
+  causes:
+    $ref: google_cloud_api.cause_info.causes.yaml
+additionalProperties: true
+required:
+  - message

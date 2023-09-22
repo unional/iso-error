@@ -1,7 +1,7 @@
 {
 	"recommendations": [
-		"arcanis.vscode-zipfs",
 		"dbaeumer.vscode-eslint",
-		"streetsidesoftware.code-spell-checker"
+		"streetsidesoftware.code-spell-checker",
+		"editorconfig.editorconfig"
 	]
 }

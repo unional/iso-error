@@ -1,0 +1,8 @@
+# https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto
+oneOf:
+  - $ref: google.protobuf.null_value.yaml
+  - type: number
+  - type: string
+  - type: boolean
+  - $ref: google.protobuf.struct.yaml
+  - $ref: google.protobuf.list_value.yaml

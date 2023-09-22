@@ -1,0 +1,8 @@
+description: 501 Not Implemented
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../schemas/google.rpc.code.unimplemented.yaml

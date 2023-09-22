@@ -1,0 +1,28 @@
+type: object
+properties:
+  id:
+    type: string
+  method:
+    type: string
+  headers:
+    type: object
+    additionalProperties:
+      type: string
+  path:
+    type: string
+  host:
+    type: string
+  scheme:
+    type: string
+  query:
+    type: string
+  time:
+    $ref: google.protobuf.timestamp.yaml
+  size:
+    type: number
+  protocol:
+    type: string
+  reason:
+    type: string
+  auth:
+    $ref: google.rpc.context.attribute_context.auth.yaml

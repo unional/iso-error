@@ -1,0 +1,10 @@
+title: Request Info
+type: object
+properties:
+  "@type":
+    type: string
+    enum: ["type.googleapis.com/google.rpc.RequestInfo"]
+  request_id:
+    type: string
+  serving_data:
+    type: string

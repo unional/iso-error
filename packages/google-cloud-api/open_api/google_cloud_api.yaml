@@ -1,0 +1,51 @@
+openapi: 3.0.0
+info:
+  title: google-cloud-api extended specification
+  description: |
+    This is the OpenAPI specification for the [google-cloud-api](https://www.npmjs.com/package/google-cloud-api).
+    It is an extension to the [Google Cloud API design](https://cloud.google.com/apis/design/)
+
+    The main focus here is on the error modeling.
+
+    Other specification may be added in the future.
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+  version: v1.0
+servers:
+  - url: "https://your-awesome-api.com"
+paths:
+  /google-cloud-api/aborted:
+    $ref: paths/google_cloud_api.aborted.yaml
+  /google-cloud-api/already-exists:
+    $ref: paths/google_cloud_api.already_exists.yaml
+  /google-cloud-api/cancelled:
+    $ref: paths/google_cloud_api.cancelled.yaml
+  /google-cloud-api/cause-info:
+    $ref: paths/google_cloud_api.cause_info.yaml
+  /google-cloud-api/data-loss:
+    $ref: paths/google_cloud_api.data_loss.yaml
+  /google-cloud-api/deadline-exceeded:
+    $ref: paths/google_cloud_api.deadline_exceeded.yaml
+  /google-cloud-api/failed-precondition:
+    $ref: paths/google_cloud_api.failed_precondition.yaml
+  /google-cloud-api/internal:
+    $ref: paths/google_cloud_api.internal.yaml
+  /google-cloud-api/invalid-argument:
+    $ref: paths/google_cloud_api.invalid_argument.yaml
+  /google-cloud-api/not-found:
+    $ref: paths/google_cloud_api.not_found.yaml
+  /google-cloud-api/out-of-range:
+    $ref: paths/google_cloud_api.out_of_range.yaml
+  /google-cloud-api/permission-denied:
+    $ref: paths/google_cloud_api.permission_denied.yaml
+  /google-cloud-api/resource-exhausted:
+    $ref: paths/google_cloud_api.resource_exhausted.yaml
+  /google-cloud-api/unauthenticated:
+    $ref: paths/google_cloud_api.unauthenticated.yaml
+  /google-cloud-api/unavailable:
+    $ref: paths/google_cloud_api.unavailable.yaml
+  /google-cloud-api/unimplemented:
+    $ref: paths/google_cloud_api.unimplemented.yaml
+  /google-cloud-api/unknown:
+    $ref: paths/google_cloud_api.unknown.yaml

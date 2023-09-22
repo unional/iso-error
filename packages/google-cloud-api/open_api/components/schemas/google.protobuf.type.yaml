@@ -1,0 +1,21 @@
+# https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/type.proto
+type: object
+properties:
+  name:
+    type: string
+  fields:
+    type: array
+    items:
+      $ref: "#/components/schemas/google.protobuf.Field"
+  oneofs:
+    type: array
+    items:
+      type: string
+  options:
+    type: array
+    items:
+      $ref: google.protobuf.option.yaml
+  source_context:
+    $ref: google.protobuf.source_context.yaml
+  syntax:
+    $ref: google.protobuf.syntax.yaml

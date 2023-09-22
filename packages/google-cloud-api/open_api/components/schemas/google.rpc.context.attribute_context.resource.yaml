@@ -1,0 +1,30 @@
+type: object
+properties:
+  service:
+    type: string
+  name:
+    type: string
+  type:
+    type: string
+  lables:
+    type: object
+    additionalProperties:
+      type: string
+  uid:
+    type: string
+  annotations:
+    type: object
+    additionalProperties:
+      type: string
+  display_name:
+    type: string
+  create_time:
+    $ref: google.protobuf.timestamp.yaml
+  update_time:
+    $ref: google.protobuf.timestamp.yaml
+  delete_time:
+    $ref: google.protobuf.timestamp.yaml
+  etag:
+    type: string
+  location:
+    type: string

@@ -1,0 +1,8 @@
+description: 503 Service Unavailable
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../schemas/google_cloud_api.code.unavailable.yaml

@@ -24,6 +24,8 @@
 		"pnpm",
 		"Proto",
 		"protobuf",
+		"redoc",
+		"redocly",
 		"repobuddy",
 		"serializers",
 		"sfixed",

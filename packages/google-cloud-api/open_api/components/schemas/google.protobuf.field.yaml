@@ -1,0 +1,22 @@
+type: object
+properties:
+  kind:
+    $ref: google.protobuf.field.kind.yaml
+  cardinality:
+    $ref: google.protobuf.field.cardinality.yaml
+  number:
+    type: number
+  name:
+    type: string
+  type_url:
+    type: string
+  oneof_index:
+    type: number
+  options:
+    type: array
+    items:
+      $ref: google.protobuf.option.yaml
+  json_name:
+    type: string
+  default_value:
+    type: string

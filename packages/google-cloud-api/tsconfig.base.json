@@ -1,7 +1,7 @@
 {
 	"extends": "@repobuddy/typescript/tsconfig/monorepo",
 	"compilerOptions": {
-		"lib": ["ES2015", "ES2021.Promise"],
+		"lib": ["ES2022", "ES2021.Promise"],
 		"rootDir": "ts",
 	},
 	"references": [

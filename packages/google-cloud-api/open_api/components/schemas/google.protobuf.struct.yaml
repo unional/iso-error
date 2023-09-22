@@ -1,0 +1,7 @@
+# https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/struct.proto
+type: object
+properties:
+  fields:
+    type: object
+    additionalProperties:
+      type: string
