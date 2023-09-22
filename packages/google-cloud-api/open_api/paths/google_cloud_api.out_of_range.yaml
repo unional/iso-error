@@ -2,5 +2,5 @@ get:
   summary: google-cloud-api.OutOfRange
   operationId: google-cloud-api.out_of_range
   responses:
-    409:
+    400:
       $ref: ../components/responses/google_cloud_api.out_of_range.yaml

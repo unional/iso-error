@@ -2,5 +2,5 @@ get:
   summary: google-cloud-api.Unimplemented
   operationId: google-cloud-api.unimplemented
   responses:
-    409:
+    501:
       $ref: ../components/responses/google_cloud_api.unimplemented.yaml

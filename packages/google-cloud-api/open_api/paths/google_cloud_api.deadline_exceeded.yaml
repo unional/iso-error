@@ -2,5 +2,5 @@ get:
   summary: google-cloud-api.DeadlineExceeded
   operationId: google-cloud-api.deadline_exceeded
   responses:
-    409:
+    504:
       $ref: ../components/responses/google_cloud_api.deadline_exceeded.yaml

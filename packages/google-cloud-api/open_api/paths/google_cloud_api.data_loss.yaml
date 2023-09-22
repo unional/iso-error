@@ -2,5 +2,5 @@ get:
   summary: google-cloud-api.DataLoss
   operationId: google-cloud-api.data_loss
   responses:
-    409:
+    500:
       $ref: ../components/responses/google_cloud_api.data_loss.yaml

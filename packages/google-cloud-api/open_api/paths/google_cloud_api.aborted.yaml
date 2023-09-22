@@ -1,4 +1,4 @@
-get:
+post:
   summary: google-cloud-api.Aborted
   operationId: google-cloud-api.aborted
   responses:

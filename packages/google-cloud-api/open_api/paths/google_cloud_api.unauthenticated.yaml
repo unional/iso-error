@@ -2,5 +2,5 @@ get:
   summary: google-cloud-api.Unauthenticated
   operationId: google-cloud-api.unauthenticated
   responses:
-    409:
+    401:
       $ref: ../components/responses/google_cloud_api.unauthenticated.yaml
