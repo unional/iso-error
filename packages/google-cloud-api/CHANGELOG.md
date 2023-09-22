@@ -1,5 +1,20 @@
 # google-cloud-api
 
+## 4.1.0
+
+### Minor Changes
+
+- 7cccde8: Refactor OpenApi specs.
+
+  paths, responses, schemas are now in separate files.
+
+  The overall spec example still needs to be updated.
+  e.g. updating each case to show which http status code is appropriate.
+
+### Patch Changes
+
+- 39fd27c: Improve `toCauses()` logic so that it does not need `as any`.
+
 ## 4.0.8
 
 ### Patch Changes
