@@ -1,5 +1,8 @@
 post:
   summary: google-cloud-api.AlreadyExists
+  description: |
+    This is identical to `google.rpc.AlreadyExists`,
+    except with the `google-cloud-api` extension.
   operationId: google-cloud-api.already_exists
   responses:
     409:

@@ -1,5 +1,8 @@
 get:
   summary: google-cloud-api.Internal
+  description: |
+    This is identical to `google.rpc.Internal`,
+    except with the `google-cloud-api` extension.
   operationId: google-cloud-api.internal
   responses:
     500:

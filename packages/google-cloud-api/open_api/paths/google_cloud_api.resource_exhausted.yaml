@@ -1,5 +1,8 @@
 get:
   summary: google-cloud-api.ResourceExhausted
+  description: |
+    This is identical to `google.rpc.ResourceExhausted`,
+    except with the `google-cloud-api` extension.
   operationId: google-cloud-api.resource_exhausted
   responses:
     429:

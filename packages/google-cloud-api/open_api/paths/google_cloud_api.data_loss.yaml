@@ -1,5 +1,8 @@
 get:
   summary: google-cloud-api.DataLoss
+  description: |
+    This is identical to `google.rpc.DataLoss`,
+    except with the `google-cloud-api` extension.
   operationId: google-cloud-api.data_loss
   responses:
     500:

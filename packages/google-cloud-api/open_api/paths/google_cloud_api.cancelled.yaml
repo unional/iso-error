@@ -1,5 +1,8 @@
 get:
   summary: google-cloud-api.Cancelled
+  description: |
+    This is identical to `google.rpc.Cancelled`,
+    except with the `google-cloud-api` extension.
   operationId: google-cloud-api.cancelled
   responses:
     499:

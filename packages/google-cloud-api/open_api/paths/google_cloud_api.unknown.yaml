@@ -1,5 +1,8 @@
 get:
   summary: google-cloud-api.Unknown
+  description: |
+    This is identical to `google.rpc.Unknown`,
+    except with the `google-cloud-api` extension.
   operationId: google-cloud-api.unknown
   responses:
     500:

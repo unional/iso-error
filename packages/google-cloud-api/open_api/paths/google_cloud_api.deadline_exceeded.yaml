@@ -1,5 +1,8 @@
 get:
   summary: google-cloud-api.DeadlineExceeded
+  description: |
+    This is identical to `google.rpc.DeadlineExceeded`,
+    except with the `google-cloud-api` extension.
   operationId: google-cloud-api.deadline_exceeded
   responses:
     504:

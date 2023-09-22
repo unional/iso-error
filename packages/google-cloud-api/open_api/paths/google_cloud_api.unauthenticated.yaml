@@ -1,5 +1,8 @@
 get:
   summary: google-cloud-api.Unauthenticated
+  description: |
+    This is identical to `google.rpc.Unauthenticated`,
+    except with the `google-cloud-api` extension.
   operationId: google-cloud-api.unauthenticated
   responses:
     401:

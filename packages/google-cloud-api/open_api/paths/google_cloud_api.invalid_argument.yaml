@@ -1,5 +1,8 @@
 get:
   summary: google-cloud-api.InvalidArgument
+  description: |
+    This is identical to `google.rpc.InvalidArgument`,
+    except with the `google-cloud-api` extension.
   operationId: google-cloud-api.invalid_argument
   responses:
     400:
