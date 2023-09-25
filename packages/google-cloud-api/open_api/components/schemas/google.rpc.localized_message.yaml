@@ -1,10 +1,14 @@
 title: Localized Message
 type: object
 properties:
-  "@type":
+  '@type':
     type: string
-    enum: ["type.googleapis.com/google.rpc.LocalizedMessage"]
+    enum: ['type.googleapis.com/google.rpc.LocalizedMessage']
   locale:
     type: string
   message:
     type: string
+required:
+  - '@type'
+  - locale
+  - message

@@ -12,3 +12,5 @@ properties:
     type: string
   description:
     type: string
+required:
+  - '@type'

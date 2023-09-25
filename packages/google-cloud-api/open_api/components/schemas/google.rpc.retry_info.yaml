@@ -6,3 +6,6 @@ properties:
     enum: ["type.googleapis.com/google.rpc.RetryInfo"]
   retry_delay:
     $ref: google.protobuf.duration.yaml
+required:
+  - '@type'
+  - retry_delay

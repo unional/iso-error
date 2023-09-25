@@ -1,9 +1,9 @@
 title: Error Info
 type: object
 properties:
-  "@type":
+  '@type':
     type: string
-    enum: ["type.googleapis.com/google.rpc.ErrorInfo"]
+    enum: ['type.googleapis.com/google.rpc.ErrorInfo']
   reason:
     type: string
   domain:
@@ -12,3 +12,6 @@ properties:
     type: object
     additionalProperties:
       type: string
+required:
+  - '@type'
+  - reason

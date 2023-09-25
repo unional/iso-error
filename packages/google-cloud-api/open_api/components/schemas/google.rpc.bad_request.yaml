@@ -8,3 +8,6 @@ properties:
     type: array
     items:
       $ref: google.rpc.bad_request.field_violation.yaml
+required:
+  - '@type'
+  - field_violations

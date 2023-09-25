@@ -8,3 +8,6 @@ properties:
     type: string
   serving_data:
     type: string
+required:
+  - '@type'
+  - request_id
