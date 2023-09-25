@@ -1,5 +1,20 @@
 # iso-error-web
 
+## 2.4.1
+
+### Patch Changes
+
+- 42df780: Relax the type of `HttpStatusText` to `Record<number, string>`.
+  This allows user to use it by passing in an `number`:
+
+  ```ts
+
+  // `Response['status']: number`
+  const response: Response = await fetch(...)
+
+  const status = HttpStatusText[response.status]
+  ```
+
 ## 2.4.0
 
 ### Minor Changes
