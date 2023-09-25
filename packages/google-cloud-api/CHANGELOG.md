@@ -1,5 +1,12 @@
 # google-cloud-api
 
+## 4.1.1
+
+### Patch Changes
+
+- 2fd15b8: Add required fields for responses.
+  This is not a breaking change as it is a `out` field changes.
+
 ## 4.1.0
 
 ### Minor Changes
