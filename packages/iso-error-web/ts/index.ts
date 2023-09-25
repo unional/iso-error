@@ -443,7 +443,7 @@ export function createHttpError(status: number, message: string, options?: IsoEr
 	}
 }
 
-export const HttpStatusText = {
+export const HttpStatusText: Record<number, string> = {
 	[HttpStatus.MultipleChoices]: 'Multiple Choices',
 	[HttpStatus.MovedPermanently]: 'Moved Permanently',
 	[HttpStatus.Found]: 'Found',
@@ -493,7 +493,7 @@ export const HttpStatusText = {
 	[HttpStatus.LoopDetected]: 'Loop Detected',
 	[HttpStatus.NotExtended]: 'Not Extended',
 	[HttpStatus.NetworkAuthenticationRequired]: 'Network Authentication Required'
-} as const
+}
 
 export const webPlugin: IsoErrorPlugin = {
 	toSerializable(err) {
