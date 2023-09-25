@@ -259,3 +259,13 @@ describe(`webPlugin`, () => {
 		expect(err.message).toEqual('msg')
 	}
 })
+
+it('returns type string from number', () => {
+	const r: { status: number } = { status: 404 }
+
+	if (HttpStatus[r.status]) {
+		expect(typeof HttpStatus[r.status]).toBe('string')
+	} else {
+		throw new Error('should not reach')
+	}
+})
