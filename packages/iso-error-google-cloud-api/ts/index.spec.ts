@@ -9,14 +9,16 @@ test('Cancelled', () => {
 	const err = new Cancelled()
 	const json = IsoError.serialize(err)
 	a.satisfies(JSON.parse(json), {
-		code: 1,
-		message: 'Request cancelled by the client.',
-		details: [
-			{
-				'@type': 'google-cloud-api/CauseInfo',
-				message: 'Cancelled: Request cancelled by the client.'
-			}
-		]
+		error: {
+			code: 1,
+			message: 'Request cancelled by the client.',
+			details: [
+				{
+					'@type': 'google-cloud-api/CauseInfo',
+					message: 'Cancelled: Request cancelled by the client.'
+				}
+			]
+		}
 	})
 	const actual: Cancelled = IsoError.deserialize(json)
 	expect(actual).toBeInstanceOf(Cancelled)

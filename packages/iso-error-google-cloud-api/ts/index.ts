@@ -15,10 +15,11 @@ export const googleCloudApiPlugin: IsoErrorPlugin = {
 		status.details = status.details.filter(
 			d => d['@type'] !== 'type.googleapis.com/google.rpc.DebugInfo'
 		)
-		return status
+		return { error: status }
 	},
 	fromSerializable(obj) {
-		return rpc.isStatus(obj) ? rpc.statusToError(obj) : undefined
+		const status = obj?.['error']
+		return rpc.isStatus(status) ? rpc.statusToError(status) : undefined
 	}
 }
 
