@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [10]
+  status:
+    type: string
+    enum: [ABORTED]
   message:
     type: string
   details:

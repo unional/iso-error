@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [1]
+  status:
+    type: string
+    enum: [CANCELLED]
   message:
     type: string
   details:

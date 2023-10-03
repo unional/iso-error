@@ -21,6 +21,9 @@ describe('getCodeName()', () => {
 	])('converts %i to %s', (code, name) => {
 		expect(rpc.codeName(code)).toEqual(name)
 	})
+	it('returns empty string when the code is unrecognized', () => {
+		expect(rpc.codeName(123)).toBe('')
+	})
 })
 
 describe('codeToHttpStatus()', () => {
@@ -45,7 +48,7 @@ describe('codeToHttpStatus()', () => {
 	])(`convert valid code '%s' (%d) to HttpStatus code (%d)`, (_name, code, http) => {
 		expect(rpc.codeToHttpStatus(code as number)).toEqual(http)
 	})
-	test('unknown code returns 500', () => {
+	it('returns 500 when the code is unrecognized', () => {
 		expect(rpc.codeToHttpStatus(123)).toBe(500)
 	})
 })

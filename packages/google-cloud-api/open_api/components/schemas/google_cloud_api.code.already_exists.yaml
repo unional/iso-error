@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [6]
+  status:
+    type: string
+    enum: [ALREADY_EXISTS]
   message:
     type: string
   details:

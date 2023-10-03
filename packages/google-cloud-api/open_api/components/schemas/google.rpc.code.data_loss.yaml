@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [15]
+  status:
+    type: string
+    enum: [DATA_LOSS]
   message:
     type: string
   details:

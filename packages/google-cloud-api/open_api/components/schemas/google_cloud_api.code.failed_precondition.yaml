@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [9]
+  status:
+    type: string
+    enum: [FAILED_PRECONDITION]
   message:
     type: string
   details:

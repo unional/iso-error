@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [14]
+  status:
+    type: string
+    enum: [UNAVAILABLE]
   message:
     type: string
   details:

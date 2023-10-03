@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [13]
+  status:
+    type: string
+    enum: [INTERNAL]
   message:
     type: string
   details:

@@ -3,16 +3,19 @@ import type { Status } from '../rpc/types.js'
 const statusExamples: Status[] = [
 	{
 		code: 1,
+		status: 'CANCELLED',
 		message: '',
 		details: []
 	},
 	{
 		code: 2,
+		status: 'UNKNOWN',
 		message: '',
 		details: []
 	},
 	{
 		code: 3,
+		status: 'INVALID_ARGUMENT',
 		message: '',
 		details: [
 			{
@@ -28,11 +31,13 @@ const statusExamples: Status[] = [
 	},
 	{
 		code: 4,
+		status: 'DEADLINE_EXCEEDED',
 		message: '',
 		details: []
 	},
 	{
 		code: 5,
+		status: 'NOT_FOUND',
 		message: '',
 		details: [
 			{
@@ -43,6 +48,7 @@ const statusExamples: Status[] = [
 	},
 	{
 		code: 6,
+		status: 'ALREADY_EXISTS',
 		message: '',
 		details: [
 			{
@@ -53,6 +59,7 @@ const statusExamples: Status[] = [
 	},
 	{
 		code: 7,
+		status: 'PERMISSION_DENIED',
 		message: '',
 		details: [
 			{
@@ -65,6 +72,7 @@ const statusExamples: Status[] = [
 	},
 	{
 		code: 8,
+		status: 'RESOURCE_EXHAUSTED',
 		message: '',
 		details: [
 			{
@@ -80,6 +88,7 @@ const statusExamples: Status[] = [
 	},
 	{
 		code: 9,
+		status: 'FAILED_PRECONDITION',
 		message: '',
 		details: [
 			{
@@ -96,6 +105,7 @@ const statusExamples: Status[] = [
 	},
 	{
 		code: 10,
+		status: 'ABORTED',
 		message: '',
 		details: [
 			{
@@ -106,6 +116,7 @@ const statusExamples: Status[] = [
 	},
 	{
 		code: 11,
+		status: 'OUT_OF_RANGE',
 		message: '',
 		details: [
 			{
@@ -121,6 +132,7 @@ const statusExamples: Status[] = [
 	},
 	{
 		code: 12,
+		status: 'UNIMPLEMENTED',
 		message: '',
 		details: [
 			{
@@ -131,21 +143,25 @@ const statusExamples: Status[] = [
 	},
 	{
 		code: 13,
+		status: 'INTERNAL',
 		message: '',
 		details: []
 	},
 	{
 		code: 14,
+		status: 'UNAVILABLE',
 		message: '',
 		details: []
 	},
 	{
 		code: 15,
+		status: 'DATA_LOSS',
 		message: '',
 		details: []
 	},
 	{
 		code: 16,
+		status: 'UNAUTHENTICATED',
 		message: '',
 		details: []
 	}

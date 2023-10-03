@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [11]
+  status:
+    type: string
+    enum: [OUT_OF_RANGE]
   message:
     type: string
   details:

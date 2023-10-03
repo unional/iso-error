@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [3]
+  status:
+    type: string
+    enum: [INVALID_ARGUMENT]
   message:
     type: string
   details:

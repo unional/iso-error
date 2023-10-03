@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [2]
+  status:
+    type: string
+    enum: [UNKNOWN]
   message:
     type: string
   details:

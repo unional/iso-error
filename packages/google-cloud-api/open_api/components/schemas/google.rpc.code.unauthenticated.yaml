@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [16]
+  status:
+    type: string
+    enum: [UNAUTHENTICATED]
   message:
     type: string
   details:

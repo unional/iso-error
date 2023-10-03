@@ -1,6 +1,7 @@
 import { isAggregateError, IsoError, ModuleError } from 'iso-error'
 import { isType, required } from 'type-plus'
 import { rpc } from './rpc/index.js'
+import { codeName } from './rpc/Code.js'
 
 export interface ErrorOptions<D extends rpc.Detail[] = rpc.Detail[]> extends IsoError.Options {
 	message?: string
@@ -26,6 +27,7 @@ export class GoogleCloudApiError<D extends rpc.Detail[] = rpc.Detail[]> extends 
 
 		return {
 			code: this.code,
+			status: codeName(this.code),
 			message: this.message,
 			details
 		}

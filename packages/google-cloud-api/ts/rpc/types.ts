@@ -151,6 +151,7 @@ export interface GenericDetail {
 
 export interface Status<D extends Detail[] = Detail[]> {
 	code: number
+	status: string
 	message: string
 	details: D
 }

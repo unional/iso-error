@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [4]
+  status:
+    type: string
+    enum: [DEADLINE_EXCEEDED]
   message:
     type: string
   details:

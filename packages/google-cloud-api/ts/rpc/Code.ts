@@ -38,8 +38,11 @@ const codeMap: Record<number, string> = {
 	16: 'UNAUTHENTICATED'
 }
 
-export function codeName(code: number): string | undefined {
-	return codeMap[code]
+/**
+ * Gets the name of a `google.rpc.Code`
+ */
+export function codeName(code: number): string {
+	return codeMap[code] ?? ''
 }
 
 const httpMap: Record<number, number> = {
@@ -62,6 +65,9 @@ const httpMap: Record<number, number> = {
 	15: 500
 }
 
+/**
+ * Translate `google.rpc.Code` to HTTP status code
+ */
 export function codeToHttpStatus(code: number) {
-	return httpMap[code] || 500
+	return httpMap[code] ?? 500
 }

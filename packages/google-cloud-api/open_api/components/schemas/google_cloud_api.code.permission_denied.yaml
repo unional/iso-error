@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [7]
+  status:
+    type: string
+    enum: [PERMISSION_DENIED]
   message:
     type: string
   details:

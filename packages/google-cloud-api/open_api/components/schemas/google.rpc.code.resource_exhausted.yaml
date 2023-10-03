@@ -3,6 +3,9 @@ properties:
   code:
     type: number
     enum: [8]
+  status:
+    type: string
+    enum: [RESOURCE_EXHAUSTED]
   message:
     type: string
   details:
