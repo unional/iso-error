@@ -1,5 +1,5 @@
 ---
-'google-cloud-api': patch
+'google-cloud-api': minor
 ---
 
 Add `google_cloud_api.any-of.yaml` for reuse.
