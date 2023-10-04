@@ -1,0 +1,3 @@
+type: number
+description: Permission denied
+enum: [7]

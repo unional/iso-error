@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.not_found
   responses:
     404:
-      $ref: ../components/responses/google_cloud_api.not_found.yaml
+      $ref: ../components/responses/google-cloud-api/not_found.yaml

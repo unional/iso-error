@@ -1,0 +1,9 @@
+get:
+  summary: google-cloud-api.Unavailable
+  description: |
+    This is identical to `google.rpc.Unavailable`,
+    except with the `google-cloud-api` extension.
+  operationId: google-cloud-api.unavailable
+  responses:
+    503:
+      $ref: ../../components/responses/google-cloud-api/unavailable.yaml

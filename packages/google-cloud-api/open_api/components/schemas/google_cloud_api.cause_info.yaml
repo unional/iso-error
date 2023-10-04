@@ -9,7 +9,7 @@ properties:
       `google-cloud-api.CauseInfo` does not have the `stack_entries` field,
       which can cause leak sensitive information.
   causes:
-    $ref: google_cloud_api.cause_info.causes.yaml
+    $ref: google-cloud-api/details/cause_info.causes.yaml
 required:
   - '@type'
   - 'causes'

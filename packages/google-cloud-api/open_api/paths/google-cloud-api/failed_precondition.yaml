@@ -1,0 +1,9 @@
+get:
+  summary: google-cloud-api.FailedPrecondition
+  description: |
+    This is identical to `google.rpc.FailedPrecondition`,
+    except with the `google-cloud-api` extension.
+  operationId: google-cloud-api.failed_precondition
+  responses:
+    400:
+      $ref: ../../components/responses/google-cloud-api/failed_precondition.yaml

@@ -5,4 +5,4 @@ content:
       type: object
       properties:
         error:
-          $ref: ../schemas/google_cloud_api.code.unimplemented.yaml
+          $ref: ../schemas/google-cloud-api/error=unimplemented.yaml

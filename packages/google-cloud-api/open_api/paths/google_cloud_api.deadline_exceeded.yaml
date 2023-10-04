@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.deadline_exceeded
   responses:
     504:
-      $ref: ../components/responses/google_cloud_api.deadline_exceeded.yaml
+      $ref: ../components/responses/google-cloud-api/deadline_exceeded.yaml

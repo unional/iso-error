@@ -5,4 +5,4 @@ content:
       type: object
       properties:
         error:
-          $ref: ../schemas/google_cloud_api.code.any-of.yaml
+          $ref: ../schemas/google-cloud-api/error~any_of.yaml

@@ -1,0 +1,5 @@
+title: Status
+oneOf:
+  - $ref: status/aborted.yaml
+  - $ref: status/already_exists.yaml
+  - $ref: status/cancelled.yaml

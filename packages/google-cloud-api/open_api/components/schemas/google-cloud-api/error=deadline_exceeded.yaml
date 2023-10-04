@@ -1,0 +1,10 @@
+type: object
+properties:
+  code:
+    $ref: code/deadline_exceeded.yaml
+  status:
+    $ref: status/deadline_exceeded.yaml
+  message:
+    $ref: error.message.yaml
+  details:
+    $ref: error.details.yaml

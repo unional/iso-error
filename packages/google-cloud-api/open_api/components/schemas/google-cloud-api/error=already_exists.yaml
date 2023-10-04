@@ -1,0 +1,10 @@
+type: object
+properties:
+  code:
+    $ref: code/already_exists.yaml
+  status:
+    $ref: status/already_exists.yaml
+  message:
+    $ref: error.message.yaml
+  details:
+    $ref: error.details.yaml

@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.invalid_argument
   responses:
     400:
-      $ref: ../components/responses/google_cloud_api.invalid_argument.yaml
+      $ref: ../components/responses/google-cloud-api/invalid_argument.yaml

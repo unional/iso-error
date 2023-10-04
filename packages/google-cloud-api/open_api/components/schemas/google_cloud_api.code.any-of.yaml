@@ -15,4 +15,3 @@ anyOf:
   - $ref: google_cloud_api.code.unavailable.yaml
   - $ref: google_cloud_api.code.unimplemented.yaml
   - $ref: google_cloud_api.code.unknown.yaml
-

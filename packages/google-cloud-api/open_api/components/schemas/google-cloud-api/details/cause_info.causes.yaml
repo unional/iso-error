@@ -1,0 +1,3 @@
+type: array
+items:
+  $ref: cause_info.cause.yaml

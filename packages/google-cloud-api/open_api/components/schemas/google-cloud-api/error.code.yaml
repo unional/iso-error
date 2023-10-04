@@ -1,0 +1,14 @@
+title: google.rpc.Code
+description: |
+  Google APIs must use the canonical error codes defined by [google.rpc.Code](https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto).
+  Individual APIs must avoid defining additional error codes,
+  since developers are very unlikely to write logic to handle a large number of error codes.
+  For reference,
+  handling an average of three error codes per API call would mean most application logic would just be for error handling,
+  which would not be a good developer experience.
+
+  [Reference](https://cloud.google.com/apis/design/errors#error_codes)
+oneOf:
+  - $ref: code/aborted.yaml
+  - $ref: code/already_exists.yaml
+  - $ref: code/cancelled.yaml

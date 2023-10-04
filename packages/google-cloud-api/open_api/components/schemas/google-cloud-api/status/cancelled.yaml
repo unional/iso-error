@@ -1,0 +1,3 @@
+description: Corresponds to `google.rpc.Code = 1`
+type: string
+enum: [CANCELLED]

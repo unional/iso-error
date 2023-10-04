@@ -1,0 +1,8 @@
+description: 409 Conflict
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../../schemas/google-cloud-api/error=already_exists.yaml

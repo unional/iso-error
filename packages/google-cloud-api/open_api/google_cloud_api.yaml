@@ -16,38 +16,38 @@ servers:
   - url: "https://your-awesome-api.com"
 paths:
   /google-cloud-api/aborted:
-    $ref: paths/google_cloud_api.aborted.yaml
+    $ref: paths/google-cloud-api/aborted.yaml
   /google-cloud-api/already-exists:
-    $ref: paths/google_cloud_api.already_exists.yaml
+    $ref: paths/google-cloud-api/already_exists.yaml
   /google-cloud-api/cancelled:
-    $ref: paths/google_cloud_api.cancelled.yaml
+    $ref: paths/google-cloud-api/cancelled.yaml
   /google-cloud-api/cause-info:
-    $ref: paths/google_cloud_api.cause_info.yaml
+    $ref: paths/google-cloud-api/cause_info.yaml
   /google-cloud-api/data-loss:
-    $ref: paths/google_cloud_api.data_loss.yaml
+    $ref: paths/google-cloud-api/data_loss.yaml
   /google-cloud-api/deadline-exceeded:
-    $ref: paths/google_cloud_api.deadline_exceeded.yaml
+    $ref: paths/google-cloud-api/deadline_exceeded.yaml
   /google-cloud-api/failed-precondition:
-    $ref: paths/google_cloud_api.failed_precondition.yaml
+    $ref: paths/google-cloud-api/failed_precondition.yaml
   /google-cloud-api/internal:
-    $ref: paths/google_cloud_api.internal.yaml
+    $ref: paths/google-cloud-api/internal.yaml
   /google-cloud-api/invalid-argument:
-    $ref: paths/google_cloud_api.invalid_argument.yaml
+    $ref: paths/google-cloud-api/invalid_argument.yaml
   /google-cloud-api/not-found:
-    $ref: paths/google_cloud_api.not_found.yaml
+    $ref: paths/google-cloud-api/not_found.yaml
   /google-cloud-api/out-of-range:
-    $ref: paths/google_cloud_api.out_of_range.yaml
+    $ref: paths/google-cloud-api/out_of_range.yaml
   /google-cloud-api/permission-denied:
-    $ref: paths/google_cloud_api.permission_denied.yaml
+    $ref: paths/google-cloud-api/permission_denied.yaml
   /google-cloud-api/resource-exhausted:
-    $ref: paths/google_cloud_api.resource_exhausted.yaml
+    $ref: paths/google-cloud-api/resource_exhausted.yaml
   /google-cloud-api/unauthenticated:
-    $ref: paths/google_cloud_api.unauthenticated.yaml
+    $ref: paths/google-cloud-api/unauthenticated.yaml
   /google-cloud-api/unavailable:
-    $ref: paths/google_cloud_api.unavailable.yaml
+    $ref: paths/google-cloud-api/unavailable.yaml
   /google-cloud-api/unimplemented:
-    $ref: paths/google_cloud_api.unimplemented.yaml
+    $ref: paths/google-cloud-api/unimplemented.yaml
   /google-cloud-api/unknown:
-    $ref: paths/google_cloud_api.unknown.yaml
+    $ref: paths/google-cloud-api/unknown.yaml
   /google-cloud-api/any-of:
-    $ref: paths/google_cloud_api.any-of.yaml
+    $ref: paths/google-cloud-api/any_of.yaml

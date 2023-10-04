@@ -1,12 +1,10 @@
 type: object
 properties:
   code:
-    type: number
-    enum: [1]
+    $ref: google-cloud-api/code/cancelled.yaml
   status:
-    type: string
-    enum: [CANCELLED]
+    $ref: google-cloud-api/status/cancelled.yaml
   message:
-    type: string
+    $ref: google-cloud-api/error.message.yaml
   details:
-    $ref: google_cloud_api.error_details.yaml
+    $ref: google-cloud-api/error.details.yaml

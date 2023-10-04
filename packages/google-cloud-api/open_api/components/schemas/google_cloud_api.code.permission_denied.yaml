@@ -1,12 +1,10 @@
 type: object
 properties:
   code:
-    type: number
-    enum: [7]
+    $ref: google-cloud-api/code/permission_denied.yaml
   status:
-    type: string
-    enum: [PERMISSION_DENIED]
+    $ref: google-cloud-api/status/permission_denied.yaml
   message:
-    type: string
+    $ref: google-cloud-api/error.message.yaml
   details:
-    $ref: google_cloud_api.error_details.yaml
+    $ref: google-cloud-api/error.details.yaml

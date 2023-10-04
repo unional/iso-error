@@ -1,0 +1,9 @@
+get:
+  summary: google-cloud-api.OutOfRange
+  description: |
+    This is identical to `google.rpc.OutOfRange`,
+    except with the `google-cloud-api` extension.
+  operationId: google-cloud-api.out_of_range
+  responses:
+    400:
+      $ref: ../../components/responses/google-cloud-api/out_of_range.yaml

@@ -5,4 +5,4 @@ content:
       type: object
       properties:
         error:
-          $ref: ../schemas/google_cloud_api.code.invalid_argument.yaml
+          $ref: ../schemas/google-cloud-api/error=invalid_argument.yaml

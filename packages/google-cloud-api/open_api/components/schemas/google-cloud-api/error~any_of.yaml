@@ -1,0 +1,18 @@
+anyOf:
+  - $ref: error=aborted.yaml
+  - $ref: error=already_exists.yaml
+  - $ref: error=cancelled.yaml
+  - $ref: error=data_loss.yaml
+  - $ref: error=deadline_exceeded.yaml
+  - $ref: error=failed_precondition.yaml
+  - $ref: error=internal.yaml
+  - $ref: error=invalid_argument.yaml
+  - $ref: error=not_found.yaml
+  - $ref: error=out_of_range.yaml
+  - $ref: error=permission_denied.yaml
+  - $ref: error=resource_exhausted.yaml
+  - $ref: error=unauthenticated.yaml
+  - $ref: error=unavailable.yaml
+  - $ref: error=unimplemented.yaml
+  - $ref: error=unknown.yaml
+

@@ -1,0 +1,10 @@
+type: object
+properties:
+  code:
+    $ref: code/internal.yaml
+  status:
+    $ref: status/internal.yaml
+  message:
+    $ref: error.message.yaml
+  details:
+    $ref: error.details.yaml

@@ -1,0 +1,11 @@
+type: object
+properties:
+  module:
+    type: string
+  message:
+    type: string
+  causes:
+    $ref: cause_info.causes.yaml
+additionalProperties: true
+required:
+  - message

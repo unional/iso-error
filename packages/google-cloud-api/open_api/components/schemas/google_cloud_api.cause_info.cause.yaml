@@ -5,7 +5,7 @@ properties:
   message:
     type: string
   causes:
-    $ref: google_cloud_api.cause_info.causes.yaml
+    $ref: google-cloud-api/details/cause_info.causes.yaml
 additionalProperties: true
 required:
   - message

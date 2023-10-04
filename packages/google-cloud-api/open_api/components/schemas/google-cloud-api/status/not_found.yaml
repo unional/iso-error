@@ -1,0 +1,3 @@
+type: string
+description: Corresponds to `google.rpc.Code = 5`
+enum: [NOT_FOUND]

@@ -1,0 +1,16 @@
+type: string
+description: |
+  The error message should help users understand and resolve the API error easily and quickly.
+  In general, consider the following guidelines when writing error messages:
+
+  - Do not assume the user is an expert user of your API.
+    Users could be client developers, operations people, IT staff, or end-users of apps.
+  - Do not assume the user knows anything about your service implementation or is familiar with the context of the errors (such as log analysis).
+  - When possible,
+    error messages should be constructed such that a technical user (but not necessarily a developer of your API) can respond to the error and correct it.
+  - Keep the error message brief.
+    If needed, provide a link where a confused reader can ask questions,
+    give feedback, or get more information that doesn't cleanly fit in an error message.
+    Otherwise, use the details field to expand.
+
+  [Reference](https://cloud.google.com/apis/design/errors#error_messages)

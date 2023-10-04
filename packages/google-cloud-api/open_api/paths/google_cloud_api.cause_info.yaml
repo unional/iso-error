@@ -42,4 +42,4 @@ get:
                     type: array
                     items:
                       anyOf:
-                        - $ref: ../components/schemas/google_cloud_api.cause_info.yaml
+                        - $ref: ../components/schemas/google-cloud-api/details/cause_info.yaml

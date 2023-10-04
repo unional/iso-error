@@ -1,0 +1,3 @@
+description: Aborted
+type: number
+enum: [10]

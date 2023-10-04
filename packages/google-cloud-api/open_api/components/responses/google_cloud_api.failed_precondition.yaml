@@ -5,4 +5,4 @@ content:
       type: object
       properties:
         error:
-          $ref: ../schemas/google_cloud_api.code.failed_precondition.yaml
+          $ref: ../schemas/google-cloud-api/error=failed_precondition.yaml

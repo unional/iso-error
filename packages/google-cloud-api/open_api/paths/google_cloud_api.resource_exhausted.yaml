@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.resource_exhausted
   responses:
     429:
-      $ref: ../components/responses/google_cloud_api.resource_exhausted.yaml
+      $ref: ../components/responses/google-cloud-api/resource_exhausted.yaml

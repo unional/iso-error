@@ -1,12 +1,10 @@
 type: object
 properties:
   code:
-    type: number
-    enum: [4]
+    $ref: google-cloud-api/code/deadline_exceeded.yaml
   status:
-    type: string
-    enum: [DEADLINE_EXCEEDED]
+    $ref: google-cloud-api/status/deadline_exceeded.yaml
   message:
-    type: string
+    $ref: google-cloud-api/error.message.yaml
   details:
-    $ref: google_cloud_api.error_details.yaml
+    $ref: google-cloud-api/error.details.yaml

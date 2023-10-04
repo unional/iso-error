@@ -1,0 +1,3 @@
+type: string
+description: Corresponds to `google.rpc.Code = 11`
+enum: [OUT_OF_RANGE]

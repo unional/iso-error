@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.internal
   responses:
     500:
-      $ref: ../components/responses/google_cloud_api.internal.yaml
+      $ref: ../components/responses/google-cloud-api/internal.yaml

@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.failed_precondition
   responses:
     400:
-      $ref: ../components/responses/google_cloud_api.failed_precondition.yaml
+      $ref: ../components/responses/google-cloud-api/failed_precondition.yaml

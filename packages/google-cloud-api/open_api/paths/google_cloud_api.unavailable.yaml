@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.unavailable
   responses:
     503:
-      $ref: ../components/responses/google_cloud_api.unavailable.yaml
+      $ref: ../components/responses/google-cloud-api/unavailable.yaml
