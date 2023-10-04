@@ -12,3 +12,16 @@ oneOf:
   - $ref: code/aborted.yaml
   - $ref: code/already_exists.yaml
   - $ref: code/cancelled.yaml
+  - $ref: code/data_loss.yaml
+  - $ref: code/deadline_exceeded.yaml
+  - $ref: code/failed_precondition.yaml
+  - $ref: code/internal.yaml
+  - $ref: code/invalid_argument.yaml
+  - $ref: code/not_found.yaml
+  - $ref: code/out_of_range.yaml
+  - $ref: code/permission_denied.yaml
+  - $ref: code/resource_exhausted.yaml
+  - $ref: code/unauthenticated.yaml
+  - $ref: code/unavailable.yaml
+  - $ref: code/unimplemented.yaml
+  - $ref: code/unknown.yaml

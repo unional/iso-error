@@ -3,3 +3,16 @@ oneOf:
   - $ref: status/aborted.yaml
   - $ref: status/already_exists.yaml
   - $ref: status/cancelled.yaml
+  - $ref: status/data_loss.yaml
+  - $ref: status/deadline_exceeded.yaml
+  - $ref: status/failed_precondition.yaml
+  - $ref: status/internal.yaml
+  - $ref: status/invalid_argument.yaml
+  - $ref: status/not_found.yaml
+  - $ref: status/out_of_range.yaml
+  - $ref: status/permission_denied.yaml
+  - $ref: status/resource_exhausted.yaml
+  - $ref: status/unauthenticated.yaml
+  - $ref: status/unavailable.yaml
+  - $ref: status/unimplemented.yaml
+  - $ref: status/unknown.yaml
