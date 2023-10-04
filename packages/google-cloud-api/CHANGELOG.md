@@ -1,5 +1,11 @@
 # google-cloud-api
 
+## 5.2.1
+
+### Patch Changes
+
+- b8eee47: Add missing `oneOf` entries for `code` and `status`.
+
 ## 5.2.0
 
 ### Minor Changes
