@@ -49,3 +49,5 @@ paths:
     $ref: paths/google_cloud_api.unimplemented.yaml
   /google-cloud-api/unknown:
     $ref: paths/google_cloud_api.unknown.yaml
+  /google-cloud-api/any-of:
+    $ref: paths/google_cloud_api.any-of.yaml

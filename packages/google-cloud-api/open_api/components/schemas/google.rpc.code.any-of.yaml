@@ -1,0 +1,18 @@
+anyOf:
+  - $ref: google.rpc.code.aborted.yaml
+  - $ref: google.rpc.code.already_exists.yaml
+  - $ref: google.rpc.code.cancelled.yaml
+  - $ref: google.rpc.code.data_loss.yaml
+  - $ref: google.rpc.code.deadline_exceeded.yaml
+  - $ref: google.rpc.code.failed_precondition.yaml
+  - $ref: google.rpc.code.internal.yaml
+  - $ref: google.rpc.code.invalid_argument.yaml
+  - $ref: google.rpc.code.not_found.yaml
+  - $ref: google.rpc.code.out_of_range.yaml
+  - $ref: google.rpc.code.permission_denied.yaml
+  - $ref: google.rpc.code.resource_exhausted.yaml
+  - $ref: google.rpc.code.unauthenticated.yaml
+  - $ref: google.rpc.code.unavailable.yaml
+  - $ref: google.rpc.code.unimplemented.yaml
+  - $ref: google.rpc.code.unknown.yaml
+
