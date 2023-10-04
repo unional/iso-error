@@ -1,5 +1,11 @@
 # google-cloud-api
 
+## 5.2.0
+
+### Minor Changes
+
+- 4feedbf: Adding folder based specs, with separated code/status/message/details so they can be reused separately.
+
 ## 5.1.0
 
 ### Minor Changes
