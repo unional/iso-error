@@ -1,5 +1,13 @@
 # google-cloud-api
 
+## 5.1.0
+
+### Minor Changes
+
+- ca2efb4: Add `google_cloud_api.any-of.yaml` for reuse.
+  This is useful for some API that wants to keep the error generic,
+  or before the details are flushed out.
+
 ## 5.0.0
 
 ### Major Changes
