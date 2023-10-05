@@ -1,0 +1,10 @@
+type: object
+properties:
+  code:
+    $ref: google-cloud-api.error.code.cancelled.yaml
+  status:
+    $ref: google-cloud-api.error.status.cancelled.yaml
+  message:
+    $ref: google-cloud-api.error.message.yaml
+  details:
+    $ref: google-cloud-api.error.details.yaml

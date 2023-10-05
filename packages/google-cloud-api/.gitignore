@@ -3,3 +3,4 @@ cjs/
 coverage/
 esm/
 tslib/
+redoc-static.html

@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.any-of
   responses:
     4XX:
-      $ref: ../../components/responses/google-cloud-api/any_of.yaml
+      $ref: ../../components/responses/google-cloud-api.any_of.yaml

@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.permission_denied
   responses:
     403:
-      $ref: ../../components/responses/google-cloud-api/permission_denied.yaml
+      $ref: ../../components/responses/google-cloud-api.permission_denied.yaml

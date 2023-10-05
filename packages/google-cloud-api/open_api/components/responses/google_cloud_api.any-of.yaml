@@ -1,8 +1,0 @@
-description: 4XX general error
-content:
-  application/json:
-    schema:
-      type: object
-      properties:
-        error:
-          $ref: ../schemas/google-cloud-api/error~any_of.yaml

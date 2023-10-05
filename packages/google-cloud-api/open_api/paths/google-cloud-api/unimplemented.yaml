@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.unimplemented
   responses:
     501:
-      $ref: ../../components/responses/google-cloud-api/unimplemented.yaml
+      $ref: ../../components/responses/google-cloud-api.unimplemented.yaml

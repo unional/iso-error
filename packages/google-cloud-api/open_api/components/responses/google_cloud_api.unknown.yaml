@@ -1,8 +1,0 @@
-description: 500 Internal Server Error
-content:
-  application/json:
-    schema:
-      type: object
-      properties:
-        error:
-          $ref: ../schemas/google-cloud-api/error=unknown.yaml

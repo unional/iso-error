@@ -1,0 +1,20 @@
+type: array
+description: |
+  Additional error information that the client code can use to handle the error,
+  such as retry info or a help link.
+
+  This is defined by [Google Cloud API](https://cloud.google.com/apis/design/errors#error_details),
+  With the [`google-cloud-api.CauseInfo` extension](https://github.com/unional/iso-error/blob/main/packages/google-cloud-api/open_api/google-cloud-api.yml).
+items:
+  anyOf:
+    - $ref: google.rpc.retry_info.yaml
+    - $ref: google.rpc.debug_info.yaml
+    - $ref: google.rpc.quota_failure.yaml
+    - $ref: google.rpc.error_info.yaml
+    - $ref: google.rpc.precondition_failure.yaml
+    - $ref: google.rpc.bad_request.yaml
+    - $ref: google.rpc.request_info.yaml
+    - $ref: google.rpc.resource_info.yaml
+    - $ref: google.rpc.help.yaml
+    - $ref: google.rpc.localized_message.yaml
+    - $ref: google-cloud-api.error.details.cause_info.yaml

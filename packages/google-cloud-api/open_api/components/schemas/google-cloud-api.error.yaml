@@ -1,0 +1,14 @@
+type: object
+description: |
+  This is a generic example the possible `error` field variations of the [Google Cloud API](https://cloud.google.com/apis/design/errors) response body.
+
+  For specific error, you should use the corresponding error schema.
+properties:
+  code:
+    $ref: google-cloud-api.error.code.yaml
+  status:
+    $ref: google-cloud-api.error.status.yaml
+  message:
+    $ref: google-cloud-api.error.message.yaml
+  details:
+    $ref: google-cloud-api.error.details.yaml

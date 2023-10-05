@@ -1,0 +1,18 @@
+title: Status
+oneOf:
+  - $ref: google-cloud-api.error.status.aborted.yaml
+  - $ref: google-cloud-api.error.status.already_exists.yaml
+  - $ref: google-cloud-api.error.status.cancelled.yaml
+  - $ref: google-cloud-api.error.status.data_loss.yaml
+  - $ref: google-cloud-api.error.status.deadline_exceeded.yaml
+  - $ref: google-cloud-api.error.status.failed_precondition.yaml
+  - $ref: google-cloud-api.error.status.internal.yaml
+  - $ref: google-cloud-api.error.status.invalid_argument.yaml
+  - $ref: google-cloud-api.error.status.not_found.yaml
+  - $ref: google-cloud-api.error.status.out_of_range.yaml
+  - $ref: google-cloud-api.error.status.permission_denied.yaml
+  - $ref: google-cloud-api.error.status.resource_exhausted.yaml
+  - $ref: google-cloud-api.error.status.unauthenticated.yaml
+  - $ref: google-cloud-api.error.status.unavailable.yaml
+  - $ref: google-cloud-api.error.status.unimplemented.yaml
+  - $ref: google-cloud-api.error.status.unknown.yaml

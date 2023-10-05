@@ -1,8 +1,0 @@
-description: 429 Too Many Requests
-content:
-  application/json:
-    schema:
-      type: object
-      properties:
-        error:
-          $ref: ../../schemas/google-cloud-api/error=resource_exhausted.yaml

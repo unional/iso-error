@@ -6,4 +6,4 @@ post:
   operationId: google-cloud-api.aborted
   responses:
     409:
-      $ref: ../../components/responses/google-cloud-api/aborted.yaml
+      $ref: ../../components/responses/google-cloud-api.aborted.yaml

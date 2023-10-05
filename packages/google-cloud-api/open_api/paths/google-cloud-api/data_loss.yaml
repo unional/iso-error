@@ -6,4 +6,4 @@ get:
   operationId: google-cloud-api.data_loss
   responses:
     500:
-      $ref: ../../components/responses/google-cloud-api/data_loss.yaml
+      $ref: ../../components/responses/google-cloud-api.data_loss.yaml
