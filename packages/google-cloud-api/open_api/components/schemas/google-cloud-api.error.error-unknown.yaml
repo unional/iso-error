@@ -1,0 +1,10 @@
+type: object
+properties:
+  code:
+    $ref: google-cloud-api.error.error.code.unknown.yaml
+  status:
+    $ref: google-cloud-api.error.error.status.unknown.yaml
+  message:
+    $ref: google-cloud-api.error.error.message.yaml
+  details:
+    $ref: google-cloud-api.error.error.details.yaml

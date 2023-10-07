@@ -1,0 +1,9 @@
+post:
+  summary: google-cloud-api.Aborted
+  description: |
+    This is identical to `google.rpc.Aborted`,
+    except with the `google-cloud-api` extension.
+  operationId: google-cloud-api.aborted
+  responses:
+    409:
+      $ref: ../../components/responses/google-cloud-api.error-aborted.yaml

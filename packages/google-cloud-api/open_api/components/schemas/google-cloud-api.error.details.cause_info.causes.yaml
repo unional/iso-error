@@ -1,3 +1,0 @@
-type: array
-items:
-  $ref: google-cloud-api.error.details.cause_info.cause.yaml

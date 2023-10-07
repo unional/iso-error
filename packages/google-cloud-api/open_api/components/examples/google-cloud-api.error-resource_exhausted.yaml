@@ -1,0 +1,11 @@
+summary: Resource exhausted
+description: |
+  Some resource has been exhausted, perhaps a per-user quota, or
+  perhaps the entire file system is out of space.
+
+  HTTP Mapping: 429 Too Many Requests
+value:
+  error:
+    code: 8
+    status: RESOURCE_EXHAUSTED
+    message: Too Many Requests

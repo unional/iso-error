@@ -1,0 +1,18 @@
+summary: Invalid argument
+description: |
+  The client specified an invalid argument.  Note that this differs
+  from `FAILED_PRECONDITION`.  `INVALID_ARGUMENT` indicates arguments
+  that are problematic regardless of the state of the system
+  (e.g., a malformed file name).
+
+  HTTP Mapping: 400 Bad Request
+value:
+  error:
+    code: 3
+    status: INVALID_ARGUMENT
+    message: The client specified an invalid argument
+    details:
+      - '@type': type.googleapis.com/google.rpc.BadRequest
+        field_violations:
+        - field: first_name
+          description: Cannot be empty

@@ -1,8 +1,0 @@
-description: 403 Forbidden
-content:
-  application/json:
-    schema:
-      type: object
-      properties:
-        error:
-          $ref: ../schemas/google-cloud-api.error-permission_denied.yaml

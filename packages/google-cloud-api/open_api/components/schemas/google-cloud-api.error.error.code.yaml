@@ -1,0 +1,27 @@
+title: google.rpc.Code
+description: |
+  Google APIs must use the canonical error codes defined by [google.rpc.Code](https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto).
+  Individual APIs must avoid defining additional error codes,
+  since developers are very unlikely to write logic to handle a large number of error codes.
+  For reference,
+  handling an average of three error codes per API call would mean most application logic would just be for error handling,
+  which would not be a good developer experience.
+
+  [Reference](https://cloud.google.com/apis/design/errors#error_codes)
+oneOf:
+  - $ref: google-cloud-api.error.error.code.aborted.yaml
+  - $ref: google-cloud-api.error.error.code.already_exists.yaml
+  - $ref: google-cloud-api.error.error.code.cancelled.yaml
+  - $ref: google-cloud-api.error.error.code.data_loss.yaml
+  - $ref: google-cloud-api.error.error.code.deadline_exceeded.yaml
+  - $ref: google-cloud-api.error.error.code.failed_precondition.yaml
+  - $ref: google-cloud-api.error.error.code.internal.yaml
+  - $ref: google-cloud-api.error.error.code.invalid_argument.yaml
+  - $ref: google-cloud-api.error.error.code.not_found.yaml
+  - $ref: google-cloud-api.error.error.code.out_of_range.yaml
+  - $ref: google-cloud-api.error.error.code.permission_denied.yaml
+  - $ref: google-cloud-api.error.error.code.resource_exhausted.yaml
+  - $ref: google-cloud-api.error.error.code.unauthenticated.yaml
+  - $ref: google-cloud-api.error.error.code.unavailable.yaml
+  - $ref: google-cloud-api.error.error.code.unimplemented.yaml
+  - $ref: google-cloud-api.error.error.code.unknown.yaml

@@ -1,0 +1,11 @@
+summary: Already exists
+description: |
+  The entity that a client attempted to create (e.g., file or directory)
+  already exists.
+
+  HTTP Mapping: 409 Conflict
+value:
+  error:
+    code: 6
+    status: ALREADY_EXISTS
+    message: The entry already exists

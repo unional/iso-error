@@ -15,39 +15,39 @@ info:
 servers:
   - url: "https://your-awesome-api.com"
 paths:
-  /google-cloud-api/aborted:
-    $ref: paths/google-cloud-api/aborted.yaml
-  /google-cloud-api/already-exists:
-    $ref: paths/google-cloud-api/already_exists.yaml
-  /google-cloud-api/cancelled:
-    $ref: paths/google-cloud-api/cancelled.yaml
-  /google-cloud-api/cause-info:
-    $ref: paths/google-cloud-api/cause_info.yaml
-  /google-cloud-api/data-loss:
-    $ref: paths/google-cloud-api/data_loss.yaml
-  /google-cloud-api/deadline-exceeded:
-    $ref: paths/google-cloud-api/deadline_exceeded.yaml
-  /google-cloud-api/failed-precondition:
-    $ref: paths/google-cloud-api/failed_precondition.yaml
-  /google-cloud-api/internal:
-    $ref: paths/google-cloud-api/internal.yaml
-  /google-cloud-api/invalid-argument:
-    $ref: paths/google-cloud-api/invalid_argument.yaml
-  /google-cloud-api/not-found:
-    $ref: paths/google-cloud-api/not_found.yaml
-  /google-cloud-api/out-of-range:
-    $ref: paths/google-cloud-api/out_of_range.yaml
-  /google-cloud-api/permission-denied:
-    $ref: paths/google-cloud-api/permission_denied.yaml
-  /google-cloud-api/resource-exhausted:
-    $ref: paths/google-cloud-api/resource_exhausted.yaml
-  /google-cloud-api/unauthenticated:
-    $ref: paths/google-cloud-api/unauthenticated.yaml
-  /google-cloud-api/unavailable:
-    $ref: paths/google-cloud-api/unavailable.yaml
-  /google-cloud-api/unimplemented:
-    $ref: paths/google-cloud-api/unimplemented.yaml
-  /google-cloud-api/unknown:
-    $ref: paths/google-cloud-api/unknown.yaml
-  /google-cloud-api/any-of:
-    $ref: paths/google-cloud-api/any_of.yaml
+  /google-cloud-api/error/aborted:
+    $ref: paths/google-cloud-api/error.aborted.yaml
+  /google-cloud-api/error/already-exists:
+    $ref: paths/google-cloud-api/error.already_exists.yaml
+  /google-cloud-api/error/cancelled:
+    $ref: paths/google-cloud-api/error.cancelled.yaml
+  /google-cloud-api/error/cause-info:
+    $ref: paths/google-cloud-api/error.cause_info.yaml
+  /google-cloud-api/error/data-loss:
+    $ref: paths/google-cloud-api/error.data_loss.yaml
+  /google-cloud-api/error/deadline-exceeded:
+    $ref: paths/google-cloud-api/error.deadline_exceeded.yaml
+  /google-cloud-api/error/failed-precondition:
+    $ref: paths/google-cloud-api/error.failed_precondition.yaml
+  /google-cloud-api/error/internal:
+    $ref: paths/google-cloud-api/error.internal.yaml
+  /google-cloud-api/error/invalid-argument:
+    $ref: paths/google-cloud-api/error.invalid_argument.yaml
+  /google-cloud-api/error/not-found:
+    $ref: paths/google-cloud-api/error.not_found.yaml
+  /google-cloud-api/error/out-of-range:
+    $ref: paths/google-cloud-api/error.out_of_range.yaml
+  /google-cloud-api/error/permission-denied:
+    $ref: paths/google-cloud-api/error.permission_denied.yaml
+  /google-cloud-api/error/resource-exhausted:
+    $ref: paths/google-cloud-api/error.resource_exhausted.yaml
+  /google-cloud-api/error/unauthenticated:
+    $ref: paths/google-cloud-api/error.unauthenticated.yaml
+  /google-cloud-api/error/unavailable:
+    $ref: paths/google-cloud-api/error.unavailable.yaml
+  /google-cloud-api/error/unimplemented:
+    $ref: paths/google-cloud-api/error.unimplemented.yaml
+  /google-cloud-api/error/unknown:
+    $ref: paths/google-cloud-api/error.unknown.yaml
+  /google-cloud-api/error/any-of:
+    $ref: paths/google-cloud-api/error.any_of.yaml

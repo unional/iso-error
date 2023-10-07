@@ -1,0 +1,11 @@
+description: 400 Bad Request
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../schemas/google-cloud-api.error.error-out_of_range.yaml
+    examples:
+      default:
+        $ref: ../examples/google-cloud-api.error-out_of_range.yaml

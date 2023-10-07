@@ -1,9 +1,0 @@
-get:
-  summary: google-cloud-api general error
-  description: |
-    This is an example of a general error,
-    allowing any `google-cloud-api.code`.
-  operationId: google-cloud-api.any-of
-  responses:
-    4XX:
-      $ref: ../../components/responses/google-cloud-api.any_of.yaml

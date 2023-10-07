@@ -1,0 +1,11 @@
+summary: Not authenticated
+description: |
+  The request does not have valid authentication credentials for the
+  operation.
+
+  HTTP Mapping: 401 Unauthorized
+value:
+  error:
+    code: 16
+    status: UNAUTHENTICATED
+    message: Not Authenticated

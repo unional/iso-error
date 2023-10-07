@@ -1,0 +1,14 @@
+summary: Deadline exceeded
+description: |
+  The deadline expired before the operation could complete. For operations
+  that change the state of the system, this error may be returned
+  even if the operation has completed successfully.  For example, a
+  successful response from a server could have been delayed long
+  enough for the deadline to expire.
+
+  HTTP Mapping: 504 Gateway Timeout
+value:
+  error:
+    code: 4
+    status: DEADLINE_EXCEEDED
+    message: The deadline expired before the operation could complete.

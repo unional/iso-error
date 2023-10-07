@@ -1,0 +1,12 @@
+summary: Internal
+description: |
+  Internal errors.  This means that some invariants expected by the
+  underlying system have been broken.  This error code is reserved
+  for serious errors.
+
+  HTTP Mapping: 500 Internal Server Error
+value:
+  error:
+    code: 13
+    status: INTERNAL
+    message: Internal errors.

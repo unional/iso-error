@@ -1,0 +1,18 @@
+anyOf:
+  - $ref: google-cloud-api.error.error-aborted.yaml
+  - $ref: google-cloud-api.error.error-already_exists.yaml
+  - $ref: google-cloud-api.error.error-cancelled.yaml
+  - $ref: google-cloud-api.error.error-data_loss.yaml
+  - $ref: google-cloud-api.error.error-deadline_exceeded.yaml
+  - $ref: google-cloud-api.error.error-failed_precondition.yaml
+  - $ref: google-cloud-api.error.error-internal.yaml
+  - $ref: google-cloud-api.error.error-invalid_argument.yaml
+  - $ref: google-cloud-api.error.error-not_found.yaml
+  - $ref: google-cloud-api.error.error-out_of_range.yaml
+  - $ref: google-cloud-api.error.error-permission_denied.yaml
+  - $ref: google-cloud-api.error.error-resource_exhausted.yaml
+  - $ref: google-cloud-api.error.error-unauthenticated.yaml
+  - $ref: google-cloud-api.error.error-unavailable.yaml
+  - $ref: google-cloud-api.error.error-unimplemented.yaml
+  - $ref: google-cloud-api.error.error-unknown.yaml
+

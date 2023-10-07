@@ -9,6 +9,7 @@ module.exports = [
 	},
 	{
 		path: './esm/index.js',
+		import: '*',
 		limit: '10 kB'
 	}
 ]

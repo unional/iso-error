@@ -1,0 +1,10 @@
+summary: Cancelled
+description: |
+  The operation was cancelled, typically by the caller
+
+  HTTP Mapping: 499 Client Closed Request
+value:
+  error:
+    code: 1
+    status: CANCELLED
+    message: The operation was cancelled

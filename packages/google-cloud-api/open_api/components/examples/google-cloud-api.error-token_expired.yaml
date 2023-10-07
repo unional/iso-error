@@ -1,0 +1,11 @@
+summary: Token expired
+description: |
+  When the authentication token expired,
+  the response is identical to the unauthenticated response.
+
+  This deters attackers from knowing the token is valid.
+value:
+  error:
+    code: 16
+    status: UNAUTHENTICATED
+    message: Not Authenticated

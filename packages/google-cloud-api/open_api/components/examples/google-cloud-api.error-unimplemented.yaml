@@ -1,0 +1,11 @@
+summary: Unimplemented
+description: |
+  The operation is not implemented or is not supported/enabled in this
+  service.
+
+  HTTP Mapping: 501 Not Implemented
+value:
+  error:
+    code: 12
+    status: UNIMPLEMENTED
+    message: The operation is not implemented

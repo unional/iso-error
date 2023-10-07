@@ -1,0 +1,11 @@
+description: 409 Conflict
+content:
+  application/json:
+    schema:
+      type: object
+      properties:
+        error:
+          $ref: ../schemas/google-cloud-api.error.error-aborted.yaml
+    examples:
+      default:
+        $ref: ../examples/google-cloud-api.error-aborted.yaml

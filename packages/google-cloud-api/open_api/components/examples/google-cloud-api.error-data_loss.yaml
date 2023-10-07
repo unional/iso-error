@@ -1,0 +1,10 @@
+summary: Data loss
+description: |
+  Unrecoverable data loss or corruption.
+
+  HTTP Mapping: 500 Internal Server Error
+value:
+  error:
+    code: 15
+    status: DATA_LOSS
+    message: Unrecoverable data loss or corruption.

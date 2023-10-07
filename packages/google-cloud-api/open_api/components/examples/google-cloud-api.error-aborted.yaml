@@ -1,0 +1,14 @@
+summary: Aborted
+description: |
+  The operation was aborted, typically due to a concurrency issue such as
+  a sequencer check failure or transaction abort.
+
+  See the guidelines above for deciding between `FAILED_PRECONDITION`,
+  `ABORTED`, and `UNAVAILABLE`.
+
+  HTTP Mapping: 409 Conflict
+value:
+  error:
+    code: 10
+    status: ABORTED
+    message: Conflict
