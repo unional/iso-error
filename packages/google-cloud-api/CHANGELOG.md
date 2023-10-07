@@ -1,5 +1,13 @@
 # google-cloud-api
 
+## 7.0.0
+
+### Major Changes
+
+- 5bba9a9: Update filenames to add the `error` category.
+
+  Add examples for the errors.
+
 ## 6.0.0
 
 ### Major Changes
