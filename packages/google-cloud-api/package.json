@@ -71,7 +71,7 @@
 		"@apidevtools/swagger-cli": "^4.0.4",
 		"@redocly/cli": "^1.2.0",
 		"@repobuddy/jest": "^5.0.0",
-		"@repobuddy/typescript": "^1.1.2",
+		"@repobuddy/typescript": "^2.0.0",
 		"@size-limit/file": "^9.0.0",
 		"@size-limit/webpack": "^9.0.0",
 		"@types/jest": "^29.5.1",
