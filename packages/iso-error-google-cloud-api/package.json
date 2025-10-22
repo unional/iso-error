@@ -67,7 +67,7 @@
 		"@types/node": "^18.11.9",
 		"@typescript-eslint/eslint-plugin": "^6.0.0",
 		"assertron": "^11.1.1",
-		"cross-env": "^7.0.3",
+		"cross-env": "^10.0.0",
 		"depcheck": "^1.4.3",
 		"iso-error": "workspace:^",
 		"jest": "^29.5.0",
