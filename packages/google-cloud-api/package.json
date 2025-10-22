@@ -91,7 +91,7 @@
 		"repobuddy": "^1.0.1",
 		"rimraf": "^5.0.0",
 		"satisfier": "^5.4.2",
-		"size-limit": "^9.0.0",
+		"size-limit": "^11.0.0",
 		"ts-jest": "^29.1.0",
 		"tslib": "^2.4.1",
 		"typescript": "^5.0.0"
