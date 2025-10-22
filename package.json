@@ -28,7 +28,7 @@
 		"@commitlint/cli": "20.1.0",
 		"@commitlint/config-conventional": "20.0.0",
 		"@redocly/cli": "^1.2.0",
-		"eslint": "^8.39.0",
+		"eslint": "^9.0.0",
 		"eslint-config-prettier": "^9.0.0",
 		"eslint-plugin-harmony": "^7.1.2",
 		"husky": "^9.0.0",
