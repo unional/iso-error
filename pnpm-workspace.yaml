@@ -4,4 +4,5 @@ allowBuilds:
   '@swc/core': true
   core-js: true
   esbuild: true
+  fsevents: true
   protobufjs: true
