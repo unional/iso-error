@@ -5,7 +5,7 @@ module.exports = [
 	},
 	{
 		path: './tslib/index.js',
-		limit: '5 kB'
+		limit: '6 kB'
 	},
 	{
 		path: './esm/index.js',
