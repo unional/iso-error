@@ -67,8 +67,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
       '@size-limit/webpack':
-        specifier: ^9.0.0
-        version: 9.0.0(@swc/core@1.15.33)(size-limit@9.0.0)
+        specifier: ^12.0.0
+        version: 12.1.0(@swc/core@1.15.33)(size-limit@9.0.0)
       '@types/jest':
         specifier: ^29.5.1
         version: 29.5.14
@@ -218,8 +218,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
       '@size-limit/webpack':
-        specifier: ^9.0.0
-        version: 9.0.0(@swc/core@1.15.33)(size-limit@9.0.0)
+        specifier: ^12.0.0
+        version: 12.1.0(@swc/core@1.15.33)(size-limit@9.0.0)
       '@types/jest':
         specifier: ^29.5.1
         version: 29.5.14
@@ -294,8 +294,8 @@ importers:
         specifier: ^9.0.0
         version: 9.0.0(size-limit@9.0.0)
       '@size-limit/webpack':
-        specifier: ^9.0.0
-        version: 9.0.0(@swc/core@1.15.33)(size-limit@9.0.0)
+        specifier: ^12.0.0
+        version: 12.1.0(@swc/core@1.15.33)(size-limit@9.0.0)
       '@types/jest':
         specifier: ^29.5.1
         version: 29.5.14
@@ -1229,11 +1229,11 @@ packages:
     peerDependencies:
       size-limit: 9.0.0
 
-  '@size-limit/webpack@9.0.0':
-    resolution: {integrity: sha512-0YwdvmBj9rS4bXE/PY9vSdc5lCiQXmT0794EsG7yvlDMWyrWa/dsgcRok/w0MoZstfuLaS6lv03VI5UJRFU/lg==}
-    engines: {node: ^18.0.0 || >=20.0.0}
+  '@size-limit/webpack@12.1.0':
+    resolution: {integrity: sha512-3v/evOHskR0eVD6hpRO9jFpRPkpJb+GhqKJGxrqf1j1ZeoYu9A8v8iT3+U4TJOXTZbCbJ+Q6lWRBPFEcLZbNuw==}
+    engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
     peerDependencies:
-      size-limit: 9.0.0
+      size-limit: 12.1.0
 
   '@swc/core-darwin-arm64@1.15.33':
     resolution: {integrity: sha512-N+L0uXhuO7FIfzqwgxmzv0zIpV0qEp8wPX3QQs2p4atjMoywup2JTeDlXPw+z9pWJGCae3JjM+tZ6myclI+2gA==}
@@ -3149,6 +3149,11 @@ packages:
   nanoid@3.3.12:
     resolution: {integrity: sha512-ZB9RH/39qpq5Vu6Y+NmUaFhQR6pp+M2Xt76XBnEwDaGcVAqhlvxrl3B2bKS5D3NH3QR76v3aSrKaF/Kiy7lEtQ==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  nanoid@5.1.11:
+    resolution: {integrity: sha512-v+KEsUv2ps74PaSKv0gHTxTCgMXOIfBEbaqa6w6ISIGC7ZsvHN4N9oJ8d4cmf0n5oTzQz2SLmThbQWhjd/8eKg==}
+    engines: {node: ^18 || >=20}
     hasBin: true
 
   nanospinner@1.2.2:
@@ -5493,9 +5498,9 @@ snapshots:
       '@size-limit/file': 9.0.0(size-limit@9.0.0)
       size-limit: 9.0.0
 
-  '@size-limit/webpack@9.0.0(@swc/core@1.15.33)(size-limit@9.0.0)':
+  '@size-limit/webpack@12.1.0(@swc/core@1.15.33)(size-limit@9.0.0)':
     dependencies:
-      nanoid: 3.3.12
+      nanoid: 5.1.11
       size-limit: 9.0.0
       webpack: 5.106.2(@swc/core@1.15.33)
     transitivePeerDependencies:
@@ -7722,6 +7727,8 @@ snapshots:
       minimatch: 3.1.5
 
   nanoid@3.3.12: {}
+
+  nanoid@5.1.11: {}
 
   nanospinner@1.2.2:
     dependencies:
