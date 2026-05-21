@@ -64,8 +64,8 @@ importers:
         specifier: ^2.0.0
         version: 2.1.0
       '@size-limit/file':
-        specifier: ^9.0.0
-        version: 9.0.0(size-limit@9.0.0)
+        specifier: ^12.0.0
+        version: 12.1.0(size-limit@9.0.0)
       '@size-limit/webpack':
         specifier: ^9.0.0
         version: 9.0.0(@swc/core@1.15.33)(size-limit@9.0.0)
@@ -215,8 +215,8 @@ importers:
         specifier: ^2.0.0
         version: 2.1.0
       '@size-limit/file':
-        specifier: ^9.0.0
-        version: 9.0.0(size-limit@9.0.0)
+        specifier: ^12.0.0
+        version: 12.1.0(size-limit@9.0.0)
       '@size-limit/webpack':
         specifier: ^9.0.0
         version: 9.0.0(@swc/core@1.15.33)(size-limit@9.0.0)
@@ -291,8 +291,8 @@ importers:
         specifier: ^2.0.0
         version: 2.1.0
       '@size-limit/file':
-        specifier: ^9.0.0
-        version: 9.0.0(size-limit@9.0.0)
+        specifier: ^12.0.0
+        version: 12.1.0(size-limit@9.0.0)
       '@size-limit/webpack':
         specifier: ^9.0.0
         version: 9.0.0(@swc/core@1.15.33)(size-limit@9.0.0)
@@ -1227,6 +1227,12 @@ packages:
     engines: {node: ^18.0.0 || >=20.0.0}
     peerDependencies:
       size-limit: 9.0.0
+
+  '@size-limit/file@12.1.0':
+    resolution: {integrity: sha512-eGwDcIufnNnvJRzv3liDOn6MAOGgmOTUdpeGQ2KuRTlgIgO54AJH1ilvktlJc6PIjNfwpYY0dOGyap1QgM1swQ==}
+    engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
+    peerDependencies:
+      size-limit: 12.1.0
 
   '@size-limit/file@9.0.0':
     resolution: {integrity: sha512-oM2UaH2FRq4q22k+R+P6xCpzET10T94LFdSjb9svVu/vOD7NaB9LGcG6se8TW1BExXiyXO4GEhLsBt3uMKM3qA==}
@@ -5513,6 +5519,10 @@ snapshots:
     dependencies:
       esbuild: 0.19.12
       nanoid: 3.3.12
+      size-limit: 9.0.0
+
+  '@size-limit/file@12.1.0(size-limit@9.0.0)':
+    dependencies:
       size-limit: 9.0.0
 
   '@size-limit/file@9.0.0(size-limit@9.0.0)':
