@@ -42,7 +42,7 @@
 	"scripts": {
 		"build": "npm-run-all ts:clean -p ts:build:cjs ts:build:esm ts:build:tslib bundle:docs",
 		"build:docs": "redocly build-docs",
-		"bundle:docs": "redocly bundle -o dist/openapispec.yaml",
+		"bundle:docs": "redocly bundle google-cloud-api -o dist/openapispec.yaml",
 		"clean": "rimraf coverage cjs esm lib libm tslib --glob *.tsbuildinfo",
 		"coverage": "jest --coverage",
 		"depcheck": "depcheck",
