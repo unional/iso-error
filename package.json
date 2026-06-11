@@ -33,7 +33,7 @@
 		"eslint-plugin-harmony": "^7.1.2",
 		"husky": "^9.0.0",
 		"pinst": "^3.0.0",
-		"turbo": "^1.9.3",
+		"turbo": "^2.0.0",
 		"typescript": "^5.0.0"
 	},
 	"packageManager": "pnpm@11.5.3"
