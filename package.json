@@ -34,7 +34,7 @@
 		"husky": "^9.0.0",
 		"pinst": "^3.0.0",
 		"turbo": "^1.9.3",
-		"typescript": "^5.0.0"
+		"typescript": "^7.0.0"
 	},
 	"packageManager": "pnpm@11.17.0"
 }
