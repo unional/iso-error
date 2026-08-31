@@ -4,9 +4,9 @@
 [![NPM downloads][downloads-image]][downloads-url]
 [![Codecov][codecov-image]][codecov-url]
 
-[`iso-error`](https://github.com/unional/iso-error) plugin for [Google Cloud API design](https://cloud.google.com/apis/design/).
+[`iso-error`](https://github.com/cyberuni/iso-error) plugin for [Google Cloud API design](https://cloud.google.com/apis/design/).
 
-Since [`iso-error`](https://github.com/unional/iso-error) is about sending data across physical boundary,
+Since [`iso-error`](https://github.com/cyberuni/iso-error) is about sending data across physical boundary,
 the `DebugInfo` is removed for security purpose.
 
 ## Install
@@ -49,8 +49,8 @@ try {
 }
 ```
 
-[codecov-image]: https://codecov.io/gh/unional/iso-error-google-cloud-api/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/iso-error-google-cloud-api
+[codecov-image]: https://codecov.io/gh/cyberuni/iso-error/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cyberuni/iso-error
 [downloads-image]: https://img.shields.io/npm/dm/iso-error-google-cloud-api.svg?style=flat
 [downloads-url]: https://npmjs.org/package/iso-error-google-cloud-api
 [npm-image]: https://img.shields.io/npm/v/iso-error-google-cloud-api.svg?style=flat

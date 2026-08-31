@@ -2,13 +2,13 @@
 	"name": "iso-error",
 	"version": "6.0.3",
 	"description": "An isomorphic error library",
-	"homepage": "https://github.com/unional/iso-error/tree/main/packages/iso-error",
+	"homepage": "https://github.com/cyberuni/iso-error/tree/main/packages/iso-error",
 	"bugs": {
-		"url": "https://github.com/unional/iso-error/issues"
+		"url": "https://github.com/cyberuni/iso-error/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/unional/iso-error.git"
+		"url": "https://github.com/cyberuni/iso-error.git"
 	},
 	"license": "MIT",
 	"author": {

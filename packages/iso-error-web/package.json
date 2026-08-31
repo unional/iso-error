@@ -2,13 +2,13 @@
 	"name": "iso-error-web",
 	"version": "2.4.1",
 	"description": "iso-error web extension",
-	"homepage": "https://github.com/unional/iso-error/tree/main/packages/iso-error-web",
+	"homepage": "https://github.com/cyberuni/iso-error/tree/main/packages/iso-error-web",
 	"bugs": {
-		"url": "https://github.com/unional/iso-error/issues"
+		"url": "https://github.com/cyberuni/iso-error/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/unional/iso-error.git"
+		"url": "https://github.com/cyberuni/iso-error.git"
 	},
 	"license": "MIT",
 	"author": {

@@ -37,9 +37,9 @@ try {
 }
 ```
 
-[`iso-error`]: https://github.com/unional/iso-error/tree/main/packages/iso-error
-[codecov-image]: https://codecov.io/gh/unional/iso-error-web/branch/main/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/iso-error-web
+[`iso-error`]: https://github.com/cyberuni/iso-error/tree/main/packages/iso-error
+[codecov-image]: https://codecov.io/gh/cyberuni/iso-error/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cyberuni/iso-error
 [downloads-image]: https://img.shields.io/npm/dm/iso-error-web.svg?style=flat
 [downloads-url]: https://npmjs.org/package/iso-error-web
 [npm-image]: https://img.shields.io/npm/v/iso-error-web.svg?style=flat

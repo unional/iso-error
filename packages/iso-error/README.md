@@ -208,8 +208,8 @@ They contain information about the internal structure of your package and are fr
 
 Use the `errors` property to provide a humanly understandable trace.
 
-[codecov-image]: https://codecov.io/gh/unional/iso-error/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/iso-error
+[codecov-image]: https://codecov.io/gh/cyberuni/iso-error/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cyberuni/iso-error
 [downloads-image]: https://img.shields.io/npm/dm/iso-error.svg?style=flat
 [downloads-url]: https://npmjs.org/package/iso-error
 [npm-image]: https://img.shields.io/npm/v/iso-error.svg?style=flat

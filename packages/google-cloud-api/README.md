@@ -19,8 +19,8 @@ References:
 - <https://github.com/googleapis/googleapis/blob/master/google/rpc/code.proto>
 
 [Google Cloud API design]: https://cloud.google.com/apis/design/
-[codecov-image]: https://codecov.io/gh/unional/google-cloud-api/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/unional/google-cloud-api
+[codecov-image]: https://codecov.io/gh/cyberuni/iso-error/branch/main/graph/badge.svg
+[codecov-url]: https://codecov.io/gh/cyberuni/iso-error
 [downloads-image]: https://img.shields.io/npm/dm/google-cloud-api.svg?style=flat
 [downloads-url]: https://npmjs.org/package/google-cloud-api
 [npm-image]: https://img.shields.io/npm/v/google-cloud-api.svg?style=flat
