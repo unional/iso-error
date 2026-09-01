@@ -19,7 +19,7 @@ export default defineConfig({
 				'ts/rpc/rpc.ts',
 				'ts/rpc/types.ts'
 			],
-			reporter: ['text', 'lcov'],
+			reporter: ['text', ['lcovonly', { projectRoot: '../..' }]],
 			thresholds: { statements: 97, branches: 66, functions: 100, lines: 98 }
 		}
 	}

@@ -8,7 +8,7 @@ export default defineConfig({
 			provider: 'v8',
 			include: ['ts/**/*.ts'],
 			exclude: ['ts/**/*.spec.ts', 'ts/**/test-utils/**', 'ts/testErrors.ts'],
-			reporter: ['text', 'lcov'],
+			reporter: ['text', ['lcovonly', { projectRoot: '../..' }]],
 			thresholds: { statements: 100, branches: 100, functions: 100, lines: 100 }
 		}
 	}
