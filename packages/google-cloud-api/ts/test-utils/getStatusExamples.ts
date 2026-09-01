@@ -168,5 +168,5 @@ const statusExamples: Status[] = [
 ]
 
 export function getStatusExample(code: number) {
-	return statusExamples.find(e => e.code === code)
+	return statusExamples.find((e) => e.code === code)
 }

@@ -1,6 +1,6 @@
 import { isAggregateError } from './index.js'
 
-// @ts-ignore
+// @ts-expect-error
 if (global.AggregateError) {
 	it('returns true for AggregateError', () => {
 		expect(isAggregateError(new AggregateError([]))).toBe(true)

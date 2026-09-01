@@ -1,4 +1,4 @@
-import { rpc, GoogleCloudApiError } from 'google-cloud-api'
+import { GoogleCloudApiError, rpc } from 'google-cloud-api'
 import type { IsoErrorPlugin } from 'iso-error'
 
 /**
@@ -12,9 +12,7 @@ export const googleCloudApiPlugin: IsoErrorPlugin = {
 		if (!isGoogleCloudApiError(err)) return undefined
 
 		const status = err.toRpcStatus()
-		status.details = status.details.filter(
-			d => d['@type'] !== 'type.googleapis.com/google.rpc.DebugInfo'
-		)
+		status.details = status.details.filter((d) => d['@type'] !== 'type.googleapis.com/google.rpc.DebugInfo')
 		return { error: status }
 	},
 	fromSerializable(obj) {

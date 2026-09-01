@@ -1,17 +1,9 @@
 {
-	"compilerOptions": {
-		"lib": ["ES2021.Promise"]
-	},
 	"files": [],
 	"references": [
-		{
-			"path": "packages/iso-error"
-		},
-		{
-			"path": "packages/google-cloud-api"
-		},
-		{
-			"path": "packages/iso-error-google-cloud-api"
-		}
+		{ "path": "packages/iso-error" },
+		{ "path": "packages/iso-error-web" },
+		{ "path": "packages/google-cloud-api" },
+		{ "path": "packages/iso-error-google-cloud-api" }
 	]
 }

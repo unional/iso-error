@@ -1,0 +1,32 @@
+{
+	"$schema": "https://biomejs.dev/schemas/2.5.11/schema.json",
+	"extends": ["@repobuddy/biome/recommended"],
+	"files": {
+		"includes": [
+			"!**/.turbo",
+			"!**/cjs",
+			"!**/coverage",
+			"!**/esm",
+			"!**/node_modules",
+			"!**/CHANGELOG.md",
+			"!packages/google-cloud-api/docs",
+			"!skills-lock.json",
+			"!pnpm-lock.yaml"
+		]
+	},
+	"linter": {
+		"rules": {
+			"complexity": {
+				"noThisInStatic": "off"
+			},
+			"suspicious": {
+				"noProto": "off"
+			}
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"trailingCommas": "none"
+		}
+	}
+}

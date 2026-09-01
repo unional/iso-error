@@ -1,5 +1,3 @@
 {
-	"recommendations": [
-		"redocly.openapi-vs-code"
-	]
+	"recommendations": ["redocly.openapi-vs-code"]
 }

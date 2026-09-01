@@ -1,0 +1,6 @@
+ignores:
+  - '@types/node'
+  - '@vitest/coverage-v8'
+  - rimraf
+  - tsdown
+  - typescript
