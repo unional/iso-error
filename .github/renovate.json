@@ -1,3 +1,21 @@
 {
-	"extends": ["github>unional/renovate-preset"]
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["github>unional/renovate-preset"],
+	"platformAutomerge": true,
+	"packageRules": [
+		{
+			"description": "Non-major updates merge themselves through the repo's own merge settings.",
+			"matchUpdateTypes": ["patch", "minor", "pin", "digest"],
+			"automerge": true
+		},
+		{
+			"description": "Majors stay manual — a human decides when to absorb the breakage.",
+			"matchUpdateTypes": ["major"],
+			"automerge": false
+		}
+	],
+	"lockFileMaintenance": {
+		"enabled": true,
+		"automerge": true
+	}
 }
