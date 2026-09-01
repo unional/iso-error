@@ -6,7 +6,11 @@ packages:
 # deliberate, reviewed decision.
 minimumReleaseAge: 1440
 minimumReleaseAgeStrict: true
-minimumReleaseAgeExclude: []
+minimumReleaseAgeExclude:
+  [
+    # Renovate security update: turbo@2.9.14
+    turbo@2.9.14
+  ]
 allowBuilds:
   '@swc/core': true
   core-js: true
