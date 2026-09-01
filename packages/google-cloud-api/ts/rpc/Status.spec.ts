@@ -72,6 +72,7 @@ describe('statusToError', () => {
 		expect(
 			statusToError({
 				code: 123,
+				status: 'UNKNOWN_CODE',
 				message: '',
 				details: []
 			})

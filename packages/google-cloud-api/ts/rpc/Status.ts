@@ -17,7 +17,7 @@ import {
 	Unimplemented,
 	UnknownError
 } from '../errors.js'
-import { Status } from './types.js'
+import type { Status } from './types.js'
 
 export function isStatus(input: any): input is Status {
 	return (

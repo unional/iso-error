@@ -1,7 +1,11 @@
-import { IsoError, ModuleError, type IsoErrorPlugin } from 'iso-error'
+import { type IsoError, type IsoErrorPlugin, ModuleError } from 'iso-error'
 
 export class HttpError extends ModuleError {
-	constructor(public status: number, message: string, options?: IsoError.Options) {
+	constructor(
+		public status: number,
+		message: string,
+		options?: IsoError.Options
+	) {
 		super('iso-error-web/http', message, options)
 	}
 }
@@ -471,7 +475,7 @@ export const HttpStatusText: Record<number, string> = {
 	[HttpStatus.UnsupportedMediaType]: 'Unsupported Media Type',
 	[HttpStatus.RangeNotSatisfiable]: 'Range Not Satisfiable',
 	[HttpStatus.ExpectationFailed]: 'Expectation Failed',
-	[HttpStatus.IAmATeapot]: 'I\'m a teapot',
+	[HttpStatus.IAmATeapot]: "I'm a teapot",
 	[HttpStatus.MisdirectedRequest]: 'Misdirected Request',
 	[HttpStatus.UnprocessableEntity]: 'Unprocessable Entity',
 	[HttpStatus.Locked]: 'Locked',

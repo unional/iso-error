@@ -5,6 +5,8 @@ extends:
 apis:
   google-cloud-api:
     root: open_api/google_cloud_api.yaml
+  google-rpc:
+    root: open_api/google.rpc.yaml
 rules:
   no-unused-components: off
   no-empty-servers: off
@@ -12,13 +14,12 @@ rules:
   operation-4xx-response: off
   operation-operationId: off
   security-defined: off
-theme:
-  openapi:
-    htmlTemplate: docs/index.html
-    generateCodeSamples:
-      languages:
-        - lang: curl
-        - lang: Node.js
-        - lang: JavaScript
-        - lang: Go
-        - lang: Python
+openapi:
+  htmlTemplate: docs/index.html
+  generateCodeSamples:
+    languages:
+      - lang: curl
+      - lang: Node.js
+      - lang: JavaScript
+      - lang: Go
+      - lang: Python

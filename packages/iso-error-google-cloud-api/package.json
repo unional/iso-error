@@ -18,15 +18,17 @@
 	"sideEffects": false,
 	"type": "module",
 	"exports": {
-		"import": {
-			"type": "./esm/index.d.ts",
+		".": {
+			"import": {
+				"types": "./esm/index.d.ts",
+				"default": "./esm/index.js"
+			},
+			"require": {
+				"types": "./cjs/index.d.ts",
+				"default": "./cjs/index.js"
+			},
 			"default": "./esm/index.js"
-		},
-		"require": {
-			"type": "./cjs/index.d.ts",
-			"default": "./cjs/index.js"
-		},
-		"default": "./esm/index.js"
+		}
 	},
 	"main": "./cjs/index.js",
 	"module": "./esm/index.js",
@@ -38,50 +40,32 @@
 		"!**/*.{spec,test,unit,accept,integrate,system,perf,stress}.*"
 	],
 	"scripts": {
-		"build": "npm-run-all ts:clean ts:build:cjs ts:build:esm ts:build:tslib",
-		"clean": "rimraf coverage cjs esm lib libm tslib --glob *.tsbuildinfo",
-		"coverage": "jest --coverage",
+		"build": "tsdown",
+		"build:watch": "tsdown --watch",
+		"clean": "rimraf coverage cjs esm --glob *.tsbuildinfo",
+		"coverage": "vitest run --coverage",
 		"depcheck": "depcheck",
-		"lint": "cross-env TIMING=1 eslint --ext=js,ts .",
-		"nuke": "rimraf node_modules",
-		"size": "size-limit",
-		"test": "jest --reporters=default",
-		"test:watch": "jest --watch",
-		"ts:build:cjs": "buddy ts build cjs",
-		"ts:build:esm": "tsc -p tsconfig.esm.json",
-		"ts:build:tslib": "buddy ts build tslib",
-		"ts:clean": "rimraf .tsbuildinfo",
-		"ts:test": "tsc",
-		"verify": "npm-run-all -p build lint coverage depcheck -s size",
-		"watch": "jest --watch"
+		"nuke": "run-s clean && rimraf node_modules",
+		"test": "vitest run",
+		"typecheck": "tsc",
+		"verify": "npm-run-all clean -p build typecheck coverage depcheck",
+		"w": "pnpm watch",
+		"watch": "vitest"
 	},
 	"dependencies": {
 		"google-cloud-api": "workspace:^"
 	},
 	"devDependencies": {
-		"@repobuddy/jest": "^5.0.0",
-		"@repobuddy/typescript": "^2.0.0",
-		"@size-limit/file": "^13.0.0",
-		"@size-limit/webpack": "^13.0.0",
-		"@types/jest": "^29.5.1",
-		"@types/node": "^24.0.0",
-		"@typescript-eslint/eslint-plugin": "^6.0.0",
-		"assertron": "^11.1.1",
-		"cross-env": "^7.0.3",
-		"depcheck": "^1.4.3",
+		"@types/node": "^26.4.0",
+		"@vitest/coverage-v8": "^4.1.11",
+		"assertron": "^11.5.3",
+		"depcheck": "^1.4.7",
 		"iso-error": "workspace:^",
-		"jest": "^29.5.0",
-		"jest-validate": "^29.5.0",
-		"jest-watch-suspend": "^1.1.2",
-		"jest-watch-toggle-config": "^3.0.0",
-		"jest-watch-typeahead": "^3.0.0",
-		"npm-run-all2": "^9.0.0",
-		"repobuddy": "^1.0.1",
-		"rimraf": "^6.0.0",
-		"size-limit": "^13.0.0",
-		"ts-jest": "^29.1.0",
-		"tslib": "^2.4.1",
-		"typescript": "^5.0.0"
+		"npm-run-all2": "^9.0.3",
+		"rimraf": "^6.1.3",
+		"tsdown": "^0.22.14",
+		"typescript": "^7.0.2",
+		"vitest": "^4.1.11"
 	},
 	"peerDependencies": {
 		"iso-error": ">= 4"

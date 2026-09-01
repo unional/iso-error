@@ -35,8 +35,10 @@
 		"tsbuildinfo",
 		"ungap"
 	],
-	"eslint.enable": true,
-	"eslint.nodePath": ".yarn/sdks",
+	"editor.defaultFormatter": "biomejs.biome",
+	"editor.codeActionsOnSave": {
+		"source.fixAll.biome": "explicit"
+	},
 	"grammarly.overrides": [
 		{
 			"config": {

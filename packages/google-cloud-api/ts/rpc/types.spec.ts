@@ -1,10 +1,11 @@
 import { canAssign } from 'type-plus'
-import { rpc } from './index.js'
+import type { rpc } from './index.js'
 
 describe('rpc.Status', () => {
 	it('can specify specific detail types', () => {
 		const json = {
 			code: 200,
+			status: 'OK',
 			message: 'msg',
 			details: [
 				{

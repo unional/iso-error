@@ -127,11 +127,7 @@ describe('createHttpError()', () => {
 	testCreateHttpError(NotFound, HttpStatus.NotFound, 'value not found')
 	testCreateHttpError(MethodNotAllowed, HttpStatus.MethodNotAllowed, 'OPTION method not allowed')
 	testCreateHttpError(NotAcceptable, HttpStatus.NotAcceptable, 'some message')
-	testCreateHttpError(
-		ProxyAuthenticationRequired,
-		HttpStatus.ProxyAuthenticationRequired,
-		'some message'
-	)
+	testCreateHttpError(ProxyAuthenticationRequired, HttpStatus.ProxyAuthenticationRequired, 'some message')
 	testCreateHttpError(RequestTimeout, HttpStatus.RequestTimeout, 'request timed out')
 	testCreateHttpError(Conflict, HttpStatus.Conflict, 'conflict detected')
 	testCreateHttpError(Gone, HttpStatus.Gone, 'entry is gone')
@@ -139,11 +135,7 @@ describe('createHttpError()', () => {
 	testCreateHttpError(PreconditionFailed, HttpStatus.PreconditionFailed, 'some message')
 	testCreateHttpError(PayloadTooLarge, HttpStatus.PayloadTooLarge, 'paylog over limit')
 	testCreateHttpError(UriTooLong, HttpStatus.UriTooLong, 'some message')
-	testCreateHttpError(
-		UnsupportedMediaType,
-		HttpStatus.UnsupportedMediaType,
-		'media type: xml not supported'
-	)
+	testCreateHttpError(UnsupportedMediaType, HttpStatus.UnsupportedMediaType, 'media type: xml not supported')
 	testCreateHttpError(RangeNotSatisfiable, HttpStatus.RangeNotSatisfiable, 'some message')
 	testCreateHttpError(ExpectationFailed, HttpStatus.ExpectationFailed, 'some message')
 	testCreateHttpError(IAmATeapot, HttpStatus.IAmATeapot, 'some message')
@@ -155,16 +147,8 @@ describe('createHttpError()', () => {
 	testCreateHttpError(UpgradeRequired, HttpStatus.UpgradeRequired, 'some message')
 	testCreateHttpError(PreconditionRequired, HttpStatus.PreconditionRequired, 'some message')
 	testCreateHttpError(TooManyRequests, HttpStatus.TooManyRequests, 'some message')
-	testCreateHttpError(
-		RequestHeaderFieldsTooLarge,
-		HttpStatus.RequestHeaderFieldsTooLarge,
-		'some message'
-	)
-	testCreateHttpError(
-		UnavailableForLegalReasons,
-		HttpStatus.UnavailableForLegalReasons,
-		'some message'
-	)
+	testCreateHttpError(RequestHeaderFieldsTooLarge, HttpStatus.RequestHeaderFieldsTooLarge, 'some message')
+	testCreateHttpError(UnavailableForLegalReasons, HttpStatus.UnavailableForLegalReasons, 'some message')
 
 	testCreateHttpError(InternalServerError, HttpStatus.InternalServerError, 'internal server error')
 	testCreateHttpError(NotImplemented, HttpStatus.NotImplemented, 'not implemented')
@@ -176,11 +160,7 @@ describe('createHttpError()', () => {
 	testCreateHttpError(InsufficientStorage, HttpStatus.InsufficientStorage, 'some message')
 	testCreateHttpError(LoopDetected, HttpStatus.LoopDetected, 'some message')
 	testCreateHttpError(NotExtended, HttpStatus.NotExtended, 'some message')
-	testCreateHttpError(
-		NetworkAuthenticationRequired,
-		HttpStatus.NetworkAuthenticationRequired,
-		'network auth required'
-	)
+	testCreateHttpError(NetworkAuthenticationRequired, HttpStatus.NetworkAuthenticationRequired, 'network auth required')
 })
 
 function testCreateHttpError(ErrorClass: AnyConstructor, status: number, message: string) {
@@ -195,7 +175,7 @@ function assertCreateHttpError(ErrorClass: AnyConstructor, status: number, messa
 	expect(a.message).toBe(message)
 }
 
-describe(`webPlugin`, () => {
+describe('webPlugin', () => {
 	it('restores instanceOf check', () => {
 		IsoError.addPlugin(webPlugin)
 

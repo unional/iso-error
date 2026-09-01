@@ -1,7 +1,7 @@
 //#region captureStackTrace polyfill
 // istanbul ignore next
 if (!Error.captureStackTrace) {
-	Error.captureStackTrace = function (error) {
+	Error.captureStackTrace = (error) => {
 		const container = new Error()
 
 		Object.defineProperty(error, 'stack', {
@@ -11,7 +11,7 @@ if (!Error.captureStackTrace) {
 				defineStack(this, container.stack)
 				return container.stack
 			},
-			set: function (stack: string | undefined) {
+			set: (stack: string | undefined) => {
 				defineStack(error, stack)
 			}
 		})
@@ -60,39 +60,31 @@ export class SerializableConverter {
 	private fromSerializableImpl<E extends IsoError.ErrorWithCause>(json: Record<string | number, any>): E {
 		if (json['name'] === 'AggregateError') {
 			const { message, errors, ...rest } = json as unknown as { message: string; errors: any[] }
-			// @ts-ignore
+			// @ts-expect-error
 			// istanbul ignore next
 			if (global.AggregateError) {
 				return Object.assign(new AggregateError(errors as any, message), rest) as unknown as E
-			} else {
-				return Object.assign(new Error(message), {
-					...rest,
-					errors
-				}) as unknown as E
 			}
+			/* v8 ignore next 4 -- fallback for runtimes without AggregateError */
+			return Object.assign(new Error(message), {
+				...rest,
+				errors
+			}) as unknown as E
 		}
 
 		const { message, cause, ...rest } = json
 		const causeError = cause ? this.deserializeError(cause as Error) : undefined
 
 		if (json['name'] === 'Error') {
-			return Object.assign(
-				new Error(message),
-				causeError ? { ...rest, cause: causeError } : rest
-			) as E
+			return Object.assign(new Error(message), causeError ? { ...rest, cause: causeError } : rest) as E
 		}
 
-		// @ts-ignore
-		return Object.assign(
-			new IsoError(message, causeError ? { cause: causeError } : undefined),
-			rest
-		)
+		// @ts-expect-error
+		return Object.assign(new IsoError(message, causeError ? { cause: causeError } : undefined), rest)
 	}
 
-	private deserializeError<E extends IsoError.ErrorWithCause>(
-		json: Record<string | number, any>
-	): E {
-		let err: E | undefined = undefined
+	private deserializeError<E extends IsoError.ErrorWithCause>(json: Record<string | number, any>): E {
+		let err: E | undefined
 		for (const { fromSerializable } of this.plugins) {
 			err = fromSerializable(json) as E | undefined
 			if (err) break
@@ -106,14 +98,12 @@ export class SerializableConverter {
 	 */
 	toSerializable(err: Error) {
 		return (
-			this.plugins.reduce<Record<string | number, any> | undefined>(
-				(p, s) => p || s.toSerializable(err),
-				undefined
-			) || this.toSerializableImpl(err)
+			this.plugins.reduce<Record<string | number, any> | undefined>((p, s) => p || s.toSerializable(err), undefined) ||
+			this.toSerializableImpl(err)
 		)
 	}
 
-	private toSerializableImpl(err: Error & { cause?: Error }): Record<string | number, any> {
+	private toSerializableImpl(err: Error): Record<string | number, any> {
 		if (isAggregateError(err)) {
 			return {
 				...err,
@@ -123,9 +113,13 @@ export class SerializableConverter {
 			}
 		}
 		if (err instanceof Error) {
-			const { message, cause } = err
+			const { message } = err
+			// `Error.cause` is `unknown` in the ES2022 lib, and this serializer has always
+			// recursed into whatever is there — a non-Error cause falls through the
+			// `instanceof` check below and is returned as-is.
+			const cause = (err as { cause?: unknown }).cause
 			return cause
-				? { ...err, name: err.constructor.name, message, cause: this.toSerializableImpl(cause) }
+				? { ...err, name: err.constructor.name, message, cause: this.toSerializableImpl(cause as Error) }
 				: { ...err, name: err.constructor.name, message }
 		}
 		return err
@@ -207,20 +201,20 @@ export class IsoError extends Error {
 		}
 
 		if (isAggregateError(err)) {
-			err.errors.forEach(e =>
+			err.errors.forEach((e) => {
 				messages.push(
 					...this.trace(e)
 						.split('\n')
-						.map(s => '  ' + s)
+						.map((s) => `  ${s}`)
 				)
-			)
+			})
 		}
 		if (err instanceof Error) {
 			if (this.#hasCause(err))
 				messages.push(
 					...this.trace(err.cause)
 						.split('\n')
-						.map(s => '  ' + s)
+						.map((s) => '  ' + s)
 				)
 		} else {
 			messages.push(typeof err === 'string' ? err : JSON.stringify(err))
@@ -301,7 +295,11 @@ export class ModuleError extends IsoError {
 	/**
 	 * @param module The module that defines this error.
 	 */
-	constructor(public module: string, message?: string, options?: IsoError.Options) {
+	constructor(
+		public module: string,
+		message?: string,
+		options?: IsoError.Options
+	) {
 		super(message, options)
 	}
 }

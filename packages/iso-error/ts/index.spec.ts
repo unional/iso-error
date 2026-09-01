@@ -52,7 +52,7 @@ describe('IsoError', () => {
 			expect(IsoError.trace(e)).toEqual(`IsoError: with cause
   Error: abc`)
 		})
-		// @ts-ignore
+		// @ts-expect-error
 		if (global.AggregateError) {
 			test('includes errors in AggregateError with indentation', () => {
 				const e = new IsoError('top', {
@@ -119,7 +119,7 @@ describe('ModuleError', () => {
 	})
 	test('trace() includes module information', () => {
 		const e = new ModuleError('module-x', 'some error')
-		expect(IsoError.trace(e)).toEqual(`ModuleError(module-x): some error`)
+		expect(IsoError.trace(e)).toEqual('ModuleError(module-x): some error')
 	})
 	test('toString() includes module info', () => {
 		const e = new ModuleError('module-x', 'some error')
@@ -138,7 +138,7 @@ describe('ModuleError', () => {
 describe('IsoError.trace() produces a readable digest of the error', () => {
 	test('also work with normal error', () => {
 		const err = new Error('something is wrong')
-		expect(IsoError.trace(err)).toEqual(`Error: something is wrong`)
+		expect(IsoError.trace(err)).toEqual('Error: something is wrong')
 	})
 	test('with cause', () => {
 		const e = new IsoError('with cause', { cause: new Error('abc') })
@@ -165,7 +165,7 @@ describe('IsoError.trace() produces a readable digest of the error', () => {
 		expect(IsoError.trace(err)).toEqual(`IsoError: base
   ModuleError(module-x): some error`)
 	})
-	// @ts-ignore
+	// @ts-expect-error
 	if (global.AggregateError) {
 		test('AggregateError non Error in the `errors` field', () => {
 			const e = new AggregateError(['wrong', 'even worse', 1, true, ['a'], { b: 1 }], 'agg')
@@ -254,7 +254,7 @@ describe('IsoError.serialize()', () => {
 		const r = IsoError.serialize(new CirError())
 		expect(r).toEqual('{"error":{},"name":"CirError","message":""}')
 	})
-	// @ts-ignore
+	// @ts-expect-error
 	if (global.AggregateError) {
 		test('work with AggregateError', () => {
 			const e = new AggregateError([new Error('a'), new Error('b')], 'aggregate')
@@ -378,9 +378,7 @@ describe('serialization', () => {
 	})
 
 	test('with cause', () => {
-		const actual = IsoError.parse(
-			'{"name":"IsoError","message":"with sub","cause":{"name":"Error","message":"sub"}}'
-		)
+		const actual = IsoError.parse('{"name":"IsoError","message":"with sub","cause":{"name":"Error","message":"sub"}}')
 
 		a.satisfies(actual, {
 			name: 'IsoError',
@@ -392,7 +390,7 @@ describe('serialization', () => {
 		})
 	})
 
-	// @ts-ignore
+	// @ts-expect-error
 	if (global.AggregateError) {
 		test('retains instance of through serialization', () => {
 			const e = new AggregateError([new Error('a'), new Error('b')], 'abc')

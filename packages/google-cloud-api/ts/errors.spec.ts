@@ -69,9 +69,7 @@ describe('InvalidArgument', () => {
 			details: [
 				{
 					'@type': 'type.googleapis.com/google.rpc.BadRequest',
-					field_violations: [
-						{ field: 'abc', description: 'Request field abc is xyz. It should be abc' }
-					]
+					field_violations: [{ field: 'abc', description: 'Request field abc is xyz. It should be abc' }]
 				}
 			]
 		})
@@ -84,9 +82,7 @@ describe('InvalidArgument', () => {
 			details: [
 				{
 					'@type': 'type.googleapis.com/google.rpc.BadRequest',
-					field_violations: [
-						{ field: 'abc', description: 'Request field abc is xyz. It should be abc' }
-					]
+					field_violations: [{ field: 'abc', description: 'Request field abc is xyz. It should be abc' }]
 				}
 			]
 		})
@@ -389,9 +385,7 @@ describe('OutOfRange', () => {
 			details: [
 				{
 					'@type': 'type.googleapis.com/google.rpc.BadRequest',
-					field_violations: [
-						{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }
-					]
+					field_violations: [{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }]
 				}
 			]
 		})
@@ -404,9 +398,7 @@ describe('OutOfRange', () => {
 			details: [
 				{
 					'@type': 'type.googleapis.com/google.rpc.BadRequest',
-					field_violations: [
-						{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }
-					]
+					field_violations: [{ field: 'age', description: "Parameter 'age' is out of range [0, 125]" }]
 				}
 			]
 		})
@@ -519,7 +511,7 @@ describe('toErrorStatus', () => {
 		})
 	})
 
-	// @ts-ignore
+	// @ts-expect-error
 	if (global.AggregateError) {
 		test('contains CauseInfo when there are inner errors', () => {
 			const err = new Unauthenticated({
