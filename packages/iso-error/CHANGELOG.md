@@ -1,5 +1,16 @@
 # iso-error
 
+## 6.0.4
+
+### Patch Changes
+
+- d373748: Point package metadata at the `cyberuni/iso-error` repository.
+  
+  The repository moves out of the personal `unional` namespace so it can publish to
+  npm through GitHub OIDC trusted publishing instead of a long-lived `NPM_TOKEN`.
+  `repository`, `homepage` and `bugs` now name the new location, so the links npm
+  renders on each package page resolve.
+
 ## 6.0.3
 
 ### Patch Changes
