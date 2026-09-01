@@ -1,5 +1,12 @@
 packages:
   - packages/*
+# pnpm 11's default soak mode is loose: on meeting a package younger than
+# `minimumReleaseAge` it appends the version to `minimumReleaseAgeExclude` and
+# carries on. Strict mode makes it fail instead, so every exclusion below is a
+# deliberate, reviewed decision.
+minimumReleaseAge: 1440
+minimumReleaseAgeStrict: true
+minimumReleaseAgeExclude: []
 allowBuilds:
   '@swc/core': true
   core-js: true
